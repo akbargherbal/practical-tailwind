@@ -10,18 +10,21 @@
   </script>
   <style>
    /* Custom styles for <code> tags if needed, but Tailwind classes are preferred */
-        /* The prompt requests specific classes, so these will be applied directly */
+      /* The prompt requests specific classes, so these will be applied directly */
   </style>
   <style>
    iframe.default_style {
-  width: 100%;
-  min-height: 300px; /* Reasonable minimum */
-  border: none;
-  display: block;
-}
+        width: 100%;
+        min-height: 300px; /* Reasonable minimum */
+        border: none;
+        display: block;
+      }
   </style>
  </head>
  <body>
+  <a class="inline-flex items-center justify-center md:text-xl lg:text-2xl xl:text-4xl mx-12 my-8 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg transition" href="../../index.html" title="Go Home">
+   🏠
+  </a>
   <div class="container mx-auto p-6 md:p-10 font-sans text-slate-800">
    <h1 class="text-4xl font-bold mb-10 text-center text-slate-700">
     Tailwind CSS Concept Explained
@@ -76,7 +79,9 @@
       <em>
        parent
       </em>
-      container. The child items won't line up horizontally if their direct parent isn't a flex container. Also, items might not take up full width if you expect them to; you might need
+      container. The child items won't line up horizontally if their
+            direct parent isn't a flex container. Also, items might not take up
+            full width if you expect them to; you might need
       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
        w-full
       </code>
@@ -135,24 +140,27 @@
   <iframe frameborder="0" src="./09_example.html">
   </iframe>
   <script>
-   document.addEventListener('DOMContentLoaded', function() {
-  const iframes = document.querySelectorAll('iframe');
+   document.addEventListener("DOMContentLoaded", function () {
+        const iframes = document.querySelectorAll("iframe");
 
-  // Ensure all iframes have the default style class
-  iframes.forEach(iframe => iframe.classList.add('default_style'));
+        // Ensure all iframes have the default style class
+        iframes.forEach((iframe) => iframe.classList.add("default_style"));
 
-  window.addEventListener('message', function(event) {
-    // Optional: add origin check for safety
-    if (event.data && typeof event.data.iframeHeight === 'number') {
-      const iframe = Array.from(iframes).find(iframe =>
-        iframe.contentWindow === event.source
-      );
-      if (iframe) {
-        iframe.style.height = (event.data.iframeHeight + 50) + 'px';
-      }
-    }
-  });
-});
+        window.addEventListener("message", function (event) {
+          // Optional: add origin check for safety
+          if (event.data && typeof event.data.iframeHeight === "number") {
+            const iframe = Array.from(iframes).find(
+              (iframe) => iframe.contentWindow === event.source
+            );
+            if (iframe) {
+              iframe.style.height = event.data.iframeHeight + 50 + "px";
+            }
+          }
+        });
+      });
   </script>
+  <a class="inline-flex items-center justify-center md:text-xl lg:text-2xl xl:text-4xl mx-12 my-8 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg transition" href="../../index.html" title="Go Home">
+   🏠
+  </a>
  </body>
 </html>
