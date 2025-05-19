@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill - Spacing Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-3xl font-bold mb-6 text-center text-red-600">
+    Spacing Gotcha: Arbitrary Pixel Values
+   </h1>
+   <div class="p-6 bg-white rounded shadow">
+    <p class="mb-4 text-gray-700">
+     <strong>
+      Gotcha:
+     </strong>
+     Mixing Tailwind's spacing scale with arbitrary pixel values frequently (e.g., `m-[3px]`, `p-[7px]`).
+                While sometimes necessary for pixel-perfect adjustments, overdoing it can undermine the visual consistency Tailwind aims to provide.
+                It's generally better to stick to Tailwind's predefined scale (e.g., `m-1`, `p-2`) for a more harmonious design.
+    </p>
+    <h2 class="text-xl font-semibold mb-3 text-red-500">
+     Demonstrating the Issue
+    </h2>
+    <div class="grid md:grid-cols-2 gap-6">
+     <!-- Section with Arbitrary Values (The "Gotcha") -->
+     <div class="border p-4 rounded-lg border-red-300 bg-red-50">
+      <h3 class="text-lg font-medium mb-2 text-red-700">
+       With Arbitrary Values (Less Consistent)
+      </h3>
+      <!--
+                        The following elements use arbitrary pixel values.
+                        While they work, they don't align with Tailwind's rhythmic scale,
+                        which can lead to visual inconsistencies, especially in larger layouts.
+                    -->
+      <div class="bg-red-200 p-[7px] mb-[3px] rounded">
+       Box A: padding `p-[7px]`, margin-bottom `mb-[3px]`
+      </div>
+      <div class="bg-red-200 p-[11px] m-[5px] rounded">
+       Box B: padding `p-[11px]`, margin `m-[5px]`
+      </div>
+      <div class="bg-red-300 p-2 m-1 rounded">
+       Box C (Tailwind Scale): `p-2`, `m-1` (for comparison)
+       <p class="mt-[5px] text-sm">
+        Notice how the custom `mt-[5px]` here feels slightly 'off' when next to scaled elements.
+       </p>
+      </div>
+     </div>
+     <!-- Section with Tailwind's Scale (Preferred) -->
+     <div class="border p-4 rounded-lg border-green-300 bg-green-50">
+      <h3 class="text-lg font-medium mb-2 text-green-700">
+       With Tailwind's Scale (More Consistent)
+      </h3>
+      <!--
+                        The following elements use Tailwind's predefined spacing scale.
+                        This promotes visual rhythm and consistency across the application.
+                        m-1 = 4px, p-2 = 8px, p-3 = 12px
+                    -->
+      <div class="bg-green-200 p-2 mb-1 rounded">
+       Box X: padding `p-2` (8px), margin-bottom `mb-1` (4px)
+      </div>
+      <div class="bg-green-200 p-3 m-1 rounded">
+       Box Y: padding `p-3` (12px), margin `m-1` (4px)
+      </div>
+      <div class="bg-green-300 p-2 m-1 rounded">
+       Box Z (Tailwind Scale): `p-2`, `m-1`
+       <p class="mt-1 text-sm">
+        The `mt-1` here aligns perfectly with the scale.
+       </p>
+      </div>
+     </div>
+    </div>
+    <div class="mt-6 p-4 bg-blue-50 border border-blue-300 rounded">
+     <h3 class="text-lg font-medium text-blue-700">
+      Key Takeaway:
+     </h3>
+     <p class="text-blue-600">
+      Try to exhaust Tailwind's spacing scale options (`m-0.5`, `m-1`, `m-1.5`, `m-2`, etc., and their `p-*` counterparts) before resorting to arbitrary values like `m-[value]`.
+                    This helps maintain the design system's integrity and visual harmony.
+                    If you find yourself using many arbitrary values, consider customizing your `tailwind.config.js` to extend the spacing scale.
+     </p>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

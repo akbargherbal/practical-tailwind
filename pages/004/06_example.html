@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: justify-between Gotcha (ml-auto)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Example 3: Gotcha - Using `ml-auto` to Push a Single Item
+  </h1>
+  <p class="mb-6">
+   Sometimes, you might have several items that should stay grouped on the left, and only one specific item needs to be pushed to the far right.
+        In such cases, `ml-auto` (margin-left: auto) on the item you want to push can be a more direct solution than `justify-between` on the parent, especially if `justify-between` would undesirably space out all left-side items.
+  </p>
+  <div class="mb-8 p-4 border rounded-lg">
+   <h2 class="text-xl font-semibold mb-2">
+    Scenario without `ml-auto` (or incorrect `justify-between`)
+   </h2>
+   <p class="text-sm text-gray-600 mb-2">
+    If we just use `flex` without `justify-between` or `ml-auto`, items stack left. If we used `justify-between` with many items, they'd all spread out.
+   </p>
+   <div class="flex items-center p-4 bg-orange-200 rounded-md">
+    <div class="bg-orange-400 p-2 text-white rounded">
+     Brand
+    </div>
+    <div class="bg-orange-400 p-2 text-white rounded ml-2">
+     Link 1
+    </div>
+    <div class="bg-orange-400 p-2 text-white rounded ml-2">
+     Link 2
+    </div>
+    <div class="bg-orange-400 p-2 text-white rounded ml-2">
+     User Actions
+    </div>
+   </div>
+   <p class="mt-2 text-sm text-gray-700">
+    All items are on the left. We want "User Actions" on the far right.
+   </p>
+  </div>
+  <div class="p-4 border rounded-lg">
+   <h2 class="text-xl font-semibold mb-2">
+    Solution: Using `ml-auto`
+   </h2>
+   <p class="text-sm text-gray-600 mb-2">
+    Apply `ml-auto` to the "User Actions" div. This will consume all available space to its left, effectively pushing it to the right.
+            The parent container is `flex`.
+   </p>
+   <div class="flex items-center p-4 bg-purple-200 rounded-md">
+    <div class="bg-purple-500 p-2 text-white rounded">
+     Brand
+    </div>
+    <div class="bg-purple-500 p-2 text-white rounded ml-2">
+     Link 1
+    </div>
+    <div class="bg-purple-500 p-2 text-white rounded ml-2">
+     Link 2
+    </div>
+    <!-- This item is pushed to the right using ml-auto -->
+    <div class="bg-purple-700 p-2 text-white rounded ml-auto">
+     User Actions
+    </div>
+   </div>
+   <p class="mt-2 text-sm text-gray-700">
+    <!-- Gotcha/Solution Explanation -->
+    The `ml-auto` class on "User Actions" assigns an automatic left margin, which takes up all available horizontal space within the flex container, pushing "User Actions" to the far right. The other items remain grouped on the left.
+            This is very useful when `justify-between` on the parent container isn't desired because you don't want all immediate children to be spaced out.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS - Disabled State Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex flex-col items-center space-y-6 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Gotcha: `disabled` Attribute is Key
+  </h1>
+  <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-lg">
+   <h2 class="text-lg font-semibold mb-3">
+    Understanding the `disabled:` Variant Gotcha
+   </h2>
+   <p class="text-sm text-gray-600 mb-4">
+    The "Gotcha" with `disabled:` variants (like `disabled:opacity-50`) is that they ONLY apply if the HTML element
+    <strong>
+     actually has the `disabled` attribute
+    </strong>
+    . Simply adding Tailwind's `disabled:*` classes without the
+            HTML attribute will not make the element functionally disabled, nor will the `disabled:*` styles apply.
+   </p>
+   <!-- Button 1: Correctly Disabled -->
+   <div class="mb-6 p-4 border border-green-300 rounded bg-green-50">
+    <p class="mb-2 font-medium text-green-700">
+     1. Correctly Disabled Button:
+    </p>
+    <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed" disabled="">
+     Actually Disabled
+    </button>
+    <p class="mt-2 text-xs text-gray-700">
+     This button has:
+     <br/>
+     - The HTML `disabled` attribute.
+     <br/>
+     - `disabled:opacity-50` and `disabled:cursor-not-allowed` Tailwind classes.
+     <br/>
+     Result: It appears faded, and the cursor is `not-allowed`. It is not clickable.
+    </p>
+   </div>
+   <!-- Button 2: Gotcha - Tailwind disabled: classes without HTML disabled attribute -->
+   <div class="mb-6 p-4 border border-red-300 rounded bg-red-50">
+    <p class="mb-2 font-medium text-red-700">
+     2. Gotcha Example: Missing `disabled` Attribute:
+    </p>
+    <!-- 
+                GOTCHA DEMONSTRATION:
+                This button has the Tailwind `disabled:opacity-50` and `disabled:cursor-not-allowed` classes,
+                BUT it does NOT have the HTML `disabled` attribute.
+                Therefore, the `disabled:*` styles will NOT apply, and the button will remain interactive
+                and will not show the `cursor-not-allowed`.
+            -->
+    <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed">
+     Appears Enabled (Gotcha!)
+    </button>
+    <p class="mt-2 text-xs text-gray-700">
+     This button has:
+     <br/>
+     -
+     <strong class="text-red-600">
+      NO HTML `disabled` attribute.
+     </strong>
+     <br/>
+     - `disabled:opacity-50` and `disabled:cursor-not-allowed` Tailwind classes.
+     <br/>
+     Result: The button looks and acts enabled. The `disabled:*` styles are ignored because the HTML `disabled` attribute is missing. It is clickable, and the cursor is the default pointer.
+    </p>
+   </div>
+   <!-- Button 3: Normal Enabled Button for comparison -->
+   <div class="p-4 border border-gray-300 rounded bg-gray-50">
+    <p class="mb-2 font-medium text-gray-700">
+     3. Standard Enabled Button (for comparison):
+    </p>
+    <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+     Standard Enabled
+    </button>
+    <p class="mt-2 text-xs text-gray-700">
+     This is a standard enabled button without any `disabled` attributes or `disabled:` classes.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

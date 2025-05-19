@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Flex Child Sizing Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Example 3: Gotcha - Flex Item Sizing
+  </h1>
+  <p class="mb-4">
+   This example demonstrates how flex items behave by default and how to make them grow using `flex-grow`.
+  </p>
+  <h2 class="text-xl font-semibold mt-6 mb-2">
+   Default Behavior: Items Take Content Width
+  </h2>
+  <p class="mb-2 text-sm text-gray-700">
+   Without explicit width or grow utilities, flex items only take up the space their content needs.
+  </p>
+  <div class="flex bg-indigo-200 p-4 rounded-md space-x-2 mb-6 border border-indigo-400">
+   <div class="bg-indigo-500 text-white p-3 rounded-md shadow-md">
+    Short
+   </div>
+   <div class="bg-indigo-500 text-white p-3 rounded-md shadow-md">
+    Medium Content
+   </div>
+   <div class="bg-indigo-500 text-white p-3 rounded-md shadow-md">
+    Looooooooonger Content Item
+   </div>
+  </div>
+  <h2 class="text-xl font-semibold mt-6 mb-2">
+   Using `flex-grow` on Children
+  </h2>
+  <p class="mb-2 text-sm text-gray-700">
+   The `flex-grow` utility allows flex items to expand and fill available space in the flex container.
+  </p>
+  <div class="flex bg-teal-200 p-4 rounded-md space-x-2 mb-6 border border-teal-400">
+   <div class="bg-teal-500 text-white p-3 rounded-md shadow-md flex-grow">
+    Item 1 (flex-grow)
+   </div>
+   <div class="bg-teal-500 text-white p-3 rounded-md shadow-md">
+    Item 2 (no grow)
+   </div>
+   <div class="bg-teal-500 text-white p-3 rounded-md shadow-md flex-grow">
+    Item 3 (flex-grow)
+   </div>
+  </div>
+  <!-- Comment within HTML body explaining the gotcha -->
+  <!-- 
+        Gotcha Explanation for Child Sizing:
+        By default, flex items do not automatically expand to fill the width of their parent container.
+        They shrink to fit their content.
+        If you want items to take up more space or distribute available space, you need to use utilities like:
+        - `flex-grow`: Allows an item to grow if there's extra space.
+        - Specific width utilities (e.g., `w-1/3`, `w-full`): Can set explicit widths. 
+          However, `w-full` on a flex child in a non-wrapping row might cause overflow if other siblings exist.
+          `flex-grow` is often preferred for distributing remaining space proportionally.
+        In the example above, "Item 1" and "Item 3" have `flex-grow`, so they expand to fill the available space,
+        while "Item 2" retains its content-based width.
+    -->
+  <div class="mt-6 p-4 border border-orange-400 bg-orange-50 rounded-md">
+   <h3 class="text-lg font-semibold text-orange-700">
+    Gotcha Point:
+   </h3>
+   <p class="text-orange-600">
+    Flex items won't automatically take up the full width or distribute space unless you instruct them to. Use `flex-grow` on child items if you want them to expand and fill available horizontal space in the flex container. Alternatively, explicit width utilities like `w-1/2`, `w-1/3` etc., can be used on children, but `flex-grow` is key for responsive distribution of *remaining* space.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

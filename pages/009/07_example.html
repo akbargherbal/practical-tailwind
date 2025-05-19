@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill Example - Product Badge
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <!-- Example 2: "New!" badge on a product image -->
+  <div class="container mx-auto p-4">
+   <h1 class="text-2xl font-bold mb-4">
+    Example 2: "New!" Badge on a Product
+   </h1>
+   <p class="mb-2">
+    The product card (gray background) is `relative`. The "New!" badge is `absolute` and placed in the top-right corner using `z-10` to ensure it's on top.
+   </p>
+   <!-- Product Card -->
+   <div class="relative w-72 bg-white shadow-xl rounded-lg overflow-hidden">
+    <!-- Image placeholder -->
+    <div class="w-full h-48 bg-gray-300 flex items-center justify-center">
+     <span class="text-gray-500">
+      Product Image Area
+     </span>
+    </div>
+    <!-- Product Info -->
+    <div class="p-4">
+     <h3 class="font-semibold text-lg">
+      Awesome Product
+     </h3>
+     <p class="text-gray-600 text-sm">
+      This is a fantastic product you'll love.
+     </p>
+    </div>
+    <!-- "New!" Badge -->
+    <div class="absolute top-3 right-3 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full shadow-md z-10">
+     NEW!
+    </div>
+    <!-- Another overlapping element, perhaps a discount sticker, without z-index or lower z-index implicitly -->
+    <div class="absolute bottom-2 left-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">
+     Sale
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

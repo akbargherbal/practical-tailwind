@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill - Background Image (Correct)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-slate-50 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6">
+   Example 2: Background Image - Correct Implementation
+  </h1>
+  <!-- Div with a background image, bg-cover, and bg-center -->
+  <!-- It also has a defined height (h-64 or h-96) so the image is visible -->
+  <div class="bg-[url('https://source.unsplash.com/random/1200x800?nature,water')] bg-cover bg-center h-96 rounded-lg shadow-xl flex items-center justify-center mb-6">
+   <div class="bg-black bg-opacity-50 text-white p-6 rounded">
+    <h2 class="text-3xl font-bold">
+     Nature Scene
+    </h2>
+    <p>
+     This div uses a background image with
+     <code>
+      bg-cover
+     </code>
+     and
+     <code>
+      bg-center
+     </code>
+     .
+    </p>
+    <p>
+     It also has
+     <code>
+      h-96
+     </code>
+     to ensure the background is visible and has space.
+    </p>
+    <p>
+     <code>
+      bg-cover
+     </code>
+     makes the image cover the entire area, potentially cropping.
+    </p>
+    <p>
+     <code>
+      bg-center
+     </code>
+     positions the image from its center.
+    </p>
+   </div>
+  </div>
+  <div class="bg-[url('https://source.unsplash.com/random/1200x800?city,night')] bg-cover bg-center bg-no-repeat h-64 rounded-lg shadow-xl flex items-end p-4">
+   <div class="bg-white bg-opacity-75 text-black p-4 rounded">
+    <h2 class="text-xl font-semibold">
+     City at Night
+    </h2>
+    <p>
+     Another example with
+     <code>
+      bg-cover
+     </code>
+     ,
+     <code>
+      bg-center
+     </code>
+     , and explicit
+     <code>
+      bg-no-repeat
+     </code>
+     .
+    </p>
+    <p>
+     <code>
+      bg-no-repeat
+     </code>
+     is good practice, though often implied by
+     <code>
+      bg-cover
+     </code>
+     's behavior of scaling to fill.
+    </p>
+   </div>
+  </div>
+  <div class="mt-4 p-4 bg-yellow-100 border border-yellow-300 rounded-md">
+   <h3 class="font-semibold text-yellow-800">
+    Key Takeaways for Background Images:
+   </h3>
+   <ul class="list-disc list-inside text-yellow-700">
+    <li>
+     Use Tailwind's arbitrary value syntax for URLs:
+     <code>
+      bg-[url('...')]
+     </code>
+     .
+    </li>
+    <li>
+     Always give the element dimensions (e.g.,
+     <code>
+      h-64
+     </code>
+     ,
+     <code>
+      min-h-screen
+     </code>
+     , or ensure content gives it height).
+    </li>
+    <li>
+     Use
+     <code>
+      bg-cover
+     </code>
+     to ensure the image fills the container without distortion (it may crop).
+    </li>
+    <li>
+     Use
+     <code>
+      bg-center
+     </code>
+     (or
+     <code>
+      bg-top
+     </code>
+     ,
+     <code>
+      bg-left
+     </code>
+     , etc.) to control image positioning.
+    </li>
+    <li>
+     Consider
+     <code>
+      bg-no-repeat
+     </code>
+     if you don't want tiling, especially if not using
+     <code>
+      bg-cover
+     </code>
+     .
+    </li>
+   </ul>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

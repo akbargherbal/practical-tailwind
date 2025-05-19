@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Custom Fonts (Working Example)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style>
+   /* 
+           GOTCHA ADDRESS: Import the font files.
+           Normally, you'd do this in your main CSS file (e.g., style.css)
+           or link them in the <head> if they are self-hosted or from a CDN.
+           Here, we're importing 'Roboto' and 'Lobster' from Google Fonts.
+        */
+        @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;700&display=swap');
+  </style>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto p-6 bg-white rounded-lg shadow-md">
+   <h1 class="text-2xl font-bold mb-4">
+    Custom Fonts Example
+   </h1>
+   <!-- 
+            Explanation:
+            1. We've imported 'Roboto' and 'Lobster' in the <style> tag in the <head>.
+            2. In a real project with a build step, you would configure tailwind.config.js like this:
+               module.exports = {
+                 theme: {
+                   extend: {
+                     fontFamily: {
+                       'sans': ['Roboto', 'sans-serif'], // Overriding default sans or adding new
+                       'display': ['Lobster', 'cursive'], // Adding a new custom font family
+                     },
+                   },
+                 },
+                 plugins: [],
+               }
+            3. Then you could use classes like `font-sans` (which would now use Roboto) or `font-display`.
+            4. With the CDN, we can use arbitrary values to apply the imported fonts directly.
+        -->
+   <p class="mb-2">
+    This paragraph uses Tailwind's default sans-serif font (likely a system font unless overridden by browser defaults or user styles before Tailwind kicks in).
+   </p>
+   <p class="font-['Roboto'] text-lg mb-2">
+    This paragraph uses the 'Roboto' font. We imported it via `@import` in the `
+    <head>
+     `,
+            and are applying it using Tailwind's arbitrary value `font-['Roboto']`.
+            If 'Roboto' was configured as `font-sans` in `tailwind.config.js`, you'd just use `font-sans`.
+    </head>
+   </p>
+   <p class="font-['Lobster'] text-2xl text-blue-600 mb-4">
+    This paragraph uses the 'Lobster' font. Similarly, imported and applied with an arbitrary value.
+            If configured as `font-display` in `tailwind.config.js`, you'd use `font-display`.
+   </p>
+   <div class="mt-6 p-4 bg-blue-50 border-l-4 border-blue-500">
+    <h3 class="font-bold text-blue-700">
+     Key Takeaway:
+    </h3>
+    <p class="text-blue-600">
+     Tailwind can define font family *names* (e.g., `font-primary` or `font-display` via `tailwind.config.js`). However, the browser needs the actual font *files*. You must link or import these (e.g., from Google Fonts, Adobe Fonts, or self-hosted files) for them to render correctly. This example works because we used `@import` in the `
+     <head>
+      `.
+     </head>
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

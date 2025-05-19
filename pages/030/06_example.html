@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Borders - Basic Usage
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6">
+   Tailwind CSS Borders: Basic Examples
+  </h1>
+  <!-- Example 1: Default all-around border -->
+  <div class="mb-6 p-4 bg-white shadow">
+   <h2 class="text-lg font-semibold mb-2">
+    Default Border
+   </h2>
+   <div class="border p-4 w-1/2 mx-auto text-center">
+    This div has a default 1px border on all sides.
+   </div>
+   <p class="mt-2 text-sm text-gray-600">
+    Class used:
+    <code class="bg-gray-200 p-1 rounded">
+     border
+    </code>
+   </p>
+  </div>
+  <!-- Example 2: Border on one side with specific thickness -->
+  <div class="mb-6 p-4 bg-white shadow">
+   <h2 class="text-lg font-semibold mb-2">
+    Specific Side Border
+   </h2>
+   <div class="border-t-4 border-blue-500 p-4 w-1/2 mx-auto text-center">
+    This div has a 4px top border in blue.
+   </div>
+   <p class="mt-2 text-sm text-gray-600">
+    Classes used:
+    <code class="bg-gray-200 p-1 rounded">
+     border-t-4 border-blue-500
+    </code>
+   </p>
+  </div>
+  <!-- Example 3: Colored border with default thickness -->
+  <div class="mb-6 p-4 bg-white shadow">
+   <h2 class="text-lg font-semibold mb-2">
+    Colored Border
+   </h2>
+   <div class="border-2 border-red-500 p-4 w-1/2 mx-auto text-center">
+    This div has a 2px red border on all sides.
+   </div>
+   <p class="mt-2 text-sm text-gray-600">
+    Classes used:
+    <code class="bg-gray-200 p-1 rounded">
+     border-2 border-red-500
+    </code>
+   </p>
+  </div>
+  <!-- Example 4: Different borders on different sides -->
+  <div class="p-4 bg-white shadow">
+   <h2 class="text-lg font-semibold mb-2">
+    Mixed Borders
+   </h2>
+   <div class="border-t-2 border-green-500 border-b-4 border-purple-600 border-l border-yellow-400 border-r-8 border-pink-500 p-4 w-1/2 mx-auto text-center">
+    This div has different borders on each side.
+   </div>
+   <p class="mt-2 text-sm text-gray-600">
+    Classes used:
+    <code class="bg-gray-200 p-1 rounded">
+     border-t-2 border-green-500 border-b-4 border-purple-600 border-l border-yellow-400 border-r-8 border-pink-500
+    </code>
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

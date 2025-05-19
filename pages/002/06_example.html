@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Stacking &amp; The Gotcha Explained
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-6 bg-slate-50 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6 text-center text-slate-800">
+   Example 3: Understanding the "Gotcha" with
+   <code>
+    flex flex-col
+   </code>
+  </h1>
+  <div class="grid md:grid-cols-2 gap-6">
+   <div>
+    <h2 class="text-lg font-semibold mb-2 text-slate-700">
+     Scenario 1: Default Block Stacking
+    </h2>
+    <p class="text-sm text-slate-600 mb-3">
+     These items stack vertically by default. No
+     <code>
+      flex flex-col
+     </code>
+     is needed here.
+    </p>
+    <div class="bg-white p-4 rounded shadow border border-gray-200">
+     <div class="bg-amber-300 p-3 rounded mb-2 text-amber-800">
+      Block Item 1
+     </div>
+     <div class="bg-amber-300 p-3 rounded mb-2 text-amber-800">
+      Block Item 2
+     </div>
+     <div class="bg-amber-300 p-3 rounded text-amber-800">
+      Block Item 3
+     </div>
+     <!--
+                    HTML Comment - Gotcha Point:
+                    These divs stack due to default block behavior.
+                    Using 'flex flex-col' on their parent wouldn't change this basic stacking
+                    unless other flex properties like 'items-*' or 'space-y-*' were also added.
+                -->
+    </div>
+   </div>
+   <div>
+    <h2 class="text-lg font-semibold mb-2 text-slate-700">
+     Scenario 2: Using
+     <code>
+      flex flex-col
+     </code>
+     for Benefits
+    </h2>
+    <p class="text-sm text-slate-600 mb-3">
+     Here,
+     <code>
+      flex flex-col
+     </code>
+     is used to enable
+     <code>
+      items-end
+     </code>
+     (horizontal alignment) and
+     <code>
+      space-y-2
+     </code>
+     (spacing).
+    </p>
+    <div class="bg-white p-4 rounded shadow border border-gray-200">
+     <div class="flex flex-col items-end space-y-2">
+      <div class="bg-sky-400 text-white p-3 rounded w-5/6 text-right">
+       Flex Item A (aligned end)
+      </div>
+      <div class="bg-sky-500 text-white p-3 rounded w-4/6 text-right">
+       Flex Item B (aligned end)
+      </div>
+      <div class="bg-sky-600 text-white p-3 rounded w-3/6 text-right">
+       Flex Item C (aligned end)
+      </div>
+     </div>
+     <!--
+                    HTML Comment - Addressing Gotcha:
+                    'flex flex-col' is necessary here to use 'items-end' and 'space-y-2'.
+                    Without it, you couldn't easily achieve this alignment or consistent spacing with Tailwind utilities.
+                    This demonstrates the *purpose* of 'flex flex-col' beyond simple stacking.
+                -->
+    </div>
+   </div>
+  </div>
+  <div class="mt-8 p-4 bg-red-100 border border-red-300 rounded">
+   <h3 class="text-md font-semibold text-red-800 mb-1">
+    "Gotcha" Clarified:
+   </h3>
+   <p class="text-sm text-red-700">
+    <strong>
+     The "Gotcha" is:
+    </strong>
+    Simply applying
+    <code>
+     flex flex-col
+    </code>
+    to a parent of elements that already stack vertically by default (like
+    <code>
+     &lt;div&gt;
+    </code>
+    s) might seem redundant if you're not also using other flexbox utilities.
+            You only *need*
+    <code>
+     flex flex-col
+    </code>
+    when you intend to leverage flexbox capabilities such as:
+   </p>
+   <ul class="list-disc list-inside text-sm text-red-700 mt-2">
+    <li>
+     Alignment utilities (e.g.,
+     <code>
+      items-center
+     </code>
+     ,
+     <code>
+      items-start
+     </code>
+     ,
+     <code>
+      justify-content
+     </code>
+     ).
+    </li>
+    <li>
+     Spacing utilities (e.g.,
+     <code>
+      space-y-*
+     </code>
+     ,
+     <code>
+      gap-*
+     </code>
+     with flexbox).
+    </li>
+    <li>
+     Reordering or other advanced flex behaviors.
+    </li>
+   </ul>
+   <p class="text-sm text-red-700 mt-2">
+    Otherwise, the natural block flow often achieves basic vertical stacking.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

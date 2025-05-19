@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind - Justify Evenly &amp; Gap
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-6">
+    Skill: Space items out evenly (justify-evenly &amp; gap)
+   </h1>
+   <!-- Example 1: justify-evenly -->
+   <div class="mb-8">
+    <h2 class="text-xl font-semibold mb-2">
+     Using `justify-evenly` (Row)
+    </h2>
+    <p class="mb-2 text-sm text-gray-600">
+     `justify-evenly`: Equal space between each item, and also between the first/last items and the container edges.
+    </p>
+    <div class="flex justify-evenly bg-purple-200 p-4 rounded">
+     <div class="bg-purple-500 text-white p-4 rounded">
+      Item 1
+     </div>
+     <div class="bg-purple-500 text-white p-4 rounded">
+      Item 2
+     </div>
+     <div class="bg-purple-500 text-white p-4 rounded">
+      Item 3
+     </div>
+    </div>
+   </div>
+   <!-- Example 2: gap-4 (Row) -->
+   <div class="mb-8">
+    <h2 class="text-xl font-semibold mb-2">
+     Using `gap-4` (Row)
+    </h2>
+    <p class="mb-2 text-sm text-gray-600">
+     `gap-4` (equivalent to `gap: 1rem`): Adds a consistent space *between* flex or grid items. Does not add space at the start/end of the container.
+    </p>
+    <div class="flex gap-4 bg-indigo-200 p-4 rounded">
+     <div class="bg-indigo-500 text-white p-4 rounded">
+      Item A
+     </div>
+     <div class="bg-indigo-500 text-white p-4 rounded">
+      Item B
+     </div>
+     <div class="bg-indigo-500 text-white p-4 rounded">
+      Item C
+     </div>
+    </div>
+   </div>
+   <!-- Example 3: gap-4 (Column) -->
+   <div>
+    <h2 class="text-xl font-semibold mb-2">
+     Using `gap-4` (Column)
+    </h2>
+    <p class="mb-2 text-sm text-gray-600">
+     `gap-4` also works for columns, creating vertical space between items.
+    </p>
+    <div class="flex flex-col gap-4 bg-teal-200 p-4 rounded w-max">
+     <div class="bg-teal-500 text-white p-4 rounded">
+      Item X
+     </div>
+     <div class="bg-teal-500 text-white p-4 rounded">
+      Item Y
+     </div>
+     <div class="bg-teal-500 text-white p-4 rounded">
+      Item Z
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

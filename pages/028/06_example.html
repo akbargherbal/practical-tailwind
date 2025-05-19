@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill Example - Text Alignment Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <!-- This example illustrates the "Gotcha": text-center aligns text within its container, but doesn't center the container itself. -->
+  <div class="container mx-auto bg-white p-6 rounded-lg shadow-md">
+   <h1 class="text-2xl font-bold mb-6 text-center">
+    Gotcha: Text Alignment vs. Block Centering
+   </h1>
+   <p class="mb-4 text-gray-700">
+    The
+    <code>
+     text-center
+    </code>
+    utility aligns text *within* its block-level container. It does not center the container itself on the page.
+   </p>
+   <div class="mb-8">
+    <h2 class="text-xl font-semibold mb-2">
+     Incorrect Attempt to Center a Block:
+    </h2>
+    <p class="mb-2 text-sm text-gray-600">
+     This div has a width (
+     <code>
+      w-1/2
+     </code>
+     ) and
+     <code>
+      text-center
+     </code>
+     . The text inside is centered, but the div itself is not centered on the page.
+    </p>
+    <!-- 
+                GOTCHA DEMONSTRATION: 
+                The div below has 'text-center'. This centers the text *inside* the div.
+                However, the div itself (which has w-1/2, making it narrower than its parent)
+                is still aligned to the left by default.
+            -->
+    <div class="w-1/2 bg-red-100 p-4 border-2 border-red-300 rounded text-center">
+     <p class="font-medium">
+      Div with
+      <code>
+       text-center
+      </code>
+     </p>
+     <p>
+      My text is centered, but I (the red box) am not!
+     </p>
+    </div>
+    <p class="mt-1 text-xs text-red-700">
+     Notice the red box is left-aligned within this section.
+    </p>
+   </div>
+   <div class="mb-8">
+    <h2 class="text-xl font-semibold mb-2">
+     Correct Way to Center a Block:
+    </h2>
+    <p class="mb-2 text-sm text-gray-600">
+     This div uses
+     <code>
+      mx-auto
+     </code>
+     to center the block itself, and
+     <code>
+      text-center
+     </code>
+     to center its internal text content.
+    </p>
+    <!--
+                CORRECTED APPROACH:
+                To center the block element itself, 'mx-auto' is used.
+                'text-center' is still used to center the text *within* this now-centered block.
+            -->
+    <div class="w-1/2 bg-green-100 p-4 border-2 border-green-300 rounded text-center mx-auto">
+     <p class="font-medium">
+      Div with
+      <code>
+       text-center
+      </code>
+      and
+      <code>
+       mx-auto
+      </code>
+     </p>
+     <p>
+      My text is centered, AND I (the green box) am centered!
+     </p>
+    </div>
+    <p class="mt-1 text-xs text-green-700">
+     Notice the green box is now centered on the page.
+    </p>
+   </div>
+   <div class="mt-6 border-t pt-4">
+    <h3 class="font-semibold">
+     Key Takeaway (Gotcha Explained):
+    </h3>
+    <ul class="list-disc list-inside text-gray-700 mt-2">
+     <li>
+      <code>
+       text-left
+      </code>
+      ,
+      <code>
+       text-center
+      </code>
+      ,
+      <code>
+       text-right
+      </code>
+      : Align text
+      <strong class="font-semibold">
+       within
+      </strong>
+      an element.
+     </li>
+     <li>
+      <code>
+       mx-auto
+      </code>
+      : Centers a
+      <strong class="font-semibold">
+       block-level element itself
+      </strong>
+      horizontally within its parent, provided it has a defined width (or is an inline-block with a width).
+     </li>
+    </ul>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

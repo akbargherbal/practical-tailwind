@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Opacity: Element Opacity
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-4">
+    Example 1: Basic Element Opacity
+   </h1>
+   <p class="mb-4">
+    This example demonstrates the `opacity-*` utility. Notice how the entire element, including its background and text, becomes semi-transparent.
+   </p>
+   <!-- Element with opacity-50 -->
+   <div class="bg-blue-500 text-white p-6 rounded-lg shadow-md opacity-50">
+    <h2 class="text-xl font-semibold">
+     Opacity 50% `(opacity-50)`
+    </h2>
+    <p class="mt-2">
+     This entire box, including this text, has its opacity set to 50%. The blue background is also semi-transparent.
+    </p>
+   </div>
+   <div class="mt-6 bg-green-500 text-white p-6 rounded-lg shadow-md opacity-75">
+    <h2 class="text-xl font-semibold">
+     Opacity 75% `(opacity-75)`
+    </h2>
+    <p class="mt-2">
+     This entire box, including this text, has its opacity set to 75%.
+    </p>
+   </div>
+   <div class="mt-6 bg-red-500 text-white p-6 rounded-lg shadow-md opacity-25">
+    <h2 class="text-xl font-semibold">
+     Opacity 25% `(opacity-25)`
+    </h2>
+    <p class="mt-2">
+     This entire box, including this text, has its opacity set to 25%.
+    </p>
+   </div>
+   <div class="mt-6 bg-purple-500 text-white p-6 rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold">
+     No Opacity (Reference)
+    </h2>
+    <p class="mt-2">
+     This is a normal, fully opaque box for comparison.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

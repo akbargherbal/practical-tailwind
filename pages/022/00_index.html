@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <title>
+   Tailwind CSS: Add lines to separate content (dividers).
+  </title>
+  <style>
+   /* Custom styles if needed, although Tailwind should cover most */
+        .code-highlight {
+            /* Defined via Tailwind classes directly on <code> tags */
+        }
+  </style>
+  <style>
+   iframe.default_style {
+  width: 100%;
+  min-height: 300px; /* Reasonable minimum */
+  border: none;
+  display: block;
+}
+  </style>
+ </head>
+ <body>
+  <div class="container mx-auto p-6 md:p-10 font-sans text-slate-800">
+   <h1 class="text-4xl font-bold mb-10 text-center text-slate-700">
+    Tailwind CSS Concept Explained
+   </h1>
+   <section class="mb-12 bg-white shadow-lg rounded-lg p-6 md:p-8">
+    <h2 class="text-3xl font-semibold mb-6 text-slate-600 border-b-2 border-slate-300 pb-3">
+     Styling Common Web Page Parts
+    </h2>
+    <h3 class="text-2xl font-medium mb-5 text-indigo-700">
+     Add lines to separate content (dividers).
+    </h3>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Skill ID:
+     </strong>
+     StylingCommonParts_22
+    </p>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Description:
+     </strong>
+     Create visual horizontal or vertical lines to break up sections.
+    </p>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Where to apply:
+     </strong>
+     Between articles on a homepage, in long forms.
+    </p>
+    <p class="mb-2 mt-6 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Key Tailwind Classes:
+     </strong>
+    </p>
+    <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mb-4">
+     <span>
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       border-t
+      </code>
+      ,
+     </span>
+     <span>
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       border-l
+      </code>
+     </span>
+    </div>
+    <div class="bg-amber-50 border-l-4 border-amber-500 text-amber-700 p-4 mt-5 rounded-md shadow-sm">
+     <p>
+      <strong class="font-semibold">
+       Gotcha:
+      </strong>
+      Using a `&lt;div&gt;` with a tiny height (e.g.,
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       h-px
+      </code>
+      ) and a background color (e.g.,
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       bg-gray-300
+      </code>
+      ) is often more flexible for horizontal dividers than just
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       border-t
+      </code>
+      on an existing element, especially for controlling spacing around the line.
+     </p>
+    </div>
+    <div class="mt-8 pt-6 border-t border-slate-200">
+     <h4 class="text-xl font-semibold mb-4 text-slate-700">
+      Example Usage:
+     </h4>
+     <p class="mb-2 text-slate-600">
+      Horizontal Divider using
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       border-t
+      </code>
+      :
+     </p>
+     <div class="mb-6 p-4 border border-dashed border-slate-300 rounded-md">
+      <div class="p-4 bg-sky-100 text-sky-700 rounded-md">
+       Some content above the divider.
+      </div>
+      <div class="border-t border-slate-400 my-4">
+      </div>
+      <div class="p-4 bg-sky-100 text-sky-700 rounded-md">
+       Some content below the divider.
+      </div>
+     </div>
+     <p class="mb-2 text-slate-600">
+      Horizontal Divider using
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       h-px
+      </code>
+      and
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       bg-gray-300
+      </code>
+      (as mentioned in Gotcha):
+     </p>
+     <div class="mb-6 p-4 border border-dashed border-slate-300 rounded-md">
+      <div class="p-4 bg-green-100 text-green-700 rounded-md">
+       Some content above the divider.
+      </div>
+      <div class="h-px bg-gray-300 my-4">
+      </div>
+      <div class="p-4 bg-green-100 text-green-700 rounded-md">
+       Some content below the divider.
+      </div>
+     </div>
+     <p class="mb-2 text-slate-600">
+      Vertical Divider using
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       border-l
+      </code>
+      (within a flex container):
+     </p>
+     <div class="p-4 border border-dashed border-slate-300 rounded-md">
+      <div class="flex h-32">
+       <div class="p-4 bg-purple-100 text-purple-700 rounded-md w-1/2">
+        Left content.
+       </div>
+       <div class="border-l border-slate-400 mx-4">
+       </div>
+       <div class="p-4 bg-purple-100 text-purple-700 rounded-md w-1/2">
+        Right content.
+       </div>
+      </div>
+     </div>
+     <div class="mt-6 text-sm text-slate-500">
+      <p>
+       Note: The actual color, thickness, and style of borders can be controlled with other Tailwind utilities like
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        border-gray-300
+       </code>
+       ,
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        border-2
+       </code>
+       ,
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        border-dashed
+       </code>
+       etc. The classes
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        border-t
+       </code>
+       and
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        border-l
+       </code>
+       just specify which side the border appears on (top and left, respectively).
+      </p>
+     </div>
+    </div>
+   </section>
+  </div>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 1:
+  </h1>
+  <iframe frameborder="0" src="./01_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 2:
+  </h1>
+  <iframe frameborder="0" src="./02_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 3:
+  </h1>
+  <iframe frameborder="0" src="./03_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 4:
+  </h1>
+  <iframe frameborder="0" src="./04_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 5:
+  </h1>
+  <iframe frameborder="0" src="./05_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 6:
+  </h1>
+  <iframe frameborder="0" src="./06_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 7:
+  </h1>
+  <iframe frameborder="0" src="./07_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 8:
+  </h1>
+  <iframe frameborder="0" src="./08_example.html">
+  </iframe>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+  const iframes = document.querySelectorAll('iframe');
+
+  // Ensure all iframes have the default style class
+  iframes.forEach(iframe => iframe.classList.add('default_style'));
+
+  window.addEventListener('message', function(event) {
+    // Optional: add origin check for safety
+    if (event.data && typeof event.data.iframeHeight === 'number') {
+      const iframe = Array.from(iframes).find(iframe =>
+        iframe.contentWindow === event.source
+      );
+      if (iframe) {
+        iframe.style.height = (event.data.iframeHeight + 50) + 'px';
+      }
+    }
+  });
+});
+  </script>
+ </body>
+</html>

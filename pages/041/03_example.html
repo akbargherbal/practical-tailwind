@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Gotcha - Visibility on Specific Ranges
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto text-center">
+   <h1 class="text-2xl font-bold mb-4">
+    Responsive Visibility: Gotcha &amp; Specific Ranges
+   </h1>
+   <p class="mb-6">
+    Resize your browser window to see how elements appear/disappear at different breakpoints. Tailwind breakpoints: sm (640px), md (768px), lg (1024px).
+   </p>
+   <!-- GOTCHA DEMONSTRATION PART 1: Show ONLY on small screens (up to md) -->
+   <!-- 
+            Gotcha: Misunderstanding that responsive prefixes apply to that screen size *and larger*,
+            UNLESS overridden by another prefix for a larger screen.
+
+            To show something *only* on small screens (e.g., xs and sm, but not md and up),
+            you use `block md:hidden`.
+            - `block`: Visible by default (xs, sm).
+            - `md:hidden`: Becomes hidden at `md` breakpoint (768px) and STAYS hidden for larger screens too,
+                         because `md:hidden` applies to `md` AND LARGER unless overridden.
+        -->
+   <div class="mb-8 p-4 border border-dashed border-red-500 rounded">
+    <h2 class="text-xl font-semibold mb-2 text-red-700">
+     Gotcha Example 1: Show ONLY on Small Screens (xs, sm)
+    </h2>
+    <div class="block md:hidden bg-red-400 text-white p-4 rounded-lg shadow-md">
+     <p class="font-semibold">
+      VISIBLE only on 'xs' and 'sm' screens.
+     </p>
+     <p>
+      HIDDEN from 'md' (768px) and up.
+     </p>
+     <p class="mt-2 text-sm">
+      (Using:
+      <code>
+       block md:hidden
+      </code>
+      )
+     </p>
+    </div>
+    <div class="hidden md:block bg-gray-300 text-gray-700 p-4 rounded-lg shadow-md mt-2">
+     <p>
+      Content for 'md' and larger screens (when red box is hidden).
+     </p>
+    </div>
+    <p class="mt-2 text-xs text-gray-600">
+     This demonstrates the gotcha:
+     <code>
+      md:hidden
+     </code>
+     means hidden from 'md' *and up*.
+                The initial
+     <code>
+      block
+     </code>
+     makes it visible on screens smaller than 'md'.
+    </p>
+   </div>
+   <!-- GOTCHA DEMONSTRATION PART 2: Show ONLY on medium screens (md only) -->
+   <!--
+            To show something *only* on a specific intermediate breakpoint range (e.g., only on 'md'),
+            you need to explicitly define its state for smaller and larger breakpoints.
+            - `hidden`: Hidden by default (xs, sm).
+            - `md:block`: Becomes 'block' at `md` breakpoint (768px). This would normally apply to md AND LARGER.
+            - `lg:hidden`: Becomes 'hidden' again at `lg` breakpoint (1024px) and larger. This OVERRIDES `md:block` for `lg`+.
+        -->
+   <div class="mb-8 p-4 border border-dashed border-green-500 rounded">
+    <h2 class="text-xl font-semibold mb-2 text-green-700">
+     Gotcha Example 2: Show ONLY on Medium Screens (md)
+    </h2>
+    <div class="hidden md:block lg:hidden bg-green-500 text-white p-4 rounded-lg shadow-md">
+     <p class="font-semibold">
+      VISIBLE only on 'md' screens (768px to 1023px).
+     </p>
+     <p>
+      HIDDEN on 'xs', 'sm', and from 'lg' (1024px) and up.
+     </p>
+     <p class="mt-2 text-sm">
+      (Using:
+      <code>
+       hidden md:block lg:hidden
+      </code>
+      )
+     </p>
+    </div>
+    <div class="block md:hidden bg-gray-300 text-gray-700 p-4 rounded-lg shadow-md mt-2">
+     <p>
+      Content for 'xs' and 'sm' screens (when green box is hidden).
+     </p>
+    </div>
+    <div class="hidden lg:block bg-gray-300 text-gray-700 p-4 rounded-lg shadow-md mt-2">
+     <p>
+      Content for 'lg' and larger screens (when green box is hidden).
+     </p>
+    </div>
+    <p class="mt-2 text-xs text-gray-600">
+     This shows how
+     <code>
+      md:block
+     </code>
+     is active for 'md', but
+     <code>
+      lg:hidden
+     </code>
+     overrides it for 'lg' and larger.
+                The initial
+     <code>
+      hidden
+     </code>
+     ensures it's not visible on 'xs' or 'sm'.
+    </p>
+   </div>
+   <div class="mt-8 p-4 bg-gray-200 rounded">
+    <p>
+     <strong>
+      Test these examples by resizing your browser window:
+     </strong>
+    </p>
+    <ul class="list-disc list-inside text-left">
+     <li>
+      <strong>
+       Red Box:
+      </strong>
+      Should be visible below 768px. Hidden at 768px and above.
+     </li>
+     <li>
+      <strong>
+       Green Box:
+      </strong>
+      Should be hidden below 768px. Visible between 768px and 1023px. Hidden at 1024px and above.
+     </li>
+    </ul>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Background Image - Correct Usage
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-slate-100 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-3xl font-bold mb-8 text-center">
+    Background Image - Correct Usage
+   </h1>
+   <!--
+            This example demonstrates setting a background image on a div.
+            The image URL is applied using an inline style attribute (`style="background-image: url(...)"`).
+            Tailwind CSS classes `bg-cover`, `bg-center`, and `bg-no-repeat` are used to control its appearance.
+            Crucially, the div also needs dimensions (e.g., `h-96` or `min-h-[300px]`) for the background image to be visible,
+            as background images themselves do not contribute to an element's size. This avoids a common gotcha.
+        -->
+   <div class="h-96 w-full bg-cover bg-center bg-no-repeat rounded-lg shadow-xl flex items-center justify-center mb-6" style="background-image: url('https://picsum.photos/seed/mountains/1200/800');">
+    <div class="text-center p-6 bg-black bg-opacity-60 rounded-md">
+     <h2 class="text-4xl font-bold text-white">
+      Hero Section
+     </h2>
+     <p class="text-xl text-gray-200 mt-2">
+      Image with `bg-cover` &amp; `bg-center`
+     </p>
+    </div>
+   </div>
+   <div class="p-6 bg-sky-100 border border-sky-300 rounded-lg">
+    <h3 class="font-semibold text-lg text-sky-800 mb-2">
+     Key Classes &amp; Concepts:
+    </h3>
+    <ul class="list-disc list-inside space-y-1 text-sky-700">
+     <li>
+      <code>
+       style="background-image: url(...)"
+      </code>
+      : Sets the actual image (not a Tailwind class, but necessary).
+     </li>
+     <li>
+      <code>
+       h-96
+      </code>
+      (or other height utility): Provides height for the image to be visible.
+      <span class="font-semibold">
+       (Addresses a gotcha!)
+      </span>
+     </li>
+     <li>
+      <code>
+       bg-cover
+      </code>
+      : Scales the image (while preserving its aspect ratio) to be large enough to completely cover the background area.
+     </li>
+     <li>
+      <code>
+       bg-center
+      </code>
+      : Centers the image within the element.
+     </li>
+     <li>
+      <code>
+       bg-no-repeat
+      </code>
+      : Ensures the image doesn't tile if it's smaller than the container (though `bg-cover` usually makes this redundant for tiling, it's good practice).
+     </li>
+    </ul>
+    <p class="mt-3 text-sm text-sky-600">
+     This demonstrates how to correctly apply a background image that fills its container and is properly displayed.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

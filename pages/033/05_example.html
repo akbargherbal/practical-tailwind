@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Example - Background Image (Correct)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-50 from_inside_iframe">
+  <!-- Example 2: Demonstrating a correctly applied background image -->
+  <div class="m-8">
+   <h1 class="text-2xl font-bold mb-4 text-center">
+    Background Image - Correct Implementation
+   </h1>
+   <!-- Hero Banner with a background image -->
+   <!--
+            Key classes used:
+            - `bg-[url('https://source.unsplash.com/random/1200x800?nature')]`: Sets the background image.
+              (Note: For dynamic URLs or local assets, you might need to configure tailwind.config.js, but direct URL works with JIT)
+            - `bg-cover`: Scales the image to maintain its aspect ratio while filling the element's entire content box.
+            - `bg-center`: Centers the image within the element.
+            - `h-96`: Sets a fixed height for the element, making the background image visible.
+            - `flex items-center justify-center`: For centering content on top of the image.
+        -->
+   <div class="bg-[url('https://source.unsplash.com/random/1200x600?landscape,nature')] bg-cover bg-center h-96 rounded-lg shadow-xl flex items-center justify-center">
+    <div class="text-center p-4 bg-black bg-opacity-50 rounded">
+     <h2 class="text-4xl font-bold text-white">
+      Hero Banner Title
+     </h2>
+     <p class="text-xl text-gray-200 mt-2">
+      This banner has a beautiful background image.
+     </p>
+    </div>
+   </div>
+   <div class="mt-6 p-4 bg-white rounded shadow">
+    <p class="text-sm text-gray-700">
+     The div above has a height (`h-96`), `bg-cover` to ensure the image covers the area without distortion, and `bg-center` to position it nicely. The image URL is from Unsplash for demonstration.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

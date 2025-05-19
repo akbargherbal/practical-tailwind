@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: mx-auto Gotcha - Inline Elements
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <!-- Gotcha Demonstration: mx-auto does not work on inline elements directly. -->
+  <div class="mb-8 text-center">
+   <h2 class="text-xl font-semibold mb-2">
+    Gotcha: `mx-auto` and Inline Elements
+   </h2>
+   <p class="mb-4 text-sm text-gray-700">
+    `mx-auto` typically doesn't work for centering `inline` or `inline-block` elements directly in the same way it does for `block` elements.
+            For an element to be centered with `mx-auto`, it generally needs to be a block-level element and have a defined width.
+   </p>
+  </div>
+  <div class="border p-4 mb-6">
+   <h3 class="font-semibold mb-2">
+    Attempting to center an inline `span` (Incorrect):
+   </h3>
+   <!-- This span has mx-auto and a width, but it's inline, so mx-auto won't center it.
+             The parent div has text-center to show what centering would look like for inline content. -->
+   <div class="bg-yellow-200 p-2 text-center">
+    Parent with `text-center`:
+    <span class="mx-auto w-32 bg-red-300 p-2 inline-block">
+     Span with `mx-auto w-32` (still not centered by `mx-auto` itself)
+    </span>
+    <p class="text-xs mt-1">
+     This span is centered due to parent's `text-center`, NOT its own `mx-auto`.
+    </p>
+   </div>
+   <div class="bg-yellow-100 p-2 mt-2">
+    Parent without `text-center`:
+    <span class="mx-auto w-32 bg-red-300 p-2 inline-block">
+     Span with `mx-auto w-32` (clearly not centered)
+    </span>
+    <p class="text-xs mt-1">
+     Here, the span is not centered because `mx-auto` doesn't apply to inline elements for horizontal centering within their line box this way. The `w-32` also behaves differently for inline vs block.
+    </p>
+   </div>
+  </div>
+  <div class="border p-4">
+   <h3 class="font-semibold mb-2">
+    Corrected: Making the element `block` with a width and `mx-auto`:
+   </h3>
+   <!-- To center an element like a span using mx-auto, you must change its display property to 'block' or 'flex', etc., and give it a width. -->
+   <span class="block w-1/2 mx-auto bg-green-500 text-white p-4 rounded-lg text-center">
+    This `span` is now `display: block`, has `w-1/2`, and `mx-auto`.
+    <br/>
+    It is correctly centered.
+   </span>
+   <p class="text-center text-xs mt-2">
+    The span above was styled with `block w-1/2 mx-auto`.
+   </p>
+  </div>
+  <div class="border p-4 mt-6">
+   <h3 class="font-semibold mb-2">
+    Alternative for inline/inline-block: `text-center` on parent
+   </h3>
+   <p class="text-sm text-gray-600 mb-2">
+    If you want to center actual inline or inline-block elements (like text or buttons side-by-side), apply `text-center` to their block-level parent container.
+   </p>
+   <div class="text-center bg-blue-100 p-4 rounded-lg">
+    <span class="bg-blue-500 text-white p-2 rounded">
+     Inline Item 1
+    </span>
+    <button class="bg-purple-500 text-white p-2 rounded inline-block">
+     Inline-block Button
+    </button>
+    <p class="mt-2 text-xs">
+     These are centered because their parent `div` has `text-center`.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

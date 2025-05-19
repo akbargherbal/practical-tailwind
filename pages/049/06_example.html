@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Custom Fonts - Gotcha Demo
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <!--
+        GOTCHA DEMONSTRATION:
+        We will define a custom font 'SpecialFont' in Tailwind's config,
+        but we will *NOT* import or link the actual 'Nosifier' font file.
+    -->
+  <script>
+   tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        // We are telling Tailwind about a font family named 'special'.
+                        // We intend for it to use 'Nosifier', falling back to 'cursive'.
+                        'special': ['Nosifier', 'cursive'], // 'Nosifier' is a real Google Font
+                    }
+                }
+            }
+        }
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto bg-white p-6 rounded-lg shadow-md">
+   <h1 class="text-3xl font-bold mb-4">
+    Custom Font Gotcha: Missing Font File
+   </h1>
+   <div class="mb-6 p-4 border border-gray-300 rounded">
+    <h2 class="text-2xl font-special text-red-600">
+     Text with 'font-special' (Nosifier, cursive)
+    </h2>
+    <p class="text-gray-700 mt-2">
+     This text is styled with
+     <code>
+      font-special
+     </code>
+     . In our Tailwind configuration, we've mapped
+     <code>
+      font-special
+     </code>
+     to the 'Nosifier' font. However, because we haven't actually
+                linked the 'Nosifier' font file in the
+     <code>
+      &lt;head&gt;
+     </code>
+     of this HTML document,
+                the browser cannot find or display it.
+    </p>
+    <p class="text-gray-700 mt-2">
+     Instead, you'll likely see the fallback font specified in the
+     <code>
+      fontFamily
+     </code>
+     array (which is 'cursive' in this case),
+                or your browser's default for that generic family. The unique 'Nosifier' style will be missing.
+    </p>
+   </div>
+   <div class="p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700">
+    <p class="font-bold">
+     The Gotcha:
+    </p>
+    <p>
+     Tailwind can define custom font family names (
+     <code>
+      font-customName
+     </code>
+     ) and map them to font names (e.g., 'Nosifier').
+                However, Tailwind itself does
+     <strong class="font-semibold">
+      not
+     </strong>
+     load the font files. You
+     <strong class="font-semibold">
+      must
+     </strong>
+     ensure the font files are accessible to the browser,
+                typically by using
+     <code>
+      &lt;link&gt;
+     </code>
+     tags for web fonts (like Google Fonts) in your HTML
+     <code>
+      &lt;head&gt;
+     </code>
+     ,
+                or
+     <code>
+      @font-face
+     </code>
+     rules in your CSS.
+    </p>
+    <p class="mt-2">
+     Simply adding it to
+     <code>
+      tailwind.config.js
+     </code>
+     (or the script block here) is not enough for the font to render.
+    </p>
+   </div>
+   <!-- For comparison, a standard font -->
+   <div class="mt-6 p-4 border border-gray-300 rounded">
+    <h2 class="text-2xl font-sans text-blue-600">
+     Text with default 'font-sans'
+    </h2>
+    <p class="text-gray-700 mt-2">
+     This text uses the default
+     <code>
+      font-sans
+     </code>
+     , which will render with a standard system sans-serif font.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

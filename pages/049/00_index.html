@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Use specific fonts for your website's text.
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <script>
+   tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'], // Example, Inter needs to be loaded separately
+                        serif: ['Georgia', 'serif'],
+                    },
+                }
+            }
+        }
+  </script>
+  <style>
+   /* Example font import (Inter) - user would do this in their actual project */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+             /* Apply a default font if Inter is available, otherwise Tailwind's default sans */
+            font-family: 'Inter', sans-serif;
+        }
+  </style>
+  <style>
+   iframe.default_style {
+  width: 100%;
+  min-height: 300px; /* Reasonable minimum */
+  border: none;
+  display: block;
+}
+  </style>
+ </head>
+ <body class="bg-slate-50">
+  <div class="container mx-auto p-6 md:p-10 font-sans text-slate-800">
+   <h1 class="text-4xl font-bold mb-10 text-center text-slate-700">
+    Tailwind CSS Concept Explained
+   </h1>
+   <section class="mb-12 bg-white p-6 md:p-8 rounded-lg shadow-lg">
+    <h2 class="text-3xl font-semibold mb-6 text-slate-600 border-b-2 border-slate-300 pb-3">
+     Organizing Your Styles &amp; Customizing
+    </h2>
+    <h3 class="text-2xl font-medium mb-5 text-indigo-700">
+     Use specific fonts for your website's text.
+    </h3>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Skill ID:
+     </strong>
+     OrganizingStyles_49
+    </p>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Description:
+     </strong>
+     Choose and apply particular typefaces in your Tailwind configuration.
+    </p>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Where to apply:
+     </strong>
+     All text content.
+    </p>
+    <p class="mb-2 mt-4 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Key Tailwind Classes:
+     </strong>
+    </p>
+    <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mb-4">
+     <span>
+      In
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       tailwind.config.js
+      </code>
+      under
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       theme.extend.fontFamily
+      </code>
+      .
+     </span>
+    </div>
+    <div class="mt-6 p-4 border border-indigo-200 rounded-md bg-indigo-50">
+     <h4 class="text-lg font-semibold text-indigo-700 mb-2">
+      How it works:
+     </h4>
+     <p class="text-slate-700 mb-2">
+      To use custom fonts, you define them in your
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       tailwind.config.js
+      </code>
+      file. You extend the
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       fontFamily
+      </code>
+      key within
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       theme.extend
+      </code>
+      .
+     </p>
+     <p class="text-slate-700 mb-2">
+      For example, to add a custom sans-serif font like "Inter" and a custom serif font like "Merriweather":
+     </p>
+     <pre class="bg-slate-800 text-slate-100 p-4 rounded-md text-sm overflow-x-auto mb-2"><code>// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', /* ...other fallbacks */],
+        serif: ['Merriweather', 'ui-serif', 'Georgia', /* ...other fallbacks */],
+        // You can add more custom font families here
+        // mono: ['JetBrains Mono', 'ui-monospace', /* ... */],
+      },
+    },
+  },
+  plugins: [],
+}</code></pre>
+     <p class="text-slate-700 mb-2">
+      After defining these, you can use classes like
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       font-sans
+      </code>
+      or
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       font-serif
+      </code>
+      in your HTML, and they will use the first available font in your defined stack (e.g., 'Inter' for
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       font-sans
+      </code>
+      ).
+     </p>
+     <p class="text-slate-700">
+      The example above uses
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       Inter
+      </code>
+      and
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       Georgia
+      </code>
+      as primary examples (Georgia is web-safe, Inter needs importing). This page itself attempts to load and use 'Inter' via a Google Fonts import in the
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       &lt;head&gt;
+      </code>
+      and the Tailwind config script.
+     </p>
+    </div>
+    <div class="bg-amber-50 border-l-4 border-amber-500 text-amber-700 p-4 mt-5 rounded-md shadow-sm">
+     <p>
+      <strong class="font-semibold">
+       Gotcha:
+      </strong>
+      Forgetting to actually import or link the font files in your main CSS file (e.g., with
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       @import url(...)
+      </code>
+      for Google Fonts) or your HTML
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       &lt;head&gt;
+      </code>
+      . Tailwind can define the font family names, but the browser still needs access to the actual font files to display them.
+     </p>
+    </div>
+    <div class="mt-8">
+     <h4 class="text-xl font-semibold text-slate-700 mb-3">
+      Example Usage:
+     </h4>
+     <div class="grid md:grid-cols-2 gap-6">
+      <div class="border border-slate-200 p-4 rounded-lg">
+       <p class="font-sans text-lg mb-2">
+        This text uses the
+        <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+         font-sans
+        </code>
+        class.
+       </p>
+       <p class="font-sans text-slate-600">
+        If 'Inter' is configured and loaded, it will be used. Otherwise, it falls back to Tailwind's default sans-serif stack.
+       </p>
+      </div>
+      <div class="border border-slate-200 p-4 rounded-lg">
+       <p class="font-serif text-lg mb-2">
+        This text uses the
+        <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+         font-serif
+        </code>
+        class.
+       </p>
+       <p class="font-serif text-slate-600">
+        If 'Georgia' (or another custom serif) is configured, it will be used. Otherwise, it falls back to Tailwind's default serif stack.
+       </p>
+      </div>
+     </div>
+    </div>
+   </section>
+  </div>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 1:
+  </h1>
+  <iframe frameborder="0" src="./01_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 2:
+  </h1>
+  <iframe frameborder="0" src="./02_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 3:
+  </h1>
+  <iframe frameborder="0" src="./03_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 4:
+  </h1>
+  <iframe frameborder="0" src="./04_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 5:
+  </h1>
+  <iframe frameborder="0" src="./05_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 6:
+  </h1>
+  <iframe frameborder="0" src="./06_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 7:
+  </h1>
+  <iframe frameborder="0" src="./07_example.html">
+  </iframe>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+  const iframes = document.querySelectorAll('iframe');
+
+  // Ensure all iframes have the default style class
+  iframes.forEach(iframe => iframe.classList.add('default_style'));
+
+  window.addEventListener('message', function(event) {
+    // Optional: add origin check for safety
+    if (event.data && typeof event.data.iframeHeight === 'number') {
+      const iframe = Array.from(iframes).find(iframe =>
+        iframe.contentWindow === event.source
+      );
+      if (iframe) {
+        iframe.style.height = (event.data.iframeHeight + 50) + 'px';
+      }
+    }
+  });
+});
+  </script>
+ </body>
+</html>

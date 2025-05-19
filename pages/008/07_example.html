@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Full Width &amp; Min Screen Height
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 from_inside_iframe">
+  <!-- 
+        This example demonstrates using w-full and min-h-screen.
+        - w-full makes the div take the full available width.
+        - min-h-screen makes the div take at least the full height of the viewport.
+          If content is taller, the div will grow; otherwise, it's viewport height.
+    -->
+  <div class="p-8">
+   <h1 class="text-2xl font-bold mb-4">
+    Example 1: Full Width &amp; Min Screen Height
+   </h1>
+   <div class="bg-blue-500 text-white w-full min-h-screen flex flex-col items-center justify-center">
+    <p class="text-3xl font-bold">
+     Full Width, Min Screen Height Section
+    </p>
+    <p>
+     This section uses
+     <code>
+      w-full
+     </code>
+     and
+     <code>
+      min-h-screen
+     </code>
+     .
+    </p>
+    <p>
+     It will always take up the full width and at least the full height of your browser window.
+    </p>
+    <p class="mt-4 text-sm">
+     (Try resizing your browser window vertically)
+    </p>
+   </div>
+   <div class="mt-8 p-4 bg-gray-200">
+    <p>
+     Some content below the full-screen section to demonstrate scrolling if needed.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

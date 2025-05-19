@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Focus Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="w-full max-w-lg mx-auto">
+   <h1 class="text-2xl font-bold mb-6 text-center text-slate-700">
+    Focus Styling: Gotcha &amp; Solutions
+   </h1>
+   <div class="bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold mb-3 text-red-600">
+     Gotcha: Problematic Focus (Accessibility Issue)
+    </h2>
+    <p class="text-sm text-gray-600 mb-4">
+     The input below uses `focus:outline-none` to remove the browser's default focus outline. However, it *does not* provide any alternative visual focus indicator. This makes it very difficult for keyboard users to know which element is active.
+    </p>
+    <div class="mb-6">
+     <label class="block text-sm font-medium text-gray-700 mb-1" for="problem_input">
+      Problematic Input (Try tabbing to it)
+     </label>
+     <input class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none" id="problem_input" name="problem_input" placeholder="No visible focus style!" type="text"/>
+     <!-- GOTCHA DEMONSTRATED:
+                     The `focus:outline-none` class above removes the default browser focus indicator.
+                     Without an alternative like `focus:border-...` or `focus:ring-...`, keyboard users
+                     (who rely on visual focus indicators) will have a hard time navigating.
+                     This is a major accessibility concern.
+                -->
+     <p class="mt-1 text-xs text-red-500">
+      Notice how there's no clear visual change when this input is focused using the keyboard.
+     </p>
+    </div>
+    <hr class="my-6"/>
+    <h2 class="text-xl font-semibold mb-3 text-green-600">
+     Accessible Focus Styling Solutions
+    </h2>
+    <p class="text-sm text-gray-600 mb-4">
+     Below are examples of how to correctly provide custom focus styles while using `focus:outline-none`. Each provides a clear visual cue.
+    </p>
+    <div class="mb-4">
+     <label class="block text-sm font-medium text-gray-700 mb-1" for="solution1_input">
+      Solution 1: Using `focus:border-color`
+     </label>
+     <input class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-blue-500" id="solution1_input" name="solution1_input" placeholder="Focus shows blue border" type="text"/>
+     <p class="mt-1 text-xs text-gray-500">
+      Key classes:
+      <code>
+       focus:outline-none focus:border-blue-500
+      </code>
+     </p>
+    </div>
+    <div class="mb-4">
+     <label class="block text-sm font-medium text-gray-700 mb-1" for="solution2_input">
+      Solution 2: Using `focus:ring`
+     </label>
+     <input class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-green-500" id="solution2_input" name="solution2_input" placeholder="Focus shows green ring" type="text"/>
+     <p class="mt-1 text-xs text-gray-500">
+      Key classes:
+      <code>
+       focus:outline-none focus:ring-2 focus:ring-green-500
+      </code>
+     </p>
+    </div>
+    <div class="mb-4">
+     <label class="block text-sm font-medium text-gray-700 mb-1" for="solution3_input">
+      Solution 3: Combining `focus:border` and `focus:ring` (Recommended)
+     </label>
+     <input class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500" id="solution3_input" name="solution3_input" placeholder="Focus shows border and ring" type="text"/>
+     <!-- This is a robust way to ensure visibility:
+                     - `focus:outline-none` removes default.
+                     - `focus:border-sky-500` adds colored border.
+                     - `focus:ring-1 focus:ring-sky-500` adds a 1px ring of the same color (could be `focus:ring-2` for thicker).
+                -->
+     <p class="mt-1 text-xs text-gray-500">
+      Key classes:
+      <code>
+       focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
+      </code>
+     </p>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Dark Mode - OS Preference
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style>
+   /* For demonstration: ensure html and body take full height and have a default transition */
+        html, body {
+            height: 100%;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+  </style>
+ </head>
+ <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white p-8 from_inside_iframe">
+  <!-- 
+        This example demonstrates dark mode based on your Operating System's or browser's preference.
+        Tailwind CSS (via CDN here) often respects the `prefers-color-scheme: dark` media query by default
+        for its `dark:` variants. 
+        
+        Try changing your OS/browser to dark mode and light mode to see the effect.
+    -->
+  <div class="container mx-auto text-center">
+   <h1 class="text-4xl font-bold mb-4">
+    Dark Mode with OS Preference
+   </h1>
+   <p class="text-lg mb-2">
+    This page's background and text color will change if your operating system or browser is set to dark mode.
+   </p>
+   <div class="p-6 rounded-lg shadow-md bg-slate-100 dark:bg-slate-700">
+    <p class="text-slate-800 dark:text-slate-200">
+     This inner box also uses `dark:` variants. In light mode, it's light slate. In dark mode, it's darker slate.
+    </p>
+   </div>
+   <div class="mt-8 p-4 border border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-900 rounded">
+    <h2 class="text-xl font-semibold text-red-700 dark:text-red-300">
+     Gotcha Consideration:
+    </h2>
+    <p class="text-red-600 dark:text-red-400 mt-2">
+     While this OS-preference mode works out-of-the-box with the Tailwind CDN for basic `dark:` variants, if you wanted to provide a manual toggle (e.g., a button) instead of relying solely on OS settings, you would typically use the `darkMode: 'class'` strategy. This strategy requires:
+    </p>
+    <ol class="list-decimal list-inside text-left mt-2 text-red-600 dark:text-red-400">
+     <li>
+      Setting
+      <code class="bg-red-200 dark:bg-red-800 p-1 rounded">
+       darkMode: 'class'
+      </code>
+      in your
+      <code class="bg-red-200 dark:bg-red-800 p-1 rounded">
+       tailwind.config.js
+      </code>
+      file (not applicable when using only the CDN, but crucial for compiled projects).
+     </li>
+     <li>
+      Using JavaScript to add or remove a 'dark' class from the
+      <code class="bg-red-200 dark:bg-red-800 p-1 rounded">
+       &lt;html&gt;
+      </code>
+      element.
+     </li>
+    </ol>
+    <p class="text-red-600 dark:text-red-400 mt-2">
+     The next example will demonstrate the `darkMode: 'class'` approach.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

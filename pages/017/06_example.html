@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind - Nav Bar Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6">
+   Horizontal Nav Bar - "Gotcha" Demonstration
+  </h1>
+  <p class="mb-4 text-gray-700">
+   The "Gotcha": If navigation items have different natural heights (e.g., one has an icon, another is multi-line text), forgetting
+   <code class="bg-gray-200 px-1 rounded">
+    items-center
+   </code>
+   can make the items look jagged.
+  </p>
+  <!-- Section 1: Demonstrating the "Gotcha" (without items-center) -->
+  <h2 class="text-xl font-semibold mb-2 mt-6">
+   1. Without
+   <code class="bg-red-200 px-1 rounded">
+    items-center
+   </code>
+   (Jagged Alignment)
+  </h2>
+  <nav class="bg-red-500 p-4 rounded-md mb-6">
+   <!--
+          GOTCHA DEMONSTRATION: No `items-center` here.
+          Notice how the items are not vertically aligned because they have different heights.
+        -->
+   <ul class="flex space-x-4">
+    <li>
+     <a class="text-white bg-red-700 p-2 rounded" href="#">
+      Home
+     </a>
+    </li>
+    <li>
+     <a class="text-white bg-red-700 p-2 rounded inline-flex flex-col" href="#">
+      <svg class="h-5 w-5 self-center" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+       <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
+       </path>
+      </svg>
+      <span>
+       About
+      </span>
+     </a>
+    </li>
+    <li>
+     <a class="text-white bg-red-700 p-2 rounded inline-block" href="#">
+      Services
+      <br/>
+      <span class="text-xs">
+       (Multiple Options)
+      </span>
+     </a>
+    </li>
+    <li>
+     <a class="text-white bg-red-700 p-2 rounded" href="#">
+      Contact
+     </a>
+    </li>
+   </ul>
+  </nav>
+  <p class="text-sm text-red-700">
+   Observe how the items above are misaligned vertically because they have varying heights and
+   <code class="bg-red-200 px-1 rounded">
+    items-center
+   </code>
+   is missing.
+  </p>
+  <!-- Section 2: Corrected version (with items-center) -->
+  <h2 class="text-xl font-semibold mb-2 mt-8">
+   2. With
+   <code class="bg-green-200 px-1 rounded">
+    items-center
+   </code>
+   (Correct Alignment)
+  </h2>
+  <nav class="bg-green-500 p-4 rounded-md">
+   <!--
+          CORRECTED: `items-center` is added here.
+          This class vertically aligns all flex items to the center of the flex container,
+          solving the jagged alignment issue.
+        -->
+   <ul class="flex space-x-4 items-center">
+    <li>
+     <a class="text-white bg-green-700 p-2 rounded" href="#">
+      Home
+     </a>
+    </li>
+    <li>
+     <a class="text-white bg-green-700 p-2 rounded inline-flex flex-col items-center" href="#">
+      <svg class="h-5 w-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+       <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
+       </path>
+      </svg>
+      <span>
+       About
+      </span>
+     </a>
+    </li>
+    <li>
+     <a class="text-white bg-green-700 p-2 rounded inline-block" href="#">
+      Services
+      <br/>
+      <span class="text-xs">
+       (Multiple Options)
+      </span>
+     </a>
+    </li>
+    <li>
+     <a class="text-white bg-green-700 p-2 rounded" href="#">
+      Contact
+     </a>
+    </li>
+   </ul>
+  </nav>
+  <p class="text-sm text-green-700 mt-2">
+   With
+   <code class="bg-green-200 px-1 rounded">
+    items-center
+   </code>
+   , the items are now properly aligned vertically, regardless of their individual heights.
+  </p>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

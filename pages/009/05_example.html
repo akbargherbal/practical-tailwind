@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Overlapping - `relative` Parent Gotcha &amp; Z-Index
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-50 min-h-screen p-6 md:p-10 from_inside_iframe">
+  <h1 class="text-2xl md:text-3xl font-bold mb-8 text-center text-gray-800">
+   Understanding 'relative' Parent for 'absolute' Children &amp; Z-Index
+  </h1>
+  <!-- Section 1: Demonstrating the 'relative' parent gotcha -->
+  <div class="grid md:grid-cols-2 gap-x-8 gap-y-10">
+   <!-- Scenario 1: Incorrect - Missing 'relative' on Parent (GOTCHA DEMONSTRATION) -->
+   <div class="bg-white p-6 rounded-lg shadow-lg">
+    <h2 class="text-xl font-semibold mb-3 text-red-700">
+     Gotcha: Missing 'relative' on Parent
+    </h2>
+    <p class="text-sm text-gray-600 mb-4">
+     The orange badge uses
+     <code>
+      absolute
+     </code>
+     . Its direct blue parent (below) LACKS the
+     <code>
+      relative
+     </code>
+     class.
+                Consequently, the badge positions itself relative to the nearest ANCESTOR that IS positioned.
+                In this example, the outer gray dashed box has
+     <code>
+      relative
+     </code>
+     , so the badge aligns to it.
+    </p>
+    <!-- This outer dashed-border box is 'relative' to act as the positioning context for the 'absolute' child
+                 when its direct parent (the blue box) is not 'relative'. -->
+    <div class="relative border-2 border-dashed border-gray-400 p-4 h-60 mt-4">
+     <!-- This is the intended parent, but it's NOT 'relative'. It's also offset to show the badge doesn't stick to it. -->
+     <div class="mt-8 ml-8 bg-blue-300 p-4 w-40 h-28 flex items-center justify-center text-sm text-blue-800">
+      Intended Parent
+      <br/>
+      (No 'relative')
+     </div>
+     <!-- The 'absolute' child. Because its blue parent is not 'relative',
+                     it uses the gray dashed box (its closest positioned ancestor) for positioning.
+                     Thus, 'top-0 left-0' refers to the top-left of the dashed box. -->
+     <div class="absolute top-0 left-0 bg-orange-500 text-white text-xs px-2 py-1 rounded-md z-10">
+      Badge (relative to dashed box)
+     </div>
+    </div>
+    <p class="text-xs text-gray-500 mt-3">
+     <strong>
+      Observation:
+     </strong>
+     The orange badge is at the top-left of the dashed gray border, not its direct blue parent. This is the "Gotcha".
+    </p>
+   </div>
+   <!-- Scenario 2: Correct - 'relative' on Parent -->
+   <div class="bg-white p-6 rounded-lg shadow-lg">
+    <h2 class="text-xl font-semibold mb-3 text-green-700">
+     Correct: 'relative' on Parent
+    </h2>
+    <p class="text-sm text-gray-600 mb-4">
+     The teal badge uses
+     <code>
+      absolute
+     </code>
+     . Its direct green parent (below) HAS the
+     <code>
+      relative
+     </code>
+     class.
+                This makes the green parent the positioning context for the badge.
+    </p>
+    <!-- This outer dashed-border box is just for visual comparison and structure. It does not need to be relative here. -->
+    <div class="border-2 border-dashed border-gray-400 p-4 h-60 mt-4">
+     <!-- This is the parent, and it IS 'relative'. -->
+     <div class="relative mt-8 ml-8 bg-green-300 p-4 w-40 h-28 flex items-center justify-center text-sm text-green-800">
+      Parent
+      <br/>
+      (Has 'relative')
+      <!-- The 'absolute' child. Positioned 'top-0 left-0' relative to ITS green parent. -->
+      <div class="absolute top-0 left-0 bg-teal-500 text-white text-xs px-2 py-1 rounded-md z-10">
+       Badge (relative to green box)
+      </div>
+     </div>
+    </div>
+    <p class="text-xs text-gray-500 mt-3">
+     <strong>
+      Observation:
+     </strong>
+     The teal badge is correctly positioned at the top-left of its green parent box.
+    </p>
+   </div>
+  </div>
+  <!-- Section 2: Z-Index note (related to gotcha: z-index only works on positioned elements) -->
+  <div class="mt-12 bg-white p-6 rounded-lg shadow-lg max-w-2xl mx-auto">
+   <h2 class="text-xl font-semibold mb-3 text-indigo-700">
+    Z-Index and Positioned Elements
+   </h2>
+   <p class="text-sm text-gray-600 mb-4">
+    The
+    <code>
+     z-index
+    </code>
+    utility (e.g.,
+    <code>
+     z-10
+    </code>
+    ,
+    <code>
+     z-20
+    </code>
+    ) controls the stacking order of positioned elements.
+            Higher values are stacked on top of lower values.
+    <strong>
+     Crucially,
+     <code>
+      z-index
+     </code>
+     only works on elements that have a
+     <code>
+      position
+     </code>
+     value of
+     <code>
+      relative
+     </code>
+     ,
+     <code>
+      absolute
+     </code>
+     ,
+     <code>
+      fixed
+     </code>
+     , or
+     <code>
+      sticky
+     </code>
+     .
+    </strong>
+    It has no effect on statically positioned elements (the default).
+   </p>
+   <div class="relative w-48 h-36 bg-yellow-200 mx-auto mt-4 rounded-md flex items-center justify-center p-2">
+    <!-- Both children are 'absolute' (positioned), so z-index applies. -->
+    <div class="absolute top-4 left-4 w-32 h-24 bg-pink-500 z-10 flex items-center justify-center text-white font-medium rounded shadow-md">
+     Item A (z-10)
+    </div>
+    <div class="absolute top-10 left-10 w-32 h-24 bg-purple-600 z-20 flex items-center justify-center text-white font-medium rounded shadow-md">
+     Item B (z-20)
+    </div>
+   </div>
+   <p class="text-xs text-gray-500 mt-3 text-center">
+    Item B (
+    <code>
+     z-20
+    </code>
+    ) is on top of Item A (
+    <code>
+     z-10
+    </code>
+    ) because it has a higher z-index and both are positioned (
+    <code>
+     absolute
+    </code>
+    ).
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

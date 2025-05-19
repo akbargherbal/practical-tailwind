@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Custom Fonts (Gotcha Demo)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto p-6 bg-white rounded-lg shadow-md">
+   <h1 class="text-2xl font-bold mb-4">
+    Custom Fonts - "Gotcha" Demonstration
+   </h1>
+   <p class="mb-2">
+    This paragraph uses Tailwind's default
+    <code class="bg-gray-200 px-1 rounded">
+     font-sans
+    </code>
+    (e.g.,
+    <span class="font-sans">
+     'Hello World' in default sans
+    </span>
+    ).
+   </p>
+   <p class="mb-2">
+    This paragraph uses Tailwind's default
+    <code class="bg-gray-200 px-1 rounded">
+     font-serif
+    </code>
+    (e.g.,
+    <span class="font-serif">
+     'Hello World' in default serif
+    </span>
+    ).
+   </p>
+   <p class="mb-4">
+    This paragraph uses Tailwind's default
+    <code class="bg-gray-200 px-1 rounded">
+     font-mono
+    </code>
+    (e.g.,
+    <span class="font-mono">
+     'Hello World' in default mono
+    </span>
+    ).
+   </p>
+   <hr class="my-6"/>
+   <h2 class="text-xl font-semibold mb-3">
+    Attempting to use Unlinked/Unconfigured Fonts:
+   </h2>
+   <!-- 
+            GOTCHA DEMONSTRATION:
+            Here, we try to use font names that Tailwind might be *told* to use via `tailwind.config.js`,
+            but the browser doesn't actually have the font files.
+            In tailwind.config.js, you might have:
+            theme: {
+              extend: {
+                fontFamily: {
+                  'customcomic': ['Comic Sans MS', 'cursive'], // A font that might be available on system
+                  'notoserifjp': ['Noto Serif JP', 'serif'], // A font that needs to be imported
+                }
+              }
+            }
+            Then you would use `font-customcomic` or `font-notoserifjp`.
+            But if 'Noto Serif JP' font file is not linked/imported, `font-notoserifjp` will fallback.
+        -->
+   <p class="font-['MyNonExistentFont',_sans-serif] text-lg mb-2">
+    This text tries to use
+    <code class="bg-gray-200 px-1 rounded">
+     font-['MyNonExistentFont',_sans-serif]
+    </code>
+    .
+            Since "MyNonExistentFont" is not linked or imported, and unlikely to be a system font,
+            it will fall back to the next font in the stack (Tailwind's default sans-serif, or a browser default).
+            It will likely look the same as the default sans-serif text.
+   </p>
+   <p class="font-['Noto_Serif_JP',_serif] text-lg mb-2">
+    This text tries to use
+    <code class="bg-gray-200 px-1 rounded">
+     font-['Noto_Serif_JP',_serif]
+    </code>
+    .
+            "Noto Serif JP" is a real Google Font. However, we have NOT imported it in this HTML file.
+            Therefore, it will fall back to the generic 'serif' family. It will NOT look like Noto Serif JP.
+   </p>
+   <div class="mt-6 p-4 bg-red-50 border-l-4 border-red-500">
+    <h3 class="font-bold text-red-700">
+     The "Gotcha" Illustrated:
+    </h3>
+    <p class="text-red-600">
+     Tailwind's
+     <code class="bg-red-100 text-red-800 px-1 rounded">
+      fontFamily
+     </code>
+     configuration in
+     <code class="bg-red-100 text-red-800 px-1 rounded">
+      tailwind.config.js
+     </code>
+     (or using arbitrary values like
+     <code class="bg-red-100 text-red-800 px-1 rounded">
+      font-['FontName']
+     </code>
+     ) only tells Tailwind what CSS
+     <code class="bg-red-100 text-red-800 px-1 rounded">
+      font-family
+     </code>
+     declaration to generate.
+     <strong class="block mt-1">
+      If the browser doesn't have access to the actual font files (because they weren't linked via
+      <code class="bg-red-100 text-red-800 px-1 rounded">
+       &lt;link&gt;
+      </code>
+      or imported via
+      <code class="bg-red-100 text-red-800 px-1 rounded">
+       @import
+      </code>
+      ), the custom font will not display.
+     </strong>
+     It will fall back to the next available font in the font stack or a system default.
+    </p>
+    <p class="text-red-600 mt-2">
+     To fix this, you would need to add something like
+     <code class="bg-red-100 text-red-800 px-1 rounded">
+      &lt;link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&amp;display=swap" rel="stylesheet"&gt;
+     </code>
+     to your
+     <code class="bg-red-100 text-red-800 px-1 rounded">
+      &lt;head&gt;
+     </code>
+     .
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

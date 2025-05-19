@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Shadow Examples
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6 text-center">
+   Tailwind CSS Shadow Examples
+  </h1>
+  <div class="flex flex-col md:flex-row justify-around items-center space-y-8 md:space-y-0 md:space-x-8">
+   <!-- Example 1: shadow-sm -->
+   <div class="w-full md:w-1/4 p-6 bg-white rounded-lg shadow-sm">
+    <h2 class="text-xl font-semibold mb-2">
+     Small Shadow (`shadow-sm`)
+    </h2>
+    <p class="text-gray-700">
+     This element has a subtle, small shadow. Good for elements that need a slight lift.
+    </p>
+   </div>
+   <!-- Example 2: shadow-md (default shadow) -->
+   <div class="w-full md:w-1/4 p-6 bg-sky-500 text-white rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold mb-2">
+     Medium Shadow (`shadow-md`)
+    </h2>
+    <p>
+     This element uses the default medium shadow. A common choice for cards and prominent UI elements.
+    </p>
+   </div>
+   <!-- Example 3: shadow-lg -->
+   <div class="w-full md:w-1/4 p-6 bg-indigo-600 text-white rounded-lg shadow-lg">
+    <h2 class="text-xl font-semibold mb-2">
+     Large Shadow (`shadow-lg`)
+    </h2>
+    <p>
+     This element features a larger, more pronounced shadow, making it stand out more.
+    </p>
+   </div>
+  </div>
+  <div class="mt-12 text-center">
+   <p class="text-gray-600">
+    Notice how each element has a
+    <code class="bg-gray-200 px-1 rounded">
+     bg-*
+    </code>
+    class. This is important for shadows to render correctly, as explained in the "Gotcha" example.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

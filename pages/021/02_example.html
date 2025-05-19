@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Circular Avatar Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex flex-col items-center space-y-8 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Circular Avatars: Gotcha &amp; Solution
+  </h1>
+  <!-- 
+        Gotcha Demonstration: Applying rounded-full directly to a rectangular image.
+        This will result in an ellipse (oval), not a perfect circle.
+    -->
+  <div class="text-center p-6 bg-white rounded-lg shadow-md">
+   <h2 class="text-xl font-semibold mb-3">
+    Gotcha: `rounded-full` on a Rectangular Image
+   </h2>
+   <p class="mb-3 text-gray-700">
+    If the image is rectangular (e.g., 200x100 pixels), `rounded-full` will create an ellipse.
+   </p>
+   <img alt="Rectangular Avatar (Ellipse)" class="rounded-full mx-auto border-4 border-red-500" src="https://via.placeholder.com/200x100/DC3545/FFFFFF?Text=Rectangular"/>
+   <!-- This image is intrinsically 200x100. rounded-full will make it an oval. -->
+   <p class="mt-2 text-sm text-gray-600">
+    <code>
+     &lt;img src="200x100_image.png" class="rounded-full"&gt;
+    </code>
+    (Results in an oval)
+   </p>
+   <p class="mt-1 text-xs text-red-600">
+    Notice this is an ellipse, not a circle.
+   </p>
+  </div>
+  <!-- 
+        Solution for the Gotcha: Using a square container with overflow-hidden and object-cover.
+        To ensure a perfect circle with a rectangular image:
+        1. Create a square container (e.g., w-32 h-32).
+        2. Apply `rounded-full` and `overflow-hidden` to this container.
+        3. Place the `<img>` tag inside the container.
+        4. Apply `w-full h-full object-cover` to the `<img>` tag to make it fill the container 
+           while maintaining its aspect ratio and cropping as needed.
+    -->
+  <div class="text-center p-6 bg-white rounded-lg shadow-md">
+   <h2 class="text-xl font-semibold mb-3">
+    Solution: Square Container + `object-cover`
+   </h2>
+   <p class="mb-3 text-gray-700">
+    Using a square container (`w-32 h-32 rounded-full overflow-hidden`) and an image with `w-full h-full object-cover`.
+   </p>
+   <div class="w-32 h-32 rounded-full overflow-hidden mx-auto border-4 border-green-500 shadow-lg">
+    <img alt="Rectangular Avatar (Proper Circle)" class="w-full h-full object-cover" src="https://via.placeholder.com/200x100/17A2B8/FFFFFF?Text=Rect+in+Sq"/>
+   </div>
+   <p class="mt-2 text-sm text-gray-600">
+    Container:
+    <code>
+     &lt;div class="w-32 h-32 rounded-full overflow-hidden"&gt;
+    </code>
+   </p>
+   <p class="mt-1 text-sm text-gray-600">
+    Image:
+    <code>
+     &lt;img src="..." class="w-full h-full object-cover"&gt;
+    </code>
+   </p>
+   <p class="mt-1 text-xs text-green-600">
+    This is now a perfect circle, even with a rectangular source image.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

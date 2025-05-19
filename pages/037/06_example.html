@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Active: Scale Transform
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-8 from_inside_iframe">
+  <div class="text-center mb-8">
+   <h1 class="text-3xl font-bold text-gray-800">
+    Active State: Scale Transform
+   </h1>
+   <p class="text-gray-600 mt-2">
+    This example demonstrates scaling an element down when it's being clicked (active state).
+   </p>
+  </div>
+  <!-- Button demonstrating active:scale-95 -->
+  <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:shadow-lg active:scale-95 transform transition-transform duration-100 ease-in-out">
+   Click and Hold Me
+  </button>
+  <p class="mt-6 text-sm text-gray-500">
+   Observe how the button scales down to 95% of its size (
+   <code class="bg-green-200 text-green-700 px-1 rounded">
+    active:scale-95
+   </code>
+   ) only while you are actively pressing it.
+  </p>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

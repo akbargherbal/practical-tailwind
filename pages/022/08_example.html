@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Dividers: Gotcha (h-px vs border-t)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-50 from_inside_iframe">
+  <div class="container mx-auto bg-white p-6 rounded-lg shadow-md">
+   <h1 class="text-2xl font-bold mb-6">
+    Gotcha: `h-px bg-color` vs `border-t` for Horizontal Dividers
+   </h1>
+   <p class="mb-6 text-gray-700">
+    The "Gotcha": Using a dedicated `&lt;div&gt;` with a tiny height (e.g., `h-px`) and a background color
+            is often more flexible for horizontal dividers than just `border-t` on an existing element,
+            especially for controlling spacing precisely around the line itself.
+   </p>
+   <!-- Section 1: Using border-t -->
+   <h2 class="text-xl font-semibold mb-3">
+    Method 1: Using `border-t`
+   </h2>
+   <div class="p-4 bg-orange-100 rounded">
+    <p>
+     Content Section A.
+    </p>
+   </div>
+   <!-- The border is part of this next element. Spacing is controlled by its margin-top (for space above border)
+             and padding-top (for space below border, but above this element's content). -->
+   <div class="p-4 bg-orange-100 rounded mt-4 pt-4 border-t border-orange-400">
+    <!-- HTML Comment: With `border-t`, the line is attached to this content block.
+                 `mt-4` creates space between "Content Section A" and the line.
+                 `pt-4` creates space between the line and "Content Section B".
+                 While this works, controlling the line's independent spacing can feel less direct
+                 than using a dedicated divider element. -->
+    <p>
+     Content Section B (after `border-t` divider).
+    </p>
+   </div>
+   <!-- Section 2: Using a dedicated <div> with h-px and bg-color (The "Gotcha" solution) -->
+   <h2 class="text-xl font-semibold mt-8 mb-3">
+    Method 2: Using `&lt;div class="h-px bg-gray-300"&gt;` (More Flexible)
+   </h2>
+   <div class="p-4 bg-teal-100 rounded">
+    <p>
+     Content Section X.
+    </p>
+   </div>
+   <!-- The Divider Element Itself -->
+   <!-- HTML Comment: This is the dedicated divider.
+             `h-px` gives it a height of 1 pixel.
+             `bg-gray-300` gives it a color.
+             `my-6` (margin top and bottom) provides clear, independent control over the spacing
+             around the divider line itself. This is often more intuitive. -->
+   <div class="h-px bg-gray-300 my-6">
+   </div>
+   <div class="p-4 bg-teal-100 rounded">
+    <p>
+     Content Section Y (after `h-px` divider).
+    </p>
+   </div>
+   <!-- Another example of the flexible divider with different spacing and color -->
+   <div class="p-4 bg-sky-100 rounded mt-8">
+    <p>
+     Content Section P.
+    </p>
+   </div>
+   <div class="h-0.5 bg-sky-500 my-3">
+   </div>
+   <!-- h-0.5 for slightly thicker, or use border-width on a div without h-px -->
+   <div class="p-4 bg-sky-100 rounded">
+    <p>
+     Content Section Q.
+    </p>
+   </div>
+   <p class="mt-8 text-sm text-gray-600">
+    <strong>
+     Key takeaway for the "Gotcha":
+    </strong>
+    The `&lt;div class="h-px bg-color my-X"&gt;` approach
+            gives you a standalone divider element. You can then use margin utilities (like `my-4`, `mt-2`, `mb-6`)
+            directly on this divider element to precisely control the space above and below it,
+            which is generally more flexible than `border-t` applied to a content block.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

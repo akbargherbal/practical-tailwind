@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Advanced Gradients
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <h1 class="text-3xl font-bold mb-6 text-center">
+   Advanced: Multi-Stop Gradients &amp; Directions
+  </h1>
+  <!-- Example 1: Three-stop gradient -->
+  <div class="mb-8">
+   <h2 class="text-2xl font-semibold mb-3">
+    Three-Stop Gradient
+   </h2>
+   <p class="mb-2 text-gray-700">
+    You can add an intermediate color stop using the
+    <code>
+     via-*
+    </code>
+    utility.
+   </p>
+   <div class="h-40 w-full rounded-lg bg-gradient-to-r from-sky-400 via-fuchsia-500 to-orange-400 flex items-center justify-center">
+    <p class="text-white text-xl font-bold drop-shadow-md">
+     Sky -&gt; Fuchsia -&gt; Orange
+    </p>
+   </div>
+   <p class="mt-2 text-sm text-gray-600">
+    Classes:
+    <code>
+     bg-gradient-to-r from-sky-400 via-fuchsia-500 to-orange-400
+    </code>
+    . The
+    <code>
+     drop-shadow-md
+    </code>
+    on the text helps with readability.
+   </p>
+  </div>
+  <!-- Example 2: Gradient with transparent stop for fading effect -->
+  <div class="mb-8">
+   <h2 class="text-2xl font-semibold mb-3">
+    Gradient to Transparent (Fade Effect)
+   </h2>
+   <p class="mb-2 text-gray-700">
+    You can use
+    <code>
+     to-transparent
+    </code>
+    or a specific color with opacity (e.g.,
+    <code>
+     to-blue-500/0
+    </code>
+    if configured) for fade effects. Here, we use pre-defined transparent keyword.
+   </p>
+   <div class="h-40 w-full rounded-lg bg-blue-600 relative">
+    <div class="absolute inset-0 bg-gradient-to-t from-transparent to-blue-600">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-blue-600 via-blue-600/70 to-transparent flex items-end justify-center pb-4">
+     <p class="text-white text-xl font-bold">
+      Content visible through faded top
+     </p>
+    </div>
+   </div>
+   <!-- HTML Comment explaining the approach -->
+   <!-- For the fade effect, we create a base background and then overlay a gradient that fades to transparent.
+             The example above shows a gradient from a solid color to transparent.
+             `to-transparent` is a key part of this.
+             For text readability, ensure the solid part of the gradient provides enough contrast or design text placement carefully.
+        -->
+   <p class="mt-2 text-sm text-gray-600">
+    Inner div uses:
+    <code>
+     bg-gradient-to-b from-blue-600 via-blue-600/70 to-transparent
+    </code>
+    . Requires careful layering for desired effect.
+   </p>
+  </div>
+  <!-- Example 3: Ensuring Text Contrast on a Pleasant Gradient -->
+  <div class="mb-8">
+   <h2 class="text-2xl font-semibold mb-3">
+    Well-Blending Gradient with Good Contrast
+   </h2>
+   <p class="mb-2 text-gray-700">
+    Choosing analogous or harmonious colors generally results in smoother, more pleasing gradients. Text contrast remains paramount.
+   </p>
+   <div class="h-40 w-full rounded-lg bg-gradient-to-tl from-emerald-400 via-cyan-400 to-sky-500 flex items-center justify-center">
+    <p class="text-black text-2xl font-semibold px-4 py-2 bg-white/70 rounded-md">
+     Readable Text on Smooth Gradient
+    </p>
+   </div>
+   <p class="mt-2 text-sm text-gray-600">
+    Classes:
+    <code>
+     from-emerald-400 via-cyan-400 to-sky-500
+    </code>
+    .
+            Text has a semi-transparent background (
+    <code>
+     bg-white/70
+    </code>
+    ) to ensure readability across the gradient.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

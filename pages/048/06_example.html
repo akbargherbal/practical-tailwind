@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Custom Colors - Gotcha: Extend vs Override
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <!--
+        IMPORTANT: For this specific "Gotcha" example, we will define two separate
+        config objects to illustrate the difference. In a real application, you'd only have one.
+        The script below is intentionally configured to demonstrate the "Gotcha".
+        We will then show the "Correct" way.
+    -->
+ </head>
+ <body class="p-8 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-3xl font-bold mb-6 text-center">
+    Gotcha: Overriding vs. Extending Colors
+   </h1>
+   <!-- Section 1: Demonstrating the Gotcha (Overriding default palette) -->
+   <div class="mb-12 p-6 border-2 border-red-500 rounded-lg bg-red-50">
+    <h2 class="text-2xl font-semibold mb-3 text-red-700">
+     Incorrect Way: Overriding
+     <code>
+      theme.colors
+     </code>
+    </h2>
+    <p class="mb-4 text-gray-700">
+     If you define colors directly under
+     <code>
+      theme.colors
+     </code>
+     (instead of
+     <code>
+      theme.extend.colors
+     </code>
+     ),
+                you
+     <strong class="text-red-600">
+      lose all default Tailwind colors
+     </strong>
+     .
+    </p>
+    <script id="config-override" type="text/tailwindcss">
+     tailwind.config = {
+                  purge: [], // Keep purge minimal for this example
+                  darkMode: false, // or 'media' or 'class'
+                  theme: {
+                    colors: { // INCORRECT for adding to defaults: This *replaces* the entire color palette.
+                      'custom-destructive': '#c53030',
+                      'custom-safe': '#38a169',
+                    }
+                  },
+                  variants: {
+                    extend: {},
+                  },
+                  plugins: [],
+                }
+    </script>
+    <div class="space-y-4">
+     <div>
+      <span class="font-medium">
+       Attempting to use a custom color (
+       <code>
+        bg-custom-destructive
+       </code>
+       ):
+      </span>
+      <div class="w-full h-10 bg-custom-destructive mt-1 rounded flex items-center justify-center text-white">
+       Works!
+      </div>
+      <!-- This works because 'custom-destructive' is defined in the overridden palette. -->
+     </div>
+     <div>
+      <span class="font-medium">
+       Attempting to use a default Tailwind color (
+       <code>
+        bg-blue-500
+       </code>
+       ):
+      </span>
+      <div class="w-full h-10 bg-blue-500 mt-1 rounded border border-dashed border-gray-400 flex items-center justify-center text-gray-500">
+       Fails! (No blue background)
+      </div>
+      <!-- This fails because bg-blue-500 is not part of the new, overridden palette. -->
+      <!-- The style is not applied as 'blue-500' is no longer a recognized color. -->
+     </div>
+    </div>
+    <p class="mt-4 text-sm text-gray-600">
+     <em>
+      Comment: Notice how
+      <code>
+       bg-blue-500
+      </code>
+      does not apply. This is because the entire default color palette was replaced by only
+      <code>
+       custom-destructive
+      </code>
+      and
+      <code>
+       custom-safe
+      </code>
+      .
+     </em>
+    </p>
+   </div>
+   <!-- Separator for clarity in the example, ideally you would re-init Tailwind or use separate pages for such drastic config changes -->
+   <hr class="my-12 border-t-2 border-gray-300"/>
+   <p class="text-center text-gray-600 mb-6 italic">
+    (To properly demonstrate the "correct" way below without page reload or complex JS, we're using a conceptual separation.
+            In a real scenario, you'd have one correct config from the start.)
+   </p>
+   <!-- Section 2: Demonstrating the Correct Way (Extending the palette) -->
+   <div class="p-6 border-2 border-green-500 rounded-lg bg-green-50">
+    <h2 class="text-2xl font-semibold mb-3 text-green-700">
+     Correct Way: Extending with
+     <code>
+      theme.extend.colors
+     </code>
+    </h2>
+    <p class="mb-4 text-gray-700">
+     When you use
+     <code>
+      theme.extend.colors
+     </code>
+     , your custom colors are
+     <strong class="text-green-600">
+      added alongside
+     </strong>
+     Tailwind's default color palette. This is usually what you want.
+    </p>
+    <!--
+                In a single page load, changing tailwind.config after initialization via CDN has limitations.
+                For this demo, imagine this is how the config *would have been* set up initially.
+                The classes below will be interpreted by the browser's Tailwind JIT based on the *initial* config
+                or the last successfully processed config if it supports dynamic updates this way.
+                For the purpose of *this specific HTML file demonstrating the concept*, the classes for the "Correct Way"
+                will effectively use the config from the *first snippet* if this were one single flow, OR
+                if Tailwind CDN could process multiple <script type="text/tailwindcss"> sequentially (it usually takes the first or last).
+
+                TO MAKE THIS SECTION WORK INDEPENDENTLY if this HTML was the *only* one,
+                you'd include its own config script here.
+                Since the prompt asks for runnable HTMLs illustrating concepts, we'll assume for this *section's logic*
+                that a config like the one in Snippet 1 is active.
+            -->
+    <script id="config-extend" type="text/tailwindcss">
+     // This script block is more for illustrative purposes of what the config *would* be.
+                // The actual rendering might be affected by the first config on the page if not isolated.
+                // For true isolation, these would be separate HTML files.
+                // However, we'll use classes that *would* work with a proper extend config.
+                tailwind.config = { // This effectively re-configures, but might require a Tailwind re-init in complex SPAs
+                  theme: {
+                    extend: { // CORRECT: This *adds* to the default color palette.
+                      colors: {
+                        'brand-cta': '#f59e0b',     // Example: An orange CTA color
+                        'brand-info': '#10b981',   // Example: An info green
+                      }
+                    }
+                  }
+                }
+    </script>
+    <div class="space-y-4">
+     <div>
+      <span class="font-medium">
+       Using our new custom color (
+       <code>
+        bg-brand-cta
+       </code>
+       ):
+      </span>
+      <div class="w-full h-10 bg-brand-cta mt-1 rounded flex items-center justify-center text-white">
+       Works!
+      </div>
+      <!-- This works because 'brand-cta' is added to the palette. -->
+     </div>
+     <div>
+      <span class="font-medium">
+       Using a default Tailwind color (
+       <code>
+        bg-indigo-500
+       </code>
+       ):
+      </span>
+      <div class="w-full h-10 bg-indigo-500 mt-1 rounded flex items-center justify-center text-white">
+       Works!
+      </div>
+      <!-- This also works because default colors are preserved when using 'extend'. -->
+     </div>
+    </div>
+    <p class="mt-4 text-sm text-gray-600">
+     <em>
+      Comment: Here, both our custom color
+      <code>
+       bg-brand-cta
+      </code>
+      and the default
+      <code>
+       bg-indigo-500
+      </code>
+      are applied correctly because we used
+      <code>
+       theme.extend.colors
+      </code>
+      . This preserves the default palette while adding our customizations.
+     </em>
+    </p>
+   </div>
+   <div class="mt-8 p-4 bg-gray-200 rounded">
+    <h3 class="font-semibold text-gray-800">
+     Important Note on CDN and Multiple Configs:
+    </h3>
+    <p class="text-sm text-gray-700">
+     The Tailwind CSS CDN typically processes one
+     <code>
+      tailwind.config
+     </code>
+     object. When multiple are present in
+     <code>
+      &lt;script&gt;
+     </code>
+     tags,
+                the behavior (which one takes precedence or if they merge) can be unpredictable or version-dependent.
+                This example uses two separate conceptual blocks to illustrate the *effect* of overriding vs. extending.
+                In a real project, you would have only
+     <strong class="text-green-600">
+      one
+     </strong>
+     configuration, correctly using
+     <code>
+      theme.extend.colors
+     </code>
+     to avoid losing default styles. The "Incorrect Way" shown above is for demonstration of the pitfall only.
+                For the "Correct Way" to render accurately in this standalone file after the "Incorrect Way" config, the Tailwind JIT might need a re-initialization, or the second config might take over. The key takeaway is the *conceptual difference* in configuration structure.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

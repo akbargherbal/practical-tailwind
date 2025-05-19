@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Accent Color for Inputs
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 font-sans from_inside_iframe">
+  <div class="container mx-auto p-6 bg-white rounded-lg shadow-md">
+   <h1 class="text-2xl font-bold mb-4">
+    Styling Inputs with Accent Color
+   </h1>
+   <p class="mb-6 text-gray-700">
+    The `accent-*` utility changes the color of the browser's default checkbox or radio button. It does not change the shape or size.
+   </p>
+   <div class="space-y-4">
+    <div>
+     <h2 class="text-lg font-semibold mb-2">
+      Default Inputs
+     </h2>
+     <label class="inline-flex items-center mr-6">
+      <input class="form-checkbox mr-2" type="checkbox"/>
+      Default Checkbox
+     </label>
+     <label class="inline-flex items-center">
+      <input class="form-radio mr-2" name="radio-default" type="radio"/>
+      Default Radio
+     </label>
+    </div>
+    <div>
+     <h2 class="text-lg font-semibold mb-2">
+      Inputs with Accent Color
+     </h2>
+     <p class="text-sm text-gray-600 mb-2">
+      Here, we use `accent-blue-500` for the checkbox and `accent-pink-500` for the radio button.
+     </p>
+     <label class="inline-flex items-center mr-6">
+      <input checked="" class="form-checkbox accent-blue-500 h-5 w-5 mr-2" type="checkbox"/>
+      Blue Checkbox
+     </label>
+     <label class="inline-flex items-center mr-6">
+      <input checked="" class="form-radio accent-pink-500 h-5 w-5 mr-2" name="radio-accent" type="radio"/>
+      Pink Radio 1
+     </label>
+     <label class="inline-flex items-center">
+      <input class="form-radio accent-pink-500 h-5 w-5 mr-2" name="radio-accent" type="radio"/>
+      Pink Radio 2
+     </label>
+    </div>
+   </div>
+   <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-md">
+    <p class="text-sm text-blue-700">
+     <strong>
+      Note:
+     </strong>
+     The `h-5 w-5` classes applied above might slightly affect the clickable area or spacing around the native control, but they don't fundamentally change the *visual style* of the checkmark or radio dot itself, other than its color via `accent-*`.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

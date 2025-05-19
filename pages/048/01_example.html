@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Custom Colors - Basic Usage
+  </title>
+  <script>
+   // Define custom brand colors using the Tailwind CDN configuration object.
+        // This simulates what you'd put in `tailwind.config.js` under `theme.extend.colors`.
+        tailwind.config = {
+            theme: {
+                extend: { // Crucially, using 'extend' to add to default colors
+                    colors: {
+                        'brand-primary': '#1E40AF', // A custom blue
+                        'brand-secondary': '#F59E0B', // A custom amber
+                        'brand-accent': '#BE185D', // A custom pink
+                    }
+                }
+            }
+        }
+  </script>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto space-y-6">
+   <h1 class="text-2xl font-bold text-brand-primary">
+    Skill: Defining Custom Brand Colors (OrganizingStyles_48)
+   </h1>
+   <!-- Example 1: Using custom colors for background and text -->
+   <div class="p-6 bg-brand-primary text-white rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold mb-2">
+     Primary Brand Section
+    </h2>
+    <p>
+     This section uses
+     <code class="bg-gray-700 px-1 rounded">
+      bg-brand-primary
+     </code>
+     for its background and has white text. This color
+     <code class="bg-gray-700 px-1 rounded">
+      'brand-primary': '#1E40AF'
+     </code>
+     was defined in our configuration.
+    </p>
+   </div>
+   <!-- Example 2: Using custom colors for buttons and text accents -->
+   <div class="p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold text-brand-accent mb-2">
+     Content with Accents
+    </h2>
+    <p class="mb-4">
+     This text uses the default body color, but important phrases can use
+     <span class="text-brand-accent font-semibold">
+      our accent color
+     </span>
+     .
+    </p>
+    <button class="bg-brand-secondary text-brand-primary font-semibold py-2 px-4 rounded-lg hover:bg-opacity-80 transition-colors">
+     A 'brand-secondary' Button
+    </button>
+    <p class="mt-2 text-sm text-gray-600">
+     The button uses
+     <code class="bg-gray-200 px-1 rounded">
+      bg-brand-secondary
+     </code>
+     and
+     <code class="bg-gray-200 px-1 rounded">
+      text-brand-primary
+     </code>
+     .
+    </p>
+   </div>
+   <!-- Example 3: Using custom color for borders -->
+   <div class="p-6 bg-white border-4 border-brand-accent rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold">
+     Section with Brand Border
+    </h2>
+    <p>
+     This section has a prominent border using
+     <code class="bg-gray-200 px-1 rounded">
+      border-brand-accent
+     </code>
+     .
+    </p>
+   </div>
+   <div class="mt-4 p-4 bg-blue-100 border border-blue-300 rounded">
+    <p class="text-sm text-blue-700">
+     <strong>
+      Note:
+     </strong>
+     Custom colors like
+     <code class="bg-gray-200 px-1 rounded">
+      brand-primary
+     </code>
+     ,
+     <code class="bg-gray-200 px-1 rounded">
+      brand-secondary
+     </code>
+     , and
+     <code class="bg-gray-200 px-1 rounded">
+      brand-accent
+     </code>
+     are made available by defining them in the
+     <code class="bg-gray-200 px-1 rounded">
+      tailwind.config
+     </code>
+     script block above. This mirrors adding them to
+     <code class="bg-gray-200 px-1 rounded">
+      theme.extend.colors
+     </code>
+     in a
+     <code class="bg-gray-200 px-1 rounded">
+      tailwind.config.js
+     </code>
+     file.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

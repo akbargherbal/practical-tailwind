@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Reusing Styles with @apply
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style type="text/tailwindcss">
+   /*
+          Skill: Group common styles to reuse them easily.
+          Here, we define custom classes for buttons using @apply.
+          This allows us to apply a consistent set of Tailwind utilities
+          with a single custom class.
+        */
+        .btn {
+            @apply font-bold py-2 px-4 rounded transition-colors duration-150 ease-in-out;
+        }
+        .btn-primary {
+            @apply bg-blue-500 hover:bg-blue-700 text-white;
+        }
+        .btn-secondary {
+            @apply bg-gray-500 hover:bg-gray-700 text-white;
+        }
+        .btn-danger {
+            @apply bg-red-500 hover:bg-red-700 text-white;
+        }
+        .btn-outline-primary {
+            @apply bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white border border-blue-500 hover:border-transparent;
+        }
+  </style>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-3xl font-bold mb-6 text-center text-gray-700">
+    Reusing Styles with
+    <code>
+     @apply
+    </code>
+   </h1>
+   <div class="mb-8 p-6 bg-white shadow-lg rounded-lg">
+    <h2 class="text-xl font-semibold mb-4 text-gray-600">
+     Button Examples:
+    </h2>
+    <p class="mb-4 text-gray-600">
+     The following buttons are styled using custom classes (
+     <code>
+      .btn
+     </code>
+     ,
+     <code>
+      .btn-primary
+     </code>
+     ,
+     <code>
+      .btn-secondary
+     </code>
+     , etc.)
+                defined in the
+     <code>
+      &lt;style type="text/tailwindcss"&gt;
+     </code>
+     block above.
+                Each custom class uses
+     <code>
+      @apply
+     </code>
+     to bundle several Tailwind utility classes.
+    </p>
+    <div class="flex flex-wrap gap-4">
+     <button class="btn btn-primary">
+      Primary Button
+     </button>
+     <button class="btn btn-secondary">
+      Secondary Button
+     </button>
+     <button class="btn btn-danger">
+      Danger Button
+     </button>
+     <button class="btn btn-outline-primary">
+      Outline Primary
+     </button>
+    </div>
+   </div>
+   <div class="mt-4 p-4 bg-indigo-100 border-l-4 border-indigo-500 text-indigo-700">
+    <p class="font-bold">
+     How it works:
+    </p>
+    <p>
+     The
+     <code>
+      @apply
+     </code>
+     directive in Tailwind CSS allows you to inline existing utility classes into your own custom CSS.
+                This is useful for extracting repeated utility patterns into components or custom classes, keeping your HTML cleaner.
+                For example,
+     <code>
+      .btn-primary
+     </code>
+     applies
+     <code>
+      bg-blue-500 hover:bg-blue-700 text-white
+     </code>
+     along with base
+     <code>
+      .btn
+     </code>
+     styles.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

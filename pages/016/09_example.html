@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Cards: Shadow Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <h2 class="text-2xl font-bold mb-6 text-center">
+   Illustrating Shadow Intensity
+  </h2>
+  <div class="flex flex-wrap justify-center gap-8">
+   <!-- Card 1: Recommended Shadow (shadow-md) -->
+   <div class="w-full max-w-xs">
+    <h3 class="text-lg font-semibold mb-2 text-center">
+     Standard Shadow (`shadow-md`)
+    </h3>
+    <div class="bg-white rounded-lg shadow-md p-4">
+     <h4 class="font-semibold mb-1">
+      Profile Card
+     </h4>
+     <p class="text-sm text-gray-600 mb-2">
+      This card uses `shadow-md`, providing a subtle lift without being overpowering.
+     </p>
+     <div class="bg-blue-100 p-2 rounded text-center text-blue-700 text-sm">
+      Content Area
+     </div>
+    </div>
+   </div>
+   <!-- Card 2: GOTCHA - Overly Large/Dark Shadow (shadow-xl or shadow-2xl) -->
+   <div class="w-full max-w-xs">
+    <h3 class="text-lg font-semibold mb-2 text-center">
+     Heavier Shadow (`shadow-xl`)
+    </h3>
+    <div class="bg-white rounded-lg shadow-xl p-4">
+     <!-- Gotcha Demonstration -->
+     <!-- This card uses shadow-xl. While sometimes appropriate, overuse of very dark or large shadows (like shadow-xl or shadow-2xl) can make the UI look heavy, cluttered, or dated. -->
+     <!-- It's generally better to start with softer shadows (e.g., shadow-sm, shadow, shadow-md) and use larger shadows sparingly for emphasis. -->
+     <h4 class="font-semibold mb-1">
+      Profile Card (Heavy Shadow)
+     </h4>
+     <p class="text-sm text-gray-600 mb-2">
+      This card uses `shadow-xl`. Notice how it feels heavier and can dominate the visual hierarchy more than necessary.
+     </p>
+     <div class="bg-red-100 p-2 rounded text-center text-red-700 text-sm">
+      Content Area
+     </div>
+    </div>
+   </div>
+   <div class="w-full max-w-xs">
+    <h3 class="text-lg font-semibold mb-2 text-center">
+     Very Heavy Shadow (`shadow-2xl`)
+    </h3>
+    <div class="bg-white rounded-lg shadow-2xl p-4">
+     <!-- Gotcha Demonstration -->
+     <h4 class="font-semibold mb-1">
+      Profile Card (Very Heavy Shadow)
+     </h4>
+     <p class="text-sm text-gray-600 mb-2">
+      `shadow-2xl` is even more pronounced. Use such strong shadows with great caution and specific intent, as they can easily make the UI feel cluttered.
+     </p>
+     <div class="bg-yellow-100 p-2 rounded text-center text-yellow-700 text-sm">
+      Content Area
+     </div>
+    </div>
+   </div>
+  </div>
+  <p class="mt-8 text-center text-sm text-gray-600">
+   <strong>
+    Gotcha Reminder:
+   </strong>
+   Overuse of very dark or large shadows can make the UI look heavy or cluttered.
+        Start with subtle shadows like `shadow-sm` or `shadow-md` and use stronger shadows intentionally for specific emphasis.
+  </p>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

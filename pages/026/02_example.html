@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS - Font Weight Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <!--
+        To explicitly test the "Gotcha" with a font that has limited weights:
+        1. Uncomment the Google Fonts link below for a font with only specific weights (e.g., Roboto 400 & 700).
+           <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        2. Uncomment the style tag to apply this font to the body.
+           <style> body { font-family: 'Roboto', sans-serif; } </style>
+        3. Observe that `font-light` might not render as expected if 'Roboto' light (300) isn't loaded.
+    -->
+ </head>
+ <body class="p-8 font-sans bg-gray-50 from_inside_iframe">
+  <h1 class="text-3xl font-bold mb-8 text-center text-slate-700">
+   Font Weight: Application &amp; The "Gotcha"
+  </h1>
+  <div class="mb-8 bg-white p-6 rounded-lg shadow-md">
+   <h2 class="text-2xl font-semibold mb-3 text-indigo-700">
+    Content Example
+   </h2>
+   <p class="font-normal mb-2">
+    This is a paragraph with
+    <code class="bg-indigo-100 text-indigo-800 px-1 rounded">
+     font-normal
+    </code>
+    . It's the standard weight ideal for body content ensuring readability.
+   </p>
+   <p class="font-light mb-2">
+    This paragraph uses
+    <code class="bg-indigo-100 text-indigo-800 px-1 rounded">
+     font-light
+    </code>
+    . It should appear thinner, often used for secondary information or captions. (Its appearance depends on font support - see Gotcha below).
+   </p>
+   <p class="mb-2">
+    You can make text
+    <strong class="font-bold">
+     stand out
+    </strong>
+    using
+    <code class="bg-indigo-100 text-indigo-800 px-1 rounded">
+     font-bold
+    </code>
+    for emphasis within a sentence.
+   </p>
+  </div>
+  <!-- GOTCHA DEMONSTRATION AND EXPLANATION -->
+  <div class="mt-8 p-6 bg-amber-50 border border-amber-400 rounded-lg shadow">
+   <h3 class="font-semibold text-xl mb-3 text-amber-700">
+    Gotcha: Font Weight Not Supported
+   </h3>
+   <p class="font-normal mb-2 text-amber-800">
+    Tailwind's font weight utilities (like
+    <code class="bg-amber-100 px-1 rounded">
+     font-light
+    </code>
+    ,
+    <code class="bg-amber-100 px-1 rounded">
+     font-extrabold
+    </code>
+    , etc.)
+            instruct the browser to use a specific font weight. However, this only works if the
+            font family currently active on the element
+    <strong class="font-semibold">
+     actually includes that specific weight.
+    </strong>
+   </p>
+   <!--
+            This HTML comment directly addresses the gotcha:
+            The primary pitfall ("Gotcha") with font weight classes is that they are not magic.
+            If you apply `font-light`, but the font file being used (e.g., 'Times New Roman', or a custom
+            web font like 'MyCustomFont') was not designed with or does not include a "light" weight/variant,
+            then `font-light` will have no visual effect, or the browser might try to synthetically create it
+            (rarely good) or fallback to `font-normal`.
+
+            To avoid this:
+            1. Ensure any custom fonts you load include all the weights you intend to use.
+            2. When using system fonts, be aware that not all system fonts support all weights (e.g., `font-thin` or `font-black` are less common).
+            3. Test on various browsers/OS if broad compatibility for specific weights is critical.
+            The default Tailwind font stack is generally good for common weights.
+        -->
+   <p class="font-normal mb-2 text-amber-800">
+    <strong>
+     What happens if the weight isn't supported?
+    </strong>
+    If you apply a class like
+    <code class="bg-amber-100 px-1 rounded">
+     font-light
+    </code>
+    and the active font doesn't have a "light" variant:
+   </p>
+   <ul class="list-disc list-inside mb-3 text-amber-800 pl-4">
+    <li>
+     The text might render as
+     <code class="bg-amber-100 px-1 rounded">
+      font-normal
+     </code>
+     .
+    </li>
+    <li>
+     The text might not change its appearance at all.
+    </li>
+    <li>
+     The browser might attempt to synthetically render a lighter weight, which can look poor.
+    </li>
+   </ul>
+   <p class="font-normal text-amber-800">
+    <strong>
+     Test it:
+    </strong>
+    The text below uses
+    <code class="bg-amber-100 px-1 rounded">
+     font-light
+    </code>
+    . With default Tailwind fonts, it should look light.
+            If you were to load a custom font that only has a "regular" and "bold" weight (see commented-out code in
+    <code class="bg-amber-100 px-1 rounded">
+     &lt;head&gt;
+    </code>
+    ),
+            this text might not appear light.
+   </p>
+   <p class="font-light mt-3 p-3 bg-amber-100 rounded border border-amber-300">
+    <em>
+     This line is styled with
+     <code class="bg-amber-200 px-1 rounded">
+      font-light
+     </code>
+     . Does it look lighter than normal text on your system with the current font? If not, that's the gotcha in action for this specific font/weight combination!
+    </em>
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

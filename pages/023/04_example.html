@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Success Alert
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 font-sans from_inside_iframe">
+  <!-- 
+        This example demonstrates a standard success alert.
+        It uses a light green background (bg-green-100), a darker green border (border-green-400),
+        and a dark green text color (text-green-700) for good readability.
+        Padding (px-4 py-3) and rounded corners (rounded) complete the styling.
+    -->
+  <div class="mb-6">
+   <h2 class="text-xl font-semibold mb-2">
+    Example 1: Standard Success Alert
+   </h2>
+   <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+    <strong class="font-bold">
+     Success!
+    </strong>
+    <span class="block sm:inline">
+     Your profile has been updated.
+    </span>
+   </div>
+  </div>
+  <!-- Another example: An informational alert using similar principles but different colors -->
+  <div class="mb-6">
+   <h2 class="text-xl font-semibold mb-2">
+    Example 1.1: Informational Alert
+   </h2>
+   <div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative" role="alert">
+    <strong class="font-bold">
+     Info:
+    </strong>
+    <span class="block sm:inline">
+     A new version of the application is available.
+    </span>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

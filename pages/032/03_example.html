@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Shadows: Basic Examples
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex flex-col items-center space-y-8 from_inside_iframe">
+  <!-- Example 1: Demonstrating different a
+    shadow sizes -->
+  <div class="text-center mb-6">
+   <h1 class="text-2xl font-bold mb-2">
+    Shadow Size Examples
+   </h1>
+   <p class="text-gray-600">
+    Elements with background colors and varying shadow intensities.
+   </p>
+  </div>
+  <div class="flex space-x-8">
+   <!-- Small Shadow -->
+   <div class="bg-white p-6 rounded-lg shadow-sm w-48 h-32 text-center flex flex-col justify-center">
+    <h2 class="font-semibold text-lg">
+     Small Shadow
+    </h2>
+    <p class="text-sm text-gray-500">
+     <code>
+      shadow-sm
+     </code>
+    </p>
+   </div>
+   <!-- Medium Shadow (Default) -->
+   <div class="bg-white p-6 rounded-lg shadow-md w-48 h-32 text-center flex flex-col justify-center">
+    <h2 class="font-semibold text-lg">
+     Medium Shadow
+    </h2>
+    <p class="text-sm text-gray-500">
+     <code>
+      shadow-md
+     </code>
+    </p>
+   </div>
+   <!-- Large Shadow -->
+   <div class="bg-white p-6 rounded-lg shadow-lg w-48 h-32 text-center flex flex-col justify-center">
+    <h2 class="font-semibold text-lg">
+     Large Shadow
+    </h2>
+    <p class="text-sm text-gray-500">
+     <code>
+      shadow-lg
+     </code>
+    </p>
+   </div>
+   <!-- Extra Large Shadow -->
+   <div class="bg-white p-6 rounded-lg shadow-xl w-48 h-32 text-center flex flex-col justify-center">
+    <h2 class="font-semibold text-lg">
+     XL Shadow
+    </h2>
+    <p class="text-sm text-gray-500">
+     <code>
+      shadow-xl
+     </code>
+    </p>
+   </div>
+  </div>
+  <div class="mt-8 p-4 bg-blue-100 border border-blue-300 rounded-md text-blue-700">
+   These examples use
+   <code>
+    bg-white
+   </code>
+   on the shadowed elements. The shadow is cast by the entire element.
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

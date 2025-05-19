@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Leading (Line Height)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-3xl font-bold mb-6 text-center text-blue-700">
+    Line Height (Leading) Examples
+   </h1>
+   <div class="grid md:grid-cols-3 gap-6">
+    <!-- Example 1: leading-tight -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+     <h2 class="text-xl font-semibold mb-3 text-gray-700">
+      leading-tight (1.25)
+     </h2>
+     <p class="leading-tight text-gray-600">
+      This paragraph demonstrates the "leading-tight" class.
+                    The quick brown fox jumps over the lazy dog.
+                    Lines of text are closer together, creating a more compact block of text.
+                    This can be useful for headings or short pieces of text where space is limited.
+     </p>
+    </div>
+    <!-- Example 2: leading-normal -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+     <h2 class="text-xl font-semibold mb-3 text-gray-700">
+      leading-normal (1.5)
+     </h2>
+     <p class="leading-normal text-gray-600">
+      This paragraph demonstrates the "leading-normal" class.
+                    The quick brown fox jumps over the lazy dog.
+                    This is typically the default line height for most browsers and provides good readability.
+                    It offers a balanced amount of space between lines.
+     </p>
+    </div>
+    <!-- Example 3: leading-relaxed -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+     <h2 class="text-xl font-semibold mb-3 text-gray-700">
+      leading-relaxed (1.625)
+     </h2>
+     <p class="leading-relaxed text-gray-600">
+      This paragraph demonstrates the "leading-relaxed" class.
+                    The quick brown fox jumps over the lazy dog.
+                    Lines of text have more space between them, making the text feel more airy and often easier to read for longer passages.
+                    This can enhance readability for extended content.
+     </p>
+    </div>
+   </div>
+   <div class="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-md">
+    <p class="text-sm text-blue-600">
+     <strong>
+      Skill:
+     </strong>
+     Adjust the space between lines of text.
+     <br/>
+     <strong>
+      Key Classes:
+     </strong>
+     <code>
+      leading-tight
+     </code>
+     ,
+     <code>
+      leading-normal
+     </code>
+     ,
+     <code>
+      leading-relaxed
+     </code>
+     .
+     <br/>
+     <strong>
+      Where to apply:
+     </strong>
+     Paragraphs, long descriptions.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

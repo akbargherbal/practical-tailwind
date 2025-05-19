@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Basic Circular Avatar
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 अंत-y-8 flex flex-col items-center from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6">
+   Circular Avatars - Basic Example
+  </h1>
+  <!-- Example 1: Using rounded-full on a square image -->
+  <div class="mb-8 text-center">
+   <h2 class="text-lg font-semibold mb-2">
+    1. Ideal Case: Square Image
+   </h2>
+   <p class="text-sm text-gray-600 mb-2">
+    Applying
+    <code>
+     rounded-full
+    </code>
+    to an already square image.
+   </p>
+   <img alt="Square Avatar" class="w-32 h-32 rounded-full mx-auto shadow-lg" src="https://via.placeholder.com/128x128.png?text=Square+Image"/>
+   <p class="mt-2 text-xs text-gray-500">
+    Classes used:
+    <code>
+     w-32 h-32 rounded-full
+    </code>
+   </p>
+  </div>
+  <!-- Example 2: A smaller circular avatar -->
+  <div class="text-center">
+   <h2 class="text-lg font-semibold mb-2">
+    2. Smaller Circular Avatar
+   </h2>
+   <p class="text-sm text-gray-600 mb-2">
+    Still using a square image, just smaller.
+   </p>
+   <img alt="Small Square Avatar" class="w-20 h-20 rounded-full mx-auto shadow-md" src="https://via.placeholder.com/80x80.png?text=Small+Square"/>
+   <p class="mt-2 text-xs text-gray-500">
+    Classes used:
+    <code>
+     w-20 h-20 rounded-full
+    </code>
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

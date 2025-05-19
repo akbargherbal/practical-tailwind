@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Circular Avatar (Square Image)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex flex-col items-center space-y-6 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Circular Avatars: Basic Case
+  </h1>
+  <!-- 
+        Example 1: Applying rounded-full to a square image.
+        If the image is already square (e.g., 100x100 pixels) and you display it as a square (e.g., w-24 h-24), 
+        rounded-full will make it a perfect circle.
+    -->
+  <div class="text-center">
+   <p class="mb-2 text-lg">
+    Square Image with `rounded-full`:
+   </p>
+   <img alt="Square Avatar" class="w-32 h-32 rounded-full border-4 border-blue-500 shadow-lg mx-auto" src="https://via.placeholder.com/150/007BFF/FFFFFF?Text=Square"/>
+   <p class="mt-2 text-sm text-gray-600">
+    <code>
+     &lt;img src="..." class="w-32 h-32 rounded-full"&gt;
+    </code>
+   </p>
+  </div>
+  <div class="text-center mt-8">
+   <p class="mb-2 text-lg">
+    Another Square Image (different size):
+   </p>
+   <img alt="Small Square Avatar" class="w-20 h-20 rounded-full border-2 border-green-500 shadow-md mx-auto" src="https://via.placeholder.com/100/28A745/FFFFFF?Text=Square"/>
+   <p class="mt-2 text-sm text-gray-600">
+    <code>
+     &lt;img src="..." class="w-20 h-20 rounded-full"&gt;
+    </code>
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

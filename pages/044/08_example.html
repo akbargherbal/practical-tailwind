@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Responsive Text - Gotchas
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-50 p-8 font-sans from_inside_iframe">
+  <div class="container mx-auto bg-white p-6 rounded-lg shadow-xl">
+   <h1 class="text-center font-bold mb-8 text-purple-700 text-3xl md:text-4xl">
+    Responsive Text - Addressing Gotchas
+   </h1>
+   <div class="mb-10">
+    <h3 class="text-xl font-semibold text-gray-800 mb-2">
+     Good Practice Example:
+    </h3>
+    <p class="text-gray-600 mb-3">
+     This heading uses a balanced approach for responsive text sizes, ensuring readability on mobile and a smooth transition across breakpoints.
+    </p>
+    <div class="p-4 border border-green-300 rounded bg-green-50">
+     <h4 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium text-green-700">
+      Well-Balanced Heading
+     </h4>
+     <p class="text-xs mt-2 text-green-600">
+      Classes used:
+      <code>
+       text-xl sm:text-2xl md:text-3xl lg:text-4xl
+      </code>
+     </p>
+    </div>
+   </div>
+   <hr class="my-8 border-gray-300"/>
+   <div>
+    <h3 class="text-xl font-semibold text-gray-800 mb-2">
+     Common Gotchas:
+    </h3>
+    <p class="text-gray-600 mb-4">
+     Below are examples illustrating common pitfalls when implementing responsive text.
+    </p>
+    <!-- Gotcha 1: Text too small on mobile -->
+    <div class="mb-6 p-4 border border-red-300 rounded bg-red-50">
+     <h4 class="text-lg font-medium text-red-700 mb-1">
+      Gotcha 1: Text Too Small on Mobile
+     </h4>
+     <p class="text-gray-700 text-sm mb-2">
+      <!--
+                        GOTCHA DEMONSTRATION:
+                        The heading below uses `text-sm` on the smallest screens. While this might seem to fit more content,
+                        it can severely harm readability for main headings or important text.
+                        Always prioritize readability, especially on smaller screens.
+                    -->
+      <span class="text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold text-red-600">
+       Heading Potentially Too Small
+      </span>
+     </p>
+     <p class="text-xs mt-1 text-red-500">
+      Problematic classes:
+      <code>
+       text-sm
+      </code>
+      (for a heading on mobile)
+      <code>
+       sm:text-xl md:text-2xl lg:text-3xl
+      </code>
+      . The base
+      <code>
+       text-sm
+      </code>
+      can be too small for a heading on mobile, impacting readability.
+     </p>
+     <p class="text-xs mt-1 text-red-500">
+      <strong>
+       Commentary:
+      </strong>
+      Using
+      <code>
+       text-sm
+      </code>
+      for a primary heading element on mobile (`
+      <h1>
+       `, `
+       <h2>
+        `) is generally discouraged. While it "works", it compromises user experience.
+       </h2>
+      </h1>
+     </p>
+    </div>
+    <!-- Gotcha 2: Jarring jump in size -->
+    <div class="p-4 border border-yellow-400 rounded bg-yellow-50">
+     <h4 class="text-lg font-medium text-yellow-800 mb-1">
+      Gotcha 2: Jarring Size Jumps
+     </h4>
+     <p class="text-gray-700 text-sm mb-2">
+      <!--
+                        GOTCHA DEMONSTRATION:
+                        This heading demonstrates a very large jump in text size between breakpoints
+                        (e.g., from `sm:text-xl` directly to `md:text-5xl`). This can be visually jarring for the user.
+                        Aim for more gradual and proportional increases in text size.
+                    -->
+      <span class="text-xl sm:text-xl md:text-5xl lg:text-6xl font-bold text-yellow-700">
+       Heading With Jarring Jump
+      </span>
+     </p>
+     <p class="text-xs mt-1 text-yellow-600">
+      Problematic classes:
+      <code>
+       text-xl sm:text-xl md:text-5xl lg:text-6xl
+      </code>
+      . The jump between
+      <code>
+       sm
+      </code>
+      (text-xl) and
+      <code>
+       md
+      </code>
+      (text-5xl) is very large and abrupt.
+     </p>
+     <p class="text-xs mt-1 text-yellow-600">
+      <strong>
+       Commentary:
+      </strong>
+      While Tailwind allows this, such drastic changes can make the design feel unstable or poorly planned as the screen resizes. A smoother progression is usually better.
+     </p>
+    </div>
+   </div>
+   <div class="mt-10 p-4 border border-dashed border-blue-300 rounded bg-blue-50">
+    <p class="text-sm text-blue-700 text-center">
+     <strong>
+      Instructions:
+     </strong>
+     Resize your browser window. Observe the "Well-Balanced Heading" for good practice. Then, examine the "Gotcha" examples to see how overly small text on mobile or abrupt size changes can be problematic.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

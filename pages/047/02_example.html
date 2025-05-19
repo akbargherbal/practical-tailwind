@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html class="" lang="en">
+ <!-- Start without 'dark' class -->
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Class-Based Dark Mode (JS Toggle)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style>
+   /* Additional style to make body full height for better viz */
+        body { min-height: 100vh; }
+  </style>
+ </head>
+ <body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300 from_inside_iframe">
+  <div class="container mx-auto p-8">
+   <header class="mb-8 text-center">
+    <h1 class="text-4xl font-bold text-gray-900 dark:text-white">
+     Dark Mode: Class-Based (JS Toggle)
+    </h1>
+    <p class="mt-2 text-gray-600 dark:text-gray-400">
+     This page demonstrates setting up a class-based dark mode toggle.
+    </p>
+    <button class="mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg shadow-md transition-colors" id="darkModeToggle">
+     Toggle Dark Mode
+    </button>
+   </header>
+   <!-- GOTCHA DEMONSTRATION SECTION -->
+   <div class="my-6 p-4 border border-red-500 bg-red-50 dark:bg-red-900/20 rounded-md">
+    <h3 class="font-semibold text-red-700 dark:text-red-300">
+     Important: The "Gotcha"
+    </h3>
+    <p class="text-sm text-red-600 dark:text-red-400">
+     For the `dark:` prefixed utility classes (e.g., `dark:bg-gray-800`, `dark:text-white`) on elements below to work when you click the toggle button,
+                your Tailwind CSS configuration (`tailwind.config.js`)
+     <strong>
+      MUST
+     </strong>
+     include
+     <code class="bg-red-200 dark:bg-red-800 px-1 rounded">
+      darkMode: 'class'
+     </code>
+     .
+    </p>
+    <p class="mt-2 text-sm text-red-600 dark:text-red-400">
+     When using only the Tailwind CDN (like in this standalone example), it's typically pre-configured for `darkMode: 'media'` (OS preference).
+                So, toggling the 'dark' class on the `
+     <html>
+      ` element with JavaScript might not make Tailwind's `dark:` variants apply as expected unless the CDN itself was built with `darkMode: 'class'`.
+                This example primarily illustrates the JavaScript and HTML structure for a class-based toggle in a full project setup.
+                If your OS is in dark mode, some `dark:` styles might appear due to the 'media' strategy, not this toggle.
+     </html>
+    </p>
+   </div>
+   <div class="grid md:grid-cols-2 gap-6">
+    <div class="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg">
+     <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
+      Content Box 1
+     </h2>
+     <p class="text-gray-700 dark:text-gray-300">
+      This box uses `bg-gray-100 dark:bg-gray-800`. Its text will become `dark:text-gray-300`.
+                    This change depends on the 'dark' class on `
+      <html>
+       ` AND the correct `tailwind.config.js` setup.
+      </html>
+     </p>
+    </div>
+    <div class="p-6 bg-indigo-100 dark:bg-indigo-800 border border-indigo-300 dark:border-indigo-600 rounded-lg shadow-lg">
+     <h2 class="text-2xl font-semibold text-indigo-900 dark:text-indigo-100 mb-2">
+      Content Box 2
+     </h2>
+     <p class="text-indigo-700 dark:text-indigo-300">
+      Styled with `bg-indigo-100 dark:bg-indigo-800`.
+                    This also requires `darkMode: 'class'` in your config for the toggle to control its appearance.
+     </p>
+    </div>
+   </div>
+   <footer class="mt-12 text-center text-sm text-gray-500 dark:text-gray-600">
+    <p>
+     The JavaScript below toggles the 'dark' class on the `&lt;html&gt;` element.
+    </p>
+   </footer>
+  </div>
+  <script>
+   const darkModeToggle = document.getElementById('darkModeToggle');
+        const htmlElement = document.documentElement;
+
+        // Check for saved theme preference or use OS preference
+        if (localStorage.getItem('theme') === 'dark' || 
+            (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+            // Note: For Tailwind's dark: variants to respond to this class,
+            // `darkMode: 'class'` must be in tailwind.config.js.
+            // This script just manages the class and local storage.
+        });
+  </script>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

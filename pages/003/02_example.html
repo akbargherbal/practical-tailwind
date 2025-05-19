@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: `gap-*` and `justify-*` Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6 text-center">
+   Using `gap-*` and Understanding the `justify-*` Gotcha
+  </h1>
+  <!-- Example 1: gap-4 for simple spacing -->
+  <div class="mb-10">
+   <h2 class="text-lg font-semibold mb-2">
+    Using
+    <code>
+     gap-4
+    </code>
+    for simple spacing between items (row)
+   </h2>
+   <div class="flex gap-4 bg-indigo-200 p-4 rounded">
+    <div class="bg-indigo-500 text-white p-4 rounded">
+     Item 1
+    </div>
+    <div class="bg-indigo-500 text-white p-4 rounded">
+     Item 2
+    </div>
+    <div class="bg-indigo-500 text-white p-4 rounded">
+     Item 3
+    </div>
+   </div>
+   <p class="text-sm mt-1 text-gray-600">
+    <code>
+     gap-4
+    </code>
+    adds a consistent 1rem space *between* flex items, horizontally here.
+   </p>
+  </div>
+  <!-- Gotcha Demonstration -->
+  <div class="mb-10 p-4 border border-red-400 bg-red-50 rounded">
+   <h2 class="text-lg font-semibold mb-2 text-red-700">
+    Gotcha: `justify-*` vs `gap-*` in `flex-col`
+   </h2>
+   <p class="mb-4 text-sm text-gray-700">
+    The "Gotcha" is that
+    <code>
+     justify-*
+    </code>
+    classes control spacing along the
+    <strong>
+     main axis
+    </strong>
+    .
+            For
+    <code>
+     flex-row
+    </code>
+    (default), this is horizontal. For
+    <code>
+     flex-col
+    </code>
+    , it's vertical.
+    <code>
+     gap-*
+    </code>
+    is often simpler and more direct for adding space *between* items, regardless of the main axis distribution.
+   </p>
+   <div class="grid md:grid-cols-2 gap-6">
+    <div>
+     <h3 class="font-medium mb-1">
+      <code>
+       justify-between
+      </code>
+      in
+      <code>
+       flex-col
+      </code>
+      :
+     </h3>
+     <div class="flex flex-col justify-between bg-pink-200 p-4 rounded h-72">
+      <!-- This div has a fixed height (h-72) to demonstrate justify-between behavior -->
+      <div class="bg-pink-500 text-white p-3 rounded">
+       Top Item
+      </div>
+      <div class="bg-pink-500 text-white p-3 rounded">
+       Middle Item
+      </div>
+      <div class="bg-pink-500 text-white p-3 rounded">
+       Bottom Item
+      </div>
+     </div>
+     <p class="text-xs mt-1 text-gray-600">
+      With
+      <code>
+       flex-col justify-between
+      </code>
+      and a set height, items are pushed to the start, middle, and end of the container's vertical axis.
+                    This might not be what you want if you just need consistent spacing *between* items.
+     </p>
+    </div>
+    <div>
+     <h3 class="font-medium mb-1">
+      <code>
+       gap-4
+      </code>
+      in
+      <code>
+       flex-col
+      </code>
+      (Often Simpler):
+     </h3>
+     <div class="flex flex-col gap-4 bg-teal-200 p-4 rounded">
+      <!-- No fixed height needed here to show gap behavior -->
+      <div class="bg-teal-500 text-white p-3 rounded">
+       Item A
+      </div>
+      <div class="bg-teal-500 text-white p-3 rounded">
+       Item B
+      </div>
+      <div class="bg-teal-500 text-white p-3 rounded">
+       Item C
+      </div>
+     </div>
+     <p class="text-xs mt-1 text-gray-600">
+      With
+      <code>
+       flex-col gap-4
+      </code>
+      , a 1rem space is added *between* each item vertically.
+                    The container's height grows with content + gaps. This is often more intuitive for inter-item spacing.
+     </p>
+    </div>
+   </div>
+   <p class="mt-4 text-sm text-gray-700">
+    <strong>
+     Key Takeaway:
+    </strong>
+    If you want space *between* items,
+    <code>
+     gap-*
+    </code>
+    is usually the most straightforward approach for both
+    <code>
+     flex-row
+    </code>
+    and
+    <code>
+     flex-col
+    </code>
+    . Use
+    <code>
+     justify-*
+    </code>
+    when you specifically need to distribute items along the entire length of the main axis (e.g., pushing items to the edges).
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

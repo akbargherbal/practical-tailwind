@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Basic Overlapping
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex flex-col items-center space-y-8 from_inside_iframe">
+  <!-- Example 1: Basic Overlapping - "New!" Badge on a Product Card -->
+  <div class="text-center mb-4">
+   <h2 class="text-xl font-semibold">
+    Example 1: Basic Overlapping
+   </h2>
+   <p class="text-gray-600">
+    A "New!" badge positioned on top-right of a product card.
+   </p>
+  </div>
+  <div class="w-64 h-80 bg-white shadow-lg rounded-lg p-4 relative">
+   <!-- The 'relative' class on this parent div is crucial for the 'absolute' child. -->
+   <img alt="Product Image" class="w-full h-40 object-cover rounded-md mb-4" src="https://via.placeholder.com/220x150.png/007bff/ffffff?text=Product+Image"/>
+   <h3 class="text-lg font-bold text-gray-800">
+    Awesome Product
+   </h3>
+   <p class="text-gray-600 text-sm">
+    This is a great product you'll love.
+   </p>
+   <!-- The "New!" badge -->
+   <div class="absolute top-2 right-2 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-md transform -rotate-6">
+    NEW!
+   </div>
+   <!-- Another badge example -->
+   <div class="absolute bottom-4 left-4 bg-green-500 text-white text-xs font-bold px-3 py-1.5 rounded-full">
+    Eco-Friendly
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

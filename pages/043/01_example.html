@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Basic Responsive Stacking
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-50 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4 text-center">
+   Responsive Column Stacking Example
+  </h1>
+  <p class="text-center mb-6 text-gray-700">
+   This example demonstrates items stacking on small screens and arranging in a row on larger screens.
+  </p>
+  <!--
+        Skill: Make items stack vertically on small screens that were side-by-side on larger screens.
+        Key Classes: `flex flex-col sm:flex-row`
+        - `flex`: Establishes a flex container.
+        - `flex-col`: Stacks items vertically by default (mobile-first).
+        - `sm:flex-row`: Changes the direction to horizontal on screens 'sm' (640px) and wider.
+    -->
+  <div class="container mx-auto p-4 bg-gray-100 rounded-lg shadow">
+   <h2 class="text-lg font-semibold mb-2 text-gray-800">
+    Feature Section
+   </h2>
+   <div class="flex flex-col sm:flex-row gap-4">
+    <div class="bg-blue-500 text-white p-6 rounded-lg shadow-md flex-1 text-center">
+     <h3 class="font-bold text-xl mb-2">
+      Feature 1 / Left Column
+     </h3>
+     <p>
+      This content will be on top on small screens.
+     </p>
+    </div>
+    <div class="bg-green-500 text-white p-6 rounded-lg shadow-md flex-1 text-center">
+     <h3 class="font-bold text-xl mb-2">
+      Feature 2 / Right Column
+     </h3>
+     <p>
+      This content will be below on small screens, and to the right on larger screens.
+     </p>
+    </div>
+   </div>
+   <p class="mt-4 text-sm text-gray-600">
+    <strong>
+     Try resizing your browser window:
+    </strong>
+    On small screens (less than 640px wide), the blue and green boxes will stack vertically.
+            On screens 640px wide or larger, they will sit side-by-side.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

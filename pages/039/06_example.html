@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Disabled State: Basic Button
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex flex-col items-center space-y-4 from_inside_iframe">
+  <!-- Example 1: A correctly disabled button -->
+  <div class="text-center mb-6">
+   <h1 class="text-2xl font-bold mb-2">
+    Disabled Button Example
+   </h1>
+   <p class="text-gray-600">
+    This button has the `disabled` HTML attribute and Tailwind's `disabled:` variant styles.
+   </p>
+  </div>
+  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed" disabled="">
+   I am Disabled
+  </button>
+  <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed">
+   I am Enabled
+  </button>
+  <div class="mt-4 p-4 bg-blue-100 border-l-4 border-blue-500 text-blue-700">
+   <p>
+    <strong class="font-bold">
+     Note:
+    </strong>
+    The first button above is visually distinct (opacity reduced, cursor changed to 'not-allowed' on hover) because it has the HTML `disabled` attribute. The Tailwind `disabled:*` classes react to this attribute.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

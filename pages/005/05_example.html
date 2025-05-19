@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind - Full Screen Centering
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="m-0 p-0 from_inside_iframe">
+  <!-- Removed default body margin for true full screen -->
+  <!-- Example 3: Centering in a full-screen container -->
+  <!-- 
+        This example demonstrates centering an element in the middle of the viewport.
+        The key is 'min-h-screen' on the parent container, which ensures it takes up at least the full height
+        of the screen. This provides the necessary height for 'items-center' to vertically center the content.
+        This is a common use case e.g. for modals, loading screens, or hero sections.
+    -->
+  <div class="min-h-screen bg-indigo-100 flex items-center justify-center p-4">
+   <!-- Parent container taking full viewport height and using flex centering -->
+   <div class="w-auto p-8 bg-white rounded-lg shadow-xl text-center">
+    <h1 class="text-3xl font-bold text-indigo-600 mb-4">
+     Perfectly Centered
+    </h1>
+    <p class="text-gray-700 mb-2">
+     This box is centered both horizontally and vertically on the page.
+    </p>
+    <p class="text-sm text-gray-500">
+     The parent uses
+     <code>
+      min-h-screen flex items-center justify-center
+     </code>
+     .
+    </p>
+    <button class="mt-6 px-6 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 transition-colors">
+     A Centered Button
+    </button>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

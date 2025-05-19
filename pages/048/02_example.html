@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Colors - Extending vs. Overriding (Gotcha)
+  </title>
+  <script>
+   // Simulating `theme.extend.colors` in `tailwind.config.js`
+        // This adds our custom colors WITHOUT removing Tailwind's defaults.
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'my-brand-blue': '#007bff',
+                        'my-brand-green': '#28a745',
+                    }
+                }
+            }
+        }
+  </script>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-50 from_inside_iframe">
+  <div class="container mx-auto space-y-8">
+   <h1 class="text-2xl font-bold text-my-brand-blue">
+    Understanding Custom Colors &amp; The "Gotcha" (OrganizingStyles_48)
+   </h1>
+   <!-- Section 1: Demonstrating Correct Usage (Extending Colors) -->
+   <div class="p-6 bg-white rounded-lg shadow">
+    <h2 class="text-xl font-semibold mb-3 text-my-brand-green">
+     Using Extended Colors
+    </h2>
+    <p class="mb-2">
+     This example uses custom colors defined via
+     <code class="bg-gray-200 px-1 rounded">
+      theme.extend.colors
+     </code>
+     (simulated in the script tag above for this CDN example).
+    </p>
+    <div class="flex space-x-4">
+     <div class="flex-1 p-4 bg-my-brand-blue text-white rounded">
+      Custom:
+      <code class="bg-gray-700 px-1 rounded">
+       bg-my-brand-blue
+      </code>
+     </div>
+     <div class="flex-1 p-4 bg-my-brand-green text-white rounded">
+      Custom:
+      <code class="bg-gray-700 px-1 rounded">
+       text-my-brand-green
+      </code>
+      (on heading)
+     </div>
+     <div class="flex-1 p-4 bg-red-500 text-white rounded">
+      Default:
+      <code class="bg-gray-700 px-1 rounded">
+       bg-red-500
+      </code>
+     </div>
+    </div>
+    <p class="mt-3 text-sm text-gray-700">
+     Notice how both our custom colors (like
+     <code class="bg-gray-200 px-1 rounded">
+      my-brand-blue
+     </code>
+     ) and default Tailwind colors (like
+     <code class="bg-gray-200 px-1 rounded">
+      red-500
+     </code>
+     ) work together. This is the recommended approach.
+    </p>
+   </div>
+   <!-- Section 2: Explaining the "Gotcha" -->
+   <div class="p-6 bg-yellow-100 border-l-4 border-yellow-500 rounded-lg shadow">
+    <h2 class="text-xl font-semibold text-yellow-700 mb-3">
+     The "Gotcha": Overriding Default Colors
+    </h2>
+    <div class="prose prose-sm max-w-none">
+     <p>
+      A common pitfall is accidentally replacing Tailwind's entire default color palette instead of just adding to it.
+     </p>
+     <p>
+      This happens if you define your colors directly under
+      <code class="bg-gray-200 px-1 rounded">
+       theme.colors
+      </code>
+      in your
+      <code class="bg-gray-200 px-1 rounded">
+       tailwind.config.js
+      </code>
+      file, like
+                this:
+     </p>
+     <pre class="bg-gray-800 text-white p-3 rounded text-xs"><code>module.exports = {
+  theme: {
+    colors: { // &lt;-- Problematic: NO 'extend' here!
+      'custom-only': '#FF00FF',
+    }
+    // ... other theme settings
+  },
+  plugins: [],
+}</code></pre>
+     <p>
+      If you do the above in your
+      <code class="bg-gray-200 px-1 rounded">
+       tailwind.config.js
+      </code>
+      :
+     </p>
+     <ul>
+      <li>
+       You would
+       <strong>
+        lose all of Tailwind's built-in colors
+       </strong>
+       (e.g.,
+       <code class="bg-gray-200 px-1 rounded">
+        bg-red-500
+       </code>
+       ,
+       <code class="bg-gray-200 px-1 rounded">
+        text-blue-600
+       </code>
+       ,
+       <code class="bg-gray-200 px-1 rounded">
+        border-gray-300
+       </code>
+       , etc.).
+      </li>
+      <li>
+       Only your explicitly defined custom colors (like
+       <code class="bg-gray-200 px-1 rounded">
+        'custom-only'
+       </code>
+       ) would be available.
+      </li>
+     </ul>
+     <p>
+      <strong>
+       To avoid this, always use
+       <code class="bg-gray-200 px-1 rounded">
+        theme.extend.colors
+       </code>
+       :
+      </strong>
+     </p>
+     <pre class="bg-gray-800 text-white p-3 rounded text-xs"><code>module.exports = {
+  theme: {
+    extend: { // &lt;-- Correct: Use 'extend'
+      colors: {
+        'custom-one': '#ABCDEF',
+        'custom-two': '#123456',
+      }
+    }
+    // ... other theme settings
+  },
+  plugins: [],
+}</code></pre>
+     _
+     <p>
+      This ensures your custom colors are
+      <em>
+       added
+      </em>
+      to the default palette, giving you the best of both worlds.
+     </p>
+     <p class="mt-4">
+      For instance, if the "Gotcha" occurred, the following div styled with a default Tailwind class
+      <code class="bg-gray-200 px-1 rounded">
+       bg-indigo-500
+      </code>
+      would
+      <strong>
+       not
+      </strong>
+      have its background color applied:
+     </p>
+    </div>
+    <div class="mt-4 p-4 bg-indigo-500 text-white rounded">
+     This div uses
+     <code class="bg-gray-700 px-1 rounded">
+      bg-indigo-500
+     </code>
+     . It works here because our CDN config uses `extend`. If `theme.colors` was used directly in `tailwind.config.js` (overriding defaults), this styling would fail.
+    </div>
+    <p class="mt-2 text-xs text-yellow-700">
+     (Note: This HTML example uses the Tailwind CDN. The inline
+     <code class="bg-gray-200 px-1 rounded">
+      &lt;script&gt;
+     </code>
+     for
+     <code class="bg-gray-200 px-1 rounded">
+      tailwind.config
+     </code>
+     with the CDN typically merges/extends by default, even if you write
+     <code class="bg-gray-200 px-1 rounded">
+      theme.colors
+     </code>
+     . The gotcha described above primarily applies to full
+     <code class="bg-gray-200 px-1 rounded">
+      tailwind.config.js
+     </code>
+     setups in a project.)
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

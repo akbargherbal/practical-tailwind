@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: w-full and h-full Example
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-slate-50 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Example 1: `w-full` and `h-full` with a Defined Parent Height
+  </h1>
+  <p class="mb-2">
+   The parent container below has a fixed height (`h-64`). The child element uses `w-full` and `h-full` to fill the parent completely.
+  </p>
+  <!-- Parent with a defined height -->
+  <div class="w-3/4 h-64 bg-gray-300 p-4 rounded shadow">
+   <p class="text-sm text-gray-700 mb-2">
+    Parent (w-3/4, h-64)
+   </p>
+   <!-- Child stretching to fill the parent -->
+   <div class="w-full h-full bg-blue-500 text-white flex items-center justify-center rounded">
+    Child (w-full, h-full)
+   </div>
+  </div>
+  <div class="mt-6 p-4 bg-yellow-100 border border-yellow-300 rounded">
+   <h2 class="font-semibold">
+    Key Classes Used:
+   </h2>
+   <ul class="list-disc list-inside ml-4">
+    <li>
+     <code>
+      w-full
+     </code>
+     : Makes an element take up 100% of its parent's width.
+    </li>
+    <li>
+     <code>
+      h-full
+     </code>
+     : Makes an element take up 100% of its parent's height, IF the parent has a defined height.
+    </li>
+    <li>
+     <code>
+      h-64
+     </code>
+     : An arbitrary height utility to define the parent's height.
+    </li>
+   </ul>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

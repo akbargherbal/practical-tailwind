@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Button Gotcha &amp; Solutions
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-50 p-8 from_inside_iframe">
+  <div class="max-w-2xl mx-auto">
+   <h1 class="text-2xl font-bold mb-6 text-center">
+    Button Styling: Gotcha and Best Practices
+   </h1>
+   <!-- Gotcha Demonstration Section -->
+   <div class="mb-8 p-4 border border-red-400 bg-red-50 rounded-lg">
+    <h2 class="text-xl font-semibold text-red-700 mb-2">
+     Gotcha: Using a &lt;div&gt; as a Button
+    </h2>
+    <p class="text-red-600 mb-3">
+     It's common to see
+     <code>
+      &lt;div&gt;
+     </code>
+     elements styled to look like buttons. However, this approach has significant accessibility and usability drawbacks.
+    </p>
+    <!-- Incorrect way: A div styled as a button -->
+    <div class="bg-blue-500 text-white py-2 px-4 rounded inline-block cursor-pointer">
+     (Div) Looks like a Button
+    </div>
+    <p class="text-sm text-gray-700 mt-2">
+     <!-- Comment addressing the gotcha -->
+     <em>
+      This
+      <code>
+       &lt;div&gt;
+      </code>
+      above is styled with
+      <code>
+       bg-blue-500 text-white py-2 px-4 rounded
+      </code>
+      .
+                While visually similar, it is
+      <strong>
+       not
+      </strong>
+      keyboard focusable by default, and screen readers
+                will not announce it as an interactive "button" element. This makes it inaccessible to many users.
+                Try tabbing to it – you likely can't without extra (non-Tailwind) JavaScript or ARIA attributes.
+     </em>
+    </p>
+   </div>
+   <!-- Correct Approaches Section -->
+   <div class="p-4 border border-green-400 bg-green-50 rounded-lg">
+    <h2 class="text-xl font-semibold text-green-700 mb-3">
+     Correct Semantic Approaches
+    </h2>
+    <p class="text-green-600 mb-4">
+     For accessible and functional buttons, use proper HTML elements:
+    </p>
+    <div class="mb-6">
+     <h3 class="font-medium text-gray-800 mb-1">
+      1. Using
+      <code>
+       &lt;button&gt;
+      </code>
+      (for actions):
+     </h3>
+     <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
+      Actual &lt;button&gt; Element
+     </button>
+     <p class="text-sm text-gray-700 mt-1">
+      <!-- Comment on the correct way -->
+      <em>
+       This is a semantic
+       <code>
+        &lt;button&gt;
+       </code>
+       . It's inherently focusable, works with keyboard (Enter/Space), and is announced correctly by assistive technologies. Ideal for form submissions or triggering JavaScript actions.
+      </em>
+     </p>
+    </div>
+    <div>
+     <h3 class="font-medium text-gray-800 mb-1">
+      2. Using
+      <code>
+       &lt;a&gt;
+      </code>
+      (for navigation, styled as a button):
+     </h3>
+     <a class="bg-teal-500 text-white py-2 px-4 rounded inline-block hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-400" href="#">
+      Styled &lt;a&gt; Tag (Link)
+     </a>
+     <p class="text-sm text-gray-700 mt-1">
+      <!-- Comment on another correct way -->
+      <em>
+       This is an
+       <code>
+        &lt;a&gt;
+       </code>
+       (anchor) tag styled as a button. Use this when the "button" should navigate the user to a different URL. It's also focusable and announced as a link.
+      </em>
+     </p>
+    </div>
+   </div>
+   <p class="mt-6 text-sm text-gray-600 text-center">
+    <strong>
+     Key Classes Applied to Correct Elements:
+    </strong>
+    <code>
+     bg-color
+    </code>
+    ,
+    <code>
+     text-color
+    </code>
+    ,
+    <code>
+     py-2
+    </code>
+    ,
+    <code>
+     px-4
+    </code>
+    ,
+    <code>
+     rounded
+    </code>
+    .
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

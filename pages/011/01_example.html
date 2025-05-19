@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Basic Button
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex flex-col items-center justify-center min-h-screen from_inside_iframe">
+  <!-- This example demonstrates creating a basic clickable button using a <button> element and key Tailwind CSS classes. -->
+  <div class="text-center">
+   <h1 class="text-2xl font-bold mb-6">
+    Basic Clickable Button
+   </h1>
+   <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+    Submit Action
+   </button>
+   <p class="mt-6 text-sm text-gray-700">
+    This button uses the following key Tailwind classes for its appearance:
+    <ul class="list-disc list-inside inline-block text-left mt-2">
+     <li>
+      <code>
+       bg-blue-500
+      </code>
+      (background color)
+     </li>
+     <li>
+      <code>
+       text-white
+      </code>
+      (text color)
+     </li>
+     <li>
+      <code>
+       py-2
+      </code>
+      (vertical padding)
+     </li>
+     <li>
+      <code>
+       px-4
+      </code>
+      (horizontal padding)
+     </li>
+    </ul>
+    <br/>
+    We've also added
+    <code>
+     rounded
+    </code>
+    for softer corners and
+    <code>
+     hover:bg-blue-600
+    </code>
+    for interaction feedback,
+            which are common for a "basic button look". Focus styles are also good practice for accessibility.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Custom Colors - Basic Usage
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <script>
+   tailwind.config = {
+          theme: {
+            extend: { // Crucially, we use 'extend' to add to existing colors
+              colors: {
+                'brand-primary': '#3490dc', // Example: A nice blue
+                'brand-secondary': '#ffed4a', // Example: A bright yellow
+                'brand-accent': '#e3342f',   // Example: A strong red
+              }
+            }
+          }
+        }
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-6 text-brand-primary">
+    Using Custom Brand Colors
+   </h1>
+   <!-- Example 1: Using custom background and text colors -->
+   <div class="mb-6 p-4 bg-brand-primary text-white rounded-lg shadow">
+    <p class="font-semibold">
+     Primary Brand Background
+    </p>
+    <p>
+     This box uses our custom 'brand-primary' color for its background and white text.
+    </p>
+   </div>
+   <!-- Example 2: Using custom text and border colors -->
+   <div class="mb-6 p-4 border-4 border-brand-accent rounded-lg bg-white shadow">
+    <h2 class="text-xl text-brand-accent font-semibold mb-2">
+     Accent Color Showcase
+    </h2>
+    <p class="text-gray-700">
+     This box has a border using 'brand-accent'. The heading also uses 'brand-accent'.
+    </p>
+   </div>
+   <!-- Example 3: Using another custom color -->
+   <button class="bg-brand-secondary text-gray-800 font-bold py-2 px-4 rounded hover:bg-yellow-400">
+    Secondary Brand Button
+   </button>
+   <!-- Example 4: Still able to use default Tailwind colors -->
+   <div class="mt-6 p-4 bg-green-500 text-white rounded-lg shadow">
+    <p>
+     Default Tailwind colors like 'bg-green-500' still work because we used
+     <code>
+      theme.extend.colors
+     </code>
+     .
+    </p>
+   </div>
+   <div class="mt-8 p-4 bg-gray-200 rounded">
+    <h3 class="font-semibold text-gray-800">
+     Configuration Note:
+    </h3>
+    <p class="text-sm text-gray-700">
+     The custom colors
+     <code>
+      brand-primary
+     </code>
+     ,
+     <code>
+      brand-secondary
+     </code>
+     , and
+     <code>
+      brand-accent
+     </code>
+     are defined within a
+     <code>
+      &lt;script&gt;
+     </code>
+     tag in the
+     <code>
+      &lt;head&gt;
+     </code>
+     using
+     <code>
+      tailwind.config = { theme: { extend: { colors: { ... } } } }
+     </code>
+     .
+                This method is suitable for CDN usage. In a typical project with a build step, you would
+                define these in your
+     <code>
+      tailwind.config.js
+     </code>
+     file.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

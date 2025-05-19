@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: mx-auto Gotcha - No Defined Width
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <!-- Gotcha Demonstration: mx-auto needs a defined width. -->
+  <div class="mb-8">
+   <h2 class="text-xl font-semibold mb-2 text-center">
+    Gotcha: `mx-auto` without a defined width
+   </h2>
+   <p class="text-center mb-4 text-sm text-gray-700">
+    `mx-auto` sets left and right margins to 'auto'. If an element is block-level and has no explicit width,
+            it will try to take up the full available width of its parent. In this case, `mx-auto` won't visually center it because there's no remaining space to distribute as margins.
+   </p>
+   <!-- Incorrect: mx-auto on a block element without a specific width -->
+   <!-- This div will span the full width of its container, so mx-auto doesn't 'center' it visually. -->
+   <div class="mx-auto bg-red-300 p-4 rounded-lg mb-4">
+    <p class="font-semibold">
+     Block with `mx-auto` but NO `w-` or `max-w-` class.
+    </p>
+    <p>
+     This element appears full-width because block elements naturally expand to their container's width if no width is specified. `mx-auto` has no visible centering effect here.
+    </p>
+   </div>
+   <!-- Correct: mx-auto on a block element WITH a specific width -->
+   <div class="w-1/2 mx-auto bg-green-500 text-white p-4 rounded-lg">
+    <p class="font-semibold">
+     Block with `w-1/2` AND `mx-auto`.
+    </p>
+    <p>
+     This element has a defined width (`w-1/2`), so `mx-auto` can distribute the remaining horizontal space equally, centering the element.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

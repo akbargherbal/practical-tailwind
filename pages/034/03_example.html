@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill Example - Image Overlay
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex flex-col items-center space-y-8 from_inside_iframe">
+  <!-- Example 3: Practical application - Image Overlay with Background Opacity -->
+  <div class="w-full max-w-sm p-6">
+   <h2 class="text-xl font-semibold mb-4 text-center">
+    Practical Use: Image Overlay
+   </h2>
+   <p class="text-sm text-gray-600 mb-4 text-center">
+    Background opacity is perfect for creating overlays on images or other content, where you want the overlay text to be fully readable.
+   </p>
+   <div class="relative w-full h-64 rounded-lg shadow-xl overflow-hidden">
+    <!-- Background Image -->
+    <img alt="Nature Scene" class="absolute inset-0 w-full h-full object-cover" src="https://source.unsplash.com/random/400x300?nature,water"/>
+    <!-- Overlay with semi-transparent background -->
+    <!-- Key classes: bg-black/75 (75% opacity black background) -->
+    <div class="absolute inset-0 bg-black/75 flex flex-col items-center justify-center p-4">
+     <h3 class="text-2xl font-bold text-white mb-2">
+      Overlay Title
+     </h3>
+     <p class="text-gray-200 text-center">
+      This text is perfectly readable because only the background of this overlay div is semi-transparent (using
+      <code>
+       bg-black/75
+      </code>
+      ). The text itself remains fully opaque.
+     </p>
+     <!-- If we used opacity-75 on this div, the text would also be 75% transparent and harder to read. -->
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

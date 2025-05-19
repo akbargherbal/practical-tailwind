@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: h-full Gotcha &amp; Solution
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-6 text-center">
+    <code>
+     h-full
+    </code>
+    Gotcha: Parent Height Matters
+   </h1>
+   <!-- Gotcha Demonstration: h-full on child when parent has no defined height -->
+   <div class="mb-12">
+    <h2 class="text-xl font-semibold mb-3 text-red-700">
+     Gotcha:
+     <code>
+      h-full
+     </code>
+     with Auto Parent Height
+    </h2>
+    <p class="mb-3">
+     The parent (gray border) below has no explicit height. Its height is determined by its content.
+                The child (red background) has
+     <code>
+      h-full
+     </code>
+     , but it won't stretch because its parent's height is not defined explicitly.
+    </p>
+    <!-- Parent with auto height (height determined by its content) -->
+    <div class="border-4 border-gray-400 border-dashed p-4">
+     <p class="mb-2 text-sm">
+      Parent Div (auto height)
+     </p>
+     <div class="bg-red-500 text-white p-4 h-full">
+      <!-- This child has h-full, but its parent doesn't have a fixed height. -->
+      <!-- So, h-full here will only make it as tall as its own content. -->
+      <p>
+       Child with
+       <code>
+        h-full
+       </code>
+       (Expected: Fill parent. Actual: Only as tall as this text.)
+      </p>
+      <p class="mt-1 text-xs italic">
+       (Notice it doesn't fill the dashed border area unless this text makes it taller.)
+      </p>
+     </div>
+    </div>
+   </div>
+   <!-- Solution Demonstration: h-full on child when parent has a defined height -->
+   <div>
+    <h2 class="text-xl font-semibold mb-3 text-green-700">
+     Solution:
+     <code>
+      h-full
+     </code>
+     with Defined Parent Height
+    </h2>
+    <p class="mb-3">
+     Here, the parent (teal border) has a defined height (
+     <code>
+      h-64
+     </code>
+     ).
+                The child (green background) with
+     <code>
+      h-full
+     </code>
+     now correctly stretches to fill the parent's height.
+    </p>
+    <!-- Parent with a defined height (e.g., h-64) -->
+    <div class="border-4 border-teal-400 border-dashed p-4 h-64">
+     <p class="mb-2 text-sm">
+      Parent Div (
+      <code>
+       h-64
+      </code>
+      )
+     </p>
+     <div class="bg-green-500 text-white p-4 h-full flex items-center justify-center">
+      <!-- This child has h-full, and its parent HAS a fixed height (h-64). -->
+      <!-- So, h-full here works as expected. -->
+      <p class="text-center">
+       Child with
+       <code>
+        h-full
+       </code>
+       .
+       <br/>
+       It correctly fills the parent because the parent has
+       <code>
+        h-64
+       </code>
+       .
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="mt-12 p-4 bg-yellow-100 border border-yellow-300 rounded">
+    <h3 class="font-semibold text-yellow-800">
+     Key Takeaway (Gotcha):
+    </h3>
+    <p class="text-yellow-700">
+     For
+     <code>
+      h-full
+     </code>
+     to work on a child element, its direct parent must have a defined height. This can be a fixed height (e.g.,
+     <code>
+      h-64
+     </code>
+     ,
+     <code>
+      h-screen
+     </code>
+     ) or a percentage height if the grandparent also has a defined height. If the parent's height is 'auto' (i.e., determined by its content),
+     <code>
+      h-full
+     </code>
+     on the child has no effect beyond the child's own content height.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

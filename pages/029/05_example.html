@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Basic Truncate
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto p-4">
+   <h1 class="text-2xl font-bold mb-6 text-center">
+    Tailwind CSS: Basic Text Truncation
+   </h1>
+   <!-- Example 1: Text with truncate -->
+   <div class="mb-8 p-4 border rounded-lg bg-white shadow-md">
+    <h2 class="text-lg font-semibold mb-2">
+     Text with `truncate`
+    </h2>
+    <p class="text-sm text-gray-600 mb-2">
+     The following paragraph is inside a container with a fixed width (`w-72`). The `truncate` class will ensure the text stays on a single line and shows "..." if it overflows.
+    </p>
+    <div class="w-72 bg-blue-100 p-3 rounded border border-blue-300">
+     <p class="truncate">
+      This is a very long piece of text that is specifically designed to be longer than its container. When the `truncate` class is applied, it should be cut off neatly with an ellipsis at the end.
+     </p>
+    </div>
+   </div>
+   <!-- Example 2: Text without truncate (for comparison) -->
+   <div class="p-4 border rounded-lg bg-white shadow-md">
+    <h2 class="text-lg font-semibold mb-2">
+     Text without `truncate` (for comparison)
+    </h2>
+    <p class="text-sm text-gray-600 mb-2">
+     This paragraph is also inside a container with the same fixed width (`w-72`). Without `truncate`, the text will wrap to multiple lines as needed.
+    </p>
+    <div class="w-72 bg-green-100 p-3 rounded border border-green-300">
+     <p>
+      This is a very long piece of text that is specifically designed to be longer than its container. Without the `truncate` class, this text will wrap naturally to fit within the bounds of its parent element.
+     </p>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

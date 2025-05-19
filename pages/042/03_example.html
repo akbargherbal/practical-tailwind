@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind - Responsive Grid Columns
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <!-- 
+        This example demonstrates how to change the number of grid columns
+        based on screen size using Tailwind CSS responsive prefixes.
+        - `grid-cols-1`: 1 column on extra-small screens (default).
+        - `sm:grid-cols-2`: 2 columns on small screens and up.
+        - `md:grid-cols-4`: 4 columns on medium screens and up.
+        Resize your browser window to see the changes.
+    -->
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-4 text-center">
+    Responsive Photo Gallery
+   </h1>
+   <p class="text-center mb-6 text-gray-700">
+    The number of items per row changes with screen size.
+   </p>
+   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+    <div class="bg-blue-500 text-white p-6 rounded-lg shadow-md flex items-center justify-center h-32">
+     Item 1
+    </div>
+    <div class="bg-green-500 text-white p-6 rounded-lg shadow-md flex items-center justify-center h-32">
+     Item 2
+    </div>
+    <div class="bg-red-500 text-white p-6 rounded-lg shadow-md flex items-center justify-center h-32">
+     Item 3
+    </div>
+    <div class="bg-yellow-500 text-white p-6 rounded-lg shadow-md flex items-center justify-center h-32">
+     Item 4
+    </div>
+    <div class="bg-purple-500 text-white p-6 rounded-lg shadow-md flex items-center justify-center h-32">
+     Item 5
+    </div>
+    <div class="bg-pink-500 text-white p-6 rounded-lg shadow-md flex items-center justify-center h-32">
+     Item 6
+    </div>
+    <div class="bg-indigo-500 text-white p-6 rounded-lg shadow-md flex items-center justify-center h-32">
+     Item 7
+    </div>
+    <div class="bg-teal-500 text-white p-6 rounded-lg shadow-md flex items-center justify-center h-32">
+     Item 8
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

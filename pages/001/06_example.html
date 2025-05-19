@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Flex Child Item Widths
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-6 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6">
+   Gotcha: Child Item Widths in a Flex Row
+  </h1>
+  <!-- Gotcha Part 2: Child items default width behavior -->
+  <div class="mb-8">
+   <h2 class="text-xl font-semibold mb-2">
+    Default Child Widths (Content-Based)
+   </h2>
+   <div class="w-full flex p-4 bg-yellow-100 border border-yellow-300 rounded">
+    <!-- Parent has `flex` and `w-full` to take available width. -->
+    <!-- Children by default only take up the width their content needs. -->
+    <div class="bg-yellow-500 text-black p-3 rounded shadow mr-2">
+     Short
+    </div>
+    <div class="bg-yellow-500 text-black p-3 rounded shadow mr-2">
+     Medium Content
+    </div>
+    <div class="bg-yellow-500 text-black p-3 rounded shadow">
+     Looooooooonger Content Item
+    </div>
+   </div>
+   <p class="mt-2 text-sm text-gray-600">
+    When the parent has `flex`, child items by default only take up the horizontal space required by their content. The flex container itself might be wider (here, `w-full`), but the children don't automatically expand to fill it. This is part of the "items might not take up full width if you expect them to" gotcha.
+   </p>
+  </div>
+  <!-- Solution: Using `flex-grow` on children -->
+  <div class="mb-8">
+   <h2 class="text-xl font-semibold mb-2 text-indigo-700">
+    Solution 1: Using `flex-grow` on Children
+   </h2>
+   <div class="w-full flex p-4 bg-indigo-100 border border-indigo-300 rounded">
+    <!-- `flex-grow` allows children to expand and fill available space. -->
+    <div class="bg-indigo-500 text-white p-3 rounded shadow mr-2 flex-grow text-center">
+     Item 1 (flex-grow)
+    </div>
+    <div class="bg-indigo-500 text-white p-3 rounded shadow mr-2 flex-grow text-center">
+     Item 2 (flex-grow)
+    </div>
+    <div class="bg-indigo-500 text-white p-3 rounded shadow flex-grow text-center">
+     Item 3 (flex-grow)
+    </div>
+   </div>
+   <p class="mt-2 text-sm text-gray-600">
+    By adding `flex-grow` to the child items, they will expand to fill the available horizontal space in the flex container equally (if all have `flex-grow` without a specific grow factor).
+   </p>
+  </div>
+  <!-- Solution: Using explicit width utilities on children -->
+  <div class="mb-6">
+   <h2 class="text-xl font-semibold mb-2 text-teal-700">
+    Solution 2: Using Explicit Widths on Children
+   </h2>
+   <div class="w-full flex p-4 bg-teal-100 border border-teal-300 rounded">
+    <!-- Children can be given explicit widths, e.g., w-1/3. -->
+    <div class="bg-teal-500 text-white p-3 rounded shadow mr-2 w-1/3 text-center">
+     Item A (w-1/3)
+    </div>
+    <div class="bg-teal-500 text-white p-3 rounded shadow mr-2 w-1/3 text-center">
+     Item B (w-1/3)
+    </div>
+    <div class="bg-teal-500 text-white p-3 rounded shadow w-1/3 text-center">
+     Item C (w-1/3)
+    </div>
+    <!-- Note: If using margins like mr-2, the total width of children + margins might exceed 100% if each child is w-1/3.
+                 For perfect distribution with fixed widths and spacing, consider `space-x-*` on parent or careful margin calculation.
+                 Or, use flex-basis with flex-grow for more complex scenarios.
+                 For this example, the simple `w-1/3` illustrates the concept.  -->
+   </div>
+   <p class="mt-2 text-sm text-gray-600">
+    Alternatively, you can assign explicit widths to child items using utilities like `w-1/3`, `w-1/2`, `w-auto`, etc. This gives you control over how much space each item occupies. Be mindful of combined widths and margins/paddings.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

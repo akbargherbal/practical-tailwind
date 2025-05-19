@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Custom Fonts &amp; The Import Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <!--
+        GOTCHA: Font files must be linked for the browser to use them.
+        Tailwind can define the font-family CSS property, but if the font isn't available,
+        the browser will fall back to a default.
+
+        Here, we are importing 'Open Sans' and 'Merriweather' from Google Fonts.
+    -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&amp;family=Open+Sans:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <!--
+        For demonstrating the gotcha, let's imagine 'FontThatIsNotLinked' is defined
+        in a tailwind.config.js but its font file is NOT linked here in the <head>
+        or imported in CSS.
+    -->
+ </head>
+ <body class="p-8 antialiased from_inside_iframe">
+  <div class="container mx-auto space-y-6">
+   <h1 class="text-3xl font-bold mb-6">
+    Custom Fonts &amp; The "Import Font" Gotcha
+   </h1>
+   <div class="p-4 border rounded-lg">
+    <h2 class="text-xl font-semibold mb-2">
+     Correctly Linked &amp; Applied Fonts
+    </h2>
+    <p class="text-gray-700 mb-1">
+     The following fonts are linked in the
+     <code class="bg-gray-200 px-1 rounded">
+      &lt;head&gt;
+     </code>
+     section using Google Fonts.
+                We apply them using arbitrary values, simulating how you'd use custom font keys defined in
+     <code class="bg-gray-200 px-1 rounded">
+      tailwind.config.js
+     </code>
+     .
+    </p>
+    <p class="text-lg font-['Open_Sans',_sans-serif]">
+     This text uses 'Open Sans' (applied with
+     <code class="bg-gray-200 px-1 rounded">
+      font-['Open_Sans',_sans-serif]
+     </code>
+     ). It should display correctly.
+    </p>
+    <p class="text-lg font-['Merriweather',_serif]">
+     This text uses 'Merriweather' (applied with
+     <code class="bg-gray-200 px-1 rounded">
+      font-['Merriweather',_serif]
+     </code>
+     ). It should display correctly.
+    </p>
+   </div>
+   <div class="p-4 border border-red-500 rounded-lg bg-red-50">
+    <h2 class="text-xl font-semibold mb-2 text-red-700">
+     Demonstrating the "Gotcha"
+    </h2>
+    <p class="text-red-600 mb-2">
+     <strong>
+      Gotcha:
+     </strong>
+     Tailwind can define custom font family names (e.g., via
+     <code class="bg-gray-200 px-1 rounded">
+      theme.extend.fontFamily
+     </code>
+     in your config, or arbitrary values for CDN demo), BUT the browser still needs access to the actual font files. If the font files are not imported (e.g., via
+     <code class="bg-gray-200 px-1 rounded">
+      &lt;link&gt;
+     </code>
+     in HTML
+     <code class="bg-gray-200 px-1 rounded">
+      &lt;head&gt;
+     </code>
+     or
+     <code class="bg-gray-200 px-1 rounded">
+      @import
+     </code>
+     in CSS), the custom font will not be displayed, and the browser will fall back to a default font.
+    </p>
+    <p class="text-lg font-['NoSuchFontExists',_sans-serif] my-2 p-2 border border-dashed border-red-300">
+     This text attempts to use
+     <code class="bg-red-100 px-1 rounded">
+      font-['NoSuchFontExists',_sans-serif]
+     </code>
+     .
+                Since "NoSuchFontExists" is not linked or a standard web font, it will fall back to the browser's default sans-serif font (or the next available font in the stack).
+    </p>
+    <div class="mt-3">
+     <p class="text-gray-700 text-sm">
+      <!-- This part explains the gotcha directly -->
+      Imagine you defined
+      <code class="bg-gray-200 px-1 rounded">
+       font-custom-impact
+      </code>
+      in your
+      <code class="bg-gray-200 px-1 rounded">
+       tailwind.config.js
+      </code>
+      to use a font called "ImpactfulDisplayFont".
+     </p>
+     <p class="text-lg font-['ImpactfulDisplayFont',_fantasy] my-2 p-2 border border-dashed border-red-300">
+      If you applied
+      <code class="bg-red-100 px-1 rounded">
+       font-['ImpactfulDisplayFont',_fantasy]
+      </code>
+      (or
+      <code class="bg-red-100 px-1 rounded">
+       font-custom-impact
+      </code>
+      from your config)
+      <strong>
+       but forgot to
+       <code class="bg-red-100 px-1 rounded">
+        &lt;link&gt;
+       </code>
+       or
+       <code class="bg-red-100 px-1 rounded">
+        @import
+       </code>
+       "ImpactfulDisplayFont.woff2" (or similar font file)
+      </strong>
+      ,
+                    this text would NOT use "ImpactfulDisplayFont". It would fall back.
+     </p>
+    </div>
+    <p class="text-red-600 mt-3 font-medium">
+     <strong>
+      Solution:
+     </strong>
+     Always ensure your custom font files are correctly linked in your HTML
+     <code class="bg-gray-200 px-1 rounded">
+      &lt;head&gt;
+     </code>
+     (e.g., for Google Fonts) or imported/defined with
+     <code class="bg-gray-200 px-1 rounded">
+      @font-face
+     </code>
+     in your CSS.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

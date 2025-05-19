@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Transparent Overlay
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-200 p-8 flex flex-col items-center justify-center min-h-screen from_inside_iframe">
+  <div class="container mx-auto text-center">
+   <h1 class="text-3xl font-bold mb-6">
+    Transparent Overlay on an Image
+   </h1>
+   <p class="mb-8 text-gray-700">
+    This example shows how to create a semi-transparent overlay on top of an image using background opacity. This is common for hero sections or image captions.
+   </p>
+   <div class="relative w-full max-w-2xl h-96 rounded-lg shadow-2xl overflow-hidden mx-auto">
+    <!-- Background Image -->
+    <img alt="Scenic landscape" class="absolute inset-0 w-full h-full object-cover" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1170&amp;q=80"/>
+    <!-- Overlay with background opacity -->
+    <!-- 'bg-black/75' applies a black background with 75% opacity. -->
+    <div class="absolute inset-0 bg-black/75 flex flex-col items-center justify-center p-6">
+     <h2 class="text-white text-4xl font-bold mb-3">
+      Overlay Title
+     </h2>
+     <p class="text-gray-200 text-lg">
+      This text is on top of the semi-transparent overlay and remains fully opaque, making it easy to read.
+     </p>
+     <button class="mt-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+      Learn More
+     </button>
+    </div>
+    <!-- HTML Comment explaining the overlay -->
+    <!-- The key class here is 'bg-black/75' on the overlay div.
+                 This creates a black background that is 75% opaque (25% transparent),
+                 allowing the image to be partially visible while ensuring the text on top is legible.
+                 This avoids the "Gotcha" of using 'opacity-75' which would make the text semi-transparent too.
+            -->
+   </div>
+   <div class="mt-8 p-4 bg-indigo-100 border border-indigo-300 rounded text-left max-w-2xl mx-auto">
+    <p>
+     <strong class="font-bold">
+      Application:
+     </strong>
+     This technique is useful for image headers, cards with text over images, or modal backgrounds.
+    </p>
+    <p>
+     The overlay uses
+     <code>
+      bg-black/75
+     </code>
+     which is a Tailwind CSS shorthand for setting a black background with 75% opacity. The text and button within the overlay remain fully opaque.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Custom Checkbox with appearance-none
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style>
+   /* For custom checkmark visibility */
+        .custom-checkbox:checked + label span:first-child svg {
+            display: block;
+        }
+  </style>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto p-6 bg-white rounded-lg shadow-xl">
+   <h1 class="text-2xl font-bold mb-6 text-gray-800">
+    Custom Styling with `appearance-none`
+   </h1>
+   <p class="mb-4 text-gray-600">
+    The "Gotcha" with styling native form controls is their resistance to extensive changes. The `appearance-none` utility class removes the default browser styling, allowing you to rebuild the control's look from scratch using Tailwind utilities.
+   </p>
+   <div class="mb-8">
+    <h2 class="text-xl font-semibold mb-3 text-gray-700">
+     Default vs. `appearance-none` Checkbox
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+     <div>
+      <h3 class="text-lg font-medium mb-2 text-gray-700">
+       Default Checkbox
+      </h3>
+      <input class="mr-2" id="default_cb" type="checkbox"/>
+      <label class="text-gray-700" for="default_cb">
+       I am a default checkbox
+      </label>
+      <p class="text-xs text-gray-500 mt-1">
+       Hard to style its box beyond accent color.
+      </p>
+     </div>
+     <div>
+      <h3 class="text-lg font-medium mb-2 text-gray-700">
+       Checkbox with `appearance-none` (raw)
+      </h3>
+      <input class="appearance-none mr-2" id="appearance_none_cb_raw" type="checkbox"/>
+      <label class="text-gray-700" for="appearance_none_cb_raw">
+       I have `appearance-none` (might be invisible or tiny)
+      </label>
+      <!-- 
+                        Gotcha Demonstration:
+                        With `appearance-none` applied, the checkbox loses all its default browser styling. 
+                        It might become invisible or very minimal until you add your own styles.
+                        This is the core of the "Gotcha" – you must now define its entire look.
+                    -->
+      <p class="text-xs text-gray-500 mt-1">
+       All browser styles are gone. It needs to be rebuilt.
+      </p>
+     </div>
+    </div>
+   </div>
+   <div>
+    <h2 class="text-xl font-semibold mb-3 text-gray-700">
+     Building a Custom Checkbox with `appearance-none`
+    </h2>
+    <p class="mb-4 text-gray-600">
+     Below is a basic example of how you might start to build a custom checkbox after applying `appearance-none`.
+                The `@tailwindcss/forms` plugin automates much of this for a more robust solution.
+    </p>
+    <div class="space-y-4">
+     <div class="flex items-center">
+      <input class="custom-checkbox appearance-none h-6 w-6 border border-gray-300 rounded-md checked:bg-blue-500 checked:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition duration-200" id="custom_cb_1" type="checkbox"/>
+      <label class="ml-3 text-gray-700 flex items-center cursor-pointer" for="custom_cb_1">
+       <span class="w-6 h-6 inline-block mr-1 border border-gray-300 rounded-md relative">
+        <!-- Custom checkmark (SVG hidden by default, shown on check) -->
+        <svg class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+         <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+         </path>
+        </svg>
+       </span>
+       Custom Styled Checkbox 1
+      </label>
+      <!-- 
+                        Brief explanation for this custom checkbox:
+                        1. `appearance-none` on the <input> removes default styling.
+                        2. We then style the <input> (or a pseudo-element/sibling `label`'s `span` as done here for better control)
+                           with Tailwind: `h-6 w-6 border rounded-md`.
+                        3. `checked:bg-blue-500` changes background on check.
+                        4. A separate `<span>` inside the `label` is used to visually represent the checkbox box,
+                           and an SVG is used for the checkmark. JavaScript or more complex CSS might be needed 
+                           to perfectly toggle the checkmark if not using a helper class like `custom-checkbox` and associated CSS,
+                           or the `@tailwindcss/forms` plugin (which handles this).
+                        5. This example uses a simple CSS rule in <style> to show/hide the SVG based on input:checked.
+                        This demonstrates that after `appearance-none`, you are responsible for all visual aspects.
+                    -->
+     </div>
+     <div class="flex items-center">
+      <input class="appearance-none h-5 w-5 border-2 border-purple-400 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-300 relative cursor-pointer peer" id="custom_cb_2" type="checkbox"/>
+      <span class="absolute hidden peer-checked:block left-1 top-0.5 w-3 h-3 text-white">
+       <svg class="w-3 h-3" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd">
+        </path>
+       </svg>
+      </span>
+      <label class="ml-3 text-gray-700 cursor-pointer" for="custom_cb_2">
+       Custom Styled Checkbox 2 (input only)
+      </label>
+      <!--
+                        This second custom checkbox directly styles the input and uses a sibling span
+                        conditionally shown with `peer-checked:block` for the checkmark.
+                        This is another common pattern.
+                    -->
+     </div>
+    </div>
+    <p class="text-sm text-gray-500 mt-6">
+     Note: Fully custom form controls can be complex to make accessible and consistent across browsers. The `@tailwindcss/forms` plugin is highly recommended as it handles many of these intricacies for you.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

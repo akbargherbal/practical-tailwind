@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Basic Flex Row
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Skill: Line up items in a neat row (Basic Flex)
+  </h1>
+  <!-- This example shows the basic application of 'flex' to a parent container -->
+  <p class="mb-2">
+   The parent div below uses
+   <code class="bg-gray-200 p-1 rounded">
+    flex
+   </code>
+   to arrange its children horizontally.
+  </p>
+  <div class="mb-8 p-4 border border-blue-500 rounded">
+   <div class="flex bg-blue-100 p-2 rounded">
+    <div class="bg-blue-500 text-white p-4 rounded m-2">
+     Item 1
+    </div>
+    <div class="bg-blue-500 text-white p-4 rounded m-2">
+     Item 2
+    </div>
+    <div class="bg-blue-500 text-white p-4 rounded m-2">
+     Item 3
+    </div>
+   </div>
+  </div>
+  <h2 class="text-xl font-semibold mb-2">
+   Explanation:
+  </h2>
+  <ul class="list-disc list-inside">
+   <li>
+    The outer
+    <code class="bg-gray-200 p-1 rounded">
+     div
+    </code>
+    with class
+    <code class="bg-gray-200 p-1 rounded">
+     flex
+    </code>
+    is the parent container.
+   </li>
+   <li>
+    Its direct children (the three inner
+    <code class="bg-gray-200 p-1 rounded">
+     div
+    </code>
+    s with blue backgrounds) are now flex items.
+   </li>
+   <li>
+    By default, flex items are arranged in a row (horizontally).
+   </li>
+  </ul>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

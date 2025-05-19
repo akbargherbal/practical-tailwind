@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Centering a Block with mx-auto
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-6 from_inside_iframe">
+  <div class="container mx-auto p-4">
+   <h1 class="text-2xl font-bold text-center mb-6">
+    Centering a Block Element
+   </h1>
+   <!-- Basic example of centering a block with mx-auto and a defined width -->
+   <p class="text-center mb-4">
+    The blue box below is a `div` (a block-level element) with `max-w-lg` and `mx-auto` applied. This centers it on the page.
+   </p>
+   <div class="max-w-lg mx-auto bg-blue-600 text-white p-8 rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold mb-2">
+     Centered Content Area
+    </h2>
+    <p>
+     This `div` has a `max-w-lg` (maximum width) and `mx-auto` (auto horizontal margins). Since it's a block element and has a constrained width, `mx-auto` effectively centers it.
+    </p>
+    <p class="mt-2">
+     This is commonly used for main content containers, login forms, etc.
+    </p>
+   </div>
+   <hr class="my-8"/>
+   <!-- Example with a different width -->
+   <p class="text-center mb-4 mt-8">
+    Another example with `w-1/2` (50% width) and `mx-auto`.
+   </p>
+   <div class="w-1/2 mx-auto bg-indigo-600 text-white p-6 rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold mb-2">
+     Half-Width Centered Block
+    </h2>
+    <p>
+     This `div` uses `w-1/2` and `mx-auto`.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

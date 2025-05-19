@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: justify-between, -around, -evenly
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6 text-center">
+   Demonstrating `justify-between`, `justify-around`, and `justify-evenly`
+  </h1>
+  <!-- Example 1: justify-between -->
+  <div class="mb-10">
+   <h2 class="text-lg font-semibold mb-2">
+    <code>
+     justify-between
+    </code>
+    : Space is distributed between items. First item at start, last at end.
+   </h2>
+   <div class="flex justify-between bg-blue-200 p-4 rounded">
+    <div class="bg-blue-500 text-white p-4 rounded">
+     Item 1
+    </div>
+    <div class="bg-blue-500 text-white p-4 rounded">
+     Item 2
+    </div>
+    <div class="bg-blue-500 text-white p-4 rounded">
+     Item 3
+    </div>
+   </div>
+   <p class="text-sm mt-1 text-gray-600">
+    Typically used for navigation bars where you want items spread across the full width.
+   </p>
+  </div>
+  <!-- Example 2: justify-around -->
+  <div class="mb-10">
+   <h2 class="text-lg font-semibold mb-2">
+    <code>
+     justify-around
+    </code>
+    : Space is distributed around items. Equal space on both sides of each item (half at ends).
+   </h2>
+   <div class="flex justify-around bg-green-200 p-4 rounded">
+    <div class="bg-green-500 text-white p-4 rounded">
+     Item A
+    </div>
+    <div class="bg-green-500 text-white p-4 rounded">
+     Item B
+    </div>
+    <div class="bg-green-500 text-white p-4 rounded">
+     Item C
+    </div>
+   </div>
+   <p class="text-sm mt-1 text-gray-600">
+    Useful for photo galleries or feature lists where items should have breathing room on all sides.
+   </p>
+  </div>
+  <!-- Example 3: justify-evenly -->
+  <div class="mb-10">
+   <h2 class="text-lg font-semibold mb-2">
+    <code>
+     justify-evenly
+    </code>
+    : Space is distributed evenly between items and at the ends.
+   </h2>
+   <div class="flex justify-evenly bg-purple-200 p-4 rounded">
+    <div class="bg-purple-500 text-white p-4 rounded">
+     Box X
+    </div>
+    <div class="bg-purple-500 text-white p-4 rounded">
+     Box Y
+    </div>
+    <div class="bg-purple-500 text-white p-4 rounded">
+     Box Z
+    </div>
+   </div>
+   <p class="text-sm mt-1 text-gray-600">
+    Provides the most visually "even" spacing across the entire container.
+   </p>
+  </div>
+  <div class="mt-8 p-4 border border-yellow-400 bg-yellow-50 rounded">
+   <p class="font-semibold">
+    Note:
+   </p>
+   <p>
+    These
+    <code>
+     justify-*
+    </code>
+    classes are for distributing items along the
+    <strong>
+     main axis
+    </strong>
+    of a flex container. For a standard row (
+    <code>
+     flex-row
+    </code>
+    , which is default), this is horizontal.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

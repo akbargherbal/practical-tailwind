@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill Example - Gotcha: Missing Relative Parent
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto p-4">
+   <h1 class="text-2xl font-bold mb-6">
+    Example 3: Gotcha - Missing `relative` on Parent
+   </h1>
+   <!-- GOTCHA DEMONSTRATION -->
+   <div class="mb-8 p-4 border border-red-400 rounded bg-red-50">
+    <h2 class="text-xl font-semibold text-red-700 mb-2">
+     Gotcha: Absolute Positioning without `relative` Parent
+    </h2>
+    <p class="mb-2">
+     In this first box, the "Intended Parent" (gray box) does NOT have `relative` positioning.
+            The `absolute` child (red box) is therefore positioned relative to the `body` or the nearest positioned ancestor (which might be the viewport in simple cases), not the gray box as intended.
+    </p>
+    <p class="mb-4 text-sm text-red-600">
+     <em>
+      Notice the red "Absolute Child" is positioned near the top-left of the entire page content area, not its gray "Intended Parent".
+     </em>
+    </p>
+    <!-- Outer container for context -->
+    <div class="border border-dashed border-gray-400 p-2">
+     <p class="text-sm text-gray-600 mb-1">
+      Page Content Flow
+     </p>
+     <!-- Intended Parent, but without 'relative' -->
+     <div class="bg-gray-200 h-40 w-full p-4 border border-gray-300">
+      Intended Parent (NOT `relative`)
+      <!-- Absolute child - will be positioned relative to body/viewport -->
+      <div class="absolute top-0 left-0 bg-red-500 text-white p-2 text-sm shadow-lg">
+       Absolute Child (Oops!)
+      </div>
+     </div>
+     <p class="text-sm text-gray-600 mt-1">
+      More Page Content Flow
+     </p>
+    </div>
+   </div>
+   <!-- CORRECTED IMPLEMENTATION -->
+   <div class="p-4 border border-green-400 rounded bg-green-50">
+    <h2 class="text-xl font-semibold text-green-700 mb-2">
+     Corrected: `relative` on Parent
+    </h2>
+    <p class="mb-2">
+     In this second box, the "Parent Container" (light green box) HAS `relative` positioning.
+            The `absolute` child (dark green box) is now correctly positioned relative to its light green parent.
+            The `z-10` on the "Absolute Child" ensures it's on top of other content within its parent. `z-index` works because the element is positioned (`absolute`).
+    </p>
+    <!-- Parent Container with 'relative' -->
+    <div class="relative bg-green-200 h-48 w-full p-4 border border-green-300">
+     Parent Container (`relative`)
+     <div class="bg-yellow-300 p-2 mt-8">
+      Another item inside parent.
+     </div>
+     <!-- Absolute child - correctly positioned -->
+     <div class="absolute top-4 right-4 bg-green-600 text-white p-3 text-sm shadow-lg z-10">
+      Absolute Child (Correctly Positioned)
+      <br/>
+      `top-4`, `right-4`, `z-10`
+     </div>
+     <!-- HTML Comment within body explaining z-index relation to positioning -->
+     <!-- The 'z-10' class on the green "Absolute Child" above only has an effect because
+                      the element is "positioned" (in this case, with 'absolute').
+                      If it weren't positioned, z-index would be ignored.
+                 -->
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

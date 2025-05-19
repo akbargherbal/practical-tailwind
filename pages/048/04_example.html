@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Gotcha - Extend vs. Override Colors
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-slate-100 from_inside_iframe">
+  <div class="container mx-auto p-6 bg-white rounded-lg shadow-xl">
+   <h1 class="text-2xl font-bold mb-4">
+    Gotcha: Extending vs. Overriding Default Colors
+   </h1>
+   <p class="mb-4">
+    A common pitfall when defining custom colors is accidentally overriding Tailwind's entire default color palette instead of extending it.
+   </p>
+   <div class="mb-6 p-4 bg-red-50 rounded border border-red-300">
+    <h2 class="text-lg font-semibold mb-2 text-red-700">
+     The Gotcha!
+    </h2>
+    <p class="text-red-600">
+     If you define your custom colors directly under
+     <code>
+      theme.colors
+     </code>
+     in your
+     <code>
+      tailwind.config.js
+     </code>
+     , you will lose access to all of Tailwind's built-in colors (like
+     <code>
+      bg-blue-500
+     </code>
+     ,
+     <code>
+      text-green-600
+     </code>
+     , etc.).
+    </p>
+    <pre class="mt-2 bg-gray-200 p-3 rounded text-sm overflow-x-auto">
+// INCORRECT - This replaces all default colors:
+module.exports = {
+  theme: {
+    colors: { // &lt;--- Problem: Directly under 'colors'
+      'brand-primary': '#FF00FF',
+    }
+  },
+  // ...
+}
+            </pre>
+   </div>
+   <div class="mb-6 p-4 bg-green-50 rounded border border-green-300">
+    <h2 class="text-lg font-semibold mb-2 text-green-700">
+     The Correct Way: Using
+     <code>
+      extend
+     </code>
+    </h2>
+    <p class="text-green-600">
+     To add your custom colors while keeping the defaults, define them under
+     <code>
+      theme.extend.colors
+     </code>
+     .
+    </p>
+    <pre class="mt-2 bg-gray-200 p-3 rounded text-sm overflow-x-auto">
+// CORRECT - This adds 'brand-primary' and keeps defaults:
+module.exports = {
+  theme: {
+    extend: { // &lt;--- Correct: Using 'extend'
+      colors: {
+        'brand-primary': '#FF00FF', // Your custom magenta
+        'brand-secondary': '#00FFFF', // Your custom cyan
+      },
+    },
+  },
+  // ...
+}
+            </pre>
+   </div>
+   <h2 class="text-xl font-semibold mb-3">
+    Demonstration:
+   </h2>
+   <p class="mb-4">
+    Below, we simulate how this works. Since we are using the CDN, default Tailwind colors will always work. However, the comments explain what would happen with a local Tailwind setup and incorrect configuration.
+   </p>
+   <!-- Element using a default Tailwind color -->
+   <div class="mb-4 p-4 bg-sky-500 text-white rounded">
+    <p class="font-semibold">
+     This uses a default Tailwind color:
+     <code>
+      bg-sky-500
+     </code>
+     .
+    </p>
+    <p class="text-sm">
+     If you had incorrectly overridden
+     <code>
+      theme.colors
+     </code>
+     (without
+     <code>
+      extend
+     </code>
+     ), this
+     <code>
+      bg-sky-500
+     </code>
+     class might not apply the blue background, or it might not work at all, as 'sky' would no longer be a defined color.
+                With
+     <code>
+      theme.extend.colors
+     </code>
+     , it works perfectly alongside your custom colors.
+    </p>
+   </div>
+   <!-- Element using a simulated custom brand color -->
+   <div class="mb-4 p-4 bg-[#FF00FF] text-white rounded">
+    <!-- Simulating 'brand-primary' from the 'correct' config example -->
+    <p class="font-semibold">
+     This uses a simulated custom color:
+     <code>
+      bg-[#FF00FF]
+     </code>
+     (e.g., 'brand-primary').
+    </p>
+    <p class="text-sm">
+     This custom color would be available whether you used
+     <code>
+      theme.colors
+     </code>
+     or
+     <code>
+      theme.extend.colors
+     </code>
+     . The key difference is what happens to the default palette.
+    </p>
+   </div>
+   <div class="mt-6 p-3 bg-yellow-50 border border-yellow-300 rounded">
+    <p class="font-medium text-yellow-700">
+     <strong>
+      Key Takeaway:
+     </strong>
+     Always use
+     <code>
+      theme.extend.colors
+     </code>
+     to add your brand colors unless you have a very specific reason to replace the entire default palette. This ensures you retain access to Tailwind's rich set of predefined colors.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

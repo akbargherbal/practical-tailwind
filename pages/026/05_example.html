@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Font Weights
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 font-sans from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6 text-center">
+   Font Weight Examples
+  </h1>
+  <div class="space-y-4 max-w-md mx-auto">
+   <!-- Example of font-light -->
+   <div class="p-4 bg-gray-100 rounded-lg shadow">
+    <p class="font-light text-lg">
+     This text uses
+     <code class="bg-gray-200 px-1 rounded">
+      font-light
+     </code>
+     . It appears thinner than normal text, useful for de-emphasis or subtle information.
+    </p>
+   </div>
+   <!-- Example of font-normal -->
+   <div class="p-4 bg-gray-100 rounded-lg shadow">
+    <p class="font-normal text-lg">
+     This text uses
+     <code class="bg-gray-200 px-1 rounded">
+      font-normal
+     </code>
+     . This is typically the default weight for body text.
+    </p>
+   </div>
+   <!-- Example of font-semibold -->
+   <div class="p-4 bg-gray-100 rounded-lg shadow">
+    <p class="font-semibold text-lg">
+     This text uses
+     <code class="bg-gray-200 px-1 rounded">
+      font-semibold
+     </code>
+     . It's bolder than normal, good for subheadings or emphasis.
+    </p>
+   </div>
+   <!-- Example of font-bold -->
+   <div class="p-4 bg-gray-100 rounded-lg shadow">
+    <p class="font-bold text-lg">
+     This text uses
+     <code class="bg-gray-200 px-1 rounded">
+      font-bold
+     </code>
+     . This is standard bold text, great for headings and strong emphasis.
+    </p>
+   </div>
+  </div>
+  <div class="mt-8 text-center text-sm text-gray-600">
+   <p>
+    These examples use the default browser sans-serif font, which generally supports these common weights.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

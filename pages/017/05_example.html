@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind - Horizontal Nav Bar
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Basic Horizontal Navigation Bar
+  </h1>
+  <!--
+      This example shows a simple horizontal navigation bar.
+      - `flex`: Arranges child elements in a row.
+      - `space-x-4`: Adds horizontal spacing (1rem) between child elements.
+      - `items-center`: Vertically aligns items to the center of the container.
+                       This is important even if items initially look aligned,
+                       as it will handle slight variations in text size or padding.
+    -->
+  <nav class="bg-blue-500 p-4 rounded-md">
+   <ul class="flex space-x-4 items-center">
+    <li>
+     <a class="text-white hover:text-blue-200" href="#">
+      Home
+     </a>
+    </li>
+    <li>
+     <a class="text-white hover:text-blue-200" href="#">
+      About
+     </a>
+    </li>
+    <li>
+     <a class="text-white hover:text-blue-200" href="#">
+      Services
+     </a>
+    </li>
+    <li>
+     <a class="text-white hover:text-blue-200" href="#">
+      Contact
+     </a>
+    </li>
+   </ul>
+  </nav>
+  <div class="mt-6 p-4 bg-white shadow rounded">
+   <p class="text-sm text-gray-700">
+    <strong>
+     Key Classes Used:
+    </strong>
+    <code class="bg-gray-200 px-1 rounded">
+     flex
+    </code>
+    ,
+    <code class="bg-gray-200 px-1 rounded">
+     space-x-4
+    </code>
+    ,
+    <code class="bg-gray-200 px-1 rounded">
+     items-center
+    </code>
+    .
+   </p>
+   <p class="text-sm text-gray-700 mt-2">
+    The
+    <code class="bg-gray-200 px-1 rounded">
+     items-center
+    </code>
+    class ensures all navigation links are vertically aligned in the middle, which is good practice even if all links are currently simple text.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

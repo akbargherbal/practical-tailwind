@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <title>
+   Tailwind CSS: Create a "Dark Mode" version of your site.
+  </title>
+  <style>
+   /* Custom styles if necessary for page structure, not for concept demonstration */
+  </style>
+  <style>
+   iframe.default_style {
+  width: 100%;
+  min-height: 300px; /* Reasonable minimum */
+  border: none;
+  display: block;
+}
+  </style>
+ </head>
+ <body>
+  <div class="container mx-auto p-6 md:p-10 font-sans text-slate-800">
+   <h1 class="text-4xl font-bold mb-10 text-center text-slate-700">
+    Tailwind CSS Concept Explained
+   </h1>
+   <section class="mb-12 bg-white shadow-lg rounded-lg p-6 md:p-8">
+    <h2 class="text-3xl font-semibold mb-6 text-slate-600 border-b-2 border-slate-300 pb-3">
+     Organizing Your Styles &amp; Customizing
+    </h2>
+    <h3 class="text-2xl font-medium mb-5 text-indigo-700">
+     Create a "Dark Mode" version of your site.
+    </h3>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Skill ID:
+     </strong>
+     OrganizingStyles_47
+    </p>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Description:
+     </strong>
+     Offer an alternative color scheme with dark backgrounds and light text.
+    </p>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Where to apply:
+     </strong>
+     The entire website.
+    </p>
+    <p class="mb-2 mt-4 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Key Tailwind Classes:
+     </strong>
+    </p>
+    <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mb-4">
+     <span>
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       dark:bg-gray-800
+      </code>
+     </span>
+     <span>
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       dark:text-white
+      </code>
+     </span>
+    </div>
+    <div class="bg-amber-50 border-l-4 border-amber-500 text-amber-700 p-4 mt-5 rounded-md shadow-sm">
+     <p>
+      <strong class="font-semibold">
+       Gotcha:
+      </strong>
+      Forgetting to configure
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       darkMode: 'class'
+      </code>
+      (or
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       'media'
+      </code>
+      ) in your
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       tailwind.config.js
+      </code>
+      file. Without this setting, the
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       dark:
+      </code>
+      variants won't do anything. If using
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       darkMode: 'class'
+      </code>
+      , you also need JavaScript to add/remove the "dark" class to your
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       &lt;html&gt;
+      </code>
+      element.
+     </p>
+    </div>
+   </section>
+   <!-- Example Usage (Optional - not requested but good for context if this were a full tutorial) -->
+   <!-- 
+        <section class="mb-12">
+            <h4 class="text-xl font-semibold mb-4 text-slate-700">Example:</h4>
+            <div class="p-4 border border-slate-300 rounded-md">
+                <p class="mb-2">Light mode text by default.</p>
+                <p class="dark:text-white dark:bg-gray-800 p-2 rounded">This text will be white on a dark gray background in dark mode.</p>
+                <button onclick="document.documentElement.classList.toggle('dark')" class="mt-4 bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition">
+                    Toggle Dark Mode (if darkMode: 'class' is set and JS enabled)
+                </button>
+            </div>
+        </section>
+        -->
+  </div>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 1:
+  </h1>
+  <iframe frameborder="0" src="./01_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 2:
+  </h1>
+  <iframe frameborder="0" src="./02_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 3:
+  </h1>
+  <iframe frameborder="0" src="./03_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 4:
+  </h1>
+  <iframe frameborder="0" src="./04_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 5:
+  </h1>
+  <iframe frameborder="0" src="./05_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 6:
+  </h1>
+  <iframe frameborder="0" src="./06_example.html">
+  </iframe>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+  const iframes = document.querySelectorAll('iframe');
+
+  // Ensure all iframes have the default style class
+  iframes.forEach(iframe => iframe.classList.add('default_style'));
+
+  window.addEventListener('message', function(event) {
+    // Optional: add origin check for safety
+    if (event.data && typeof event.data.iframeHeight === 'number') {
+      const iframe = Array.from(iframes).find(iframe =>
+        iframe.contentWindow === event.source
+      );
+      if (iframe) {
+        iframe.style.height = (event.data.iframeHeight + 50) + 'px';
+      }
+    }
+  });
+});
+  </script>
+ </body>
+</html>

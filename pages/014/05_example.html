@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Styling Inputs in a Form
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex justify-center items-start min-h-screen from_inside_iframe">
+  <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+   <h1 class="text-2xl font-bold mb-6 text-center">
+    Contact Us
+   </h1>
+   <p class="text-gray-600 mb-6 text-sm">
+    The input fields below use
+    <code>
+     border rounded px-3 py-2
+    </code>
+    for consistent styling.
+            Remember the "Gotcha": for best results and to avoid browser inconsistencies, the
+    <code>
+     @tailwindcss/forms
+    </code>
+    plugin is highly recommended in real projects.
+   </p>
+   <form action="#" method="POST">
+    <div class="mb-4">
+     <label class="block text-sm font-medium text-gray-700 mb-1" for="fullName">
+      Full Name
+     </label>
+     <input class="border border-gray-300 rounded px-3 py-2 w-full focus:outline-none focus:ring-1 focus:ring-indigo-500" id="fullName" name="fullName" placeholder="Jane Doe" type="text"/>
+    </div>
+    <div class="mb-4">
+     <label class="block text-sm font-medium text-gray-700 mb-1" for="searchQuery">
+      Search Query
+     </label>
+     <input class="border border-gray-300 rounded px-3 py-2 w-full focus:outline-none focus:ring-1 focus:ring-indigo-500" id="searchQuery" name="searchQuery" placeholder="Search for products..." type="search"/>
+    </div>
+    <div class="mb-6">
+     <label class="block text-sm font-medium text-gray-700 mb-1" for="message">
+      Message
+     </label>
+     <textarea class="border border-gray-300 rounded px-3 py-2 w-full focus:outline-none focus:ring-1 focus:ring-indigo-500" id="message" name="message" placeholder="Your message..." rows="4"></textarea>
+    </div>
+    <button class="w-full bg-indigo-600 text-white font-semibold py-2 px-4 rounded hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" type="submit">
+     Send Message
+    </button>
+   </form>
+   <!-- Comment addressing the Gotcha -->
+   <div class="mt-6 text-xs text-gray-500 p-3 bg-gray-50 rounded">
+    <p class="font-semibold">
+     A Note on Form Styling (The "Gotcha"):
+    </p>
+    <p>
+     The classes
+     <code>
+      border rounded px-3 py-2
+     </code>
+     provide a good starting point. However, browser default styles for form inputs can be very inconsistent.
+            For robust and consistent styling across all browsers, the
+     <a class="text-indigo-600 hover:underline" href="https://tailwindcss.com/docs/plugins#forms" target="_blank">
+      @tailwindcss/forms plugin
+     </a>
+     is highly recommended.
+            It provides a sensible reset to form elements, making them easier to style with utilities. This example doesn't use the plugin (as it's CDN-only here), but you should use it in your projects!
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

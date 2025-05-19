@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Error Alert &amp; Contrast Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-6">
+    Error Alert Examples &amp; Color Contrast Gotcha
+   </h1>
+   <!-- Correctly Implemented Error Alert (Good Contrast) -->
+   <h2 class="text-xl font-semibold mb-2">
+    Correct: Error Alert with Good Contrast
+   </h2>
+   <div class="mb-6 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+    <strong class="font-bold">
+     Error!
+    </strong>
+    <span class="block sm:inline">
+     There was a problem processing your request. Please try again.
+    </span>
+    <p class="text-xs mt-1 text-red-600">
+     (This uses
+     <code>
+      text-red-700
+     </code>
+     on
+     <code>
+      bg-red-100
+     </code>
+     for good readability.)
+    </p>
+   </div>
+   <!-- Gotcha Example: Error Alert with Poor Contrast -->
+   <h2 class="text-xl font-semibold mb-2">
+    Gotcha: Error Alert with Poor Contrast
+   </h2>
+   <div class="mb-6 bg-red-100 border border-red-400 text-red-200 px-4 py-3 rounded relative" role="alert">
+    <!-- 
+                GOTCHA DEMONSTRATION:
+                The text color 'text-red-200' is too light against the 'bg-red-100' background.
+                This makes the text very difficult to read, especially for users with visual impairments.
+                Always ensure sufficient contrast between text and background colors.
+                A better choice for this background would be 'text-red-700' or similar dark shade.
+            -->
+    <strong class="font-bold">
+     Error!
+    </strong>
+    <span class="block sm:inline">
+     There was a problem processing your request. Please try again.
+    </span>
+    <p class="text-xs mt-1 text-red-300">
+     (This uses
+     <code>
+      text-red-200
+     </code>
+     on
+     <code>
+      bg-red-100
+     </code>
+     - notice how hard it is to read? This is the gotcha!)
+    </p>
+   </div>
+   <div class="mt-8 p-4 bg-white shadow rounded">
+    <h3 class="text-lg font-semibold mb-2">
+     Key Classes for Error Alert (Good Contrast):
+    </h3>
+    <ul class="list-disc list-inside text-sm">
+     <li>
+      <code>
+       bg-red-100
+      </code>
+      : Light red background.
+     </li>
+     <li>
+      <code>
+       border
+      </code>
+      : Default border.
+     </li>
+     <li>
+      <code>
+       border-red-400
+      </code>
+      : Medium red border.
+     </li>
+     <li>
+      <code>
+       text-red-700
+      </code>
+      : Dark red text for good contrast.
+     </li>
+     <li>
+      <code>
+       px-4 py-3
+      </code>
+      : Padding.
+     </li>
+     <li>
+      <code>
+       rounded
+      </code>
+      : Rounded corners.
+     </li>
+    </ul>
+    <h3 class="text-lg font-semibold mt-4 mb-2">
+     Addressing the "Gotcha":
+    </h3>
+    <p class="text-sm">
+     The "Gotcha" is poor color contrast. The second example above intentionally uses
+     <code>
+      text-red-200
+     </code>
+     (a very light red)
+                on
+     <code>
+      bg-red-100
+     </code>
+     (a light red background). This results in text that is difficult to read.
+                To avoid this, always choose a text color that has significant contrast with the background color.
+                For light backgrounds like
+     <code>
+      bg-red-100
+     </code>
+     , use darker text colors like
+     <code>
+      text-red-700
+     </code>
+     or
+     <code>
+      text-red-800
+     </code>
+     .
+                Tools like browser developer tools or online contrast checkers can help verify accessibility.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

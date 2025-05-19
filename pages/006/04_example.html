@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Center Block Content (mx-auto)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto px-4">
+   <h1 class="text-2xl font-bold mb-6 text-center">
+    Basic Centering with `mx-auto`
+   </h1>
+   <!-- Example 1: Centering a standard block element -->
+   <div class="mb-8">
+    <h2 class="text-lg font-semibold mb-2">
+     1. Centering a `div` (block element)
+    </h2>
+    <div class="w-1/2 mx-auto bg-blue-500 text-white p-6 rounded-lg shadow-md">
+     <p class="text-center">
+      This `div` has `w-1/2` and `mx-auto`. It is centered on the page.
+     </p>
+    </div>
+    <p class="text-sm text-gray-600 mt-2 text-center">
+     Classes used: `w-1/2 mx-auto`
+    </p>
+   </div>
+   <!-- Example 2: Centering a flex container -->
+   <div class="mb-8">
+    <h2 class="text-lg font-semibold mb-2">
+     2. Centering a `flex` container
+    </h2>
+    <div class="flex w-3/4 max-w-md mx-auto bg-purple-500 text-white p-6 rounded-lg shadow-md justify-center items-center">
+     <p class="text-center">
+      This `flex` container also has a width (`w-3/4 max-w-md`) and `mx-auto`. It is centered.
+     </p>
+    </div>
+    <p class="text-sm text-gray-600 mt-2 text-center">
+     Classes used: `flex w-3/4 max-w-md mx-auto`
+    </p>
+    <p class="text-xs text-gray-500 mt-1 text-center">
+     (`mx-auto` works on block-level elements, which `flex` and `grid` containers are by default, provided they have a defined width.)
+    </p>
+   </div>
+   <!-- Example 3: Centering a login form like structure -->
+   <div>
+    <h2 class="text-lg font-semibold mb-2">
+     3. Simulating a Centered Form Structure
+    </h2>
+    <div class="max-w-sm mx-auto bg-white p-8 rounded-xl shadow-lg">
+     <h3 class="text-xl font-semibold mb-4 text-gray-700">
+      Login Form
+     </h3>
+     <input class="w-full p-2 border border-gray-300 rounded mb-4" placeholder="Username" type="text"/>
+     <input class="w-full p-2 border border-gray-300 rounded mb-4" placeholder="Password" type="password"/>
+     <button class="w-full bg-green-500 hover:bg-green-600 text-white p-2 rounded">
+      Login
+     </button>
+     <p class="text-xs text-gray-500 mt-3">
+      This entire form card (`max-w-sm bg-white ...`) is centered using `mx-auto`.
+     </p>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

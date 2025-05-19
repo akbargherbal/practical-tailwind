@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill Example - Fixed Positioning
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="font-sans from_inside_iframe">
+  <!-- 
+        This example demonstrates 'fixed' positioning.
+        'fixed' elements are removed from the normal document flow.
+        This means other content might go "underneath" them if not accounted for.
+    -->
+  <!-- Example 1: Fixed element without accounting for its space (GOTCHA) -->
+  <header class="fixed top-0 left-0 w-full bg-red-500 text-white p-4 shadow-md z-50 h-16">
+   <h1 class="text-xl font-bold">
+    Fixed Navigation (Gotcha Demo)
+   </h1>
+   <p class="text-sm">
+    This bar uses `fixed top-0 left-0 w-full`. Content below might be obscured.
+   </p>
+  </header>
+  <div class="p-6 bg-yellow-100 border border-yellow-400 mt-2">
+   <!-- mt-2 is arbitrary, just for some separation -->
+   <h2 class="text-lg font-semibold">
+    Content Potentially Under Fixed Header
+   </h2>
+   <!-- HTML Comment: The following text will be partially obscured by the fixed header above. 
+             This demonstrates the "Gotcha" that fixed elements are removed from the flow. 
+             The red header is 16 units high (h-16 or p-4 padding making it effectively that).
+        -->
+   <p>
+    This content is right after the fixed header in the HTML. Because the header is `fixed`, it's taken out of the normal flow, and this content starts from the top of the viewport, underneath the header. You might only see the bottom part of this text initially.
+   </p>
+   <p class="mt-4">
+    Some more content to see scrolling behavior.
+   </p>
+  </div>
+  <!-- Example 2: Fixed element with space accounted for (CORRECTED) -->
+  <!-- A new fixed header for this section -->
+  <header class="fixed bottom-0 left-0 w-full bg-green-600 text-white p-4 shadow-md z-50 h-20">
+   <h1 class="text-xl font-bold">
+    Fixed Footer (Space Accounted For)
+   </h1>
+   <p class="text-sm">
+    This bar uses `fixed bottom-0 left-0 w-full`. Padding is added to body/main content.
+   </p>
+  </header>
+  <!-- Main content area that needs padding to avoid being overlapped by the fixed header/footer -->
+  <!-- For the top fixed header (red one), if we wanted to fix it, we'd add pt-16 here or to the body -->
+  <!-- For the bottom fixed footer (green one), we add pb-20 (its height) to the body or a main wrapper -->
+  <main class="p-6 pt-20 pb-24 bg-gray-50">
+   <!-- HTML Comment: 
+            The `pt-20` (padding-top) on this main container pushes content down to avoid the RED fixed header (which is h-16, so pt-16 or pt-20 is fine).
+            The `pb-24` (padding-bottom) on this main container creates space at the bottom so the GREEN fixed footer (h-20) doesn't obscure the last lines of content.
+        -->
+   <h2 class="text-2xl font-semibold mb-4">
+    Page Content With Offset
+   </h2>
+   <p class="mb-4">
+    This content area has padding applied (e.g., `pt-20` for the top fixed header, `pb-24` for the bottom fixed footer) to prevent the fixed elements from overlapping it. This is a common way to handle the "Gotcha" of fixed positioning.
+   </p>
+   <div class="space-y-4">
+    <div class="bg-white p-4 rounded shadow h-32">
+     Content Block 1
+    </div>
+    <p>
+     Scroll down to see the fixed elements remain in place. The red header stays at the top, and a green footer will stay at the bottom (once you scroll enough to "reach" it if the page wasn't long enough initially).
+    </p>
+    <div class="bg-white p-4 rounded shadow h-32">
+     Content Block 2
+    </div>
+    <div class="bg-white p-4 rounded shadow h-32">
+     Content Block 3
+    </div>
+    <p>
+     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    </p>
+    <div class="bg-white p-4 rounded shadow h-32">
+     Content Block 4
+    </div>
+    <div class="bg-white p-4 rounded shadow h-32">
+     Content Block 5
+    </div>
+    <div class="bg-white p-4 rounded shadow h-32">
+     Content Block 6 (More content)
+    </div>
+    <div class="bg-white p-4 rounded shadow h-32">
+     Content Block 7
+    </div>
+    <div class="bg-white p-4 rounded shadow h-32">
+     Content Block 8
+    </div>
+    <div class="bg-white p-4 rounded shadow h-32">
+     Content Block 9
+    </div>
+    <div class="bg-white p-4 rounded shadow h-32">
+     Final Content Block (check footer visibility)
+    </div>
+   </div>
+  </main>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

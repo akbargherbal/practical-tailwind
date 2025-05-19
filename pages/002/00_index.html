@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Stack items one on top of the other.
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style>
+   iframe.default_style {
+  width: 100%;
+  min-height: 300px; /* Reasonable minimum */
+  border: none;
+  display: block;
+}
+  </style>
+ </head>
+ <body>
+  <div class="container mx-auto p-6 md:p-10 font-sans text-slate-800">
+   <h1 class="text-4xl font-bold mb-10 text-center text-slate-700">
+    Tailwind CSS Concept Explained
+   </h1>
+   <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-6 text-slate-600 border-b-2 border-slate-300 pb-3">
+     Laying Things Out (Positioning &amp; Structure)
+    </h2>
+    <h3 class="text-2xl font-medium mb-5 text-indigo-700">
+     Stack items one on top of the other.
+    </h3>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Skill ID:
+     </strong>
+     LayingThingsOut_2
+    </p>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Description:
+     </strong>
+     Arrange several things vertically in a column.
+    </p>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Where to apply:
+     </strong>
+     A list of links in a sidebar, form fields one after another.
+    </p>
+    <p class="mb-2 mt-4 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Key Tailwind Classes:
+     </strong>
+    </p>
+    <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mb-4">
+     <span>
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       flex flex-col
+      </code>
+      <span class="text-sm text-slate-600 ml-1">
+       (or default block behavior)
+      </span>
+     </span>
+    </div>
+    <div class="bg-amber-50 border-l-4 border-amber-500 text-amber-700 p-4 mt-5 rounded-md shadow-sm">
+     <p>
+      <strong class="font-semibold">
+       Gotcha:
+      </strong>
+      Many elements (like
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       div
+      </code>
+      s or
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       p
+      </code>
+      aragraphs) stack vertically by default. You only *need*
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       flex flex-col
+      </code>
+      if you want to use flexbox alignment properties (like
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       items-center
+      </code>
+      for horizontal centering within the column, or
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       space-y-*
+      </code>
+      for spacing).
+     </p>
+    </div>
+   </section>
+  </div>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 1:
+  </h1>
+  <iframe frameborder="0" src="./01_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 2:
+  </h1>
+  <iframe frameborder="0" src="./02_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 3:
+  </h1>
+  <iframe frameborder="0" src="./03_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 4:
+  </h1>
+  <iframe frameborder="0" src="./04_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 5:
+  </h1>
+  <iframe frameborder="0" src="./05_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 6:
+  </h1>
+  <iframe frameborder="0" src="./06_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 7:
+  </h1>
+  <iframe frameborder="0" src="./07_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 8:
+  </h1>
+  <iframe frameborder="0" src="./08_example.html">
+  </iframe>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+  const iframes = document.querySelectorAll('iframe');
+
+  // Ensure all iframes have the default style class
+  iframes.forEach(iframe => iframe.classList.add('default_style'));
+
+  window.addEventListener('message', function(event) {
+    // Optional: add origin check for safety
+    if (event.data && typeof event.data.iframeHeight === 'number') {
+      const iframe = Array.from(iframes).find(iframe =>
+        iframe.contentWindow === event.source
+      );
+      if (iframe) {
+        iframe.style.height = (event.data.iframeHeight + 50) + 'px';
+      }
+    }
+  });
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: min-h-screen and w-full
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="m-0 from_inside_iframe">
+  <!-- Removed default body margin for full screen effect -->
+  <h1 class="text-2xl font-bold p-4 text-center bg-gray-100">
+   Example 3: `min-h-screen` and `w-full`
+  </h1>
+  <!-- Full viewport height section -->
+  <div class="min-h-screen bg-indigo-600 flex flex-col items-center justify-center p-4">
+   <p class="text-white text-lg mb-4">
+    This section uses `min-h-screen` to be at least as tall as the viewport.
+   </p>
+   <!-- Full width banner within the full height section -->
+   <div class="w-full md:w-3/4 lg:w-1/2 bg-indigo-800 text-white p-6 rounded-lg shadow-xl text-center">
+    <h2 class="text-xl font-semibold mb-2">
+     Inner Content Area
+    </h2>
+    <p>
+     This inner div uses `w-full` (or responsive widths like `md:w-3/4`) to control its width within the full-height parent.
+    </p>
+    <p>
+     The parent `div` has `min-h-screen`.
+    </p>
+   </div>
+   <p class="text-indigo-200 mt-4 text-sm">
+    Scroll if your content exceeds viewport height.
+   </p>
+  </div>
+  <div class="p-6 bg-teal-50">
+   <h2 class="font-semibold text-lg mb-2">
+    Key Classes Used:
+   </h2>
+   <ul class="list-disc list-inside ml-4">
+    <li>
+     <code>
+      min-h-screen
+     </code>
+     : Makes an element at least 100% of the viewport height. It's useful for top-level page sections that should fill the screen, like hero banners or main content wrappers. If content is taller, the element will grow.
+    </li>
+    <li>
+     <code>
+      w-full
+     </code>
+     : Makes an element take up 100% of its parent's available width.
+    </li>
+   </ul>
+   <p class="mt-2 text-sm">
+    <strong>
+     Note on `min-h-screen` vs `h-screen`:
+    </strong>
+    `h-screen` sets a fixed height to 100vh. If content overflows, it might be cut off or require scrolling within that fixed height. `min-h-screen` is generally more flexible as it allows the container to grow if content is larger than the viewport.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Make lists (bullet points or numbers) look good.
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style>
+   /* Custom styles for `code` tags if needed, but Tailwind classes are preferred */
+  </style>
+  <style>
+   iframe.default_style {
+  width: 100%;
+  min-height: 300px; /* Reasonable minimum */
+  border: none;
+  display: block;
+}
+  </style>
+ </head>
+ <body>
+  <div class="container mx-auto p-6 md:p-10 font-sans text-slate-800">
+   <h1 class="text-4xl font-bold mb-10 text-center text-slate-700">
+    Tailwind CSS Concept Explained
+   </h1>
+   <section class="mb-12 bg-white shadow-lg rounded-lg p-6 md:p-8">
+    <h2 class="text-3xl font-semibold mb-6 text-slate-600 border-b-2 border-slate-300 pb-3">
+     Styling Common Web Page Parts
+    </h2>
+    <h3 class="text-2xl font-medium mb-5 text-indigo-700">
+     Make lists (bullet points or numbers) look good.
+    </h3>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Skill ID:
+     </strong>
+     StylingCommonParts_19
+    </p>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Description:
+     </strong>
+     Control the appearance of bulleted or numbered lists.
+    </p>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Where to apply:
+     </strong>
+     Feature lists, instructions, ingredients.
+    </p>
+    <p class="mb-2 mt-4 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Key Tailwind Classes:
+     </strong>
+    </p>
+    <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mb-4">
+     <span>
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       list-disc
+      </code>
+      ,
+     </span>
+     <span>
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       list-decimal
+      </code>
+      ,
+     </span>
+     <span>
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       pl-5
+      </code>
+     </span>
+    </div>
+    <div class="bg-amber-50 border-l-4 border-amber-500 text-amber-700 p-4 mt-5 rounded-md shadow-sm">
+     <p>
+      <strong class="font-semibold">
+       Gotcha:
+      </strong>
+      Forgetting the padding-left (
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       pl-*
+      </code>
+      ). Without it, the bullets or numbers might sit flush against the left edge of their container, looking cramped or even overlapping.
+     </p>
+    </div>
+    <div class="mt-8">
+     <h4 class="text-xl font-semibold mb-4 text-slate-700">
+      Example:
+     </h4>
+     <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+       <div>
+        <p class="mb-2 font-medium text-slate-600">
+         Bulleted List (
+         <code>
+          list-disc pl-5
+         </code>
+         ):
+        </p>
+        <ul class="list-disc pl-5 text-slate-700">
+         <li>
+          First item
+         </li>
+         <li>
+          Second item
+         </li>
+         <li>
+          Third item with a bit more text to see how it wraps.
+         </li>
+        </ul>
+       </div>
+       <div>
+        <p class="mb-2 font-medium text-slate-600">
+         Numbered List (
+         <code>
+          list-decimal pl-5
+         </code>
+         ):
+        </p>
+        <ol class="list-decimal pl-5 text-slate-700">
+         <li>
+          Step one
+         </li>
+         <li>
+          Step two
+         </li>
+         <li>
+          Step three, which also has a longer description for demonstration.
+         </li>
+        </ol>
+       </div>
+       <div>
+        <p class="mb-2 font-medium text-slate-600">
+         List without padding (for comparison - cramped):
+        </p>
+        <ul class="list-disc text-slate-700">
+         <li>
+          Item A
+         </li>
+         <li>
+          Item B
+         </li>
+        </ul>
+       </div>
+       <div>
+        <p class="mb-2 font-medium text-slate-600">
+         List with more padding (
+         <code>
+          pl-8
+         </code>
+         ):
+        </p>
+        <ul class="list-disc pl-8 text-slate-700">
+         <li>
+          Item X
+         </li>
+         <li>
+          Item Y
+         </li>
+        </ul>
+       </div>
+      </div>
+     </div>
+     <div class="mt-4 p-4 bg-sky-50 border border-sky-200 rounded-md text-sm text-sky-700">
+      <p>
+       <strong class="font-semibold">
+        Note:
+       </strong>
+       The
+       <code>
+        pl-5
+       </code>
+       (padding-left) class is a common choice for lists. You can adjust the padding value (e.g.,
+       <code>
+        pl-4
+       </code>
+       ,
+       <code>
+        pl-6
+       </code>
+       ) as needed for your design. The
+       <code>
+        list-disc
+       </code>
+       class adds bullet points, and
+       <code>
+        list-decimal
+       </code>
+       adds numbers. These are standard CSS list styles, easily applied with Tailwind.
+      </p>
+     </div>
+    </div>
+   </section>
+  </div>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 1:
+  </h1>
+  <iframe frameborder="0" src="./01_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 2:
+  </h1>
+  <iframe frameborder="0" src="./02_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 3:
+  </h1>
+  <iframe frameborder="0" src="./03_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 4:
+  </h1>
+  <iframe frameborder="0" src="./04_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 5:
+  </h1>
+  <iframe frameborder="0" src="./05_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 6:
+  </h1>
+  <iframe frameborder="0" src="./06_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 7:
+  </h1>
+  <iframe frameborder="0" src="./07_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 8:
+  </h1>
+  <iframe frameborder="0" src="./08_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 9:
+  </h1>
+  <iframe frameborder="0" src="./09_example.html">
+  </iframe>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+  const iframes = document.querySelectorAll('iframe');
+
+  // Ensure all iframes have the default style class
+  iframes.forEach(iframe => iframe.classList.add('default_style'));
+
+  window.addEventListener('message', function(event) {
+    // Optional: add origin check for safety
+    if (event.data && typeof event.data.iframeHeight === 'number') {
+      const iframe = Array.from(iframes).find(iframe =>
+        iframe.contentWindow === event.source
+      );
+      if (iframe) {
+        iframe.style.height = (event.data.iframeHeight + 50) + 'px';
+      }
+    }
+  });
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Circular Avatar - Gotcha &amp; Solution
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-8 text-center">
+   Circular Avatars - Gotcha &amp; Solution
+  </h1>
+  <!-- Gotcha Demonstration -->
+  <div class="mb-12 p-6 bg-white rounded-lg shadow-md">
+   <h2 class="text-xl font-semibold mb-3 text-red-600">
+    Gotcha:
+    <code>
+     rounded-full
+    </code>
+    on a Rectangular Image
+   </h2>
+   <p class="text-gray-700 mb-4">
+    Applying
+    <code>
+     rounded-full
+    </code>
+    directly to a non-square image results in an ellipse (oval), not a perfect circle.
+            Notice how the image below is stretched into an oval shape.
+   </p>
+   <div class="flex justify-center items-center">
+    <img alt="Rectangular Image with rounded-full" class="rounded-full shadow-lg" src="https://via.placeholder.com/150x100.png?text=Rectangular"/>
+   </div>
+   <p class="mt-3 text-center text-sm text-gray-500">
+    Image (150x100) with
+    <code>
+     rounded-full
+    </code>
+   </p>
+  </div>
+  <!-- Solution Demonstration -->
+  <div class="p-6 bg-white rounded-lg shadow-md">
+   <h2 class="text-xl font-semibold mb-3 text-green-600">
+    Solution: Square Container +
+    <code>
+     object-cover
+    </code>
+   </h2>
+   <p class="text-gray-700 mb-4">
+    To ensure a perfect circle with a rectangular image, use a square container (e.g.,
+    <code>
+     w-32 h-32
+    </code>
+    )
+            with
+    <code>
+     rounded-full
+    </code>
+    . Then, place the
+    <code>
+     &lt;img&gt;
+    </code>
+    tag inside it with classes
+    <code>
+     w-full h-full object-cover
+    </code>
+    . The
+    <code>
+     object-cover
+    </code>
+    class will scale the image to maintain its aspect ratio
+            while filling the container, cropping any excess.
+   </p>
+   <div class="flex flex-wrap justify-around items-center gap-8">
+    <div>
+     <p class="text-center font-medium mb-2">
+      Original Rectangular Image (150x100):
+     </p>
+     <img alt="Original Rectangular Image" class="w-40 h-auto mx-auto shadow" src="https://via.placeholder.com/150x100.png?text=Original+Rect"/>
+    </div>
+    <div>
+     <p class="text-center font-medium mb-2">
+      Correctly Rounded:
+     </p>
+     <!-- Square container with rounded-full -->
+     <div class="w-32 h-32 rounded-full overflow-hidden shadow-lg mx-auto">
+      <!-- Image inside with object-cover -->
+      <img alt="Circular Avatar from Rectangular Image" class="w-full h-full object-cover" src="https://via.placeholder.com/150x100.png?text=Cropped+Circle"/>
+     </div>
+     <p class="mt-3 text-center text-sm text-gray-500">
+      Container:
+      <code>
+       w-32 h-32 rounded-full overflow-hidden
+      </code>
+      <br/>
+      Image:
+      <code>
+       w-full h-full object-cover
+      </code>
+     </p>
+    </div>
+    <div>
+     <p class="text-center font-medium mb-2">
+      Original Rectangular Image (100x150):
+     </p>
+     <img alt="Original Tall Rectangular Image" class="w-auto h-40 mx-auto shadow" src="https://via.placeholder.com/100x150.png?text=Original+Tall"/>
+    </div>
+    <div>
+     <p class="text-center font-medium mb-2">
+      Correctly Rounded (Tall Image):
+     </p>
+     <!-- Square container with rounded-full -->
+     <div class="w-32 h-32 rounded-full overflow-hidden shadow-lg mx-auto">
+      <!-- Image inside with object-cover -->
+      <img alt="Circular Avatar from Tall Rectangular Image" class="w-full h-full object-cover" src="https://via.placeholder.com/100x150.png?text=Cropped+Circle"/>
+     </div>
+     <p class="mt-3 text-center text-sm text-gray-500">
+      Container:
+      <code>
+       w-32 h-32 rounded-full overflow-hidden
+      </code>
+      <br/>
+      Image:
+      <code>
+       w-full h-full object-cover
+      </code>
+     </p>
+    </div>
+   </div>
+   <p class="mt-6 text-sm text-gray-600">
+    <strong>
+     Key Insight:
+    </strong>
+    The
+    <code>
+     overflow-hidden
+    </code>
+    on the container is technically not always needed if the image is a direct child and
+    <code>
+     rounded-full
+    </code>
+    is on the container, but it's good practice for clip-path like effects and consistency, especially if there were other nested elements or pseudo-elements. The core combination is the square container +
+    <code>
+     rounded-full
+    </code>
+    for the shape, and
+    <code>
+     object-cover
+    </code>
+    on the image for correct filling and cropping.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

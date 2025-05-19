@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Set up your website's main colors to match a brand.
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style>
+   /* Custom styles if needed, though Tailwind is preferred */
+  </style>
+  <style>
+   iframe.default_style {
+  width: 100%;
+  min-height: 300px; /* Reasonable minimum */
+  border: none;
+  display: block;
+}
+  </style>
+ </head>
+ <body class="bg-slate-50">
+  <div class="container mx-auto p-6 md:p-10 font-sans text-slate-800">
+   <header class="mb-10">
+    <h1 class="text-4xl font-bold text-center text-slate-700">
+     Tailwind CSS Concept Explained
+    </h1>
+   </header>
+   <main>
+    <section class="mb-12 bg-white p-6 md:p-8 rounded-lg shadow-lg">
+     <h2 class="text-3xl font-semibold mb-6 text-slate-600 border-b-2 border-slate-300 pb-3">
+      Organizing Your Styles &amp; Customizing
+     </h2>
+     <h3 class="text-2xl font-medium mb-5 text-indigo-700">
+      Set up your website's main colors to match a brand.
+     </h3>
+     <p class="mb-2 text-slate-700">
+      <strong class="font-semibold text-slate-800">
+       Skill ID:
+      </strong>
+      OrganizingStyles_48
+     </p>
+     <p class="mb-2 text-slate-700">
+      <strong class="font-semibold text-slate-800">
+       Description:
+      </strong>
+      Define custom brand colors in your Tailwind configuration.
+     </p>
+     <p class="mb-2 text-slate-700">
+      <strong class="font-semibold text-slate-800">
+       Where to apply:
+      </strong>
+      Throughout the site for buttons, backgrounds, text.
+     </p>
+     <div class="mt-6">
+      <p class="mb-2 text-slate-700">
+       <strong class="font-semibold text-slate-800">
+        Key Tailwind Classes:
+       </strong>
+      </p>
+      <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mb-4">
+       <span>
+        In
+        <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+         tailwind.config.js
+        </code>
+        under
+        <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+         theme.extend.colors
+        </code>
+        .
+       </span>
+      </div>
+     </div>
+     <div class="bg-amber-50 border-l-4 border-amber-500 text-amber-700 p-4 mt-5 rounded-md shadow-sm">
+      <p>
+       <strong class="font-semibold">
+        Gotcha:
+       </strong>
+       Overriding the
+       <em>
+        entire
+       </em>
+       default color palette instead of
+       <em>
+        extending
+       </em>
+       it. If you put your custom colors directly under
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        theme.colors
+       </code>
+       , you lose all of Tailwind's default colors. Using
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        theme.extend.colors
+       </code>
+       adds your colors alongside the defaults, which is usually what you want.
+      </p>
+     </div>
+     <div class="mt-8 pt-6 border-t border-slate-300">
+      <h4 class="text-xl font-semibold mb-4 text-slate-700">
+       Example:
+      </h4>
+      <p class="mb-3 text-slate-700">
+       To add custom brand colors, you would modify your `tailwind.config.js` file like this:
+      </p>
+      <div class="bg-slate-900 text-white p-4 rounded-md font-mono text-sm overflow-x-auto">
+       <pre><code>// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        'brand-primary': '#3490dc', // Example primary color
+        'brand-secondary': '#ffed4a', // Example secondary color
+        'brand-accent': '#e3342f',   // Example accent color
+      },
+    },
+  },
+  plugins: [],
+}
+</code></pre>
+      </div>
+      <p class="mt-4 mb-2 text-slate-700">
+       After defining these, you can use them in your HTML like any other Tailwind color utility:
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+       <div class="p-4 rounded-md shadow-md bg-brand-primary text-white">
+        <p class="font-semibold">
+         Primary Background
+        </p>
+        <p class="text-sm">
+         Applied with
+         <code class="bg-slate-700 text-slate-200 px-1 py-0.5 rounded">
+          bg-brand-primary
+         </code>
+        </p>
+       </div>
+       <div class="p-4 rounded-md shadow-md bg-brand-secondary text-slate-800">
+        <p class="font-semibold">
+         Secondary Background
+        </p>
+        <p class="text-sm">
+         Applied with
+         <code class="bg-slate-700 text-slate-200 px-1 py-0.5 rounded">
+          bg-brand-secondary
+         </code>
+        </p>
+       </div>
+       <div class="p-4 rounded-md shadow-md border-2 border-brand-accent">
+        <p class="font-semibold text-brand-accent">
+         Accent Text &amp; Border
+        </p>
+        <p class="text-sm text-slate-700">
+         Applied with
+         <code class="bg-slate-100 text-slate-700 px-1 py-0.5 rounded border border-slate-300">
+          text-brand-accent
+         </code>
+         and
+         <code class="bg-slate-100 text-slate-700 px-1 py-0.5 rounded border border-slate-300">
+          border-brand-accent
+         </code>
+        </p>
+       </div>
+      </div>
+      <p class="mt-4 text-sm text-slate-600">
+       <strong>
+        Note:
+       </strong>
+       After modifying
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        tailwind.config.js
+       </code>
+       , you typically need to recompile your CSS if you are using a build process (e.g., with PostCSS and Autoprefixer). If you are only using the CDN in development, changes might not reflect without a proper build setup for production.
+      </p>
+     </div>
+    </section>
+   </main>
+  </div>
+  <script>
+   // This script is for the live example colors to work with CDN.
+        // In a real project, these would be in tailwind.config.js and compiled.
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                'brand-primary': '#3490dc',
+                'brand-secondary': '#ffed4a',
+                'brand-accent': '#e3342f',
+              }
+            }
+          }
+        }
+  </script>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 1:
+  </h1>
+  <iframe frameborder="0" src="./01_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 2:
+  </h1>
+  <iframe frameborder="0" src="./02_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 3:
+  </h1>
+  <iframe frameborder="0" src="./03_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 4:
+  </h1>
+  <iframe frameborder="0" src="./04_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 5:
+  </h1>
+  <iframe frameborder="0" src="./05_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 6:
+  </h1>
+  <iframe frameborder="0" src="./06_example.html">
+  </iframe>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+  const iframes = document.querySelectorAll('iframe');
+
+  // Ensure all iframes have the default style class
+  iframes.forEach(iframe => iframe.classList.add('default_style'));
+
+  window.addEventListener('message', function(event) {
+    // Optional: add origin check for safety
+    if (event.data && typeof event.data.iframeHeight === 'number') {
+      const iframe = Array.from(iframes).find(iframe =>
+        iframe.contentWindow === event.source
+      );
+      if (iframe) {
+        iframe.style.height = (event.data.iframeHeight + 50) + 'px';
+      }
+    }
+  });
+});
+  </script>
+ </body>
+</html>

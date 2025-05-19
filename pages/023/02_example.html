@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Error Alert &amp; Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <!-- 
+        This example demonstrates an error alert and highlights the "Gotcha" regarding color contrast.
+        The first alert shows poor contrast, making it hard to read.
+        The second alert shows good contrast, making it accessible.
+    -->
+  <div class="mb-6">
+   <h2 class="text-2xl font-bold mb-4 text-gray-700">
+    Example 2: Error Alert &amp; Color Contrast (Gotcha)
+   </h2>
+   <!-- Gotcha Demonstration: Poor Contrast -->
+   <div class="mb-4">
+    <h3 class="text-xl font-semibold mb-2 text-red-700">
+     Incorrect: Poor Contrast Alert
+    </h3>
+    <div class="bg-red-100 border border-red-400 text-red-200 px-4 py-3 rounded relative" role="alert">
+     <!-- 
+                    GOTCHA: Here, text-red-200 is used on bg-red-100.
+                    This results in very poor readability due to low contrast.
+                    This is a common mistake to avoid.
+                -->
+     <strong class="font-bold">
+      Error! (Poor Contrast)
+     </strong>
+     <span class="block sm:inline">
+      Failed to upload file. Text is hard to read.
+     </span>
+    </div>
+    <p class="text-sm text-gray-600 mt-1">
+     Note: This alert uses
+     <code>
+      text-red-200
+     </code>
+     on
+     <code>
+      bg-red-100
+     </code>
+     , leading to poor contrast.
+    </p>
+   </div>
+   <!-- Corrected Example: Good Contrast -->
+   <div>
+    <h3 class="text-xl font-semibold mb-2 text-green-700">
+     Correct: Good Contrast Alert
+    </h3>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+     <!--
+                    CORRECTED: Here, text-red-700 is used on bg-red-100.
+                    This provides good contrast and ensures the message is readable.
+                    Always choose text colors that have sufficient contrast against the background.
+                -->
+     <strong class="font-bold">
+      Error! (Good Contrast)
+     </strong>
+     <span class="block sm:inline">
+      Failed to upload file. This text is clear.
+     </span>
+    </div>
+    <p class="text-sm text-gray-600 mt-1">
+     Note: This alert uses
+     <code>
+      text-red-700
+     </code>
+     on
+     <code>
+      bg-red-100
+     </code>
+     , ensuring good readability.
+    </p>
+   </div>
+  </div>
+  <div class="mt-8 p-4 bg-yellow-50 border border-yellow-300 rounded-lg">
+   <h3 class="text-lg font-semibold text-yellow-800">
+    Addressing the "Gotcha":
+   </h3>
+   <p class="text-yellow-700 mt-2">
+    The "Gotcha" is about poor color contrast. Light text on a light background (e.g.,
+    <code>
+     text-red-200
+    </code>
+    on
+    <code>
+     bg-red-100
+    </code>
+    ) makes the message difficult to read, especially for users with visual impairments.
+            The solution is to use a darker text color (e.g.,
+    <code>
+     text-red-700
+    </code>
+    ) that contrasts well with the light background.
+            Tailwind's default color palette provides shades (e.g., 100 for light backgrounds, 700-900 for dark text) that help achieve accessible contrast ratios.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

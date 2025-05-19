@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill Example - Rounded Corners Gotcha (Child Rounding)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6 text-center">
+   Gotcha: Parent Rounding - Alternative Solution
+  </h1>
+  <div class="flex flex-wrap justify-around gap-8">
+   <!-- Gotcha Reminder: Image overflowing rounded parent -->
+   <div class="w-64">
+    <h2 class="text-lg font-semibold mb-2 text-center">
+     Problem Reminder
+    </h2>
+    <div class="bg-rose-500 p-0 rounded-2xl w-64 h-40">
+     <img alt="Placeholder Image" class="w-full h-full object-cover" src="https://via.placeholder.com/300x200/FFC0CB/000000?text=Image+Overflows"/>
+    </div>
+    <p class="mt-2 text-sm text-gray-700 text-center">
+     Parent has
+     <code>
+      rounded-2xl
+     </code>
+     , but image corners are sharp.
+    </p>
+   </div>
+   <!-- Solution 2: Applying rounded-* to the child element -->
+   <div class="w-64">
+    <h2 class="text-lg font-semibold mb-2 text-center">
+     Solution: Apply
+     <code>
+      rounded-*
+     </code>
+     to Child
+    </h2>
+    <div class="bg-sky-500 p-0 rounded-2xl w-64 h-40">
+     <!-- Here, we apply rounding directly to the image. It should match or be
+                     compatible with the parent's rounding if the parent also has a visible border or background.
+                     If the image perfectly fills the parent, child rounding is sufficient. -->
+     <img alt="Placeholder Image" class="w-full h-full object-cover rounded-2xl" src="https://via.placeholder.com/300x200/ADD8E6/000000?text=Image+Rounded"/>
+    </div>
+    <p class="mt-2 text-sm text-gray-700 text-center">
+     Image also has
+     <code>
+      rounded-2xl
+     </code>
+     . This works without
+     <code>
+      overflow-hidden
+     </code>
+     if the child's rounding matches the parent's intended visual effect.
+    </p>
+   </div>
+  </div>
+  <div class="mt-8 p-4 bg-orange-100 border-l-4 border-orange-500 text-orange-700">
+   <p class="font-bold">
+    Gotcha Explanation (Alternative Solution):
+   </p>
+   <p>
+    Another way to handle the "child overflowing parent's rounded corners" issue is to apply the rounding utility (e.g.,
+    <code>
+     rounded-lg
+    </code>
+    ) directly to the child element as well. If the child element (like an image) is meant to fill the parent and share its rounded appearance, ensure its rounding matches the parent's. This can be simpler than
+    <code>
+     overflow-hidden
+    </code>
+    if you don't want to clip other potential overflowing content or if the child needs its own specific rounding that might differ slightly (e.g.,
+    <code>
+     rounded-t-lg
+    </code>
+    if only top corners need matching).
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

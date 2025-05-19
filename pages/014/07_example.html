@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Input Styling - Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex flex-col items-center space-y-8 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Input Styling &amp; The "Gotcha"
+  </h1>
+  <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
+   <h2 class="text-xl font-semibold mb-4">
+    Contact Form
+   </h2>
+   <div class="mb-4">
+    <label class="block text-sm font-medium text-gray-700 mb-1" for="name_styled">
+     Name (Styled with Tailwind)
+    </label>
+    <input class="mt-1 block w-full border border-gray-400 rounded-md px-3 py-2 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" id="name_styled" name="name_styled" placeholder="Styled Input" type="text"/>
+    <!--
+                This input is styled using the key classes `border`, `rounded`, `px-3`, `py-2`.
+                Additional classes like `border-gray-400`, `shadow-sm`, and focus states enhance it.
+            -->
+   </div>
+   <div class="mb-4">
+    <label class="block text-sm font-medium text-gray-700 mb-1" for="name_default">
+     Subject (Default Browser Styling)
+    </label>
+    <input class="mt-1 block w-full" id="name_default" name="name_default" placeholder="Default Unstyled Input" type="text"/>
+    <!--
+                This input has NO Tailwind styling classes applied directly for its appearance.
+                It relies on browser default styles, which can vary significantly.
+                This illustrates the inconsistency mentioned in the "Gotcha".
+            -->
+   </div>
+   <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mt-6" role="alert">
+    <p class="font-bold">
+     Gotcha: Browser Default Styles
+    </p>
+    <p>
+     As you can see above, the "Default Unstyled Input" looks different from the styled one,
+                and its appearance will vary across different browsers (Chrome, Firefox, Safari, etc.).
+                This is because browsers have their own default stylesheets for form elements.
+    </p>
+    <p class="mt-2">
+     The key classes (`border rounded px-3 py-2`) provide a good starting point for custom styling.
+                However, to achieve truly consistent and more professional-looking forms across all browsers,
+                the
+     <strong>
+      <code>
+       @tailwindcss/forms
+      </code>
+      plugin
+     </strong>
+     is highly recommended.
+                It resets many browser-specific styles for form elements, providing a much cleaner and
+                consistent baseline to build upon with Tailwind utility classes. Without it, you might
+                spend more time fighting default browser styles.
+    </p>
+    <p class="mt-2">
+     While we can't enable the plugin in this simple CDN demo, in a project with a build step,
+                you would install it (e.g., `npm install -D @tailwindcss/forms`) and add it to your
+                `tailwind.config.js` file.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

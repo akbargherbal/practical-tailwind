@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill - Basic Button
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 flex flex-col items-center space-y-4 from_inside_iframe">
+  <!-- Example 1: A standard HTML button styled with the key Tailwind CSS classes -->
+  <h1 class="text-2xl font-bold mb-4">
+   Basic Clickable Button (using &lt;button&gt;)
+  </h1>
+  <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
+   Submit Action
+  </button>
+  <p class="text-sm text-gray-600">
+   This uses the semantic
+   <code>
+    &lt;button&gt;
+   </code>
+   element.
+  </p>
+  <p class="text-sm text-gray-700">
+   Key classes used:
+   <code>
+    bg-blue-500
+   </code>
+   ,
+   <code>
+    text-white
+   </code>
+   ,
+   <code>
+    py-2
+   </code>
+   ,
+   <code>
+    px-4
+   </code>
+   .
+  </p>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

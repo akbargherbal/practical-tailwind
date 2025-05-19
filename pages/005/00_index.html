@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Center something perfectly in the middle of a box (both ways).
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style>
+   /* Custom styles for <code> tags if needed, but Tailwind classes are preferred */
+        .code-highlight {
+            @apply bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300;
+        }
+  </style>
+  <style>
+   iframe.default_style {
+  width: 100%;
+  min-height: 300px; /* Reasonable minimum */
+  border: none;
+  display: block;
+}
+  </style>
+ </head>
+ <body class="bg-slate-50">
+  <div class="container mx-auto p-6 md:p-10 font-sans text-slate-800">
+   <header>
+    <h1 class="text-4xl font-bold mb-10 text-center text-slate-700">
+     Tailwind CSS Concept Explained
+    </h1>
+   </header>
+   <main>
+    <section class="mb-12 bg-white p-6 md:p-8 rounded-lg shadow-lg">
+     <h2 class="text-3xl font-semibold mb-6 text-slate-600 border-b-2 border-slate-300 pb-3">
+      Laying Things Out (Positioning &amp; Structure)
+     </h2>
+     <h3 class="text-2xl font-medium mb-5 text-indigo-700">
+      Center something perfectly in the middle of a box (both ways).
+     </h3>
+     <p class="mb-2 text-slate-700">
+      <strong class="font-semibold text-slate-800">
+       Skill ID:
+      </strong>
+      LayingThingsOut_5
+     </p>
+     <p class="mb-2 text-slate-700">
+      <strong class="font-semibold text-slate-800">
+       Description:
+      </strong>
+      Place an item exactly in the horizontal and vertical center of the area it's in.
+     </p>
+     <p class="mb-4 text-slate-700">
+      <strong class="font-semibold text-slate-800">
+       Where to apply:
+      </strong>
+      A loading icon, a title in a hero banner, a pop-up message.
+     </p>
+     <div>
+      <p class="mb-2 mt-4 text-slate-700">
+       <strong class="font-semibold text-slate-800">
+        Key Tailwind Classes:
+       </strong>
+      </p>
+      <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mb-4">
+       <span>
+        <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+         flex
+        </code>
+        <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+         items-center
+        </code>
+        <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+         justify-center
+        </code>
+       </span>
+      </div>
+     </div>
+     <div class="bg-amber-50 border-l-4 border-amber-500 text-amber-700 p-4 mt-5 rounded-md shadow-sm">
+      <p>
+       <strong class="font-semibold">
+        Gotcha:
+       </strong>
+       The parent container needs to have a defined height (e.g.,
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        h-32
+       </code>
+       ,
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        min-h-screen
+       </code>
+       ) for
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        items-center
+       </code>
+       (vertical centering) to work as expected. If the parent's height is just based on its content, the item won't appear vertically centered.
+      </p>
+     </div>
+     <div class="mt-8 pt-6 border-t border-slate-200">
+      <h4 class="text-xl font-semibold mb-4 text-slate-700">
+       Example:
+      </h4>
+      <p class="mb-3 text-sm text-slate-600">
+       Below is a parent div (gray border) with a fixed height using
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        h-48
+       </code>
+       . The child div (blue) is centered using
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        flex items-center justify-center
+       </code>
+       on the parent.
+      </p>
+      <div class="h-48 bg-slate-200 border border-slate-400 rounded-md flex items-center justify-center">
+       <div class="bg-blue-500 text-white p-4 rounded-md shadow-md w-32 h-16 flex items-center justify-center text-center">
+        Centered Item
+       </div>
+      </div>
+      <pre class="mt-4 bg-slate-800 text-white p-4 rounded-md overflow-x-auto text-sm"><code class="language-html">&lt;div class="h-48 bg-slate-200 border border-slate-400 rounded-md flex items-center justify-center"&gt;
+  &lt;div class="bg-blue-500 text-white p-4 rounded-md shadow-md w-32 h-16 flex items-center justify-center text-center"&gt;
+    Centered Item
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+     </div>
+    </section>
+   </main>
+  </div>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 1:
+  </h1>
+  <iframe frameborder="0" src="./01_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 2:
+  </h1>
+  <iframe frameborder="0" src="./02_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 3:
+  </h1>
+  <iframe frameborder="0" src="./03_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 4:
+  </h1>
+  <iframe frameborder="0" src="./04_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 5:
+  </h1>
+  <iframe frameborder="0" src="./05_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 6:
+  </h1>
+  <iframe frameborder="0" src="./06_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 7:
+  </h1>
+  <iframe frameborder="0" src="./07_example.html">
+  </iframe>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+  const iframes = document.querySelectorAll('iframe');
+
+  // Ensure all iframes have the default style class
+  iframes.forEach(iframe => iframe.classList.add('default_style'));
+
+  window.addEventListener('message', function(event) {
+    // Optional: add origin check for safety
+    if (event.data && typeof event.data.iframeHeight === 'number') {
+      const iframe = Array.from(iframes).find(iframe =>
+        iframe.contentWindow === event.source
+      );
+      if (iframe) {
+        iframe.style.height = (event.data.iframeHeight + 50) + 'px';
+      }
+    }
+  });
+});
+  </script>
+ </body>
+</html>

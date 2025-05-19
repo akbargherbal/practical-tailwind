@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Responsive Vis. &amp; Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-50 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-4">
+    Example 3: Understanding Responsive Prefixes &amp; The "Gotcha"
+   </h1>
+   <p class="mb-6 text-gray-700">
+    Resize your browser window. Breakpoints: 'sm' (640px), 'md' (768px), 'lg' (1024px).
+    <br/>
+    <strong>
+     Gotcha:
+    </strong>
+    Responsive prefixes (like `sm:`, `md:`) apply to that screen size *and larger*, unless overridden by another prefix for a larger screen.
+   </p>
+   <!-- Section illustrating the "and larger" behavior -->
+   <div class="mb-8 p-4 border border-dashed border-purple-400 rounded-lg">
+    <h2 class="text-xl font-semibold mb-2 text-purple-700">
+     Illustrating "And Larger" Behavior
+    </h2>
+    <div class="hidden sm:block p-4 bg-purple-100 text-purple-700 rounded shadow">
+     <p class="font-semibold">
+      Item A: `hidden sm:block`
+     </p>
+     <p>
+      I am hidden by default (`xs`), then `block` on `sm` (640px) and ALL larger screens (`md`, `lg`, `xl`...) unless another rule overrides me for a larger breakpoint.
+     </p>
+    </div>
+   </div>
+   <!-- Section addressing the Gotcha specifically -->
+   <div class="mb-8 p-4 border border-dashed border-red-400 rounded-lg">
+    <h2 class="text-xl font-semibold mb-2 text-red-700">
+     Gotcha Demonstration: Specific Visibility Ranges
+    </h2>
+    <p class="text-sm mb-3 text-gray-600">
+     The following examples show how to control visibility for more specific ranges, addressing the "and larger" gotcha.
+    </p>
+    <!-- Gotcha Case 1: "To hide something *only* on small screens (and show it on medium and up), you'd use `hidden md:block` (if it's block by default)." -->
+    <!-- Here, "small screens" means screens smaller than 'md' (i.e., 'xs' and 'sm'). "Medium and up" means 'md' and larger. -->
+    <div class="hidden md:block p-4 bg-orange-100 text-orange-700 rounded shadow mb-4">
+     <p class="font-semibold">
+      Gotcha Item 1: `hidden md:block`
+     </p>
+     <p>
+      I am hidden on 'xs' and 'sm' screens. I become visible on 'md' (768px) screens and LARGER.
+     </p>
+     <p class="text-xs mt-1">
+      <em>
+       (Interpreting gotcha: "Hide on small screens" = hidden below `md`. "Show on medium and up" = `block` from `md` upwards.)
+      </em>
+     </p>
+    </div>
+    <!-- Gotcha Case 2: "To show something *only* on small screens, use `block md:hidden`." -->
+    <!-- Here, "small screens" means screens smaller than 'md' (i.e., 'xs' and 'sm'). It will be hidden from 'md' upwards. -->
+    <div class="block md:hidden p-4 bg-teal-100 text-teal-700 rounded shadow mb-4">
+     <p class="font-semibold">
+      Gotcha Item 2: `block md:hidden`
+     </p>
+     <p>
+      I am visible by default ('xs') and on 'sm' screens. I become hidden from 'md' (768px) screens and LARGER.
+     </p>
+     <p class="text-xs mt-1">
+      <em>
+       (Interpreting gotcha: "Show *only* on small screens" = visible below `md`, hidden from `md` upwards.)
+      </em>
+     </p>
+    </div>
+    <!-- Further example: Visible ONLY on a specific range (e.g., only on 'md') -->
+    <div class="hidden md:block lg:hidden p-4 bg-indigo-100 text-indigo-700 rounded shadow">
+     <p class="font-semibold">
+      Bonus Item: `hidden md:block lg:hidden`
+     </p>
+     <p>
+      I am hidden on 'xs' and 'sm'. I am visible ONLY on 'md' screens (768px up to 1023px). I am hidden again on 'lg' (1024px) and LARGER screens.
+     </p>
+     <p class="text-xs mt-1">
+      <em>
+       This shows how to chain responsive prefixes to create visibility windows, overriding the default "and larger" behavior.
+      </em>
+     </p>
+    </div>
+   </div>
+   <div class="mt-6 p-3 bg-gray-200 text-sm text-gray-800 rounded">
+    <p>
+     <strong>
+      Key Takeaway:
+     </strong>
+     To make an element visible or hidden for a specific range (e.g., *only* on medium screens), you often need two responsive utility classes: one to activate it at the start of the range (e.g., `md:block`) and another to deactivate it at the end of the range (e.g., `lg:hidden`).
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

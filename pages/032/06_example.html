@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Shadow Gotcha (VisualFlair_32)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-blue-200 p-8 from_inside_iframe">
+  <!-- 
+        This example demonstrates the "Gotcha":
+        Shadows need a background color on the element to look correct.
+        Without a background, the shadow might appear to be cast by content behind the element,
+        or simply not render as expected against the parent background.
+    -->
+  <div class="text-center mb-8">
+   <h1 class="text-2xl font-bold">
+    Shadow Gotcha: Background Color
+   </h1>
+   <p class="text-gray-700">
+    An element needs a background for the shadow to look right.
+   </p>
+  </div>
+  <div class="flex justify-around items-start">
+   <!-- Container for the "Incorrect" example to show shadow on parent -->
+   <div class="w-72 p-4 bg-yellow-100 rounded-md">
+    <h2 class="text-lg font-semibold mb-2 text-center">
+     Incorrect: Shadow on Transparent Element
+    </h2>
+    <div class="w-60 h-32 shadow-lg rounded-lg flex items-center justify-center mx-auto border border-dashed border-red-500">
+     <!-- No explicit bg-* class here. The shadow will appear on the yellow parent. -->
+     <p class="text-center text-sm p-2">
+      This div has `shadow-lg` but no `bg-*` class.
+      <br/>
+      The shadow renders on the yellow container.
+     </p>
+    </div>
+    <p class="text-xs text-center mt-2 text-gray-600">
+     Notice how the shadow is on the yellow background, not 'lifting' this box.
+    </p>
+   </div>
+   <div class="w-72 p-4">
+    <h2 class="text-lg font-semibold mb-2 text-center">
+     Correct: Shadow with Background Color
+    </h2>
+    <div class="w-60 h-32 bg-white shadow-lg rounded-lg flex items-center justify-center mx-auto">
+     <p class="text-lg font-semibold">
+      With `bg-white`
+     </p>
+    </div>
+    <p class="text-xs text-center mt-2 text-gray-600">
+     Here, `bg-white` makes the shadow appear correctly on the element itself.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

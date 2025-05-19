@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Borders - Basic Examples
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6">
+   Basic Border Examples
+  </h1>
+  <!-- Example 1: Default border -->
+  <div class="mb-8 p-4 bg-white">
+   <h2 class="text-lg font-semibold mb-2">
+    Default Border
+   </h2>
+   <div class="border w-48 h-24 flex items-center justify-center bg-slate-200">
+    <p class="text-sm">
+     <code>
+      border
+     </code>
+    </p>
+   </div>
+   <p class="mt-2 text-sm text-gray-600">
+    A simple, default 1px solid gray border.
+   </p>
+  </div>
+  <!-- Example 2: Colored border -->
+  <div class="mb-8 p-4 bg-white">
+   <h2 class="text-lg font-semibold mb-2">
+    Colored Border
+   </h2>
+   <div class="border border-blue-500 w-48 h-24 flex items-center justify-center bg-slate-200">
+    <p class="text-sm">
+     <code>
+      border border-blue-500
+     </code>
+    </p>
+   </div>
+   <p class="mt-2 text-sm text-gray-600">
+    Border color can be set using
+    <code>
+     border-{color}-{shade}
+    </code>
+    .
+   </p>
+  </div>
+  <!-- Example 3: Thicker border -->
+  <div class="mb-8 p-4 bg-white">
+   <h2 class="text-lg font-semibold mb-2">
+    Thicker Border
+   </h2>
+   <div class="border-4 border-green-500 w-48 h-24 flex items-center justify-center bg-slate-200">
+    <p class="text-sm">
+     <code>
+      border-4 border-green-500
+     </code>
+    </p>
+   </div>
+   <p class="mt-2 text-sm text-gray-600">
+    Border width can be set using
+    <code>
+     border-{width}
+    </code>
+    (e.g.,
+    <code>
+     border-2
+    </code>
+    ,
+    <code>
+     border-4
+    </code>
+    ,
+    <code>
+     border-8
+    </code>
+    ).
+   </p>
+  </div>
+  <!-- Example 4: Border with rounded corners -->
+  <div class="p-4 bg-white">
+   <h2 class="text-lg font-semibold mb-2">
+    Border with Rounded Corners
+   </h2>
+   <div class="border-2 border-purple-600 rounded-lg w-48 h-24 flex items-center justify-center bg-slate-200">
+    <p class="text-sm">
+     <code>
+      border-2 border-purple-600 rounded-lg
+     </code>
+    </p>
+   </div>
+   <p class="mt-2 text-sm text-gray-600">
+    Borders work well with other utilities like
+    <code>
+     rounded-lg
+    </code>
+    .
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

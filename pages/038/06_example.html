@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill Example - Focus Styling &amp; Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-slate-100 p-8 flex flex-col items-center space-y-8 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Focus Styling: Addressing the "Gotcha"
+  </h1>
+  <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
+   <h2 class="text-lg font-semibold text-red-600 mb-2">
+    Incorrect: Potential Accessibility Issue (Gotcha)
+   </h2>
+   <label class="block text-sm font-medium text-gray-700 mb-1" for="search-bad">
+    Search (Focus Outline Removed Badly)
+   </label>
+   <!--
+            GOTCHA DEMONSTRATION:
+            This input removes the default browser outline (`focus:outline-none`)
+            WITHOUT providing a clear alternative visual focus indicator.
+            This is bad for accessibility, especially for keyboard users who rely on
+            focus indicators to know where they are on the page.
+            While it might change border color, the lack of a distinct ring or strong outline replacement
+            can make focus hard to discern.
+        -->
+   <input class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:border-red-500 focus:outline-none text-gray-900" id="search-bad" placeholder="Problematic focus..." type="text"/>
+   <p class="text-xs text-red-500 mt-1">
+    This field uses
+    <code>
+     focus:outline-none
+    </code>
+    without a sufficient alternative like
+    <code>
+     focus:ring
+    </code>
+    . This can be an accessibility issue.
+   </p>
+  </div>
+  <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
+   <h2 class="text-lg font-semibold text-green-600 mb-2">
+    Correct: Accessible Custom Focus
+   </h2>
+   <label class="block text-sm font-medium text-gray-700 mb-1" for="search-good">
+    Search (Focus Outline Replaced Correctly)
+   </label>
+   <!--
+            CORRECTED APPROACH:
+            Here, `focus:outline-none` is used to remove the default browser outline,
+            BUT it's immediately replaced with `focus:border-indigo-500` for a distinct border color
+            AND `focus:ring-2 focus:ring-indigo-300` to add a visible ring.
+            This provides a clear, custom focus indicator, maintaining accessibility.
+        -->
+   <input class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-300 text-gray-900" id="search-good" placeholder="Proper custom focus..." type="text"/>
+   <p class="text-xs text-green-700 mt-1">
+    This field uses
+    <code>
+     focus:outline-none
+    </code>
+    but provides alternatives:
+    <code>
+     focus:border-indigo-500
+    </code>
+    and
+    <code>
+     focus:ring-2
+    </code>
+    . This is accessible.
+   </p>
+  </div>
+  <p class="text-sm text-gray-700 mt-4 text-center max-w-lg">
+   The "Gotcha" with focus styling is removing the browser's default focus outline (often using
+   <code>
+    focus:outline-none
+   </code>
+   )
+        without providing a clear and equally noticeable alternative. This can make it difficult for keyboard navigators
+        and users with visual impairments to see which element is currently focused. Always ensure your custom focus styles
+        are highly visible (e.g., using rings, distinct borders, or background changes).
+  </p>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

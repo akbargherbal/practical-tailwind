@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Text Alignment
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto max-w-2xl bg-white p-6 rounded-lg shadow-md">
+   <h1 class="text-2xl font-bold mb-6 text-center">
+    Text Alignment Examples
+   </h1>
+   <!-- Example 1: text-left -->
+   <div class="mb-6 p-4 bg-blue-50 border border-blue-200 rounded">
+    <h2 class="text-lg font-semibold mb-2 text-blue-700">
+     Using
+     <code>
+      text-left
+     </code>
+    </h2>
+    <p class="text-left">
+     This paragraph has its text aligned to the left. This is often the default text alignment for most languages,
+                but explicitly using
+     <code>
+      text-left
+     </code>
+     ensures this behavior. Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit.
+    </p>
+   </div>
+   <!-- Example 2: text-center -->
+   <div class="mb-6 p-4 bg-green-50 border border-green-200 rounded">
+    <h2 class="text-lg font-semibold mb-2 text-green-700">
+     Using
+     <code>
+      text-center
+     </code>
+    </h2>
+    <p class="text-center">
+     This paragraph has its text aligned to the center. The
+     <code>
+      text-center
+     </code>
+     class is applied directly
+                to this paragraph element. Ideal for headings or specific call-outs. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+   </div>
+   <!-- Example 3: text-right -->
+   <div class="p-4 bg-purple-50 border border-purple-200 rounded">
+    <h2 class="text-lg font-semibold mb-2 text-purple-700">
+     Using
+     <code>
+      text-right
+     </code>
+    </h2>
+    <p class="text-right">
+     This paragraph has its text aligned to the right. Use
+     <code>
+      text-right
+     </code>
+     when you need content
+                to flush against the right edge of its container. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+    </p>
+   </div>
+   <div class="mt-6 p-4 bg-gray-200 rounded">
+    <p class="text-center text-sm">
+     These alignment classes (
+     <code>
+      text-left
+     </code>
+     ,
+     <code>
+      text-center
+     </code>
+     ,
+     <code>
+      text-right
+     </code>
+     )
+                apply to the text content
+     <span class="font-bold">
+      _within_
+     </span>
+     their parent block-level element.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

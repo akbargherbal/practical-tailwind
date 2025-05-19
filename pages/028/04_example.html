@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Text Alignment Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-50 from_inside_iframe">
+  <div class="container mx-auto p-8">
+   <h1 class="text-3xl font-bold mb-8 text-center text-red-600">
+    Gotcha: Text Alignment vs. Block Centering
+   </h1>
+   <p class="mb-6 text-gray-700">
+    The classes
+    <code class="font-mono bg-gray-200 text-sm px-1.5 py-0.5 rounded">
+     text-left
+    </code>
+    ,
+    <code class="font-mono bg-gray-200 text-sm px-1.5 py-0.5 rounded">
+     text-center
+    </code>
+    , and
+    <code class="font-mono bg-gray-200 text-sm px-1.5 py-0.5 rounded">
+     text-right
+    </code>
+    align the text *within* its own block-level container.
+            They do not center the block element itself on the page.
+   </p>
+   <!-- GOTCHA DEMONSTRATION PART 1: text-center on a div that is NOT full width, without mx-auto -->
+   <div class="mb-8 p-4 border border-orange-400 rounded-lg shadow-sm bg-orange-50">
+    <h2 class="text-xl font-semibold mb-3 text-orange-700">
+     Attempting to Center a Block with
+     <code class="font-mono bg-orange-200 text-sm px-1.5 py-0.5 rounded">
+      text-center
+     </code>
+     Alone (Incorrect for block)
+    </h2>
+    <div class="w-3/4 bg-orange-100 p-4 border border-dashed border-orange-500 text-center">
+     <!-- This div has width (w-3/4) and text-center. -->
+     <p>
+      This div has
+      <code class="font-mono bg-orange-200 text-sm px-1.5 py-0.5 rounded">
+       w-3/4
+      </code>
+      and
+      <code class="font-mono bg-orange-200 text-sm px-1.5 py-0.5 rounded">
+       text-center
+      </code>
+      .
+     </p>
+     <p class="mt-1">
+      The text
+      <em>
+       inside this orange box
+      </em>
+      is centered.
+     </p>
+     <p class="mt-1">
+      However, the orange box itself is aligned to the left (its default block layout position) within its parent.
+     </p>
+     <p class="mt-1 font-bold">
+      It is NOT centered on the page.
+     </p>
+    </div>
+    <!-- HTML comment within the body explaining the gotcha for this specific case -->
+    <!--
+                In the example above, `text-center` correctly centers the text *within* the orange div.
+                But because the orange div itself doesn't have `mx-auto`, it remains aligned to the left
+                despite having a width less than 100%.
+            -->
+    <p class="mt-3 text-sm text-orange-600">
+     To center the orange block above, you need to add
+     <code class="font-mono bg-orange-200 text-sm px-1.5 py-0.5 rounded">
+      mx-auto
+     </code>
+     to it.
+    </p>
+   </div>
+   <!-- SOLUTION: Using mx-auto to center the block, and text-center for its content -->
+   <div class="mb-8 p-4 border border-green-400 rounded-lg shadow-sm bg-green-50">
+    <h2 class="text-xl font-semibold mb-3 text-green-700">
+     Correctly Centering a Block and its Text
+    </h2>
+    <div class="w-3/4 mx-auto bg-green-100 p-4 border border-dashed border-green-500 text-center">
+     <!-- This div has width (w-3/4), mx-auto, and text-center. -->
+     <p>
+      This div has
+      <code class="font-mono bg-green-200 text-sm px-1.5 py-0.5 rounded">
+       w-3/4
+      </code>
+      ,
+      <code class="font-mono bg-green-200 text-sm px-1.5 py-0.5 rounded">
+       mx-auto
+      </code>
+      , and
+      <code class="font-mono bg-green-200 text-sm px-1.5 py-0.5 rounded">
+       text-center
+      </code>
+      .
+     </p>
+     <p class="mt-1">
+      The green box is centered on the page due to
+      <code class="font-mono bg-green-200 text-sm px-1.5 py-0.5 rounded">
+       mx-auto
+      </code>
+      .
+     </p>
+     <p class="mt-1">
+      The text
+      <em>
+       inside this green box
+      </em>
+      is centered due to
+      <code class="font-mono bg-green-200 text-sm px-1.5 py-0.5 rounded">
+       text-center
+      </code>
+      .
+     </p>
+    </div>
+    <p class="mt-3 text-sm text-green-600">
+     Here,
+     <code class="font-mono bg-green-200 text-sm px-1.5 py-0.5 rounded">
+      mx-auto
+     </code>
+     centers the block element (the green box), and
+     <code class="font-mono bg-green-200 text-sm px-1.5 py-0.5 rounded">
+      text-center
+     </code>
+     centers the text content within that block.
+    </p>
+   </div>
+   <div class="mt-8 p-4 border border-gray-300 rounded-lg bg-white">
+    <h3 class="text-lg font-semibold mb-2 text-gray-800">
+     Key Takeaway for the "Gotcha":
+    </h3>
+    <ul class="list-disc list-inside text-gray-700 space-y-1">
+     <li>
+      <code class="font-mono bg-gray-200 text-sm px-1.5 py-0.5 rounded">
+       text-center
+      </code>
+      : Aligns inline content (text, inline images) within its block container.
+     </li>
+     <li>
+      <code class="font-mono bg-gray-200 text-sm px-1.5 py-0.5 rounded">
+       mx-auto
+      </code>
+      : Centers a block-level element (that has a defined width less than 100%) horizontally within its parent.
+     </li>
+    </ul>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

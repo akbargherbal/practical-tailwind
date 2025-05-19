@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Borders - Practical Applications
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6">
+   Tailwind CSS Borders: Practical Applications
+  </h1>
+  <!-- Example 1: Input Field Styling -->
+  <div class="mb-8 p-4 bg-white shadow">
+   <h2 class="text-lg font-semibold mb-2">
+    Input Field with Border
+   </h2>
+   <label class="block text-sm font-medium text-gray-700 mb-1" for="name">
+    Name:
+   </label>
+   <input class="p-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-1 focus:ring-blue-500 w-full md:w-1/2" id="name" placeholder="Enter your name" type="text"/>
+   <p class="mt-2 text-sm text-gray-600">
+    Classes used:
+    <code class="bg-gray-200 p-1 rounded">
+     border border-gray-300 rounded-md
+    </code>
+    .
+            Focus state adds
+    <code class="bg-gray-200 p-1 rounded">
+     focus:border-blue-500
+    </code>
+    .
+   </p>
+  </div>
+  <!-- Example 2: Image Placeholder with Border -->
+  <div class="mb-8 p-4 bg-white shadow">
+   <h2 class="text-lg font-semibold mb-2">
+    Image with Border
+   </h2>
+   <div class="w-48 h-32 bg-gray-300 border-4 border-dashed border-purple-500 flex items-center justify-center text-gray-500">
+    Image Placeholder
+   </div>
+   <p class="mt-2 text-sm text-gray-600">
+    Classes used:
+    <code class="bg-gray-200 p-1 rounded">
+     border-4 border-dashed border-purple-500
+    </code>
+    .
+   </p>
+  </div>
+  <!-- Example 3: Separating Sections / List Items -->
+  <div class="mb-8 p-4 bg-white shadow">
+   <h2 class="text-lg font-semibold mb-2">
+    Separating List Items
+   </h2>
+   <ul class="w-full md:w-2/3">
+    <li class="p-3 border-b border-gray-200">
+     List Item 1
+    </li>
+    <li class="p-3 border-b border-gray-200">
+     List Item 2
+    </li>
+    <li class="p-3 border-b border-gray-200">
+     List Item 3 (last one might not need a bottom border)
+    </li>
+    <li class="p-3">
+     List Item 4 (no bottom border)
+    </li>
+   </ul>
+   <p class="mt-2 text-sm text-gray-600">
+    Class used for separation:
+    <code class="bg-gray-200 p-1 rounded">
+     border-b border-gray-200
+    </code>
+    .
+   </p>
+  </div>
+  <!-- Example 4: Card Component with Border -->
+  <div class="p-4 bg-white shadow">
+   <h2 class="text-lg font-semibold mb-2">
+    Card Component
+   </h2>
+   <div class="p-6 bg-indigo-50 border-2 border-indigo-500 rounded-lg max-w-sm">
+    <h3 class="text-xl font-bold text-indigo-700 mb-2">
+     Card Title
+    </h3>
+    <p class="text-indigo-600">
+     This card uses a
+     <code class="bg-indigo-100 p-1 rounded">
+      border-2 border-indigo-500
+     </code>
+     to create a distinctive outline.
+    </p>
+   </div>
+   <p class="mt-2 text-sm text-gray-600">
+    Classes used:
+    <code class="bg-gray-200 p-1 rounded">
+     border-2 border-indigo-500 rounded-lg
+    </code>
+    .
+   </p>
+   <!-- Comment on box-sizing: Tailwind's default `box-sizing: border-box` ensures the padding
+        and border of this card are contained within its defined dimensions, simplifying layout. -->
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: "Gotcha" - Parent Positioning
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="text-center mb-8">
+   <h2 class="text-xl font-semibold">
+    Example 2: The "Gotcha" - Importance of `relative` on Parent
+   </h2>
+   <p class="text-gray-600">
+    Demonstrating what happens when the parent is not positioned.
+   </p>
+  </div>
+  <div class="flex flex-wrap justify-around gap-8">
+   <!-- Scenario 1: Gotcha - Parent is NOT 'relative' -->
+   <div class="w-72">
+    <h3 class="text-lg font-medium mb-2 text-center">
+     Gotcha: Parent without `relative`
+    </h3>
+    <div class="bg-gray-300 p-4 h-48 border-2 border-dashed border-red-500">
+     <!-- This parent is NOT 'relative'. Child will be positioned relative to body or nearest positioned ancestor. -->
+     <p class="text-sm mb-2">
+      Parent (not `relative`)
+     </p>
+     <div class="absolute top-10 left-10 bg-red-500 text-white p-3 rounded shadow-lg">
+      Child (absolute)
+      <p class="text-xs">
+       (Positioned relative to body/viewport)
+      </p>
+     </div>
+     <!-- HTML Comment: The above 'absolute' child might appear outside this gray box,
+                     or at the top-left of the page body, because its direct parent
+                     is not a "positioned" element (e.g., relative, absolute, fixed, sticky).
+                     In this case, top-10 and left-10 are from the body's top-left corner.
+                -->
+    </div>
+    <p class="mt-2 text-xs text-center text-red-700">
+     Child 'escapes' its intended parent visually.
+    </p>
+   </div>
+   <!-- Scenario 2: Correct - Parent IS 'relative' -->
+   <div class="w-72">
+    <h3 class="text-lg font-medium mb-2 text-center">
+     Correct: Parent with `relative`
+    </h3>
+    <div class="relative bg-blue-200 p-4 h-48 border-2 border-blue-500">
+     <!-- This parent IS 'relative'. Child will be positioned relative to THIS div. -->
+     <p class="text-sm mb-2">
+      Parent (`relative`)
+     </p>
+     <div class="absolute top-4 right-4 bg-green-500 text-white p-3 rounded shadow-lg">
+      Child (absolute)
+      <p class="text-xs">
+       (Positioned relative to blue parent)
+      </p>
+     </div>
+     <!-- HTML Comment: The above 'absolute' child is correctly positioned within this blue box
+                     because its direct parent has the 'relative' class.
+                -->
+    </div>
+    <p class="mt-2 text-xs text-center text-green-700">
+     Child is correctly positioned within its parent.
+    </p>
+   </div>
+  </div>
+  <div class="mt-12 p-4 bg-yellow-100 border border-yellow-300 rounded-md">
+   <h4 class="font-bold text-yellow-800">
+    Key Takeaway (Gotcha):
+   </h4>
+   <p class="text-yellow-700">
+    For an `absolute` positioned child to be positioned relative to its direct parent, that parent element
+    <strong class="font-semibold">
+     must
+    </strong>
+    have a positioning context (e.g., `relative`, `absolute`, `fixed`, or `sticky`). If not, the `absolute` child will look for the nearest ancestor that does, or ultimately the `body`/viewport.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

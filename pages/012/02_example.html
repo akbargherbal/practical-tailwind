@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Rounded Button Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex flex-col items-center space-y-6 from_inside_iframe">
+  <!-- Example 2: Gotcha - Image/Icon Corners Poking Out -->
+  <div class="text-center mb-6">
+   <h1 class="text-2xl font-bold mb-2">
+    Gotcha: Inner Element Corners
+   </h1>
+   <p class="text-gray-700">
+    Illustrating how sharp corners of an inner element (like an image) can "poke out" of a rounded button, and how to fix it.
+   </p>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+   <!-- Gotcha Demonstration -->
+   <div class="bg-white p-6 rounded-lg shadow-md">
+    <h3 class="text-lg font-semibold mb-3 text-red-600">
+     Problem: Image Corners Poking Out
+    </h3>
+    <p class="text-sm text-gray-600 mb-4">
+     This button is
+     <code>
+      rounded-full
+     </code>
+     , but the square image inside it has its corners visible, breaking the pill shape illusion.
+    </p>
+    <button class="bg-purple-500 text-white p-1 rounded-full inline-flex items-center justify-center">
+     <!-- This image's sharp corners will be visible at the edges of the rounded button -->
+     <img alt="Square Image" class="w-12 h-12" src="https://via.placeholder.com/48/FF0000/FFFFFF?Text=IMG"/>
+     <!-- The image source is a 48x48 red square with white text "IMG" -->
+    </button>
+    <p class="mt-2 text-xs text-gray-500">
+     Notice how the red square's corners extend beyond the purple button's intended curve.
+    </p>
+   </div>
+   <!-- Gotcha Solution -->
+   <div class="bg-white p-6 rounded-lg shadow-md">
+    <h3 class="text-lg font-semibold mb-3 text-green-600">
+     Solution: Using
+     <code>
+      overflow-hidden
+     </code>
+    </h3>
+    <p class="text-sm text-gray-600 mb-4">
+     Applying
+     <code>
+      overflow-hidden
+     </code>
+     to the button clips any content that extends beyond its rounded boundaries.
+    </p>
+    <button class="bg-teal-500 text-white p-1 rounded-full inline-flex items-center justify-center overflow-hidden">
+     <!-- HTML Comment: The 'overflow-hidden' class on the button is key here. -->
+     <!-- It clips the parts of the image that would normally extend beyond the button's rounded border. -->
+     <img alt="Square Image Clipped" class="w-12 h-12" src="https://via.placeholder.com/48/00FF00/000000?Text=IMG"/>
+     <!-- The image source is a 48x48 green square with black text "IMG" -->
+    </button>
+    <p class="mt-2 text-xs text-gray-500">
+     Here, the green square's corners are neatly clipped by the button's rounded shape due to
+     <code>
+      overflow-hidden
+     </code>
+     .
+    </p>
+   </div>
+  </div>
+  <div class="mt-6 p-4 bg-amber-100 border border-amber-300 rounded-md text-sm text-amber-700 w-full max-w-2xl">
+   <p>
+    <strong class="font-semibold">
+     Gotcha Explanation:
+    </strong>
+   </p>
+   <p>
+    When a parent element (like a button) has rounded corners (e.g.,
+    <code>
+     rounded-full
+    </code>
+    ), child elements (like an
+    <code>
+     &lt;img&gt;
+    </code>
+    or an icon with a background) don't automatically inherit this clipping mask. If the child has sharp corners and is sized to fill or nearly fill the parent, its corners can visually "poke out".
+   </p>
+   <p class="mt-2">
+    <strong class="font-semibold">
+     The Fix:
+    </strong>
+    Apply
+    <code>
+     overflow-hidden
+    </code>
+    to the parent (the button). This tells the browser to clip any content from child elements that extends beyond the parent's boundaries (including its rounded corners).
+   </p>
+   <p class="mt-2">
+    Alternatively, you could also apply rounding to the inner element itself (e.g.,
+    <code>
+     &lt;img class="rounded-full"&gt;
+    </code>
+    ), but
+    <code>
+     overflow-hidden
+    </code>
+    on the container is often a more robust solution for arbitrary content.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

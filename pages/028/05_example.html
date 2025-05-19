@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill Example - Basic Text Alignment
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <!-- This example demonstrates the basic application of text-left, text-center, and text-right. -->
+  <div class="container mx-auto bg-white p-6 rounded-lg shadow-md">
+   <h1 class="text-2xl font-bold mb-6 text-center">
+    Text Alignment Examples
+   </h1>
+   <div class="mb-4">
+    <h2 class="text-lg font-semibold mb-2">
+     Text Left:
+    </h2>
+    <p class="text-left bg-blue-100 p-4 rounded">
+     This paragraph uses the
+     <code>
+      text-left
+     </code>
+     class. The text content within this block-level paragraph element will align to the left. This is often the default behavior for most languages.
+    </p>
+   </div>
+   <div class="mb-4">
+    <h2 class="text-lg font-semibold mb-2">
+     Text Center:
+    </h2>
+    <p class="text-center bg-green-100 p-4 rounded">
+     This paragraph uses the
+     <code>
+      text-center
+     </code>
+     class. All text content inside this paragraph will be centered relative to the paragraph's own boundaries.
+    </p>
+   </div>
+   <div class="mb-4">
+    <h2 class="text-lg font-semibold mb-2">
+     Text Right:
+    </h2>
+    <p class="text-right bg-yellow-100 p-4 rounded">
+     This paragraph uses the
+     <code>
+      text-right
+     </code>
+     class. The text here will align to the right edge of this paragraph element.
+    </p>
+   </div>
+   <div class="mt-6 border-t pt-4 text-sm text-gray-600">
+    <p>
+     Each of these paragraphs is a block-level element. The
+     <code>
+      text-*
+     </code>
+     utilities control the alignment of the text
+     <strong class="font-semibold">
+      within
+     </strong>
+     these containers.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

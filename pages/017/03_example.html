@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Horizontal Nav - Basic
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-50 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Basic Horizontal Navigation Bar
+  </h1>
+  <p class="mb-6">
+   This example shows a simple horizontal navigation bar using
+   <code>
+    flex
+   </code>
+   ,
+   <code>
+    space-x-4
+   </code>
+   , and
+   <code>
+    items-center
+   </code>
+   .
+  </p>
+  <!-- Basic Horizontal Navigation Bar -->
+  <nav class="bg-blue-600 text-white p-4 rounded-md shadow-lg">
+   <ul class="flex space-x-4 items-center">
+    <li>
+     <a class="hover:bg-blue-700 px-3 py-2 rounded-md" href="#">
+      Home
+     </a>
+    </li>
+    <li>
+     <a class="hover:bg-blue-700 px-3 py-2 rounded-md" href="#">
+      Products
+     </a>
+    </li>
+    <li>
+     <a class="hover:bg-blue-700 px-3 py-2 rounded-md" href="#">
+      About Us
+     </a>
+    </li>
+    <li>
+     <a class="hover:bg-blue-700 px-3 py-2 rounded-md" href="#">
+      Services
+     </a>
+    </li>
+    <li>
+     <a class="hover:bg-blue-700 px-3 py-2 rounded-md" href="#">
+      Contact
+     </a>
+    </li>
+   </ul>
+   <!-- 
+            Key classes used:
+            - `flex`: Enables flexbox layout for the `ul` element.
+            - `space-x-4`: Adds horizontal spacing between the `li` child elements.
+            - `items-center`: Vertically aligns flex items to the center.
+                           While all items here are naturally the same height,
+                           it's good practice for navbars.
+        -->
+  </nav>
+  <div class="mt-8 p-4 bg-indigo-100 border border-indigo-300 rounded-md">
+   <h2 class="text-lg font-semibold text-indigo-700">
+    Explanation:
+   </h2>
+   <p class="text-indigo-600">
+    The
+    <code>
+     nav
+    </code>
+    element contains a
+    <code>
+     ul
+    </code>
+    which is styled with:
+   </p>
+   <ul class="list-disc list-inside text-indigo-600 mt-2">
+    <li>
+     <code>
+      flex
+     </code>
+     : Makes the list items (
+     <code>
+      li
+     </code>
+     ) arrange in a row.
+    </li>
+    <li>
+     <code>
+      space-x-4
+     </code>
+     : Adds a margin to the left of each list item except the first, creating space between them. (
+     <code>
+      1rem
+     </code>
+     or
+     <code>
+      16px
+     </code>
+     by default).
+    </li>
+    <li>
+     <code>
+      items-center
+     </code>
+     : Ensures all items within the flex container are vertically aligned to the center. This is crucial if items have varying heights, as shown in the next example.
+    </li>
+   </ul>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

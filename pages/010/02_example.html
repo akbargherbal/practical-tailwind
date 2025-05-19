@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill Example - Sticky Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="font-sans from_inside_iframe">
+  <div class="p-6 bg-gray-50">
+   <h1 class="text-3xl font-bold mb-6 text-center">
+    Understanding `sticky` and its Parent Container
+   </h1>
+   <!-- GOTCHA DEMONSTRATION: Sticky element in a non-scrolling or short parent -->
+   <div class="mb-10 border-2 border-red-500 p-4 rounded">
+    <h2 class="text-xl font-semibold mb-2 text-red-700">
+     Gotcha: `sticky` in a Short Parent
+    </h2>
+    <div class="bg-gray-200 p-2 rounded h-48 overflow-hidden">
+     <!-- Parent is too short to scroll internally to show stickiness -->
+     <div class="sticky top-0 bg-yellow-400 p-3 shadow">
+      This element has `sticky top-0`.
+     </div>
+     <p class="mt-2 p-2">
+      This parent container is only
+      <code>
+       h-48
+      </code>
+      . Since there's no overflow/scroll *within this parent*, the "sticky" element above won't appear to stick relative to the overall page scroll. It sticks only to the top of *this gray box* if this box itself were to scroll.
+     </p>
+     <!-- Add some content to make the parent box *seem* like it could scroll, but it won't relative to the page -->
+     <div class="h-20">
+     </div>
+    </div>
+    <p class="mt-2 text-sm text-red-600">
+     <strong>
+      Observation:
+     </strong>
+     The yellow bar will not stick to the top of the browser window as you scroll the main page, because its direct parent (the gray box) is not tall enough to have its own scrollbar that would reveal the sticky behavior.
+    </p>
+   </div>
+   <!-- CORRECTED EXAMPLE: Sticky element in a sufficiently tall scrolling parent -->
+   <div class="mb-10 border-2 border-green-500 p-4 rounded">
+    <h2 class="text-xl font-semibold mb-2 text-green-700">
+     Correct: `sticky` in a Tall Scrolling Parent
+    </h2>
+    <div class="bg-gray-200 p-2 rounded h-96 overflow-y-auto">
+     <!-- Parent is h-96 and has overflow-y-auto -->
+     <div class="sticky top-0 bg-green-400 text-black p-3 shadow z-10">
+      This element has `sticky top-0`.
+     </div>
+     <p class="mt-2 p-2">
+      This parent container is
+      <code>
+       h-96
+      </code>
+      and has
+      <code>
+       overflow-y-auto
+      </code>
+      . Now, scroll *inside this gray box*.
+     </p>
+     <div class="h-32 bg-white m-2">
+      Content Block A
+     </div>
+     <div class="h-32 bg-white m-2">
+      Content Block B
+     </div>
+     <div class="h-32 bg-white m-2">
+      Content Block C
+     </div>
+     <div class="h-32 bg-white m-2">
+      Content Block D
+     </div>
+     <p class="mt-2 text-sm text-green-600">
+      <strong>
+       Observation:
+      </strong>
+      The green bar sticks to the top of *this gray box* as you scroll within it.
+     </p>
+    </div>
+   </div>
+   <!-- Another way to make sticky work is if parent is implicitly tall due to content -->
+   <div class="border-2 border-blue-500 p-4 rounded">
+    <h2 class="text-xl font-semibold mb-2 text-blue-700">
+     Correct: `sticky` in an Implicitly Tall Parent (Page Scroll)
+    </h2>
+    <div class="sticky top-0 bg-purple-500 text-white p-4 shadow-md z-20">
+     <h1 class="text-lg font-bold">
+      Main Page Sticky Header
+     </h1>
+     <p class="text-xs">
+      This uses `sticky top-0` and its parent is the `body` (or a large div wrapping content).
+     </p>
+    </div>
+    <p class="mt-4">
+     This purple header is sticky to the top of the browser viewport when the page scrolls because its parent (ultimately the body or a main wrapper) is tall enough for the page to scroll.
+    </p>
+    <div class="h-screen bg-gray-100 mt-4 p-4">
+     Extra content to make the whole page scrollable...
+    </div>
+    <div class="h-screen bg-gray-200 mt-4 p-4">
+     Even more content...
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

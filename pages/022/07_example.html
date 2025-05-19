@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Dividers: Vertical (border-l)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-50 from_inside_iframe">
+  <div class="container mx-auto bg-white p-6 rounded-lg shadow-md">
+   <h1 class="text-2xl font-bold mb-6">
+    Using `border-l` for Vertical Dividers
+   </h1>
+   <div class="flex space-x-0">
+    <!-- `space-x-0` to ensure divider spacing is explicit -->
+    <!-- Left Content Section -->
+    <div class="w-1/2 p-4 bg-yellow-100 rounded-l">
+     <h2 class="text-lg font-semibold">
+      Column A
+     </h2>
+     <p>
+      This is the content for the left column. A vertical divider will be placed to its right (or to the left of Column B).
+     </p>
+    </div>
+    <!-- Right Content Section with a left border as a divider -->
+    <!-- The `border-l` class is applied to this element.
+                 `border-gray-300` sets the color, `pl-4` adds padding to the left of the content (right of the line),
+                 and `ml-4` adds margin to the left of the line (creating space from Column A). -->
+    <div class="w-1/2 p-4 bg-pink-100 rounded-r border-l border-gray-300 pl-4 ml-4">
+     <h2 class="text-lg font-semibold">
+      Column B
+     </h2>
+     <p>
+      This is the content for the right column, with a vertical divider to its left.
+     </p>
+    </div>
+   </div>
+   <h2 class="text-xl font-bold mt-8 mb-4">
+    Alternative: Vertical Divider between inline-blocks
+   </h2>
+   <div class="text-center">
+    <span class="inline-block p-3 bg-purple-100 rounded">
+     Item 1
+    </span>
+    <!-- A span acting as a vertical divider -->
+    <span class="inline-block align-middle h-8 w-px bg-gray-300 mx-3">
+    </span>
+    <span class="inline-block p-3 bg-purple-100 rounded">
+     Item 2
+    </span>
+    <!-- Another way using border on an empty inline-block span -->
+    <span class="inline-block align-middle border-l border-purple-500 h-8 mx-3">
+    </span>
+    <span class="inline-block p-3 bg-purple-100 rounded">
+     Item 3
+    </span>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

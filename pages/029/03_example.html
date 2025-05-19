@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Basic Truncate
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-6 text-center">
+    Tailwind CSS: `truncate` Skill
+   </h1>
+   <!-- Example 1: Basic truncate in action -->
+   <div class="mb-8 p-6 border rounded-lg bg-white shadow-lg">
+    <h2 class="text-xl font-semibold mb-3 text-gray-700">
+     Card Title Example
+    </h2>
+    <p class="text-sm text-gray-500 mb-2">
+     This card title is intentionally very long to demonstrate the truncate utility. It should be cut off with an ellipsis.
+    </p>
+    <div class="w-72 bg-blue-100 p-3 rounded">
+     <p class="truncate font-medium text-blue-800">
+      This is a very, very long title for a card item that absolutely needs to be truncated because it is way too lengthy to fit.
+     </p>
+    </div>
+    <p class="mt-3 text-xs text-gray-500">
+     The text inside the blue box above uses the
+     <code>
+      truncate
+     </code>
+     class.
+    </p>
+   </div>
+   <!-- Example 2: Truncate in a table cell context -->
+   <div class="mb-8 p-6 border rounded-lg bg-white shadow-lg">
+    <h2 class="text-xl font-semibold mb-3 text-gray-700">
+     Table Cell Example
+    </h2>
+    <p class="text-sm text-gray-500 mb-2">
+     Imagine a table where descriptions need to be kept concise.
+    </p>
+    <div class="overflow-x-auto">
+     <table class="w-full border-collapse border border-gray-300">
+      <thead>
+       <tr class="bg-gray-200">
+        <th class="border border-gray-300 p-2 text-left">
+         Item ID
+        </th>
+        <th class="border border-gray-300 p-2 text-left">
+         Description
+        </th>
+        <th class="border border-gray-300 p-2 text-left">
+         Status
+        </th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr>
+        <td class="border border-gray-300 p-2">
+         #12345
+        </td>
+        <td class="border border-gray-300 p-2">
+         <div class="w-64">
+          <!-- Fixed width for parent to demonstrate truncate -->
+          <p class="truncate">
+           This is an extremely long description for item #12345. It contains many details that are not necessary for a quick overview in a table, so we will truncate it.
+          </p>
+         </div>
+        </td>
+        <td class="border border-gray-300 p-2">
+         Active
+        </td>
+       </tr>
+       <tr>
+        <td class="border border-gray-300 p-2">
+         #67890
+        </td>
+        <td class="border border-gray-300 p-2">
+         <div class="w-64">
+          <p class="truncate">
+           Another very long description, this time for item #67890, also needs truncation to keep the table clean.
+          </p>
+         </div>
+        </td>
+        <td class="border border-gray-300 p-2">
+         Inactive
+        </td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+    <p class="mt-3 text-xs text-gray-500">
+     The "Description" column uses
+     <code>
+      truncate
+     </code>
+     within a fixed-width div.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

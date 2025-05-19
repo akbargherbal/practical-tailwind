@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Product Cards
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-200 p-8 अंतः from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-6 text-center">
+    Product Listing Example
+   </h1>
+   <!--
+            This example shows a grid of product cards, a common use case.
+            All cards are styled consistently using 'bg-white', 'rounded-lg', 'shadow-md', and 'p-4'.
+            This consistency is key to a clean and professional look, implicitly addressing the "gotcha"
+            about inconsistent padding and shadow overuse by demonstrating good practice.
+        -->
+   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <!-- Product Card 1 -->
+    <div class="bg-white rounded-lg shadow-md p-4 flex flex-col">
+     <img alt="Product Image 1" class="rounded-md mb-4 w-full h-48 object-cover" src="https://via.placeholder.com/400x250?text=Product+1"/>
+     <h2 class="text-xl font-semibold mb-2">
+      Cool Gadget
+     </h2>
+     <p class="text-gray-700 mb-3 text-sm flex-grow">
+      An amazing gadget that will solve all your problems. High quality and durable materials ensure long-lasting use.
+     </p>
+     <div class="mt-auto flex justify-between items-center">
+      <span class="text-lg font-bold text-indigo-600">
+       $99.99
+      </span>
+      <button class="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded text-sm">
+       Add to Cart
+      </button>
+     </div>
+    </div>
+    <!-- Product Card 2 -->
+    <div class="bg-white rounded-lg shadow-md p-4 flex flex-col">
+     <img alt="Product Image 2" class="rounded-md mb-4 w-full h-48 object-cover" src="https://via.placeholder.com/400x250?text=Product+2"/>
+     <h2 class="text-xl font-semibold mb-2">
+      Stylish Accessory
+     </h2>
+     <p class="text-gray-700 mb-3 text-sm flex-grow">
+      A very stylish accessory to complement your look. Made from premium materials, it's both elegant and practical.
+     </p>
+     <div class="mt-auto flex justify-between items-center">
+      <span class="text-lg font-bold text-indigo-600">
+       $49.50
+      </span>
+      <button class="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded text-sm">
+       Add to Cart
+      </button>
+     </div>
+    </div>
+    <!-- Product Card 3 -->
+    <div class="bg-white rounded-lg shadow-md p-4 flex flex-col">
+     <img alt="Product Image 3" class="rounded-md mb-4 w-full h-48 object-cover" src="https://via.placeholder.com/400x250?text=Product+3"/>
+     <h2 class="text-xl font-semibold mb-2">
+      Essential Tool
+     </h2>
+     <p class="text-gray-700 mb-3 text-sm flex-grow">
+      This essential tool is a must-have for every household. Built to last and incredibly versatile for many tasks.
+     </p>
+     <div class="mt-auto flex justify-between items-center">
+      <span class="text-lg font-bold text-indigo-600">
+       $25.00
+      </span>
+      <button class="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded text-sm">
+       Add to Cart
+      </button>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS - Font Weight Comparison
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 font-sans bg-gray-50 from_inside_iframe">
+  <!-- This example demonstrates different font weights.
+         The default Tailwind CSS font stack (usually system UI fonts)
+         generally supports these common weights (`font-light`, `font-normal`, `font-semibold`, `font-bold`). -->
+  <h1 class="text-3xl font-bold mb-8 text-center text-slate-700">
+   Font Weight Utilities Showcase
+  </h1>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+   <div class="p-6 border border-gray-300 rounded-lg shadow-md bg-white">
+    <p class="font-light text-xl mb-2">
+     font-light
+    </p>
+    <p class="text-sm text-gray-600">
+     This text is rendered with `font-light`. It appears thinner than the normal weight, suitable for de-emphasis or delicate text.
+    </p>
+   </div>
+   <div class="p-6 border border-gray-300 rounded-lg shadow-md bg-white">
+    <p class="font-normal text-xl mb-2">
+     font-normal
+    </p>
+    <p class="text-sm text-gray-600">
+     This text is rendered with `font-normal`. This is typically the default weight for body text, offering good readability.
+    </p>
+   </div>
+   <div class="p-6 border border-gray-300 rounded-lg shadow-md bg-white">
+    <p class="font-semibold text-xl mb-2">
+     font-semibold
+    </p>
+    <p class="text-sm text-gray-600">
+     This text is rendered with `font-semibold`. It's bolder than normal but usually not as heavy as `font-bold`, good for subheadings.
+    </p>
+   </div>
+   <div class="p-6 border border-gray-300 rounded-lg shadow-md bg-white">
+    <p class="font-bold text-xl mb-2">
+     font-bold
+    </p>
+    <p class="text-sm text-gray-600">
+     This text is rendered with `font-bold`. It provides strong emphasis, commonly used for headings or important statements.
+    </p>
+   </div>
+  </div>
+  <div class="mt-10 p-6 bg-sky-100 border border-sky-300 rounded-lg">
+   <h2 class="text-xl font-semibold mb-3 text-sky-700">
+    Key Classes Used:
+   </h2>
+   <ul class="list-disc list-inside space-y-1">
+    <li>
+     <code class="bg-sky-200 text-sky-800 px-2 py-1 rounded">
+      font-light
+     </code>
+     - For lighter text.
+    </li>
+    <li>
+     <code class="bg-sky-200 text-sky-800 px-2 py-1 rounded">
+      font-normal
+     </code>
+     - For standard weight text.
+    </li>
+    <li>
+     <code class="bg-sky-200 text-sky-800 px-2 py-1 rounded">
+      font-semibold
+     </code>
+     - For semi-bold text.
+    </li>
+    <li>
+     <code class="bg-sky-200 text-sky-800 px-2 py-1 rounded">
+      font-bold
+     </code>
+     - For bold text.
+    </li>
+   </ul>
+   <p class="mt-3 text-sm text-sky-600">
+    These classes control the thickness of text characters, allowing for varied emphasis and visual hierarchy.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

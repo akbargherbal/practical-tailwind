@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Cut off long text with "..." (ellipsis).
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style>
+   /* Custom styles can be added here if needed, but prefer Tailwind classes */
+  </style>
+  <style>
+   iframe.default_style {
+  width: 100%;
+  min-height: 300px; /* Reasonable minimum */
+  border: none;
+  display: block;
+}
+  </style>
+ </head>
+ <body class="bg-slate-50">
+  <div class="container mx-auto p-6 md:p-10 font-sans text-slate-800">
+   <header class="mb-10">
+    <h1 class="text-4xl font-bold text-center text-slate-700">
+     Tailwind CSS Concept Explained
+    </h1>
+   </header>
+   <main>
+    <section class="mb-12 bg-white p-6 md:p-8 rounded-lg shadow-lg">
+     <h2 class="text-3xl font-semibold mb-6 text-slate-600 border-b-2 border-slate-300 pb-3">
+      Working with Text
+     </h2>
+     <h3 class="text-2xl font-medium mb-5 text-indigo-700">
+      Cut off long text with "..." (ellipsis).
+     </h3>
+     <p class="mb-2 text-slate-700">
+      <strong class="font-semibold text-slate-800">
+       Skill ID:
+      </strong>
+      WorkingWithText_29
+     </p>
+     <p class="mb-2 text-slate-700">
+      <strong class="font-semibold text-slate-800">
+       Description:
+      </strong>
+      If text is too long to fit, show the beginning and then "..."
+     </p>
+     <p class="mb-4 text-slate-700">
+      <strong class="font-semibold text-slate-800">
+       Where to apply:
+      </strong>
+      Short descriptions in cards, long titles, table cells.
+     </p>
+     <div>
+      <p class="mb-2 mt-4 text-slate-700">
+       <strong class="font-semibold text-slate-800">
+        Key Tailwind Classes:
+       </strong>
+      </p>
+      <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mb-4">
+       <span>
+        <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+         truncate
+        </code>
+       </span>
+      </div>
+     </div>
+     <div class="bg-amber-50 border-l-4 border-amber-500 text-amber-800 p-4 mt-5 rounded-md shadow-sm">
+      <p>
+       <strong class="font-semibold text-amber-900">
+        Gotcha:
+       </strong>
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        truncate
+       </code>
+       only works reliably on a single line of text. For multi-line text truncation (showing "..." after 2 or 3 lines), you need the
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        @tailwindcss/line-clamp
+       </code>
+       plugin.
+      </p>
+     </div>
+     <div class="mt-8 pt-6 border-t border-slate-200">
+      <h4 class="text-xl font-semibold mb-4 text-slate-700">
+       Example:
+      </h4>
+      <div class="bg-slate-50 p-6 rounded-lg shadow">
+       <p class="mb-2 text-sm text-slate-600">
+        A normal paragraph that might be a bit long for its container, forcing a wrap:
+       </p>
+       <div class="w-64 p-3 border border-slate-300 rounded bg-white mb-4">
+        <p class="text-slate-700">
+         This is a rather long piece of text that we expect to wrap normally within this small box.
+        </p>
+       </div>
+       <p class="mb-2 text-sm text-slate-600">
+        The same text, but with
+        <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+         truncate
+        </code>
+        applied:
+       </p>
+       <div class="w-64 p-3 border border-slate-300 rounded bg-white">
+        <p class="truncate text-slate-700">
+         This is a rather long piece of text that we expect to wrap normally within this small box.
+        </p>
+       </div>
+       <p class="mt-2 text-xs text-slate-500">
+        (Resize your browser window or inspect element if the box width isn't small enough to trigger truncation)
+       </p>
+       <p class="mt-6 mb-2 text-sm text-slate-600">
+        Another example with
+        <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+         truncate
+        </code>
+        . This text is definitely too long:
+       </p>
+       <div class="w-48 p-3 border border-slate-300 rounded bg-white">
+        <p class="truncate text-slate-700">
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+       </div>
+      </div>
+     </div>
+    </section>
+   </main>
+  </div>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 1:
+  </h1>
+  <iframe frameborder="0" src="./01_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 2:
+  </h1>
+  <iframe frameborder="0" src="./02_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 3:
+  </h1>
+  <iframe frameborder="0" src="./03_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 4:
+  </h1>
+  <iframe frameborder="0" src="./04_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 5:
+  </h1>
+  <iframe frameborder="0" src="./05_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 6:
+  </h1>
+  <iframe frameborder="0" src="./06_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 7:
+  </h1>
+  <iframe frameborder="0" src="./07_example.html">
+  </iframe>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+  const iframes = document.querySelectorAll('iframe');
+
+  // Ensure all iframes have the default style class
+  iframes.forEach(iframe => iframe.classList.add('default_style'));
+
+  window.addEventListener('message', function(event) {
+    // Optional: add origin check for safety
+    if (event.data && typeof event.data.iframeHeight === 'number') {
+      const iframe = Array.from(iframes).find(iframe =>
+        iframe.contentWindow === event.source
+      );
+      if (iframe) {
+        iframe.style.height = (event.data.iframeHeight + 50) + 'px';
+      }
+    }
+  });
+});
+  </script>
+ </body>
+</html>

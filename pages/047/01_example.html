@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: OS-Based Dark Mode (Media Query)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style>
+   /* Additional style to make body full height for better viz */
+        body { min-height: 100vh; }
+  </style>
+ </head>
+ <body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-300 from_inside_iframe">
+  <div class="container mx-auto p-8">
+   <header class="mb-8 text-center">
+    <h1 class="text-4xl font-bold text-slate-900 dark:text-white">
+     Dark Mode: OS Preference (Media Query)
+    </h1>
+    <p class="mt-2 text-slate-600 dark:text-slate-400">
+     This page uses Tailwind's `dark:` variants. It will automatically switch to dark mode if your Operating System is set to dark mode.
+    </p>
+    <p class="mt-1 text-sm text-slate-500 dark:text-slate-500">
+     (Try changing your OS appearance settings to see the effect.)
+    </p>
+   </header>
+   <div class="grid md:grid-cols-2 gap-6">
+    <div class="p-6 bg-white dark:bg-slate-800 rounded-lg shadow-lg">
+     <h2 class="text-2xl font-semibold text-slate-900 dark:text-white mb-2">
+      Light Card / Dark Card
+     </h2>
+     <p class="text-slate-700 dark:text-slate-300">
+      This card has `bg-white dark:bg-slate-800`. The text also adapts using `dark:` variants.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+     </p>
+    </div>
+    <div class="p-6 bg-sky-100 dark:bg-sky-900 border border-sky-300 dark:border-sky-700 rounded-lg shadow-lg">
+     <h2 class="text-2xl font-semibold text-sky-800 dark:text-sky-200 mb-2">
+      Themed Card
+     </h2>
+     <p class="text-sky-700 dark:text-sky-300">
+      This card uses different colors: `bg-sky-100 dark:bg-sky-900`.
+                    Nulla facilisi. Proin euismod, nisl eget dictum aliquam, augue nisl convallis.
+     </p>
+    </div>
+   </div>
+   <footer class="mt-12 text-center text-sm text-slate-500 dark:text-slate-600">
+    <p>
+     In a project with a `tailwind.config.js` file, `darkMode: 'media'` (or relying on the default which is often 'media' for Tailwind v3+) enables this behavior.
+                The Tailwind CSS CDN typically uses this 'media' strategy by default.
+    </p>
+   </footer>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

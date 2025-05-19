@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Gotcha - Missing Base Flex
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Responsiveness Gotcha: Base Flex Class
+  </h1>
+  <p class="mb-6">
+   This example demonstrates the "Gotcha" regarding the base
+   <code>
+    flex
+   </code>
+   class when aiming for a responsive layout that stacks on mobile (column) and goes to row on larger screens.
+  </p>
+  <div class="mb-8">
+   <h2 class="text-xl font-semibold mb-2 text-red-700">
+    Incorrect (Illustrating the Gotcha)
+   </h2>
+   <p class="mb-2 text-sm text-gray-700">
+    Here, the parent container uses
+    <code>
+     sm:flex-row
+    </code>
+    and
+    <code>
+     items-center
+    </code>
+    but lacks the base
+    <code>
+     flex
+    </code>
+    (or
+    <code>
+     flex-col
+    </code>
+    ) for small screens.
+            As a result, on small screens, it's not a flex container, so
+    <code>
+     items-center
+    </code>
+    has no effect. The items stack due to default block behavior.
+            While
+    <code>
+     sm:flex-row
+    </code>
+    will make it a flex container on 'sm' screens and up (making
+    <code>
+     items-center
+    </code>
+    work there), properties like
+    <code>
+     items-center
+    </code>
+    or
+    <code>
+     justify-content
+    </code>
+    won't apply correctly on small screens if the container isn't explicitly `display: flex`.
+   </p>
+   <!-- Gotcha: Missing 'flex' or 'flex-col' for mobile. 
+             'items-center' will not work on small screens because it's not display:flex.
+             It becomes display:flex only at the 'sm' breakpoint due to 'sm:flex-row'.
+        -->
+   <div class="sm:flex-row items-center bg-red-100 p-4 rounded-lg shadow border border-red-300">
+    <div class="bg-red-400 text-white p-6 rounded-md mb-2 sm:mb-0 sm:mr-2 text-center">
+     Item A (Tall)
+     <br/>
+     (Block on mobile)
+    </div>
+    <div class="bg-red-400 text-white p-3 rounded-md text-center">
+     Item B
+     <br/>
+     (Block on mobile)
+    </div>
+   </div>
+   <p class="mt-2 text-xs text-red-600">
+    <em>
+     Comment: On small screens, "Item A" and "Item B" will stack. If
+     <code>
+      items-center
+     </code>
+     was intended for mobile, it wouldn't work here as the parent is not a flex container on small screens.
+    </em>
+   </p>
+  </div>
+  <div class="mb-8">
+   <h2 class="text-xl font-semibold mb-2 text-green-700">
+    Correct Implementation
+   </h2>
+   <p class="mb-2 text-sm text-gray-700">
+    Here, the parent container uses
+    <code>
+     flex flex-col sm:flex-row items-center
+    </code>
+    .
+    <code>
+     flex
+    </code>
+    makes it a flex container on all screen sizes.
+    <code>
+     flex-col
+    </code>
+    sets the direction to column for small screens.
+    <code>
+     sm:flex-row
+    </code>
+    changes the direction to row on 'sm' screens and up.
+    <code>
+     items-center
+    </code>
+    will now work correctly on all screen sizes because the parent is always a flex container.
+   </p>
+   <!-- Correct: 'flex' ensures it's a flex container. 
+             'flex-col' sets initial direction. 'items-center' works on mobile.
+             'sm:flex-row' changes direction on larger screens.
+        -->
+   <div class="flex flex-col sm:flex-row items-center bg-green-100 p-4 rounded-lg shadow border border-green-300">
+    <div class="bg-green-500 text-white p-6 rounded-md mb-2 sm:mb-0 sm:mr-2 text-center">
+     Item X (Tall)
+     <br/>
+     (Flex-col item on mobile)
+    </div>
+    <div class="bg-green-500 text-white p-3 rounded-md text-center">
+     Item Y
+     <br/>
+     (Flex-col item on mobile)
+    </div>
+   </div>
+   <p class="mt-2 text-xs text-green-600">
+    <em>
+     Comment: On small screens, items stack vertically AND are centered because the parent is
+     <code>
+      flex flex-col items-center
+     </code>
+     . On 'sm' screens, they are side-by-side and centered.
+    </em>
+   </p>
+  </div>
+  <div class="mt-6 text-sm text-gray-600">
+   <p>
+    <strong>
+     Resize your browser window and observe the alignment and stacking.
+    </strong>
+   </p>
+   <p>
+    The "Gotcha" highlights that for flex alignment/justification properties (like
+    <code>
+     items-center
+    </code>
+    ) to work consistently across screen sizes, the element must be a flex container (
+    <code>
+     display: flex
+    </code>
+    ) on those screen sizes. Using
+    <code>
+     flex flex-col
+    </code>
+    as the base ensures this for mobile before
+    <code>
+     sm:flex-row
+    </code>
+    takes over.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

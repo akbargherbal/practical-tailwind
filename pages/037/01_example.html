@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Active State Basic
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-6 from_inside_iframe">
+  <div class="mb-8 text-center">
+   <h1 class="text-2xl font-bold mb-2">
+    Demonstrating `active:` State
+   </h1>
+   <p class="text-gray-700">
+    Click and hold the button below to see its active state.
+   </p>
+  </div>
+  <!-- This example demonstrates changing background color and scaling on active state. -->
+  <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md active:bg-blue-800 active:scale-95 transition-all duration-100 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+   Click and Hold Me
+  </button>
+  <div class="mt-6 p-4 bg-white shadow rounded-lg text-sm text-gray-600">
+   <p>
+    <strong class="font-semibold">
+     Key classes used:
+    </strong>
+   </p>
+   <ul class="list-disc list-inside ml-4">
+    <li>
+     <code>
+      active:bg-blue-800
+     </code>
+     : Changes background to a darker blue when pressed.
+    </li>
+    <li>
+     <code>
+      active:scale-95
+     </code>
+     : Scales the button down to 95% of its size when pressed.
+    </li>
+   </ul>
+   <p class="mt-2">
+    The
+    <code>
+     transition-all duration-100 ease-in-out
+    </code>
+    classes ensure a smooth visual effect for the scaling.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

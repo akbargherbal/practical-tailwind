@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind - Responsive Grid Columns (Explicit)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-4 text-center">
+    Responsive Item Grid (Explicit Base Case)
+   </h1>
+   <p class="text-center mb-6 text-gray-700">
+    This example explicitly sets `grid-cols-1` for the smallest screens, then changes the number of columns for `sm`, `md`, and `lg` breakpoints. Resize your browser window to see the changes.
+   </p>
+   <!--
+            Skill: Change how many items are in a row depending on screen size.
+            Key Classes: grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4
+            This demonstrates the recommended approach: being explicit about the base case (smallest screen).
+        -->
+   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div class="bg-blue-500 text-white p-6 rounded-lg shadow-md flex items-center justify-center">
+     Item 1
+    </div>
+    <div class="bg-blue-500 text-white p-6 rounded-lg shadow-md flex items-center justify-center">
+     Item 2
+    </div>
+    <div class="bg-blue-500 text-white p-6 rounded-lg shadow-md flex items-center justify-center">
+     Item 3
+    </div>
+    <div class="bg-blue-500 text-white p-6 rounded-lg shadow-md flex items-center justify-center">
+     Item 4
+    </div>
+    <div class="bg-green-500 text-white p-6 rounded-lg shadow-md flex items-center justify-center">
+     Item 5
+    </div>
+    <div class="bg-green-500 text-white p-6 rounded-lg shadow-md flex items-center justify-center">
+     Item 6
+    </div>
+    <div class="bg-green-500 text-white p-6 rounded-lg shadow-md flex items-center justify-center">
+     Item 7
+    </div>
+    <div class="bg-green-500 text-white p-6 rounded-lg shadow-md flex items-center justify-center">
+     Item 8
+    </div>
+   </div>
+   <div class="mt-8 p-4 bg-blue-100 border border-blue-300 rounded">
+    <h3 class="font-semibold text-blue-700">
+     Explanation:
+    </h3>
+    <ul class="list-disc list-inside text-blue-600 text-sm">
+     <li>
+      <code>
+       grid
+      </code>
+      : Establishes a grid container.
+     </li>
+     <li>
+      <code>
+       grid-cols-1
+      </code>
+      : Default to 1 column on extra-small screens (mobile-first).
+     </li>
+     <li>
+      <code>
+       sm:grid-cols-2
+      </code>
+      : On small screens (640px and up), display 2 columns.
+     </li>
+     <li>
+      <code>
+       md:grid-cols-3
+      </code>
+      : On medium screens (768px and up), display 3 columns.
+     </li>
+     <li>
+      <code>
+       lg:grid-cols-4
+      </code>
+      : On large screens (1024px and up), display 4 columns.
+     </li>
+     <li>
+      <code>
+       gap-6
+      </code>
+      : Adds spacing between grid items.
+     </li>
+    </ul>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill - Truncate Gotcha (Single-Line Only)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto max-w-lg">
+   <h1 class="text-3xl font-bold text-center mb-6">
+    `truncate` Gotcha: Single-Line Only
+   </h1>
+   <div class="bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold mb-3">
+     Understanding `truncate` Behavior
+    </h2>
+    <div class="mb-6">
+     <p class="font-medium mb-1">
+      Correct single-line truncation:
+     </p>
+     <div class="w-full p-3 bg-green-100 border border-green-300 rounded">
+      <p class="truncate">
+       This is a long piece of text intended for a single line. If it's too long for its container, Tailwind's `truncate` class will correctly add an ellipsis (...).
+      </p>
+     </div>
+    </div>
+    <div class="mb-6">
+     <p class="font-medium mb-1">
+      Text that naturally wraps (without `truncate`):
+     </p>
+     <div class="w-full p-3 bg-yellow-100 border border-yellow-300 rounded">
+      <p>
+       This is a much longer paragraph of text. Without any truncation utilities, this text will naturally wrap onto multiple lines to fit within the width of its container. This demonstrates standard text flow.
+      </p>
+     </div>
+    </div>
+    <!-- GOTCHA DEMONSTRATION -->
+    <div class="mb-6">
+     <p class="font-medium mb-1 text-red-700">
+      Gotcha: `truncate` on multi-line capable text:
+     </p>
+     <div class="w-full p-3 bg-red-100 border border-red-300 rounded">
+      <p class="truncate">
+       This is a much longer paragraph of text. If we apply `truncate` here, hoping for a multi-line ellipsis (e.g., after 2 lines), it won't work as expected. The `truncate` class forces the text into a
+       <strong class="text-red-700">
+        single line
+       </strong>
+       first, then applies the ellipsis. It does not provide multi-line ellipsis.
+      </p>
+     </div>
+     <p class="mt-2 text-sm text-gray-700">
+      <!-- Comment explaining the gotcha -->
+      <strong>
+       Important Note (Gotcha):
+      </strong>
+      The `truncate` utility is designed for single-line text truncation. It combines `overflow-hidden`, `text-overflow: ellipsis`, and `white-space: nowrap`. The `white-space: nowrap` property is what prevents the text from wrapping to multiple lines.
+     </p>
+    </div>
+    <div>
+     <h3 class="text-lg font-semibold mb-2">
+      Solution for Multi-Line Truncation:
+     </h3>
+     <p class="text-sm text-gray-700 bg-blue-50 p-3 border border-blue-200 rounded">
+      For truncating text after a specific number of lines (e.g., 2 or 3 lines) and showing an ellipsis, Tailwind CSS requires the use of the official
+      <code>
+       @tailwindcss/line-clamp
+      </code>
+      plugin. After installing and configuring the plugin, you can use classes like
+      <code>
+       line-clamp-2
+      </code>
+      ,
+      <code>
+       line-clamp-3
+      </code>
+      , etc.
+     </p>
+     <p class="text-xs text-gray-500 mt-1">
+      (This example cannot demonstrate `line-clamp` directly as it requires plugin installation, but it's the recommended solution for multi-line truncation.)
+     </p>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

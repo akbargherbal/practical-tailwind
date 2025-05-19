@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Outlined Button - Gotcha &amp; Hover/Focus
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-slate-100 p-8 flex flex-col items-center space-y-6 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4 text-center">
+   Outlined Button: Addressing Gotchas
+  </h1>
+  <p class="text-center max-w-lg mb-6 text-slate-700">
+   This example demonstrates handling common "gotchas" with outlined buttons:
+        ensuring true background transparency with
+   <code>
+    bg-transparent
+   </code>
+   and providing clear, distinct hover and focus states.
+  </p>
+  <!-- Button demonstrating the gotcha solutions -->
+  <button class="bg-transparent &lt;!-- GOTCHA part 1: Explicitly set 'bg-transparent'. This ensures the background is clear, overriding any potential default or inherited backgrounds. --&gt; border border-purple-600 text-purple-600 py-2 px-4 rounded font-semibold hover:bg-purple-600 hover:text-white &lt;!-- GOTCHA part 2a: Clear hover state - button fills with color. --&gt; focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-slate-100 &lt;!-- GOTCHA part 2b: Clear focus state - adds a visible ring for accessibility. --&gt; transition-all duration-150 ease-in-out">
+   Confirm Action
+  </button>
+  <div class="mt-8 p-6 bg-white rounded-lg shadow-md text-sm max-w-xl w-full">
+   <h3 class="font-semibold text-lg mb-3 text-slate-800">
+    Understanding the "Gotchas" Addressed:
+   </h3>
+   <div class="mb-4">
+    <strong class="text-slate-700">
+     1. Explicit Background Transparency (
+     <code>
+      bg-transparent
+     </code>
+     ):
+    </strong>
+    <p class="text-slate-600 mt-1">
+     While HTML
+     <code>
+      &lt;button&gt;
+     </code>
+     elements are typically transparent by default, explicitly adding
+     <code>
+      bg-transparent
+     </code>
+     is a robust way to ensure this behavior.
+                It's particularly important if:
+    </p>
+    <ul class="list-disc list-inside ml-4 mt-1 text-slate-600">
+     <li>
+      These styles were applied to a
+      <code>
+       &lt;div&gt;
+      </code>
+      or other element that might have an inherited background.
+     </li>
+     <li>
+      A global CSS rule (e.g., from a reset or another stylesheet) might be applying a default background to all buttons.
+     </li>
+    </ul>
+    <!-- HTML Comment demonstrating the 'Gotcha': Forgetting bg-transparent might not show issues if the element has no other background source.
+                 However, if a parent div had `bg-gray-200` and the button *didn't* have `bg-transparent`, the button might appear `bg-gray-200` if it wasn't truly transparent.
+                 Using `bg-transparent` guarantees it.
+            -->
+   </div>
+   <div>
+    <strong class="text-slate-700">
+     2. Distinct Hover and Focus States:
+    </strong>
+    <p class="text-slate-600 mt-1">
+     Outlined buttons need clear visual feedback for user interactions:
+    </p>
+    <ul class="list-disc list-inside ml-4 mt-1 text-slate-600">
+     <li>
+      <strong>
+       Hover State (
+       <code>
+        hover:bg-purple-600 hover:text-white
+       </code>
+       ):
+      </strong>
+      Provides immediate feedback when the mouse pointer is over the button by filling it with color.
+     </li>
+     <li>
+      <strong>
+       Focus State (
+       <code>
+        focus:outline-none focus:ring-2 ...
+       </code>
+       ):
+      </strong>
+      Crucial for accessibility, especially for keyboard navigation. It adds a distinct visual ring around the button when it's focused, making it clear which element is active.
+      <code>
+       focus:outline-none
+      </code>
+      is often paired with custom ring styles to avoid default browser outlines clashing with Tailwind rings.
+     </li>
+    </ul>
+    <!-- HTML Comment demonstrating the 'Gotcha': An outlined button without clear hover/focus states can be confusing.
+                  Users might not realize it's interactive or, for keyboard users, which element is currently selected.
+                  The classes above provide this necessary feedback.
+             -->
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

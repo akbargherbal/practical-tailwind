@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Opacity Gotcha &amp; Background Opacity
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-6">
+    Opacity "Gotcha": Element Opacity vs. Background Opacity
+   </h1>
+   <p class="mb-6">
+    The "Gotcha" with `opacity-*` is that it makes the entire element and its children transparent. If you only want a transparent background with opaque text, you need to use background opacity utilities.
+   </p>
+   <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- Gotcha Example: opacity-* affecting text -->
+    <div>
+     <h2 class="text-xl font-semibold mb-2 text-red-700">
+      Problem: `opacity-*` Affects Text
+     </h2>
+     <div class="bg-purple-600 text-white p-6 rounded-lg shadow-md opacity-50">
+      <h3 class="font-bold text-lg mb-1">
+       Card Title (Semi-Transparent)
+      </h3>
+      <p>
+       This text is also 50% transparent because the parent div has `opacity-50`. This can make text hard to read.
+      </p>
+      <!-- HTML Comment for Gotcha -->
+      <!-- GOTCHA: The 'opacity-50' class on this div makes both the background AND the text/content inside semi-transparent. -->
+     </div>
+     <p class="mt-2 text-sm text-gray-600">
+      Using `opacity-50` on the container.
+     </p>
+    </div>
+    <!-- Solution: Background Opacity -->
+    <div>
+     <h2 class="text-xl font-semibold mb-2 text-green-700">
+      Solution: Background Opacity
+     </h2>
+     <div class="bg-purple-600/50 text-white p-6 rounded-lg shadow-md">
+      <!-- The class bg-purple-600/50 is shorthand for bg-purple-600 with 50% opacity for the background only -->
+      <h3 class="font-bold text-lg mb-1">
+       Card Title (Fully Opaque)
+      </h3>
+      <p>
+       Here, the background is 50% transparent using `bg-purple-600/50`, but the text remains fully opaque and readable.
+      </p>
+      <!-- HTML Comment for Solution -->
+      <!-- SOLUTION: Using 'bg-purple-600/50' (or 'bg-purple-600 bg-opacity-50') makes ONLY the background semi-transparent. The text and child elements remain fully opaque. -->
+     </div>
+     <p class="mt-2 text-sm text-gray-600">
+      Using `bg-purple-600/50` for background opacity only.
+     </p>
+     <div class="mt-6 bg-blue-500 bg-opacity-75 text-white p-6 rounded-lg shadow-md">
+      <h3 class="font-bold text-lg mb-1">
+       Alternative Solution (Fully Opaque Text)
+      </h3>
+      <p>
+       This uses `bg-blue-500` and `bg-opacity-75`. The background is 75% transparent, but the text is fully opaque.
+      </p>
+      <!-- HTML Comment for Alternative Solution -->
+      <!-- This demonstrates using the separate 'bg-opacity-75' class with a base background color. -->
+     </div>
+     <p class="mt-2 text-sm text-gray-600">
+      Using `bg-blue-500 bg-opacity-75` for background opacity.
+     </p>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

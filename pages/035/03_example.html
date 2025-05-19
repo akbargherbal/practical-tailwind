@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Gradients: Color Blending (Gotcha)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-slate-50 p-8 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6 text-center">
+   Tailwind CSS Gradients: Addressing Color Blending
+  </h1>
+  <p class="text-sm text-center max-w-2xl mx-auto mb-8">
+   <span class="font-semibold">
+    Gotcha:
+   </span>
+   Gradients can look harsh or dated if the chosen colors don't blend well.
+        Consider color harmony and the transition points.
+  </p>
+  <div class="grid md:grid-cols-2 gap-8">
+   <!-- Potentially Harsh or Abrupt Gradient -->
+   <div>
+    <h2 class="text-lg font-semibold mb-2 text-slate-700">
+     1. Potentially Harsh Blend
+    </h2>
+    <div class="w-full h-48 rounded-lg shadow-md bg-gradient-to-r from-red-600 to-green-600 flex items-center justify-center">
+     <p class="text-white text-lg font-medium p-4 text-center">
+      Red directly to Green
+     </p>
+    </div>
+    <p class="mt-2 text-xs text-slate-600">
+     <!-- Explanation of the Gotcha -->
+     This gradient uses highly contrasting colors (red and green) without a middle transition. Depending on the specific shades, this can sometimes appear abrupt or less aesthetically pleasing than a smoother, more analogous blend.
+    </p>
+   </div>
+   <!-- Smoother, More Harmonious Gradient -->
+   <div>
+    <h2 class="text-lg font-semibold mb-2 text-slate-700">
+     2. Smoother, Harmonious Blend
+    </h2>
+    <div class="w-full h-48 rounded-lg shadow-md bg-gradient-to-r from-sky-400 to-cyan-400 flex items-center justify-center">
+     <p class="text-slate-800 text-lg font-medium p-4 text-center">
+      Sky Blue to Cyan (Analogous)
+     </p>
+    </div>
+    <p class="mt-2 text-xs text-slate-600">
+     Using colors closer on the color wheel (analogous colors) like sky blue and cyan often results in a naturally smoother and more harmonious gradient.
+    </p>
+   </div>
+   <!-- Smoother Gradient using a 'via' color stop -->
+   <div class="md:col-span-2">
+    <h2 class="text-lg font-semibold mb-2 text-slate-700">
+     3. Smoother Blend with a 'via' Color Stop
+    </h2>
+    <div class="w-full h-48 rounded-lg shadow-md bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 flex items-center justify-center">
+     <p class="text-white text-lg font-medium p-4 text-center">
+      Purple
+      <span class="text-xs opacity-75">
+       via
+      </span>
+      Pink
+      <span class="text-xs opacity-75">
+       to
+      </span>
+      Orange
+     </p>
+    </div>
+    <p class="mt-2 text-xs text-slate-600">
+     Introducing a middle color with the
+     <code>
+      via-{color}-{shade}
+     </code>
+     class can help bridge a wider gap between the
+     <code>
+      from
+     </code>
+     and
+     <code>
+      to
+     </code>
+     colors, creating a more sophisticated and smoother transition, avoiding harshness.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

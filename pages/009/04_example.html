@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Overlapping Badge on Card
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-8 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6 text-gray-700">
+   Product Card with Overlay Badge
+  </h1>
+  <!--
+        This example demonstrates a common use case: a "NEW!" badge on a product card.
+        - The card container (div with class 'relative') is the parent.
+        - The badge (div with class 'absolute') is the child.
+        - 'z-10' ensures the badge is visually on top of other card content if there were any overlap at the same level.
+    -->
+  <div class="relative bg-white p-6 rounded-lg shadow-xl w-72">
+   <div class="w-full h-40 bg-blue-500 rounded-md mb-4 flex items-center justify-center text-white text-lg">
+    Product Image
+   </div>
+   <h2 class="text-xl font-semibold text-gray-800 mb-2">
+    Awesome Product
+   </h2>
+   <p class="text-gray-600 text-sm mb-4">
+    This is a description of an awesome product that you would definitely want to buy.
+   </p>
+   <button class="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition-colors">
+    Buy Now
+   </button>
+   <!-- The Badge:
+             - 'absolute': Positions this element relative to the nearest ancestor with 'position: relative' (the card itself).
+             - '-top-3 -right-3': Positions the badge slightly outside the top-right corner of the card.
+             - 'z-10': Ensures the badge is stacked on top of other elements within the card.
+        -->
+   <div class="absolute -top-3 -right-3 bg-red-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md z-10 transform rotate-6">
+    NEW!
+   </div>
+  </div>
+  <p class="mt-6 text-sm text-gray-600 text-center max-w-md">
+   The product card has
+   <code>
+    relative
+   </code>
+   positioning, allowing the "NEW!" badge with
+   <code>
+    absolute
+   </code>
+   positioning to be placed precisely in relation to the card. The
+   <code>
+    z-10
+   </code>
+   class ensures the badge is visually on top.
+  </p>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

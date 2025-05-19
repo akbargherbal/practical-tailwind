@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Show on Small, Hide Larger
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto text-center">
+   <h1 class="text-2xl font-bold mb-4">
+    Responsive Visibility Example 2
+   </h1>
+   <p class="mb-6">
+    Resize your browser window to see the changes.
+   </p>
+   <!-- 
+            This element is a 'block' level element by default (on extra-small screens).
+            It becomes 'hidden' from the 'sm' breakpoint (640px) and larger.
+            This is useful for mobile-only elements like a hamburger menu icon.
+        -->
+   <div class="block sm:hidden bg-purple-500 text-white p-4 rounded-lg shadow-md">
+    <p class="text-lg font-semibold">
+     This element is VISIBLE on small screens (xs),
+    </p>
+    <p>
+     and HIDDEN on 'sm' screens (640px) and UP.
+    </p>
+    <p class="mt-2 text-sm">
+     (Using:
+     <code>
+      block sm:hidden
+     </code>
+     )
+    </p>
+    <p class="mt-1">
+     Imagine this is a mobile navigation toggle.
+    </p>
+   </div>
+   <div class="hidden sm:block bg-teal-500 text-white p-4 rounded-lg shadow-md mt-4">
+    <p class="text-lg font-semibold">
+     You are on a LARGER screen (sm or wider).
+    </p>
+    <p>
+     The purple box above (mobile-only element) is hidden.
+    </p>
+   </div>
+   <div class="mt-8 p-4 bg-gray-200 rounded">
+    <p>
+     <strong>
+      Instructions:
+     </strong>
+    </p>
+    <ul class="list-disc list-inside text-left">
+     <li>
+      Make your browser window very narrow: The purple box should be visible, and the teal box should be hidden.
+     </li>
+     <li>
+      Make your browser window wider (past 640px): The purple box should disappear, and the teal box should appear.
+     </li>
+    </ul>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

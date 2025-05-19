@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Font Weights &amp; Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-slate-100 from_inside_iframe">
+  <!-- This example shows font weights in a common context and explains the "Gotcha". -->
+  <div class="container mx-auto p-6 bg-white shadow-xl rounded-lg">
+   <h1 class="text-3xl font-bold mb-2 text-center">
+    Article Title (Bold)
+   </h1>
+   <p class="text-lg font-normal mb-4 text-gray-700">
+    This is an introductory paragraph with normal font weight. It sets the stage for the content to follow. We can use
+    <span class="font-semibold text-indigo-600">
+     semibold text
+    </span>
+    for emphasis on certain phrases.
+   </p>
+   <div class="mt-4 p-4 bg-gray-50 rounded-md">
+    <h2 class="text-xl font-semibold mb-3">
+     A Sub-heading (Semibold)
+    </h2>
+    <p class="font-light text-gray-600">
+     This section uses
+     <code class="bg-gray-200 p-0.5 rounded">
+      font-light
+     </code>
+     for its body text, giving it a softer, more delicate feel. This can be useful for supplementary information or less critical content.
+    </p>
+   </div>
+   <div class="mt-8 p-4 border-l-4 border-red-500 bg-red-50">
+    <h3 class="font-bold text-lg mb-2 text-red-700">
+     Gotcha: Font Weight Availability
+    </h3>
+    <p class="font-normal text-sm text-red-600">
+     The key thing to remember is that Tailwind's
+     <code class="bg-red-200 p-0.5 rounded">
+      font-light
+     </code>
+     ,
+     <code class="bg-red-200 p-0.5 rounded">
+      font-bold
+     </code>
+     , etc., classes will only have a visual effect if the font family you're currently using actually *includes* those specific weights.
+    </p>
+    <p class="font-normal text-sm mt-2 text-red-600">
+     For instance, if you're using a custom font that was only imported with 'normal' and 'bold' weights:
+    </p>
+    <ul class="list-disc list-inside text-sm mt-2 text-red-600">
+     <li>
+      Applying
+      <code class="bg-red-200 p-0.5 rounded">
+       font-light
+      </code>
+      might result in the text appearing as 'normal' weight, not light.
+     </li>
+     <li>
+      Applying
+      <code class="bg-red-200 p-0.5 rounded">
+       font-extrabold
+      </code>
+      (if the font doesn't have it) might fall back to 'bold' or 'normal'.
+     </li>
+    </ul>
+    <p class="font-normal text-sm mt-2 text-red-600">
+     <!-- How this is addressed/avoided here: -->
+     <!-- These examples primarily rely on the default Tailwind CSS font stack (which is a system font stack like -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, etc.). -->
+     <!-- These system fonts usually have good support for common weights like light, normal, semibold, and bold, so the classes work as expected. -->
+     <!-- If you were to use a custom web font (e.g., via @font-face or Google Fonts), you would need to explicitly ensure you are loading all the necessary weights for your design. -->
+     The browser tries its best to render the requested weight. If unavailable, it typically falls back to the nearest available weight or the default (normal) weight. Always verify your font files or import links include the weights you intend to use with Tailwind's classes.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind - Basic Centering
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-50 from_inside_iframe">
+  <!-- Example 1: Basic centering in a fixed-size container -->
+  <h1 class="text-2xl font-bold mb-4">
+   Example 1: Basic Centering
+  </h1>
+  <p class="mb-2">
+   The outer gray box has a fixed width and height. The inner blue box is centered using
+   <code>
+    flex items-center justify-center
+   </code>
+   on the parent.
+  </p>
+  <div class="w-64 h-64 bg-slate-200 flex items-center justify-center mx-auto rounded-md shadow-md">
+   <!-- Parent container with flex centering classes and defined height/width -->
+   <div class="w-24 h-24 bg-blue-500 text-white flex items-center justify-center rounded">
+    <!-- Child item to be centered -->
+    <span>
+     Centered
+    </span>
+   </div>
+  </div>
+  <div class="mt-6 p-4 bg-sky-100 border border-sky-300 rounded-md">
+   <h3 class="font-semibold text-sky-700">
+    Key Classes Used on Parent:
+   </h3>
+   <ul class="list-disc list-inside text-sky-600">
+    <li>
+     <code>
+      flex
+     </code>
+     : Enables flexbox layout.
+    </li>
+    <li>
+     <code>
+      items-center
+     </code>
+     : Vertically aligns items to the center (cross-axis).
+    </li>
+    <li>
+     <code>
+      justify-center
+     </code>
+     : Horizontally aligns items to the center (main-axis).
+    </li>
+    <li>
+     <code>
+      w-64 h-64
+     </code>
+     : Defines the parent's dimensions, crucial for vertical centering.
+    </li>
+   </ul>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

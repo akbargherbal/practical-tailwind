@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Borders - Directional
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6">
+   Directional Border Examples
+  </h1>
+  <!-- Example 1: Top border only -->
+  <div class="mb-8 p-4 bg-white">
+   <h2 class="text-lg font-semibold mb-2">
+    Top Border Only
+   </h2>
+   <div class="border-t-4 border-red-500 w-48 h-24 flex items-center justify-center bg-slate-200">
+    <p class="text-sm">
+     <code>
+      border-t-4 border-red-500
+     </code>
+    </p>
+   </div>
+   <p class="mt-2 text-sm text-gray-600">
+    Use
+    <code>
+     border-t-{width}
+    </code>
+    for a top border. Color is optional (e.g.,
+    <code>
+     border-t
+    </code>
+    for default).
+   </p>
+  </div>
+  <!-- Example 2: Bottom border only -->
+  <div class="mb-8 p-4 bg-white">
+   <h2 class="text-lg font-semibold mb-2">
+    Bottom Border Only
+   </h2>
+   <div class="border-b-2 border-indigo-600 w-48 h-24 flex items-center justify-center bg-slate-200">
+    <p class="text-sm">
+     <code>
+      border-b-2 border-indigo-600
+     </code>
+    </p>
+   </div>
+   <p class="mt-2 text-sm text-gray-600">
+    Use
+    <code>
+     border-b-{width}
+    </code>
+    for a bottom border.
+   </p>
+  </div>
+  <!-- Example 3: Left and Right borders (x-axis) -->
+  <div class="mb-8 p-4 bg-white">
+   <h2 class="text-lg font-semibold mb-2">
+    Left &amp; Right Borders (X-axis)
+   </h2>
+   <div class="border-x-4 border-lime-500 w-48 h-24 flex items-center justify-center bg-slate-200">
+    <p class="text-sm">
+     <code>
+      border-x-4 border-lime-500
+     </code>
+    </p>
+   </div>
+   <p class="mt-2 text-sm text-gray-600">
+    Use
+    <code>
+     border-x-{width}
+    </code>
+    for left and right borders simultaneously.
+   </p>
+  </div>
+  <!-- Example 4: Top and Bottom borders (y-axis) with different colors -->
+  <div class="p-4 bg-white">
+   <h2 class="text-lg font-semibold mb-2">
+    Top &amp; Bottom Borders (Y-axis) - Different Styles
+   </h2>
+   <div class="border-t-2 border-t-pink-500 border-b-4 border-b-cyan-500 w-48 h-24 flex items-center justify-center bg-slate-200">
+    <p class="text-sm">
+     <code>
+      border-t-2 border-t-pink-500 border-b-4 border-b-cyan-500
+     </code>
+    </p>
+   </div>
+   <p class="mt-2 text-sm text-gray-600">
+    You can combine directional borders. For example,
+    <code>
+     border-y-{width}
+    </code>
+    for top and bottom, or specify each individually.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Example - Outlined Button Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-50 flex flex-col items-center space-y-6 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-2">
+   Addressing the "Gotcha" for Outlined Buttons
+  </h1>
+  <p class="text-center text-gray-700 mb-6 max-w-md">
+   The "Gotcha": Forgetting `bg-transparent` if an element has a default background from elsewhere,
+        and not providing clear `hover`/`focus` states.
+  </p>
+  <!-- Example wrapper to simulate a potential inherited background -->
+  <div class="bg-gray-200 p-6 rounded-lg shadow">
+   <h3 class="text-lg font-semibold mb-3 text-gray-800">
+    Button inside a styled container:
+   </h3>
+   <!-- Button 1: Potentially problematic if it inherited a background (though default <button> usually okay) -->
+   <!-- More importantly, this one explicitly states the common classes without bg-transparent for comparison. -->
+   <button class="border border-purple-600 text-purple-600 py-2 px-4 rounded mb-3 hover:bg-purple-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-400">
+    Outlined (Implicit Transparent BG)
+   </button>
+   <p class="text-xs text-gray-600 mb-4">
+    This button relies on the default transparent background of a `&lt;button&gt;`.
+            In most cases, this works fine. Hover/Focus states are good.
+   </p>
+   <!-- Button 2: Corrected/Explicit version addressing the gotcha -->
+   <!-- Key Tailwind Classes for outlined: `border border-purple-600 text-purple-600 bg-transparent` -->
+   <!-- Key Gotcha address: `bg-transparent` is explicit. Hover/focus states are clear. -->
+   <button class="border border-purple-600 text-purple-600 bg-transparent hover:bg-purple-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-400 py-2 px-4 rounded">
+    Outlined (Explicit `bg-transparent`)
+   </button>
+   <p class="text-xs text-gray-600 mt-1">
+    <!-- HTML Comment explaining the 'Gotcha' part -->
+    <!-- This button explicitly uses `bg-transparent`.
+                 This is good practice to ensure no unexpected background color applies,
+                 especially if global styles or component defaults might add one.
+                 Crucially, it also has clear hover (fill with color) and focus (ring) states,
+                 which is vital for usability with outlined buttons.
+            -->
+    This button explicitly uses `bg-transparent` for robustness against other styles.
+    <br/>
+    It also features distinct `hover:bg-purple-600 hover:text-white` and `focus:ring-2` states.
+   </p>
+  </div>
+  <div class="mt-6 p-4 border border-dashed border-red-400 bg-red-50 rounded-md">
+   <h4 class="font-semibold text-red-700">
+    Gotcha Summary:
+   </h4>
+   <ul class="list-disc list-inside text-sm text-red-600 mt-2">
+    <li>
+     <strong>
+      `bg-transparent`
+     </strong>
+     : While standard HTML buttons are often transparent by default, explicitly using `bg-transparent` ensures the outlined effect if there are other CSS rules (e.g., from a component library or global styles) that might give the button a default background color.
+    </li>
+    <li>
+     <strong>
+      Clear Hover/Focus States
+     </strong>
+     : Outlined buttons can have low contrast. It's essential to provide very clear visual feedback on hover and focus. Common practice is to "fill" the button with color on hover/focus or add a prominent ring.
+    </li>
+   </ul>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Change how something looks when the mouse pointer is over it.
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style>
+   /* Custom styles for <code> tags if needed, though Tailwind classes are preferred */
+        /* The prompt specifies direct styling for <code> for consistency */
+  </style>
+  <style>
+   iframe.default_style {
+  width: 100%;
+  min-height: 300px; /* Reasonable minimum */
+  border: none;
+  display: block;
+}
+  </style>
+ </head>
+ <body>
+  <div class="container mx-auto p-6 md:p-10 font-sans text-slate-800">
+   <h1 class="text-4xl font-bold mb-10 text-center text-slate-700">
+    Tailwind CSS Concept Explained
+   </h1>
+   <section class="mb-12 bg-white shadow-lg rounded-lg p-6 md:p-8">
+    <h2 class="text-3xl font-semibold mb-6 text-slate-600 border-b-2 border-slate-300 pb-3">
+     Making Things Interactive &amp; Respond to Users
+    </h2>
+    <h3 class="text-2xl font-medium mb-5 text-indigo-700">
+     Change how something looks when the mouse pointer is over it.
+    </h3>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Skill ID:
+     </strong>
+     Interactive_36
+    </p>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Description:
+     </strong>
+     Make a button change color, a link get an underline, etc., on hover.
+    </p>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Where to apply:
+     </strong>
+     Buttons, links, navigation items, interactive cards.
+    </p>
+    <p class="mb-2 mt-4 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Key Tailwind Classes:
+     </strong>
+    </p>
+    <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mb-4">
+     <span>
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       hover:bg-blue-700
+      </code>
+      ,
+     </span>
+     <span>
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       hover:underline
+      </code>
+     </span>
+    </div>
+    <div class="bg-amber-50 border-l-4 border-amber-500 text-amber-700 p-4 mt-5 rounded-md shadow-sm">
+     <p>
+      <strong class="font-semibold">
+       Gotcha:
+      </strong>
+      Not adding a
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       transition
+      </code>
+      class will make hover effects instant and potentially jarring. A smooth
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       transition-colors duration-150
+      </code>
+      makes it feel much more polished. Overdoing hover effects can also be distracting.
+     </p>
+    </div>
+    <div class="mt-8 pt-6 border-t border-slate-200">
+     <h4 class="text-xl font-semibold mb-4 text-slate-700">
+      Example:
+     </h4>
+     <p class="mb-3 text-slate-600">
+      Hover over the button and the link below to see the effects:
+     </p>
+     <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-6 bg-slate-50 rounded-lg border border-slate-200">
+      <button class="bg-blue-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 transition-colors duration-150">
+       Hover Me
+      </button>
+      <a class="text-indigo-600 hover:underline hover:text-indigo-800 transition-colors duration-150" href="#">
+       Hoverable Link
+      </a>
+     </div>
+     <div class="mt-4 p-4 bg-gray-800 text-gray-200 rounded-md overflow-x-auto">
+      <pre><code class="language-html text-sm">&lt;button class="bg-blue-500 text-white font-semibold py-2 px-4 rounded-md 
+            hover:bg-blue-700 
+            transition-colors duration-150"&gt;
+  Hover Me
+&lt;/button&gt;
+
+&lt;a href="#" class="text-indigo-600 
+               hover:underline hover:text-indigo-800 
+               transition-colors duration-150"&gt;
+  Hoverable Link
+&lt;/a&gt;</code></pre>
+     </div>
+     <p class="mt-4 text-sm text-slate-600">
+      In this example:
+      <ul class="list-disc list-inside ml-4 mt-1">
+       <li>
+        The button changes its background color from
+        <code class="bg-slate-100 text-slate-700 px-1 py-0.5 rounded-sm text-xs font-mono border border-slate-300">
+         bg-blue-500
+        </code>
+        to
+        <code class="bg-slate-100 text-slate-700 px-1 py-0.5 rounded-sm text-xs font-mono border border-slate-300">
+         bg-blue-700
+        </code>
+        on hover, specified by
+        <code class="bg-slate-100 text-slate-700 px-1 py-0.5 rounded-sm text-xs font-mono border border-slate-300">
+         hover:bg-blue-700
+        </code>
+        .
+       </li>
+       <li>
+        The link gets an underline and changes color from
+        <code class="bg-slate-100 text-slate-700 px-1 py-0.5 rounded-sm text-xs font-mono border border-slate-300">
+         text-indigo-600
+        </code>
+        to
+        <code class="bg-slate-100 text-slate-700 px-1 py-0.5 rounded-sm text-xs font-mono border border-slate-300">
+         text-indigo-800
+        </code>
+        on hover, specified by
+        <code class="bg-slate-100 text-slate-700 px-1 py-0.5 rounded-sm text-xs font-mono border border-slate-300">
+         hover:underline
+        </code>
+        and
+        <code class="bg-slate-100 text-slate-700 px-1 py-0.5 rounded-sm text-xs font-mono border border-slate-300">
+         hover:text-indigo-800
+        </code>
+        .
+       </li>
+       <li>
+        Both elements use
+        <code class="bg-slate-100 text-slate-700 px-1 py-0.5 rounded-sm text-xs font-mono border border-slate-300">
+         transition-colors duration-150
+        </code>
+        for a smooth visual transition, as highlighted in the "Gotcha" section.
+       </li>
+      </ul>
+     </p>
+    </div>
+   </section>
+  </div>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 1:
+  </h1>
+  <iframe frameborder="0" src="./01_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 2:
+  </h1>
+  <iframe frameborder="0" src="./02_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 3:
+  </h1>
+  <iframe frameborder="0" src="./03_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 4:
+  </h1>
+  <iframe frameborder="0" src="./04_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 5:
+  </h1>
+  <iframe frameborder="0" src="./05_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 6:
+  </h1>
+  <iframe frameborder="0" src="./06_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 7:
+  </h1>
+  <iframe frameborder="0" src="./07_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 8:
+  </h1>
+  <iframe frameborder="0" src="./08_example.html">
+  </iframe>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+  const iframes = document.querySelectorAll('iframe');
+
+  // Ensure all iframes have the default style class
+  iframes.forEach(iframe => iframe.classList.add('default_style'));
+
+  window.addEventListener('message', function(event) {
+    // Optional: add origin check for safety
+    if (event.data && typeof event.data.iframeHeight === 'number') {
+      const iframe = Array.from(iframes).find(iframe =>
+        iframe.contentWindow === event.source
+      );
+      if (iframe) {
+        iframe.style.height = (event.data.iframeHeight + 50) + 'px';
+      }
+    }
+  });
+});
+  </script>
+ </body>
+</html>

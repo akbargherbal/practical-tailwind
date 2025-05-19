@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS - Text Color Gotchas
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 font-sans from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6 text-center">
+   Text Color Gotchas
+  </h1>
+  <!-- Gotcha 1: Using too many different text colors -->
+  <div class="mb-10 p-4 border border-red-300 rounded">
+   <h2 class="text-xl font-semibold text-red-700 mb-3">
+    Gotcha: Too Many Colors
+   </h2>
+   <p class="mb-2">
+    <!-- This sentence demonstrates the "too many colors" gotcha. -->
+    <span class="text-red-500">
+     Using
+    </span>
+    <span class="text-green-500">
+     too
+    </span>
+    <span class="text-blue-500">
+     many
+    </span>
+    <span class="text-yellow-500">
+     different
+    </span>
+    <span class="text-purple-500">
+     text
+    </span>
+    <span class="text-pink-500">
+     colors
+    </span>
+    <span class="text-orange-500">
+     can
+    </span>
+    <span class="text-teal-500">
+     be
+    </span>
+    <span class="text-indigo-500">
+     jarring
+    </span>
+    <span class="text-lime-500">
+     and
+    </span>
+    <span class="text-cyan-500">
+     distracting.
+    </span>
+   </p>
+   <p class="text-sm text-gray-600">
+    This makes the content hard to read and can overwhelm the user. Stick to a limited, harmonious color palette.
+   </p>
+  </div>
+  <!-- Gotcha 2: Poor contrast -->
+  <div class="p-4 border border-orange-300 rounded">
+   <h2 class="text-xl font-semibold text-orange-700 mb-3">
+    Gotcha: Poor Contrast (Accessibility Issue)
+   </h2>
+   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div>
+     <h3 class="font-medium text-lg mb-2">
+      Bad Contrast Examples:
+     </h3>
+     <div class="bg-blue-200 p-3 rounded mb-3">
+      <p class="text-blue-300">
+       Light blue text on a slightly lighter blue background (text-blue-300 on bg-blue-200). Hard to read!
+      </p>
+      <!-- HTML Comment: This demonstrates poor contrast which is an accessibility issue. -->
+     </div>
+     <div class="bg-gray-100 p-3 rounded mb-3">
+      <p class="text-gray-300">
+       Light gray text on a light gray background (text-gray-300 on bg-gray-100). Very difficult to see.
+      </p>
+     </div>
+     <div class="bg-yellow-400 p-3 rounded">
+      <p class="text-yellow-100">
+       Light yellow text on a medium yellow background (text-yellow-100 on bg-yellow-400). Poor visibility.
+      </p>
+     </div>
+    </div>
+    <div>
+     <h3 class="font-medium text-lg mb-2">
+      Good Contrast Examples:
+     </h3>
+     <div class="bg-blue-200 p-3 rounded mb-3">
+      <p class="text-blue-700">
+       Dark blue text on a light blue background (text-blue-700 on bg-blue-200). Much better!
+      </p>
+      <!-- HTML Comment: This is the corrected version with good contrast. -->
+     </div>
+     <div class="bg-gray-100 p-3 rounded mb-3">
+      <p class="text-gray-700">
+       Dark gray text on a light gray background (text-gray-700 on bg-gray-100). Clearly visible.
+      </p>
+     </div>
+     <div class="bg-yellow-400 p-3 rounded">
+      <p class="text-yellow-900">
+       Dark yellow/brown text on a medium yellow background (text-yellow-900 on bg-yellow-400). Good readability.
+      </p>
+     </div>
+    </div>
+   </div>
+   <p class="text-sm text-gray-600 mt-4">
+    Always ensure sufficient contrast between your text color and its background color. This is crucial for readability and web accessibility (WCAG). Tools like browser developer tools or online contrast checkers can help.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

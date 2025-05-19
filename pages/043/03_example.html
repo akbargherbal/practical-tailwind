@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Multi-Item Responsive Stacking
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-50 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4 text-center">
+   Multi-Item Responsive Stacking
+  </h1>
+  <p class="text-center mb-6 text-gray-700">
+   Applying responsive stacking to a list of three items.
+  </p>
+  <div class="container mx-auto p-4 bg-white rounded-lg shadow-lg">
+   <h2 class="text-lg font-semibold mb-3 text-indigo-700">
+    Our Services
+   </h2>
+   <!--
+            Parent container for the service items.
+            - `flex`: Essential for flexbox behavior.
+            - `flex-col`: Stacks items vertically on small screens (mobile-first).
+            - `sm:flex-row`: Arranges items horizontally on 'sm' (640px) screens and wider.
+            - `gap-4`: Adds space between flex items.
+        -->
+   <div class="flex flex-col sm:flex-row gap-4">
+    <div class="bg-indigo-500 text-white p-5 rounded-lg shadow flex-1">
+     <h3 class="font-semibold text-xl mb-1">
+      Service Alpha
+     </h3>
+     <p class="text-sm">
+      Description for service Alpha. It will appear full-width on small screens.
+     </p>
+    </div>
+    <div class="bg-purple-500 text-white p-5 rounded-lg shadow flex-1">
+     <h3 class="font-semibold text-xl mb-1">
+      Service Beta
+     </h3>
+     <p class="text-sm">
+      Description for service Beta. Stacks below Alpha on small screens.
+     </p>
+    </div>
+    <div class="bg-pink-500 text-white p-5 rounded-lg shadow flex-1">
+     <h3 class="font-semibold text-xl mb-1">
+      Service Gamma
+     </h3>
+     <p class="text-sm">
+      Description for service Gamma. Stacks below Beta on small screens.
+     </p>
+    </div>
+   </div>
+   <p class="mt-4 text-sm text-gray-600">
+    <strong>
+     How it works:
+    </strong>
+    The parent `div` uses `flex flex-col sm:flex-row`.
+            This means:
+    <ul class="list-disc list-inside ml-4 mt-2 text-gray-500">
+     <li>
+      By default (mobile), items are in a column (`flex-col`).
+     </li>
+     <li>
+      On screens `sm` (640px) and wider, items switch to a row (`sm:flex-row`).
+     </li>
+    </ul>
+    The `flex-1` class on child items helps them share space equally when in a row.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

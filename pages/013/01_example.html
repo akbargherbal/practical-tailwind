@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Outlined Button
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex flex-col items-center space-y-6 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Basic Outlined Button Example
+  </h1>
+  <!-- 
+        This button demonstrates the core classes for an outlined button.
+        - 'border': Adds a 1px solid border.
+        - 'border-blue-500': Sets the border color.
+        - 'text-blue-500': Sets the text color to match the border.
+        - 'bg-transparent': Ensures the background is transparent. While often the default for <button> elements,
+          explicitly adding it can prevent issues if other styles (e.g., from a component library or global CSS)
+          might set a default background.
+        - 'py-2 px-4': Padding for button size.
+        - 'rounded': Adds rounded corners.
+        - 'hover:bg-blue-500 hover:text-white': Changes background and text color on hover for clear feedback.
+        - 'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2': Adds a focus ring for accessibility.
+    -->
+  <button class="bg-transparent border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-150">
+   Primary Action
+  </button>
+  <div class="mt-4 p-4 bg-white shadow rounded max-w-md text-sm">
+   <p class="font-semibold">
+    Key Classes Used:
+   </p>
+   <ul class="list-disc list-inside">
+    <li>
+     <code>
+      border
+     </code>
+    </li>
+    <li>
+     <code>
+      border-blue-500
+     </code>
+     (or any color)
+    </li>
+    <li>
+     <code>
+      text-blue-500
+     </code>
+     (or any color, matching border)
+    </li>
+    <li>
+     <code>
+      bg-transparent
+     </code>
+     (explicitly for clarity, handles potential overrides)
+    </li>
+    <li>
+     <code>
+      hover:bg-blue-500 hover:text-white
+     </code>
+     (for distinct hover state)
+    </li>
+    <li>
+     <code>
+      focus:ring-2
+     </code>
+     (for accessibility)
+    </li>
+   </ul>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

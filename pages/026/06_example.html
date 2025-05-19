@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Font Weight: Gotcha &amp; Context
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style>
+   /* Example: Let's try to load a font that might have limited weight support for demonstration purposes, or just rely on system fonts */
+        /* For this CDN example, we'll rely on system fonts and highlight the gotcha with comments. */
+        /* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        body { font-family: 'Roboto', sans-serif; } */
+        /* Using a specific font would make the gotcha more predictable if that font lacks 'light'.
+           However, for a general CDN example, explaining it is more robust. */
+  </style>
+ </head>
+ <body class="p-8 font-sans from_inside_iframe">
+  <h1 class="text-3xl font-bold mb-4">
+   Article Title (font-bold)
+  </h1>
+  <p class="text-lg font-semibold text-gray-700 mb-6">
+   A catchy subtitle (font-semibold)
+  </p>
+  <div class="mb-6">
+   <h2 class="text-xl font-bold mb-2">
+    Section Heading (font-bold)
+   </h2>
+   <p class="font-normal leading-relaxed">
+    This is a paragraph with
+    <code class="bg-gray-200 px-1 rounded">
+     font-normal
+    </code>
+    . It represents typical body content where readability is key.
+            We can also use
+    <strong class="font-semibold">
+     font-semibold
+    </strong>
+    for inline emphasis if needed.
+   </p>
+  </div>
+  <div class="mb-6 p-4 border border-yellow-400 bg-yellow-50 rounded">
+   <h3 class="text-lg font-semibold text-yellow-800 mb-2">
+    Understanding Font Weights and the "Gotcha"
+   </h3>
+   <p class="font-normal text-yellow-700 mb-2">
+    Tailwind provides classes like
+    <code class="bg-yellow-200 px-1 rounded">
+     font-light
+    </code>
+    ,
+    <code class="bg-yellow-200 px-1 rounded">
+     font-normal
+    </code>
+    ,
+    <code class="bg-yellow-200 px-1 rounded">
+     font-semibold
+    </code>
+    , and
+    <code class="bg-yellow-200 px-1 rounded">
+     font-bold
+    </code>
+    .
+   </p>
+   <p class="font-light text-yellow-700 mb-2">
+    This sentence attempts to use
+    <code class="bg-yellow-200 px-1 rounded">
+     font-light
+    </code>
+    .
+   </p>
+   <!-- GOTCHA DEMONSTRATION / EXPLANATION -->
+   <div class="mt-2 text-sm text-yellow-600">
+    <strong>
+     Gotcha Reminder:
+    </strong>
+    The visual effect of
+    <code class="bg-yellow-200 px-1 rounded">
+     font-light
+    </code>
+    (or other non-standard weights like
+    <code class="bg-yellow-200 px-1 rounded">
+     font-thin
+    </code>
+    ,
+    <code class="bg-yellow-200 px-1 rounded">
+     font-extralight
+    </code>
+    ,
+    <code class="bg-yellow-200 px-1 rounded">
+     font-medium
+    </code>
+    ,
+    <code class="bg-yellow-200 px-1 rounded">
+     font-extrabold
+    </code>
+    ,
+    <code class="bg-yellow-200 px-1 rounded">
+     font-black
+    </code>
+    )
+            is entirely dependent on the font family being used.
+            If the active font (e.g., the browser's default 'sans-serif' or a custom font you've loaded)
+            does not include a "light" weight variant, then applying
+    <code class="bg-yellow-200 px-1 rounded">
+     font-light
+    </code>
+    will not change the text's appearance, or it might fall back to the closest available weight (often 'normal').
+    <br/>
+    <br/>
+    <strong>
+     To ensure font weights work as expected:
+    </strong>
+    <ul class="list-disc list-inside ml-4">
+     <li>
+      Use a font family that explicitly supports the weights you need.
+     </li>
+     <li>
+      When using custom fonts (e.g., Google Fonts), make sure to select and include all necessary weights when importing the font.
+     </li>
+    </ul>
+    For instance, if you're using the default system sans-serif font, it usually has good support for `light`, `normal`, `semibold`, and `bold`.
+   </div>
+  </div>
+  <div class="p-4 bg-blue-50 border border-blue-300 rounded">
+   <p class="font-normal">
+    This is a final paragraph with
+    <code class="bg-blue-200 px-1 rounded">
+     font-normal
+    </code>
+    weight for comparison.
+   </p>
+   <p class="font-bold">
+    And this is
+    <code class="bg-blue-200 px-1 rounded">
+     font-bold
+    </code>
+    for a strong closing statement.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

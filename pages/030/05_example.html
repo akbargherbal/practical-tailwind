@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Borders - Single Side &amp; Box Sizing Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-50 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6">
+   Tailwind CSS: Single-Side Borders &amp; Box Sizing
+  </h1>
+  <!-- Example 1: Single-side borders (Key classes: border-t-2, etc.) -->
+  <div class="mb-8 p-4">
+   <h2 class="text-lg font-semibold mb-2">
+    1. Single-Side Borders
+   </h2>
+   <div class="border-t-4 border-sky-500 p-4 mb-3 bg-white rounded">
+    Top border only. (`border-t-4 border-sky-500`)
+   </div>
+   <div class="border-b-4 border-emerald-500 p-4 mb-3 bg-white rounded">
+    Bottom border only. (`border-b-4 border-emerald-500`)
+   </div>
+   <div class="border-l-4 border-amber-500 p-4 mb-3 bg-white rounded">
+    Left border only. (`border-l-4 border-amber-500`)
+   </div>
+   <div class="border-r-4 border-rose-500 p-4 mb-3 bg-white rounded">
+    Right border only. (`border-r-4 border-rose-500`)
+   </div>
+   <div class="border-x-4 border-indigo-500 p-4 mb-3 bg-white rounded">
+    Left and Right (x-axis) borders. (`border-x-4 border-indigo-500`)
+   </div>
+   <div class="border-y-4 border-fuchsia-500 p-4 bg-white rounded">
+    Top and Bottom (y-axis) borders. (`border-y-4 border-fuchsia-500`)
+   </div>
+  </div>
+  <!-- Example 2: Gotcha - Box Sizing Demonstration -->
+  <div class="p-4">
+   <h2 class="text-lg font-semibold mb-2">
+    2. Gotcha: Border Box Sizing
+   </h2>
+   <p class="mb-4 text-sm text-gray-700">
+    Tailwind CSS globally sets
+    <code>
+     box-sizing: border-box;
+    </code>
+    . This means that an element's border (and padding)
+            is included *within* its specified width and height, rather than adding to it. This is generally the more intuitive behavior.
+   </p>
+   <div class="flex flex-wrap gap-4 items-start">
+    <div class="w-40 h-40 bg-blue-200 p-3">
+     <p class="font-medium">
+      Box 1 (No Border)
+     </p>
+     <p class="text-xs">
+      Width: `w-40` (160px)
+     </p>
+     <p class="text-xs">
+      Height: `h-40` (160px)
+     </p>
+     <p class="text-xs">
+      Total visual size: 160x160px
+     </p>
+    </div>
+    <div class="w-40 h-40 bg-green-200 p-3 border-8 border-green-700">
+     <!--
+                    GOTCHA DEMONSTRATION:
+                    This box also has `w-40` and `h-40`.
+                    The `border-8` (8px on all sides) is *inside* these dimensions.
+                    So, the content area becomes 160px - (8px*2 padding) - (8px*2 border) = 160px - 16px - 16px = 128px wide for content.
+                    Crucially, the *overall footprint* of the box remains 160x160px.
+                    If CSS defaulted to `box-sizing: content-box` (the old default), this box would visually be
+                    160px (content) + 16px (border left/right) = 176px wide.
+                    Tailwind's preflight style `*, ::before, ::after { box-sizing: border-box; }` handles this.
+                 -->
+     <p class="font-medium">
+      Box 2 (With Border)
+     </p>
+     <p class="text-xs">
+      Width: `w-40` (160px)
+     </p>
+     <p class="text-xs">
+      Height: `h-40` (160px)
+     </p>
+     <p class="text-xs">
+      Border: `border-8` (8px)
+     </p>
+     <p class="text-xs">
+      Total visual size: Still 160x160px (border is internal)
+     </p>
+    </div>
+   </div>
+   <p class="mt-4 text-sm text-gray-700">
+    Observe that both boxes above occupy the same overall width and height on the page, even though the second box has a thick border.
+            This is due to
+    <code>
+     box-sizing: border-box
+    </code>
+    .
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: @apply Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style type="text/tailwindcss">
+   @layer components {
+            .custom-card {
+                @apply bg-white p-6 rounded-lg shadow-md border border-gray-200;
+            }
+            .custom-card-title {
+                @apply text-xl font-semibold text-gray-800 mb-2;
+            }
+            .custom-card-content {
+                @apply text-gray-600;
+            }
+
+            /* Gotcha Example: A very complex @apply rule (simulated) */
+            .overly-complex-component-style {
+                @apply bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 
+                       text-white p-8 rounded-xl shadow-2xl
+                       hover:shadow-inner hover:scale-105 transition-all duration-300
+                       focus-within:ring-4 focus-within:ring-yellow-300
+                       dark:bg-gray-800 dark:text-gray-100
+                       /* ... and many more utilities ... */;
+            }
+        }
+  </style>
+ </head>
+ <body class="p-8 bg-gray-50 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6">
+   @apply: The "Gotcha" - Overuse and Readability
+  </h1>
+  <div class="grid md:grid-cols-2 gap-8">
+   <div>
+    <h2 class="text-xl font-semibold mb-3">
+     Card Styled with @apply:
+    </h2>
+    <div class="custom-card">
+     <h3 class="custom-card-title">
+      Card Title
+     </h3>
+     <p class="custom-card-content">
+      This card uses custom classes (
+      <code>
+       .custom-card
+      </code>
+      ,
+      <code>
+       .custom-card-title
+      </code>
+      ) defined with
+      <code>
+       @apply
+      </code>
+      . This is a reasonable use for a small, self-contained abstraction.
+     </p>
+    </div>
+    <!--
+            Gotcha Explanation Point 1:
+            The styles for '.custom-card' are now hidden in the <style> block.
+            If this '.custom-card' class became very complex (many more @apply lines),
+            it starts to obscure the underlying Tailwind utilities from the HTML.
+            This is the "Gotcha": Overusing @apply can lead back to a more traditional CSS
+            workflow where you have many custom classes, and it's harder to see
+            the utility classes at a glance in your HTML.
+            -->
+   </div>
+   <div>
+    <h2 class="text-xl font-semibold mb-3">
+     Same Card Styled with Direct Utilities:
+    </h2>
+    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+     <h3 class="text-xl font-semibold text-gray-800 mb-2">
+      Card Title
+     </h3>
+     <p class="text-gray-600">
+      This card uses direct Tailwind utility classes in the HTML. Notice how all styles are immediately visible and modifiable here.
+     </p>
+    </div>
+    <!--
+            Gotcha Explanation Point 2:
+            With direct utilities, all styling information is present in the HTML.
+            This is a core benefit of utility-first CSS. While @apply is useful for
+            small abstractions, for larger components in complex applications,
+            JavaScript framework components (React, Vue, Svelte) are often preferred
+            over heavy @apply usage to maintain this visibility and manage complexity.
+            The goal isn't to recreate Bootstrap-style component classes with @apply.
+            -->
+   </div>
+  </div>
+  <div class="mt-8 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+   <h3 class="font-bold mb-2">
+    "Gotcha" - Potential Overuse Example:
+   </h3>
+   <p>
+    Imagine a class like
+    <code>
+     .overly-complex-component-style
+    </code>
+    (defined in
+    <code>
+     &lt;style&gt;
+    </code>
+    but not used here for brevity) that combines dozens of utilities. While it centralizes the styles, debugging or modifying a specific utility for just one instance of that "component" becomes harder. You lose the granular control and visibility that utility classes offer directly in the HTML.
+   </p>
+   <p class="mt-2">
+    <strong>
+     Key Takeaway:
+    </strong>
+    Use
+    <code>
+     @apply
+    </code>
+    for small, genuinely reusable patterns (like
+    <code>
+     .btn-primary
+    </code>
+    or simple alert styles), not for building large, complex component-like abstractions that hide too many utility details. For those, consider component-based architecture with JS frameworks.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

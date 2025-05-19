@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill - Button Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 space-y-8 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6 text-center">
+   Button Styling: Gotcha &amp; Best Practices
+  </h1>
+  <div class="text-center p-4 border border-red-300 rounded-lg bg-red-50">
+   <h2 class="text-xl font-semibold mb-2 text-red-700">
+    Problematic Approach: Styled &lt;div&gt;
+   </h2>
+   <!-- Gotcha: Using a div styled like a button -->
+   <div class="bg-red-500 text-white py-2 px-4 rounded inline-block cursor-pointer">
+    DIV Button (Not Recommended)
+   </div>
+   <p class="text-sm text-red-600 mt-2">
+    <!-- Explanation of the gotcha -->
+    <strong>
+     Gotcha:
+    </strong>
+    This
+    <code>
+     &lt;div&gt;
+    </code>
+    looks like a button, but it's
+    <strong>
+     not keyboard focusable
+    </strong>
+    by default (try tabbing to it!),
+            and screen readers won't announce it as a "button". This seriously harms accessibility.
+            It also doesn't have built-in click/submit behavior like a real button.
+   </p>
+   <p class="text-xs text-gray-500 mt-1">
+    (Notice it uses similar styling classes like
+    <code>
+     py-2 px-4
+    </code>
+    but on the wrong element.)
+   </p>
+  </div>
+  <hr class="my-8"/>
+  <div class="text-center p-4 border border-green-300 rounded-lg bg-green-50">
+   <h2 class="text-xl font-semibold mb-2 text-green-700">
+    Correct Approach: Semantic &lt;button&gt; Element
+   </h2>
+   <!-- Correct: Using a button element -->
+   <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
+    Actual &lt;button&gt;
+   </button>
+   <p class="text-sm text-gray-700 mt-2">
+    This is a proper
+    <code>
+     &lt;button&gt;
+    </code>
+    . It's focusable, accessible (announced as "button, [text]"), and handles click events correctly.
+            Key classes (
+    <code>
+     bg-blue-500 text-white py-2 px-4
+    </code>
+    ) are applied to the correct semantic element.
+   </p>
+  </div>
+  <div class="text-center p-4 border border-green-300 rounded-lg bg-green-50">
+   <h2 class="text-xl font-semibold mb-2 text-green-700">
+    Correct Approach for Links: Semantic &lt;a&gt; Element
+   </h2>
+   <!-- Correct: Using an anchor element for navigation styled as a button -->
+   <a class="bg-blue-500 text-white py-2 px-4 rounded inline-block hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50" href="#">
+    Styled &lt;a&gt; Link
+   </a>
+   <p class="text-sm text-gray-700 mt-2">
+    This is an
+    <code>
+     &lt;a&gt;
+    </code>
+    tag for navigation, styled like a button. It's also focusable and accessible.
+            Key classes (
+    <code>
+     bg-blue-500 text-white py-2 px-4
+    </code>
+    ) are applied correctly.
+   </p>
+  </div>
+  <div class="mt-8 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800">
+   <p class="font-bold">
+    Summary of the "Gotcha":
+   </p>
+   <p>
+    Always prioritize semantic HTML. Use
+    <code>
+     &lt;button&gt;
+    </code>
+    for actions and
+    <code>
+     &lt;a&gt;
+    </code>
+    for navigation. While Tailwind CSS can make any element look like a button, using a
+    <code>
+     &lt;div&gt;
+    </code>
+    or
+    <code>
+     &lt;span&gt;
+    </code>
+    for interactive controls leads to poor accessibility and user experience.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

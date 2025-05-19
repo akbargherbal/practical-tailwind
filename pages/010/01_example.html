@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill Example - Basic Sticky
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="font-sans from_inside_iframe">
+  <!-- 
+        This example demonstrates a basic 'sticky' element.
+        The navigation bar will stick to the top of its PARENT scrolling container.
+        In this case, the body is implicitly the scrolling container.
+    -->
+  <div class="bg-gray-100">
+   <header class="sticky top-0 bg-blue-500 text-white p-4 shadow-md z-10">
+    <h1 class="text-xl font-bold">
+     Sticky Navigation Bar (Basic)
+    </h1>
+    <p class="text-sm">
+     This bar uses `sticky top-0` and will stick to the top when you scroll down.
+    </p>
+   </header>
+   <main class="p-6">
+    <h2 class="text-2xl font-semibold mb-4">
+     Page Content
+    </h2>
+    <p class="mb-4">
+     Scroll down to see the sticky effect in action.
+    </p>
+    <div class="space-y-4">
+     <div class="bg-white p-4 rounded shadow h-32">
+      Placeholder Content Block 1
+     </div>
+     <div class="bg-white p-4 rounded shadow h-32">
+      Placeholder Content Block 2
+     </div>
+     <div class="bg-white p-4 rounded shadow h-32">
+      Placeholder Content Block 3
+     </div>
+     <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+     </p>
+     <div class="bg-white p-4 rounded shadow h-32">
+      Placeholder Content Block 4
+     </div>
+     <div class="bg-white p-4 rounded shadow h-32">
+      Placeholder Content Block 5
+     </div>
+     <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+     </p>
+     <div class="bg-white p-4 rounded shadow h-32">
+      Placeholder Content Block 6 (More content to ensure scrolling)
+     </div>
+     <div class="bg-white p-4 rounded shadow h-32">
+      Placeholder Content Block 7
+     </div>
+     <div class="bg-white p-4 rounded shadow h-32">
+      Placeholder Content Block 8
+     </div>
+     <div class="bg-white p-4 rounded shadow h-32">
+      Placeholder Content Block 9
+     </div>
+     <div class="bg-white p-4 rounded shadow h-32">
+      Placeholder Content Block 10
+     </div>
+    </div>
+   </main>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

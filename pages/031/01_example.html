@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill - Rounded Corners
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-6 text-center">
+    Rounded Corner Examples
+   </h1>
+   <!-- Basic rounded variations -->
+   <div class="mb-8 p-4 bg-white shadow-md">
+    <h2 class="text-xl font-semibold mb-3">
+     Standard Rounding
+    </h2>
+    <div class="flex flex-wrap gap-4 justify-center">
+     <div class="w-24 h-24 bg-sky-500 text-white flex items-center justify-center rounded-sm">
+      rounded-sm
+     </div>
+     <div class="w-24 h-24 bg-sky-500 text-white flex items-center justify-center rounded">
+      rounded
+     </div>
+     <div class="w-24 h-24 bg-sky-500 text-white flex items-center justify-center rounded-md">
+      rounded-md
+     </div>
+     <div class="w-24 h-24 bg-sky-500 text-white flex items-center justify-center rounded-lg">
+      rounded-lg
+     </div>
+     <div class="w-24 h-24 bg-sky-500 text-white flex items-center justify-center rounded-xl">
+      rounded-xl
+     </div>
+     <div class="w-24 h-24 bg-sky-500 text-white flex items-center justify-center rounded-2xl">
+      rounded-2xl
+     </div>
+     <div class="w-24 h-24 bg-sky-500 text-white flex items-center justify-center rounded-3xl">
+      rounded-3xl
+     </div>
+    </div>
+   </div>
+   <!-- Full rounding -->
+   <div class="mb-8 p-4 bg-white shadow-md">
+    <h2 class="text-xl font-semibold mb-3">
+     Full Rounding (Pill / Circle)
+    </h2>
+    <div class="flex flex-wrap gap-4 justify-center items-center">
+     <div class="w-32 h-16 bg-indigo-500 text-white flex items-center justify-center rounded-full">
+      Pill Shape
+     </div>
+     <div class="w-24 h-24 bg-indigo-500 text-white flex items-center justify-center rounded-full">
+      Circle
+     </div>
+    </div>
+   </div>
+   <!-- Applied to different elements -->
+   <div class="p-4 bg-white shadow-md">
+    <h2 class="text-xl font-semibold mb-3">
+     Applied to Buttons and Images
+    </h2>
+    <div class="flex flex-wrap gap-4 justify-center items-start">
+     <button class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded-lg">
+      Rounded Button
+     </button>
+     <button class="bg-rose-500 hover:bg-rose-600 text-white font-bold py-3 px-6 rounded-full">
+      Pill Button
+     </button>
+     <img alt="Rounded Image" class="w-24 h-24 rounded-xl object-cover" src="https://placehold.co/100x100/eab308/ffffff?text=Img"/>
+     <img alt="Circular Image" class="w-24 h-24 rounded-full object-cover" src="https://placehold.co/100x100/f472b6/ffffff?text=Img"/>
+    </div>
+   </div>
+   <!-- This snippet demonstrates various `rounded-*` classes on different elements.
+             `rounded-sm`, `rounded`, `rounded-md`, `rounded-lg`, `rounded-xl`, `rounded-2xl`, `rounded-3xl` offer increasing degrees of rounding.
+             `rounded-full` creates a pill shape on rectangular elements or a circle on square elements.
+        -->
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

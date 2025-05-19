@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill - Responsive Text Basic
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <!-- 
+        This example demonstrates basic responsive text sizing.
+        The heading's text size will change at different screen width breakpoints.
+        - Default (mobile): text-xl
+        - sm (640px and up): text-2xl
+        - md (768px and up): text-3xl
+        - lg (1024px and up): text-4xl
+        - xl (1280px and up): text-5xl
+        Resize your browser window to see the effect.
+    -->
+  <div class="container mx-auto p-6 bg-white shadow-md rounded-lg">
+   <h1 class="font-bold text-gray-800 text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
+    Responsive Heading Title
+   </h1>
+   <p class="mt-4 text-gray-600">
+    This heading's size adapts to the screen. On small screens, it's `text-xl`. As the screen gets wider, it increases to `sm:text-2xl`, then `md:text-3xl`, `lg:text-4xl`, and finally `xl:text-5xl` on very large screens. This ensures readability and appropriate scale across devices.
+   </p>
+  </div>
+  <div class="mt-8 p-4 bg-blue-50 border border-blue-200 rounded">
+   <h2 class="text-lg font-semibold text-blue-700">
+    How it works:
+   </h2>
+   <p class="text-blue-600 mt-2">
+    Tailwind's responsive prefixes (
+    <code>
+     sm:
+    </code>
+    ,
+    <code>
+     md:
+    </code>
+    ,
+    <code>
+     lg:
+    </code>
+    ,
+    <code>
+     xl:
+    </code>
+    ) allow you to apply different utility classes at specific breakpoints. For text size, you start with a base size (e.g.,
+    <code>
+     text-xl
+    </code>
+    for mobile) and then override it for larger screens (e.g.,
+    <code>
+     sm:text-2xl
+    </code>
+    ).
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

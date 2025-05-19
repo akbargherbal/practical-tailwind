@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Cards - Gotcha: Heavy Shadows
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-6 text-center">
+    Gotcha: Overuse of Dark/Large Shadows
+   </h1>
+   <p class="text-center mb-6 text-gray-600">
+    The "Gotcha" here is that very dark or large shadows can make the UI look heavy or cluttered.
+            Compare the two cards below.
+   </p>
+   <div class="flex flex-wrap justify-center gap-8">
+    <!-- Card with standard, recommended shadow -->
+    <div class="bg-white rounded-lg shadow-md p-6 w-full md:w-2/5">
+     <!-- Key classes: bg-white rounded-lg shadow-md p-6 -->
+     <h2 class="text-xl font-semibold mb-2">
+      User Profile (Standard Shadow)
+     </h2>
+     <img alt="User avatar" class="rounded-full w-20 h-20 mx-auto mb-3" src="https://via.placeholder.com/80"/>
+     <p class="text-gray-700 text-center">
+      This card uses `shadow-md`, a commonly recommended shadow size.
+                    It provides depth without being overpowering.
+     </p>
+    </div>
+    <!--
+                GOTCHA DEMONSTRATION: Overly Large/Dark Shadow
+                This card uses `shadow-2xl`, which is a much larger shadow.
+                While sometimes appropriate for emphasis, overuse can make designs feel heavy.
+                An even darker shadow like `shadow-black/50` (custom or with JIT) could be more problematic.
+            -->
+    <div class="bg-white rounded-lg shadow-2xl p-6 w-full md:w-2/5">
+     <!-- ^ NOTICE: shadow-2xl (larger shadow) -->
+     <h2 class="text-xl font-semibold mb-2">
+      Featured Item (Heavy Shadow)
+     </h2>
+     <img alt="Item image" class="rounded-lg w-20 h-20 mx-auto mb-3" src="https://via.placeholder.com/80"/>
+     <p class="text-gray-700 text-center">
+      This card uses `shadow-2xl`. Notice how much heavier it feels compared to `shadow-md`.
+                    Overusing such large shadows can lead to a cluttered interface.
+     </p>
+     <!--
+                    Comment: If you were to use an even darker shadow, e.g., by configuring a custom shadow
+                    or using something like `shadow-black` (if available/configured), the effect would be
+                    even more pronounced and potentially detrimental to the visual hierarchy.
+                -->
+    </div>
+   </div>
+   <div class="mt-8 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700">
+    <p class="font-bold">
+     Consideration:
+    </p>
+    <p>
+     While larger shadows (`shadow-lg`, `shadow-xl`, `shadow-2xl`) have their place for emphasis (e.g., modals, focused elements), using them ubiquitously for all cards can make the UI feel heavy. Stick to subtler shadows like `shadow-sm` or `shadow-md` for general card elements unless a stronger shadow serves a specific design purpose.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

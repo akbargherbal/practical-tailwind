@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Dividers: The "Gotcha" - Flexible Horizontal Lines
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto max-w-2xl">
+   <h1 class="text-2xl font-bold mb-6 text-center text-slate-700">
+    Horizontal Dividers: The "Gotcha" Explained
+   </h1>
+   <p class="text-center text-sm text-gray-600 mb-8">
+    The "Gotcha": Using a `&lt;div&gt;` with a tiny height (e.g., `h-px`) and a background color (e.g., `bg-gray-300`) 
+            is often more flexible for horizontal dividers than just `border-t` on an existing element, 
+            especially for controlling spacing *around* the line itself.
+   </p>
+   <!-- Scenario 1: Using border-t on an existing content element -->
+   <div class="mb-10 p-6 bg-white shadow rounded-lg">
+    <h2 class="text-xl font-semibold mb-3 text-amber-700">
+     Method 1: `border-t` on a Content Element
+    </h2>
+    <div class="bg-amber-100 p-4 rounded">
+     <p class="text-amber-800">
+      Some content above the divider.
+     </p>
+    </div>
+    <!-- The border-t is part of the element below. -->
+    <!-- Spacing the line itself (e.g., margin purely for the line) is coupled with this element's spacing. -->
+    <div class="bg-amber-100 p-4 border-t-2 border-amber-400 mt-0 rounded">
+     <!-- Note: mt-0 is used to make the border directly abut the element above for illustration -->
+     <p class="text-amber-800">
+      This content block has a `border-t-2`. The `p-4` adds padding for the content *inside* this box, *after* the border. 
+                   If you wanted, say, 16px of space strictly above the line and 16px strictly below the line, before this content, 
+                   it's less direct to achieve with just `border-t` on this block.
+     </p>
+    </div>
+    <p class="text-sm mt-3 italic text-gray-600">
+     With `border-t` on a content-bearing element, the line's spacing is tied to that element's own padding/margin. 
+                You can't easily apply margin just to the "line" itself without affecting the content block it's part of.
+    </p>
+   </div>
+   <!-- Scenario 2: The "Gotcha" solution - div with h-px and bg-color for flexibility -->
+   <div class="p-6 bg-white shadow rounded-lg">
+    <h2 class="text-xl font-semibold mb-3 text-teal-700">
+     Method 2 (Recommended for Flexibility): Dedicated `h-px` Divider
+    </h2>
+    <div class="bg-teal-100 p-4 rounded">
+     <p class="text-teal-800">
+      Some other content above the divider.
+     </p>
+    </div>
+    <!-- GOTCHA ADDRESSED: This div is dedicated to being a line. -->
+    <!-- `my-6` (margin top/bottom of 24px) creates space AROUND the line itself. -->
+    <!-- The height `h-px` makes it 1px high, and `bg-teal-500` gives it color. -->
+    <div class="h-px bg-teal-500 my-6">
+    </div>
+    <p class="text-sm text-gray-700 mb-3">
+     The `div` above is `1px` high (`h-px`) with a background color (`bg-teal-500`). 
+                The `my-6` class easily and directly controls the empty space above and below this visible line, independent of content padding.
+    </p>
+    <div class="bg-teal-100 p-4 rounded">
+     <p class="text-teal-800">
+      Some other content below the divider.
+     </p>
+    </div>
+    <p class="text-sm mt-3 italic text-gray-600">
+     This `h-px` and `bg-color` approach for horizontal lines offers much more control over the visual spacing of the divider itself.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

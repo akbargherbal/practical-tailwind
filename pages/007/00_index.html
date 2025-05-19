@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <title>
+   Tailwind CSS: Arrange items in a grid (like a checkerboard or photo album).
+  </title>
+  <style>
+   /* Minor style adjustments if needed, though Tailwind should cover most */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+  </style>
+  <style>
+   iframe.default_style {
+  width: 100%;
+  min-height: 300px; /* Reasonable minimum */
+  border: none;
+  display: block;
+}
+  </style>
+ </head>
+ <body class="bg-slate-50">
+  <div class="container mx-auto p-6 md:p-10 font-sans text-slate-800">
+   <header class="mb-12">
+    <h1 class="text-4xl font-bold mb-10 text-center text-slate-700">
+     Tailwind CSS Concept Explained
+    </h1>
+   </header>
+   <main>
+    <section class="mb-12 bg-white p-6 md:p-8 rounded-lg shadow-lg">
+     <h2 class="text-3xl font-semibold mb-6 text-slate-600 border-b-2 border-slate-300 pb-3">
+      Laying Things Out (Positioning &amp; Structure)
+     </h2>
+     <h3 class="text-2xl font-medium mb-5 text-indigo-700">
+      Arrange items in a grid (like a checkerboard or photo album).
+     </h3>
+     <p class="mb-2 text-slate-700">
+      <strong class="font-semibold text-slate-800">
+       Skill ID:
+      </strong>
+      LayingThingsOut_7
+     </p>
+     <p class="mb-2 text-slate-700">
+      <strong class="font-semibold text-slate-800">
+       Description:
+      </strong>
+      Create a structured layout of rows and columns for your items.
+     </p>
+     <p class="mb-2 text-slate-700">
+      <strong class="font-semibold text-slate-800">
+       Where to apply:
+      </strong>
+      Photo galleries, product listings, team member showcases.
+     </p>
+     <p class="mb-2 mt-6 text-slate-700">
+      <strong class="font-semibold text-slate-800">
+       Key Tailwind Classes:
+      </strong>
+     </p>
+     <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mb-4">
+      <span>
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        grid
+       </code>
+       ,
+      </span>
+      <span>
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        grid-cols-3
+       </code>
+       ,
+      </span>
+      <span>
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        gap-4
+       </code>
+      </span>
+     </div>
+     <div class="bg-amber-50 border-l-4 border-amber-500 text-amber-700 p-4 mt-6 rounded-md shadow-sm">
+      <p>
+       <strong class="font-semibold">
+        Gotcha:
+       </strong>
+       Grid items fill only one "cell" by default. If you want an item to span multiple columns or rows, you need to use
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        col-span-2
+       </code>
+       or
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        row-span-2
+       </code>
+       on that specific grid item.
+      </p>
+     </div>
+     <div class="mt-8 pt-6 border-t border-slate-200">
+      <h4 class="text-xl font-semibold mb-4 text-slate-700">
+       Example:
+      </h4>
+      <p class="mb-3 text-slate-600">
+       Here's how you might use these classes to create a simple 3-column grid with some spacing:
+      </p>
+      <div class="bg-slate-100 p-4 rounded-md shadow-inner mb-4 overflow-x-auto">
+       <pre class="text-sm text-slate-700"><code class="language-html">&lt;div class="grid grid-cols-3 gap-4"&gt;
+  &lt;div class="bg-indigo-200 p-4 rounded"&gt;Item 1&lt;/div&gt;
+  &lt;div class="bg-indigo-200 p-4 rounded"&gt;Item 2&lt;/div&gt;
+  &lt;div class="bg-indigo-200 p-4 rounded"&gt;Item 3&lt;/div&gt;
+  &lt;div class="bg-indigo-200 p-4 rounded col-span-2"&gt;Item 4 (spans 2 columns)&lt;/div&gt;
+  &lt;div class="bg-indigo-200 p-4 rounded"&gt;Item 5&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+      <p class="mb-3 text-slate-600">
+       Live Preview:
+      </p>
+      <div class="border border-slate-300 p-4 rounded-md">
+       <div class="grid grid-cols-3 gap-4">
+        <div class="bg-indigo-500 text-white p-4 rounded shadow text-center">
+         Item 1
+        </div>
+        <div class="bg-indigo-500 text-white p-4 rounded shadow text-center">
+         Item 2
+        </div>
+        <div class="bg-indigo-500 text-white p-4 rounded shadow text-center">
+         Item 3
+        </div>
+        <div class="bg-indigo-600 text-white p-4 rounded shadow text-center col-span-2">
+         Item 4 (spans 2 columns)
+        </div>
+        <div class="bg-indigo-500 text-white p-4 rounded shadow text-center">
+         Item 5
+        </div>
+       </div>
+      </div>
+      <p class="mt-4 text-sm text-slate-500">
+       In the example,
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        grid
+       </code>
+       establishes the grid container.
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        grid-cols-3
+       </code>
+       defines a grid with three columns of equal width.
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        gap-4
+       </code>
+       adds a gap (spacing) between grid items.
+                        "Item 4" uses
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        col-span-2
+       </code>
+       to take up the space of two columns, as mentioned in the "Gotcha".
+      </p>
+     </div>
+    </section>
+   </main>
+  </div>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 1:
+  </h1>
+  <iframe frameborder="0" src="./01_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 2:
+  </h1>
+  <iframe frameborder="0" src="./02_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 3:
+  </h1>
+  <iframe frameborder="0" src="./03_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 4:
+  </h1>
+  <iframe frameborder="0" src="./04_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 5:
+  </h1>
+  <iframe frameborder="0" src="./05_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 6:
+  </h1>
+  <iframe frameborder="0" src="./06_example.html">
+  </iframe>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+  const iframes = document.querySelectorAll('iframe');
+
+  // Ensure all iframes have the default style class
+  iframes.forEach(iframe => iframe.classList.add('default_style'));
+
+  window.addEventListener('message', function(event) {
+    // Optional: add origin check for safety
+    if (event.data && typeof event.data.iframeHeight === 'number') {
+      const iframe = Array.from(iframes).find(iframe =>
+        iframe.contentWindow === event.source
+      );
+      if (iframe) {
+        iframe.style.height = (event.data.iframeHeight + 50) + 'px';
+      }
+    }
+  });
+});
+  </script>
+ </body>
+</html>

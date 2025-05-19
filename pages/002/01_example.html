@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Default Vertical Stacking
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Example 1: Default Block Element Stacking
+  </h1>
+  <!-- 
+        Div elements (and other block-level elements like p, h1, etc.) 
+        stack vertically by default in HTML. No special Tailwind classes 
+        are needed for this basic stacking behavior.
+    -->
+  <div class="p-4 bg-blue-200 border border-blue-400 mb-2">
+   Item 1 (Default Block)
+  </div>
+  <div class="p-4 bg-green-200 border border-green-400 mb-2">
+   Item 2 (Default Block)
+  </div>
+  <p class="p-4 bg-yellow-200 border border-yellow-400">
+   Item 3 (Paragraph, also a block element)
+  </p>
+  <div class="mt-6 p-4 bg-slate-200">
+   <h2 class="text-lg font-semibold mb-2">
+    Explanation:
+   </h2>
+   <p>
+    The `div` and `p` elements above are block-level elements. By default, block-level elements take up the full width available and stack one on top of the other. You do not need `flex flex-col` for this simple vertical arrangement.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

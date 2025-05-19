@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Hover: Interactive Card
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-200 flex flex-col items-center justify-center min-h-screen from_inside_iframe">
+  <h1 class="text-3xl font-bold mb-8 text-gray-800">
+   Interactive Card with Multiple Hover Effects
+  </h1>
+  <p class="mb-6 text-gray-700 text-center max-w-lg">
+   This card demonstrates multiple hover effects applied simultaneously, all smoothed with `transition-all`.
+        Notice how the shadow, border, and background change on hover.
+  </p>
+  <!-- Interactive Card Example -->
+  <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-sm hover:shadow-xl hover:bg-blue-50 hover:border-blue-500 border-2 border-transparent transition-all duration-300 ease-in-out group">
+   <!-- HTML Comment:
+             - 'hover:shadow-xl' increases shadow depth.
+             - 'hover:bg-blue-50' changes background color slightly.
+             - 'hover:border-blue-500' adds/changes border color (initial border is transparent).
+             - 'transition-all duration-300 ease-in-out' ensures all these properties animate smoothly.
+               'transition-all' is used here as multiple properties are changing on hover.
+             - 'group' class is added for potential future use with group-hover, though not used for this specific example's primary hover effect.
+        -->
+   <h2 class="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
+    Card Title
+   </h2>
+   <p class="text-gray-600 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+    Hover over this card to see various properties change smoothly. This provides a richer interactive feel.
+   </p>
+   <button class="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 group-hover:bg-blue-600 transition-colors duration-150 ease-in-out">
+    Learn More
+   </button>
+   <!-- HTML Comment: Button also has its own hover effect. 'group-hover' could be used to style it based on card hover. -->
+  </div>
+  <p class="mt-8 text-sm text-gray-600">
+   The key is to combine `hover:` prefixes with `transition` classes (like `transition-all`, `transition-colors`, etc.) and `duration` classes to create polished interactions.
+  </p>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Circular Avatar (Gotcha)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-8 from_inside_iframe">
+  <div class="text-center mb-6">
+   <h1 class="text-2xl font-bold mb-2">
+    Gotcha: `rounded-full` on Rectangular Image
+   </h1>
+   <p class="text-gray-700">
+    If `rounded-full` is applied directly to a rectangular image, it results in an ellipse (oval), not a perfect circle.
+   </p>
+  </div>
+  <!-- Gotcha Demonstration: rounded-full on a rectangular image -->
+  <div class="m-4">
+   <img alt="Rectangular Profile Picture" class="w-48 h-32 rounded-full border-4 border-red-500 shadow-lg" src="https://via.placeholder.com/200x120/dc3545/ffffff?text=Rect_200x120"/>
+   <!--
+            GOTCHA DEMONSTRATED HERE:
+            The image source is rectangular (200x120), and its display dimensions are also rectangular (w-48 h-32 is not strictly needed here as image has intrinsic size, but helpful for explicit control).
+            Applying `rounded-full` directly makes it an ellipse.
+        -->
+   <p class="text-center mt-2 text-sm text-gray-600">
+    Rectangular Image (200x120) with `rounded-full` becomes an ellipse.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Leading: Fine-tuning with `leading-none`
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto space-y-8">
+   <h1 class="text-2xl font-bold mb-6">
+    Line Height: Using `leading-none`
+   </h1>
+   <p class="mb-4">
+    The `leading-none` class removes all added line height, making the line height equal to the font size (effectively `line-height: 1`). This can be useful in specific layout scenarios or when you want to control spacing very precisely with padding/margins.
+   </p>
+   <!-- Example 1: leading-none -->
+   <div>
+    <h2 class="text-xl font-semibold mb-2">
+     Leading None (`leading-none`)
+    </h2>
+    <p class="leading-none bg-white p-4 rounded shadow text-lg">
+     This text uses `leading-none`.
+                Line one. Line two. Line three.
+                Notice how compact the lines are. This is useful when you want the text element's height to be as close as possible to the actual text content height without extra spacing.
+    </p>
+   </div>
+   <!-- Gotcha context: leading-none and alignment -->
+   <div class="mt-8 p-4 border rounded shadow bg-white">
+    <h2 class="text-xl font-semibold mb-2">
+     `leading-none` and Alignment (Gotcha Relevance)
+    </h2>
+    <p class="mb-2 text-gray-700">
+     While `leading-none` makes the text block compact, the "Gotcha" about alignment with adjacent elements still applies. The alignment is to the center of this compact block.
+                Sometimes, `leading-none` is used to *minimize* extra space, hoping for better alignment, but careful consideration of the adjacent element's properties is still needed.
+    </p>
+    <div class="flex items-center p-3 bg-indigo-50 rounded">
+     <svg class="h-6 w-6 text-indigo-500 mr-3" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 12a2 2 0 100-4 2 2 0 000 4z">
+      </path>
+      <path clip-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.022 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" fill-rule="evenodd">
+      </path>
+     </svg>
+     <span class="leading-none text-xl bg-indigo-100 p-1">
+      Text with `leading-none`
+     </span>
+    </div>
+    <p class="mt-2 text-sm text-gray-600">
+     <!-- Comment addressing the gotcha in this context -->
+     <!-- Here, 'leading-none' makes the text span very tight.
+                     'items-center' will align the icon with the vertical center of this tight span.
+                     If the icon itself has internal padding or a different intrinsic height,
+                     visual alignment might still require manual tweaking (e.g., relative positioning, margins).
+                     The key is that `leading-*` influences the text's box, which is what flexbox aligns.
+                -->
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

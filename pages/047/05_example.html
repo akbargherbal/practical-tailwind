@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Dark Mode: OS Preference (Media)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <script>
+   // Optional: For explicit media query based dark mode (Tailwind CDN defaults to this)
+        // tailwind.config = {
+        //   darkMode: 'media', // or 'class'
+        // }
+  </script>
+ </head>
+ <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300 from_inside_iframe">
+  <!--
+        This example demonstrates dark mode based on OS/browser preference.
+        The Tailwind CSS CDN, by default, uses the 'media' strategy for dark mode.
+        This means it respects the user's operating system or browser's dark mode setting.
+        No JavaScript is needed for this to work.
+        The classes `dark:bg-gray-900` and `dark:text-white` will apply
+        when the user's system is in dark mode.
+
+        Gotcha Addressed (Partially):
+        The 'Gotcha' mentions needing to configure `darkMode` in `tailwind.config.js`.
+        When using the CDN, it defaults to `darkMode: 'media'`, so this configuration step
+        is handled for you for this specific strategy. If you were in a project with a
+        `tailwind.config.js` file, you would set `darkMode: 'media'` to achieve this.
+    -->
+  <div class="container mx-auto p-8 min-h-screen flex flex-col items-center justify-center">
+   <div class="p-6 rounded-lg shadow-lg bg-gray-100 dark:bg-gray-800">
+    <h1 class="text-3xl font-bold mb-4 text-gray-800 dark:text-gray-100">
+     Dark Mode Demo (OS Preference)
+    </h1>
+    <p class="mb-2 text-gray-700 dark:text-gray-300">
+     This page will automatically switch between light and dark themes based on your operating system's settings.
+    </p>
+    <p class="text-sm text-gray-500 dark:text-gray-400">
+     Try changing your OS appearance settings to see the effect.
+    </p>
+    <div class="mt-4 p-4 border border-blue-300 dark:border-blue-700 rounded bg-blue-50 dark:bg-blue-900">
+     <p class="text-blue-700 dark:text-blue-300">
+      This is a themed content box.
+     </p>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

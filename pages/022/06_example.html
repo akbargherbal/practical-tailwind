@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Dividers: Horizontal (border-t)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-50 from_inside_iframe">
+  <div class="container mx-auto bg-white p-6 rounded-lg shadow-md">
+   <h1 class="text-2xl font-bold mb-4">
+    Using `border-t` for Horizontal Dividers
+   </h1>
+   <!-- Content Section 1 -->
+   <div class="p-4 mb-4 bg-blue-100 rounded">
+    <h2 class="text-lg font-semibold">
+     Section 1
+    </h2>
+    <p>
+     This is the first content section. We want to add a divider after this.
+    </p>
+   </div>
+   <!-- Content Section 2 with a top border as a divider -->
+   <!-- The `border-t` class is applied to this element to create a line above it.
+             `border-gray-300` sets the color, `pt-4` adds padding above the content (below the line),
+             and `mt-4` adds margin above the line (spacing between section 1 and the line). -->
+   <div class="p-4 bg-green-100 rounded border-t border-gray-300 pt-4 mt-4">
+    <h2 class="text-lg font-semibold">
+     Section 2
+    </h2>
+    <p>
+     This is the second content section, appearing after the horizontal divider created by `border-t`.
+    </p>
+   </div>
+   <div class="p-4 mt-4 bg-indigo-100 rounded border-t-4 border-indigo-500 border-dashed pt-4">
+    <h2 class="text-lg font-semibold">
+     Section 3 (Thicker, Dashed Divider)
+    </h2>
+    <p>
+     Example with a thicker (`border-t-4`) and dashed (`border-dashed`) top border.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

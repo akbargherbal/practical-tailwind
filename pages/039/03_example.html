@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind - Disabled Form Input
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 space-y-4 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Disabled Element Styling: Form Input
+  </h1>
+  <div class="mb-6 p-4 border rounded-lg bg-white">
+   <h2 class="text-lg font-semibold mb-2">
+    Form with Disabled Input
+   </h2>
+   <p class="text-sm text-gray-600 mb-3">
+    The "Reason for Contact" input is disabled and styled accordingly.
+   </p>
+   <form class="space-y-3">
+    <div>
+     <label class="block text-sm font-medium text-gray-700" for="name">
+      Name:
+     </label>
+     <input class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-100" id="name" name="name" placeholder="Your Name" type="text"/>
+    </div>
+    <div>
+     <label class="block text-sm font-medium text-gray-700" for="reason">
+      Reason for Contact (Disabled):
+     </label>
+     <input class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-100" disabled="" id="reason" name="reason" type="text" value="Option Pre-selected &amp; Disabled"/>
+     <!-- This input field has the 'disabled' HTML attribute.
+                     Tailwind's `disabled:opacity-50`, `disabled:cursor-not-allowed`, and an additional `disabled:bg-gray-100`
+                     will apply, making it visually and functionally disabled.
+                -->
+    </div>
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-75 disabled:cursor-not-allowed" disabled="" type="submit">
+     Submit Form (Disabled until form is valid)
+    </button>
+   </form>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

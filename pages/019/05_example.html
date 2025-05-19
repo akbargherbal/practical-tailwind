@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Example - Ordered List
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-blue-50 from_inside_iframe">
+  <!-- This example demonstrates a basic ordered list (numbers) with appropriate padding. -->
+  <div class="bg-white p-6 rounded-lg shadow-md">
+   <h1 class="text-xl font-semibold mb-4">
+    Instructions (Ordered List)
+   </h1>
+   <ol class="list-decimal pl-5 text-gray-700 space-y-1">
+    <li>
+     Step one: Gather your ingredients.
+    </li>
+    <li>
+     Step two: Mix them thoroughly.
+    </li>
+    <li>
+     Step three: Bake for 30 minutes.
+    </li>
+    <li>
+     Step four: Let it cool and enjoy.
+    </li>
+   </ol>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

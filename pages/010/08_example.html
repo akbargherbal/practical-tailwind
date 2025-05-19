@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Sticky Element Gotcha (Parent Height)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-4 md:p-8 from_inside_iframe">
+  <h1 class="text-2xl md:text-3xl font-bold mb-6 text-center">
+   Sticky Element Gotcha: Parent Container Scope
+  </h1>
+  <p class="text-center mb-8 max-w-2xl mx-auto text-gray-700">
+   The
+   <code>
+    sticky
+   </code>
+   utility positions an element as `relative` until it crosses a specified threshold (e.g., `top-0`), then it's treated as `fixed`. However, it only "sticks" within the boundaries of its direct parent container.
+  </p>
+  <!-- GOTCHA DEMONSTRATION for 'sticky' -->
+  <div class="mb-12 p-4 border-2 border-dashed border-red-400 bg-red-50 rounded-lg">
+   <h2 class="text-xl font-semibold mb-2 text-red-700">
+    Scenario 1: Gotcha - Sticky in a Short Parent
+   </h2>
+   <p class="text-sm mb-3 text-gray-600">
+    The `sticky` element below is inside a parent container (`div class="parent-short"`) that has a fixed height (`h-64`). The sticky element will stick to the top of *this parent* as you scroll *within this parent* (if it had `overflow-auto` and internal scroll). However, once the entire short parent scrolls out of the main viewport, the sticky element will disappear with it. It won't stick to the viewport top beyond its parent's boundary.
+   </p>
+   <div class="parent-short bg-gray-200 p-4 h-64 border border-gray-400 rounded relative">
+    <!-- This parent (h-64) defines the boundary for the sticky element. -->
+    <div class="sticky top-4 bg-yellow-400 p-3 text-black rounded shadow z-10">
+     Sticky Item (inside short parent, `top-4`)
+    </div>
+    <p class="mt-2 pt-12">
+     Content within the short parent. Scroll the main page. This yellow bar will stick near the top of this gray box. But when this gray box scrolls off screen, the yellow bar goes with it.
+    </p>
+    <div class="h-32">
+    </div>
+    <!-- Some space inside parent -->
+    <p>
+     End of short parent's content.
+    </p>
+   </div>
+   <p class="text-xs mt-2 text-gray-500">
+    When the gray "parent-short" box scrolls out of view, the yellow sticky item also disappears. It does not remain stuck to the top of the browser viewport.
+   </p>
+  </div>
+  <div class="p-4 border-2 border-dashed border-green-400 bg-green-50 rounded-lg">
+   <h2 class="text-xl font-semibold mb-2 text-green-700">
+    Scenario 2: Correct - Sticky in a Tall Parent (or with sufficient following content)
+   </h2>
+   <p class="text-sm mb-3 text-gray-600">
+    Here, the `sticky` element is within a parent container that is either very tall itself, or is followed by enough content in the document flow, allowing the sticky behavior relative to the viewport to be observed for a longer period as the page scrolls.
+   </p>
+   <div class="parent-tall bg-gray-200 p-4 border border-gray-400 rounded relative">
+    <div class="sticky top-4 bg-teal-500 p-3 text-white rounded shadow z-10">
+     Sticky Item (inside taller context, `top-4`)
+    </div>
+    <p class="mt-2 pt-12">
+     Start of content in the taller parent section.
+    </p>
+    <div class="h-screen bg-gray-300 my-4 flex items-center justify-center rounded">
+     <p>
+      Tall scrollable content area within the parent's scope.
+     </p>
+    </div>
+    <p>
+     More content here to ensure the parent is "tall enough" for the sticky effect to be visible while scrolling the main page.
+    </p>
+    <div class="h-48">
+    </div>
+    <p>
+     End of taller parent's content.
+    </p>
+   </div>
+   <p class="text-xs mt-2 text-gray-500">
+    As you scroll the main page, the teal sticky item will stick near the top of the browser viewport for as long as its gray "parent-tall" container is visible and being scrolled through.
+   </p>
+  </div>
+  <!-- Add enough content to the body to ensure main page scrolling -->
+  <div class="h-screen bg-indigo-100 mt-8 flex items-center justify-center rounded-lg">
+   <p class="text-xl">
+    Extra page content to enable scrolling further down.
+   </p>
+  </div>
+  <footer class="text-center p-4 mt-8 text-gray-600">
+   <p>
+    © 2023 Sticky Gotcha Example
+   </p>
+  </footer>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

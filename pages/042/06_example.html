@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind - Gotcha: Implicit vs. Explicit Base Column
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-4 text-center">
+    Gotcha: Implicit vs. Explicit Base Column Count
+   </h1>
+   <p class="text-center mb-6 text-gray-700">
+    This example addresses the "Gotcha" about forgetting or omitting the base case for the smallest screens.
+   </p>
+   <!-- Section 1: Implicit Base Case (Less Clear) -->
+   <div class="mb-12">
+    <h2 class="text-xl font-semibold mb-3 text-red-700">
+     1. Implicit Base Case (Potentially Less Clear)
+    </h2>
+    <p class="mb-3 text-sm text-gray-600">
+     Below,
+     <code>
+      grid-cols-1
+     </code>
+     (or any base
+     <code>
+      grid-cols-*
+     </code>
+     ) is omitted. Tailwind's mobile-first nature means it defaults to a single column flow for child `div` elements within a `grid` container if no other column definition matches. While it works, it's less explicit.
+    </p>
+    <!--
+                GOTCHA DEMONSTRATION:
+                Here, we only specify grid columns for `sm` and `md` breakpoints.
+                For screens smaller than `sm`, items will stack as if in a single column
+                because child divs are block-level and will take full width of the grid track.
+                However, not explicitly stating `grid-cols-1` can be less clear about the intended
+                base behavior.
+            -->
+    <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4 p-4 border border-dashed border-red-400 bg-red-50">
+     <div class="bg-red-400 text-white p-4 rounded flex items-center justify-center">
+      Item A
+     </div>
+     <div class="bg-red-400 text-white p-4 rounded flex items-center justify-center">
+      Item B
+     </div>
+     <div class="bg-red-400 text-white p-4 rounded flex items-center justify-center">
+      Item C
+     </div>
+     <div class="bg-red-400 text-white p-4 rounded flex items-center justify-center">
+      Item D
+     </div>
+    </div>
+    <p class="mt-2 text-xs text-red-600">
+     <em>
+      (Code:
+      <code>
+       &lt;div class="grid sm:grid-cols-2 md:grid-cols-4"&gt;...&lt;/div&gt;
+      </code>
+      )
+     </em>
+     - On XS screens, items stack, but
+     <code>
+      grid-cols-1
+     </code>
+     is not explicitly stated.
+    </p>
+   </div>
+   <!-- Section 2: Explicit Base Case (Clearer & Recommended) -->
+   <div>
+    <h2 class="text-xl font-semibold mb-3 text-green-700">
+     2. Explicit Base Case (Clearer and Recommended)
+    </h2>
+    <p class="mb-3 text-sm text-gray-600">
+     Below,
+     <code>
+      grid-cols-1
+     </code>
+     is explicitly defined for the smallest screens. This makes the intended layout behavior at all screen sizes perfectly clear.
+    </p>
+    <!--
+                CORRECTED/PREFERRED WAY:
+                Explicitly defining `grid-cols-1` makes the base behavior unambiguous.
+            -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-4 border border-dashed border-green-400 bg-green-50">
+     <div class="bg-green-500 text-white p-4 rounded flex items-center justify-center">
+      Item 1
+     </div>
+     <div class="bg-green-500 text-white p-4 rounded flex items-center justify-center">
+      Item 2
+     </div>
+     <div class="bg-green-500 text-white p-4 rounded flex items-center justify-center">
+      Item 3
+     </div>
+     <div class="bg-green-500 text-white p-4 rounded flex items-center justify-center">
+      Item 4
+     </div>
+    </div>
+    <p class="mt-2 text-xs text-green-600">
+     <em>
+      (Code:
+      <code>
+       &lt;div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4"&gt;...&lt;/div&gt;
+      </code>
+      )
+     </em>
+     - Clear declaration for all screen sizes.
+    </p>
+   </div>
+   <div class="mt-8 p-4 bg-yellow-100 border border-yellow-300 rounded">
+    <h3 class="font-semibold text-yellow-700">
+     Gotcha Summary:
+    </h3>
+    <p class="text-yellow-600 text-sm">
+     While Tailwind CSS is mobile-first, and omitting a base
+     <code>
+      grid-cols-*
+     </code>
+     utility might result in a single-column layout on small screens (due to default block behavior of child elements or other implicit grid flow rules), explicitly setting the base case (e.g.,
+     <code>
+      grid-cols-1
+     </code>
+     ) is a best practice. It improves code readability and ensures your intended layout is unambiguous for the smallest viewports.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

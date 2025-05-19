@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Z-Index for Stacking
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex flex-col items-center from_inside_iframe">
+  <div class="text-center mb-8">
+   <h2 class="text-xl font-semibold">
+    Example 3: Controlling Stack Order with `z-index`
+   </h2>
+   <p class="text-gray-600">
+    Using `z-10`, `z-20`, etc., on positioned elements to control overlap.
+   </p>
+  </div>
+  <div class="relative w-80 h-64 bg-purple-300 p-4 rounded-lg shadow-xl">
+   <!-- Parent container needs 'relative' for children's 'absolute' and 'z-index' to work as expected within it. -->
+   <p class="absolute top-2 left-2 text-sm text-purple-800">
+    Parent Container (`relative`)
+   </p>
+   <!-- Element 1: Lower z-index -->
+   <div class="absolute top-8 left-8 w-48 h-32 bg-blue-500 text-white p-3 rounded shadow-md z-10">
+    Layer 1 (z-10)
+    <!-- HTML Comment: This element has z-10. -->
+   </div>
+   <!-- Element 2: Higher z-index, appears on top of Element 1 -->
+   <div class="absolute top-16 left-16 w-48 h-32 bg-green-500 text-white p-3 rounded shadow-md z-20">
+    Layer 2 (z-20)
+    <!-- HTML Comment: This element has z-20, so it stacks above elements with lower z-index like z-10. -->
+   </div>
+   <!-- Element 3: No explicit z-index (defaults effectively to z-0 or auto) -->
+   <div class="absolute top-24 left-24 w-48 h-32 bg-yellow-400 text-gray-800 p-3 rounded shadow-md">
+    Layer 3 (no z-index / z-auto)
+    <!-- HTML Comment: This element has no explicit z-index.
+                 Within the same stacking context, positioned elements without z-index
+                 are typically rendered based on DOM order above non-positioned elements,
+                 and above other positioned elements with z-index 0 or auto if they appear later in the DOM.
+                 It will appear *behind* elements with positive z-index (like z-10 and z-20).
+            -->
+   </div>
+   <div class="absolute bottom-2 right-2 text-xs text-purple-700 bg-purple-100 p-1 rounded">
+    Note: `z-index` only works on
+    <br/>
+    positioned elements (relative, absolute, etc.).
+    <br/>
+    All layers here are `absolute`.
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

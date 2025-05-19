@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Dividers - Gotcha (Flexibility)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-50 from_inside_iframe">
+  <div class="container mx-auto max-w-2xl">
+   <h1 class="text-2xl font-bold mb-8 text-center">
+    Gotcha: Horizontal Divider Flexibility
+   </h1>
+   <p class="text-center mb-8 text-gray-600">
+    Comparing `border-t` on an existing element vs. a dedicated `div` with `h-px` and `bg-color`.
+   </p>
+   <!-- Scenario: Separating content within a card or form sections -->
+   <div class="bg-white p-6 rounded-lg shadow mb-10">
+    <h2 class="text-xl font-semibold mb-2">
+     User Profile Section
+    </h2>
+    <p class="text-gray-700 mb-4">
+     Username: JaneDoe
+     <br/>
+     Email: jane.doe@example.com
+    </p>
+    <!-- Method 1: Using border-t on an "existing" content-bearing element -->
+    <!-- Here, the 'Details' section div itself gets the top border to act as a separator. -->
+    <div class="border-t border-gray-300 pt-4 mt-4">
+     <!-- 'pt-4' and 'mt-4' are needed to create visual space around the line produced by 'border-t'. -->
+     <!-- The line's appearance and spacing are tied to this content block. -->
+     <h3 class="text-lg font-medium mb-1">
+      Subscription Details
+     </h3>
+     <p class="text-sm text-gray-600">
+      Plan: Premium
+      <br/>
+      Joined: January 2023
+     </p>
+     <p class="text-xs text-gray-500 mt-3">
+      <em>
+       This uses
+       <code>
+        border-t border-gray-300 pt-4 mt-4
+       </code>
+       on the "Subscription Details" div.
+                    The line is an integral part of this content block. Thickness is controlled by border utilities (e.g.,
+       <code>
+        border-t
+       </code>
+       for 1px,
+       <code>
+        border-t-2
+       </code>
+       for 2px).
+      </em>
+     </p>
+    </div>
+   </div>
+   <div class="bg-white p-6 rounded-lg shadow">
+    <h2 class="text-xl font-semibold mb-2">
+     Product Information Section
+    </h2>
+    <p class="text-gray-700 mb-4">
+     Product Name: SuperWidget
+     <br/>
+     Price: $99.99
+    </p>
+    <!-- Method 2 (Gotcha Solution): Using a dedicated div with h-px and background color -->
+    <!-- This approach is often more flexible and explicit for creating the divider line. -->
+    <div class="my-4 h-px bg-red-400">
+    </div>
+    <!-- 'my-4' on the divider div itself controls spacing around the line. -->
+    <!-- 'h-px' (1px height) controls thickness. 'bg-red-400' controls color. -->
+    <div>
+     <h3 class="text-lg font-medium mb-1">
+      Technical Specifications
+     </h3>
+     <p class="text-sm text-gray-600">
+      Weight: 200g
+      <br/>
+      Dimensions: 10cm x 5cm x 2cm
+     </p>
+     <p class="text-xs text-orange-700 font-semibold mt-3">
+      <!-- GOTCHA DEMONSTRATION & EXPLANATION -->
+      <strong>
+       Gotcha Point Highlighted:
+      </strong>
+      The
+      <code>
+       &lt;div class="my-4 h-px bg-red-400"&gt;&lt;/div&gt;
+      </code>
+      method above is often preferred for its flexibility.
+                    It creates an independent element for the divider. This gives direct and separate control over:
+                    1. Thickness (e.g.,
+      <code>
+       h-px
+      </code>
+      for 1px,
+      <code>
+       h-0.5
+      </code>
+      for 2px,
+      <code>
+       h-1
+      </code>
+      for 4px).
+                    2. Color (using background utilities like
+      <code>
+       bg-red-400
+      </code>
+      ).
+                    3. Spacing (using margin utilities like
+      <code>
+       my-4
+      </code>
+      ).
+                    This can be cleaner and more intuitive than managing the line's appearance and spacing via padding/margin on a content-bearing element that also has a
+      <code>
+       border-t
+      </code>
+      .
+     </p>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

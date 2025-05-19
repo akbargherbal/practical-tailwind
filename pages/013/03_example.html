@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Example - Basic Outlined Button
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 flex flex-col items-center space-y-4 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Basic Outlined Button
+  </h1>
+  <!-- This button demonstrates the core classes for an outlined style. -->
+  <!-- Key classes:
+         - `border`: Adds a 1px border.
+         - `border-blue-500`: Sets the border color to blue.
+         - `text-blue-500`: Sets the text color to blue.
+         - `py-2 px-4`: Adds padding for better appearance.
+         - `rounded`: Adds rounded corners.
+    -->
+  <button class="border border-blue-500 text-blue-500 py-2 px-4 rounded">
+   Primary Action
+  </button>
+  <p class="text-sm text-gray-600 mt-4">
+   This is a simple outlined button using `border`, `border-{color}`, and `text-{color}`.
+        The background is transparent by default for a standard button element.
+  </p>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Consistent Margin &amp; Padding
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-6 text-center">
+    Consistent Margin &amp; Padding
+   </h1>
+   <!-- Example 1: Using m-* and p-* on individual elements within a container -->
+   <div class="bg-blue-100 p-6 rounded-lg shadow-md mb-8">
+    <h2 class="text-xl font-semibold mb-3 text-blue-700">
+     Container with Padding (p-6)
+    </h2>
+    <p class="mb-4 text-sm text-gray-600">
+     The outer blue box has `p-6` for internal spacing.
+    </p>
+    <div class="bg-green-200 p-4 m-4 rounded">
+     <p class="text-green-800">
+      This box has `p-4` (padding) and `m-4` (margin).
+     </p>
+     <p class="text-sm text-gray-600">
+      Notice the space around it (margin) and inside it (padding).
+     </p>
+    </div>
+    <div class="bg-yellow-200 p-2 m-2 rounded">
+     <p class="text-yellow-800">
+      This box has `p-2` (padding) and `m-2` (margin).
+     </p>
+     <p class="text-sm text-gray-600">
+      A smaller, consistent spacing using Tailwind's scale.
+     </p>
+    </div>
+    <div class="bg-purple-200 p-4 rounded">
+     <!-- This element has no margin relative to its siblings if they also have no margin,
+                      but its p-4 provides internal space.
+                      The m-4/m-2 on siblings create space between them. -->
+     <p class="text-purple-800">
+      This box has `p-4` (padding) but no explicit margin in this context.
+     </p>
+     <p class="text-sm text-gray-600">
+      Its spacing relative to siblings is determined by their margins.
+     </p>
+    </div>
+   </div>
+   <!-- Example 2: Using consistent spacing for a list-like structure -->
+   <div class="bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold mb-3 text-gray-700">
+     List with Consistent Item Spacing
+    </h2>
+    <div class="bg-red-100 p-3 mb-2 rounded">
+     Item 1 (p-3, mb-2)
+    </div>
+    <div class="bg-red-100 p-3 mb-2 rounded">
+     Item 2 (p-3, mb-2)
+    </div>
+    <div class="bg-red-100 p-3 rounded">
+     Item 3 (p-3, no mb as it's the last)
+    </div>
+    <!-- `mb-2` (margin-bottom-0.5rem) is used consistently between items.
+                 `p-3` (padding-0.75rem) is used consistently inside items. -->
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

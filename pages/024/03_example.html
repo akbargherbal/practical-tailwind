@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Text Sizes - Consistency Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 font-sans from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6">
+   Gotcha: Inconsistent Text Sizes
+  </h1>
+  <div class="mb-8 p-4 border border-red-300 bg-red-50 rounded-lg">
+   <h2 class="text-xl font-semibold mb-2 text-red-700">
+    Problem: Disorganized UI
+   </h2>
+   <p class="text-sm mb-2">
+    <!-- Gotcha Demonstration: Inconsistent use can lead to a disorganized look. -->
+    <!-- The following shows an example of mixing sizes erratically, which should be avoided. -->
+    <span class="text-lg">
+     This heading is
+    </span>
+    <span class="text-xs">
+     too small
+    </span>
+    <span class="text-2xl">
+     and then
+    </span>
+    <span class="text-sm">
+     jumps around
+    </span>
+    .
+            This body text is
+    <span class="text-xl">
+     suddenly large
+    </span>
+    then
+    <span class="text-base">
+     back to normal
+    </span>
+    .
+            It makes the content hard to follow and looks unprofessional.
+   </p>
+   <p class="text-xs text-gray-600">
+    The example above mixes `text-lg`, `text-xs`, `text-2xl`, `text-sm`, `text-xl`, and `text-base` in a single paragraph without clear purpose, illustrating the "Gotcha".
+   </p>
+  </div>
+  <div class="p-4 border border-green-300 bg-green-50 rounded-lg">
+   <h2 class="text-xl font-semibold mb-2 text-green-700">
+    Solution: Maintain Visual Harmony
+   </h2>
+   <p class="text-sm mb-2">
+    Stick to Tailwind's predefined scale and establish a clear hierarchy.
+   </p>
+   <div>
+    <h3 class="text-xl font-bold mb-1">
+     Consistent Section Title (text-xl)
+    </h3>
+    <p class="text-base mb-3">
+     This paragraph uses
+     <code class="bg-gray-200 px-1 rounded">
+      text-base
+     </code>
+     for its main content, providing a comfortable reading experience.
+                Key information might be
+     <strong class="font-semibold">
+      bolded
+     </strong>
+     , but the size remains consistent.
+    </p>
+    <h4 class="text-lg font-semibold mb-1">
+     Consistent Sub-Section Title (text-lg)
+    </h4>
+    <p class="text-base mb-3">
+     Another paragraph, also using
+     <code class="bg-gray-200 px-1 rounded">
+      text-base
+     </code>
+     . The hierarchy is clear due to the heading sizes.
+    </p>
+    <p class="text-sm text-gray-700">
+     Additional notes or less critical information can use
+     <code class="bg-gray-200 px-1 rounded">
+      text-sm
+     </code>
+     , like this.
+    </p>
+    <p class="text-xs text-gray-500 mt-1">
+     And for very fine print or captions,
+     <code class="bg-gray-200 px-1 rounded">
+      text-xs
+     </code>
+     can be used sparingly.
+    </p>
+   </div>
+   <!-- HTML Comment explaining how the "Gotcha" is addressed:
+            By establishing a clear visual hierarchy with heading sizes (text-xl, text-lg)
+            and using a consistent size (text-base) for body copy, we avoid the disorganized
+            look. Smaller sizes (text-sm, text-xs) are used purposefully for supplementary text.
+            This adheres to Tailwind's scale and promotes visual harmony.
+        -->
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

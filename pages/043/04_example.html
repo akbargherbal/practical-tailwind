@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Responsive Stacking
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Responsive Item Stacking Example
+  </h1>
+  <p class="mb-6">
+   This example demonstrates how items stack vertically on small screens and arrange horizontally on larger screens (
+   <code>
+    sm
+   </code>
+   breakpoint and up).
+  </p>
+  <!--
+      Applying 'flex' to make it a flex container.
+      'flex-col' makes children stack vertically by default (mobile-first).
+      'sm:flex-row' changes the direction to horizontal on 'sm' screens and larger.
+    -->
+  <div class="flex flex-col sm:flex-row gap-4 p-4 bg-blue-100 border border-blue-300 rounded">
+   <div class="p-4 bg-blue-500 text-white rounded shadow-md basis-1/2 text-center">
+    Item 1
+   </div>
+   <div class="p-4 bg-green-500 text-white rounded shadow-md basis-1/2 text-center">
+    Item 2
+   </div>
+   <div class="p-4 bg-purple-500 text-white rounded shadow-md basis-1/2 text-center">
+    Item 3
+   </div>
+  </div>
+  <div class="mt-6 p-4 bg-white rounded shadow">
+   <h2 class="text-lg font-semibold">
+    Explanation:
+   </h2>
+   <p class="mt-2">
+    The container
+    <code>
+     &lt;div&gt;
+    </code>
+    above uses the classes
+    <code>
+     flex flex-col sm:flex-row
+    </code>
+    .
+   </p>
+   <ul class="list-disc list-inside mt-2">
+    <li>
+     <code>
+      flex
+     </code>
+     : Establishes the div as a flex container.
+    </li>
+    <li>
+     <code>
+      flex-col
+     </code>
+     : Sets the default flex direction to column, so items stack vertically. This is our mobile-first approach.
+    </li>
+    <li>
+     <code>
+      sm:flex-row
+     </code>
+     : At the
+     <code>
+      sm
+     </code>
+     breakpoint (typically 640px) and wider, this class overrides
+     <code>
+      flex-col
+     </code>
+     and sets the flex direction to row, making items appear side-by-side.
+    </li>
+   </ul>
+   <p class="mt-2">
+    Resize your browser window to see the layout change.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Gotcha: mx-auto &amp; Display Type
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-50 p-4 from_inside_iframe">
+  <div class="container mx-auto px-4">
+   <h1 class="text-2xl font-bold mb-6 text-center">
+    Gotcha: `mx-auto` and Element Display Type
+   </h1>
+   <p class="text-center mb-6 text-gray-700">
+    <code>
+     mx-auto
+    </code>
+    for horizontal centering primarily works on elements with `display: block` (or `flex`, `grid`) and a defined width.
+   </p>
+   <!-- Scenario 1: Attempting to center an inline element -->
+   <div class="mb-8 border border-dashed border-gray-400 p-4">
+    <h2 class="text-lg font-semibold mb-2">
+     1. Inline Element (e.g., `&lt;span&gt;`):
+    </h2>
+    <p class="mb-2">
+     Attempting to center an `&lt;span&gt;` with `mx-auto` and `w-1/3`:
+    </p>
+    <div class="bg-gray-200 p-2">
+     <!-- The span itself -->
+     <span class="bg-red-400 text-white p-2 mx-auto w-1/3">
+      Span with `mx-auto w-1/3`
+     </span>
+     <!-- Content to show it's inline -->
+     <span class="bg-red-200 p-1">
+      Another inline span
+     </span>
+    </div>
+    <!-- GOTCHA EXPLANATION -->
+    <p class="mt-2 text-sm text-red-700">
+     <strong>
+      Gotcha:
+     </strong>
+     `mx-auto` (for horizontal centering) and `w-*` (width utilities) typically do not work as expected on `inline` elements.
+                The span above will likely not be centered by `mx-auto` nor will its width be accurately `1/3` of its container without changing its display property. It flows with other inline content.
+    </p>
+    <p class="mt-1 text-xs text-gray-600">
+     (Note: To center inline content, you'd typically use `text-center` on its
+     <em>
+      parent
+     </em>
+     block-level element.)
+    </p>
+   </div>
+   <!-- Scenario 2: Inline element converted to block -->
+   <div class="mb-8 border border-dashed border-gray-400 p-4">
+    <h2 class="text-lg font-semibold mb-2">
+     2. Inline Element (`&lt;span&gt;`) converted to `block`:
+    </h2>
+    <p class="mb-2">
+     Now, converting the `&lt;span&gt;` to `display: block`:
+    </p>
+    <div class="bg-gray-200 p-2">
+     <span class="block w-1/3 mx-auto bg-green-500 text-white p-2 text-center">
+      Span with `block w-1/3 mx-auto`
+     </span>
+    </div>
+    <p class="mt-2 text-sm text-green-700">
+     <strong>
+      Corrected:
+     </strong>
+     By adding `block` (or `inline-block` if side-by-side layout is needed with other blocks, though `mx-auto` is less common for `inline-block` horizontal centering), the `span` now behaves like a block-level element.
+                With `block`, `w-1/3`, and `mx-auto`, it is correctly centered.
+    </p>
+   </div>
+   <!-- Scenario 3: Default block element (div) for comparison -->
+   <div class="border border-dashed border-gray-400 p-4">
+    <h2 class="text-lg font-semibold mb-2">
+     3. Default Block Element (`&lt;div&gt;`):
+    </h2>
+    <p class="mb-2">
+     A `&lt;div&gt;` is `display: block` by default:
+    </p>
+    <div class="bg-gray-200 p-2">
+     <div class="w-1/2 mx-auto bg-blue-500 text-white p-4 text-center rounded">
+      Default `div` with `w-1/2 mx-auto`
+     </div>
+    </div>
+    <p class="mt-2 text-sm text-blue-700">
+     <strong>
+      As Expected:
+     </strong>
+     `div` elements are block-level by default. With a defined width (`w-1/2`) and `mx-auto`, they center perfectly.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

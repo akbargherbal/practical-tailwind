@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Responsive Text: Basic
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <!-- 
+        Basic Example: Responsive Heading
+        This heading starts at text-2xl on small screens,
+        increases to text-3xl on 'sm' screens (640px and up),
+        and further increases to text-4xl on 'md' screens (768px and up).
+        Resize your browser window to see the effect.
+    -->
+  <div class="container mx-auto text-center">
+   <h1 class="font-bold text-gray-800 text-2xl sm:text-3xl md:text-4xl">
+    Responsive Title Example
+   </h1>
+   <p class="mt-4 text-gray-600">
+    This text size changes based on screen width.
+            Smallest: 2xl. Medium screens (sm): 3xl. Larger screens (md): 4xl.
+   </p>
+   <p class="mt-2 text-sm text-blue-600">
+    Adjust your browser window width to see the changes.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

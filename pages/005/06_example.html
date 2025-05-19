@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS - Perfect Centering
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4 text-center">
+   Example 1: Perfect Centering in a Box with Defined Height
+  </h1>
+  <!--
+        This example shows how to center an item both horizontally and vertically
+        within a parent container that has a specific height and width.
+        The key classes `flex`, `items-center` (for vertical centering), and
+        `justify-center` (for horizontal centering) are applied to the parent.
+    -->
+  <div class="mb-8">
+   <p class="text-lg mb-2">
+    A box with fixed height (h-64) and width (w-full or fixed):
+   </p>
+   <div class="parent-container bg-slate-300 h-64 w-full md:w-1/2 mx-auto flex items-center justify-center rounded-lg shadow-lg">
+    <!-- Child Item to be centered -->
+    <div class="child-item bg-blue-500 text-white p-6 rounded-md shadow">
+     <p class="text-xl font-semibold">
+      Centered Item
+     </p>
+     <p class="text-sm">
+      (h-64 parent)
+     </p>
+    </div>
+   </div>
+  </div>
+  <div class="mb-8">
+   <p class="text-lg mb-2">
+    A box with full screen height (min-h-screen):
+   </p>
+   <!--
+            Here, the parent container takes at least the full height of the viewport.
+            This is common for hero sections or full-page loading screens.
+        -->
+   <div class="parent-container bg-amber-200 min-h-screen flex items-center justify-center rounded-lg shadow-lg">
+    <!-- Child Item to be centered -->
+    <div class="child-item bg-red-500 text-white p-8 rounded-md shadow-xl">
+     <p class="text-2xl font-bold">
+      Centered on Screen
+     </p>
+     <p class="text-sm">
+      (min-h-screen parent)
+     </p>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

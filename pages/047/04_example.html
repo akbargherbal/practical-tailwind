@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html class="" lang="en">
+ <!-- Start without 'dark' class initially -->
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Dark Mode - Class Toggle
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style>
+   /* For demonstration: ensure html and body take full height and have a default transition */
+        html, body {
+            height: 100%;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+  </style>
+ </head>
+ <body class="bg-gradient-to-br from-sky-100 to-blue-200 text-gray-900 dark:bg-gradient-to-br dark:from-slate-800 dark:to-gray-900 dark:text-white p-8 flex flex-col items-center justify-center min-h-screen from_inside_iframe">
+  <!-- 
+        This example demonstrates dark mode toggled by adding/removing a 'dark' class to the <html> element.
+        This is the 'class' strategy for dark mode in Tailwind CSS.
+    -->
+  <div class="container mx-auto text-center p-6 rounded-lg shadow-xl bg-white/80 dark:bg-black/50 backdrop-blur-md">
+   <h1 class="text-4xl font-bold mb-4">
+    Dark Mode with Class Toggle
+   </h1>
+   <p class="text-lg mb-6">
+    Click the button below to toggle dark mode. This works by adding or removing the 'dark' class from the `&lt;html&gt;` tag.
+   </p>
+   <button class="px-6 py-3 mb-6 bg-blue-500 hover:bg-blue-600 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white font-semibold rounded-lg shadow-md transition-colors duration-300" id="darkModeToggle">
+    Toggle Dark Mode
+   </button>
+   <div class="p-6 rounded-lg shadow-inner bg-gray-50 dark:bg-gray-700">
+    <p class="text-gray-800 dark:text-gray-200">
+     This content area uses `dark:bg-gray-700` and `dark:text-gray-200`.
+                It will change appearance when dark mode is toggled.
+    </p>
+   </div>
+   <!-- GOTCHA DEMONSTRATION AND EXPLANATION -->
+   <div class="mt-8 p-4 border border-orange-400 dark:border-orange-600 bg-orange-50 dark:bg-orange-900/30 rounded-lg text-left">
+    <h2 class="text-xl font-semibold text-orange-700 dark:text-orange-300">
+     Gotcha: Configuration &amp; Class Management
+    </h2>
+    <p class="text-orange-600 dark:text-orange-400 mt-2">
+     For the `dark:` variants (like `dark:bg-gray-900`) to work with a class-based toggle in a typical Tailwind CSS project, you MUST correctly configure it:
+    </p>
+    <ol class="list-decimal list-inside mt-2 space-y-1 text-orange-600 dark:text-orange-400">
+     <li>
+      <strong>
+       `tailwind.config.js` Setting:
+      </strong>
+      You need to set `darkMode: 'class'` (or `darkMode: 'selector'`) in your `tailwind.config.js` file.
+      <br/>
+      <em>
+       Example:
+      </em>
+      <code class="bg-orange-200 dark:bg-orange-800 p-1 rounded text-xs">
+       module.exports = { darkMode: 'class', content: [], theme: {}, plugins: [] };
+      </code>
+      <br/>
+      Without this configuration in a compiled project, Tailwind CSS would not generate the `dark:` prefixed utility classes that respond to the `.dark` class on an ancestor.
+     </li>
+     <li>
+      <strong>
+       JavaScript for Class Toggling:
+      </strong>
+      You need JavaScript to dynamically add or remove the "dark" class from the `&lt;html&gt;` element (or another configured selector). This example includes such a script below.
+     </li>
+    </ol>
+    <p class="text-orange-600 dark:text-orange-400 mt-3">
+     <strong>
+      Note on CDN Usage:
+     </strong>
+     When using the Tailwind CSS CDN (as in this standalone HTML file), many utility classes, including `dark:` variants, are often pre-generated or generated on-the-fly. So, the `dark:` variants work here when the 'dark' class is applied by JavaScript, even without an explicit `tailwind.config.js`. However, in a real-world project with a build step, the
+     <code class="bg-orange-200 dark:bg-orange-800 p-1 rounded text-xs">
+      tailwind.config.js
+     </code>
+     setting is crucial.
+    </p>
+    <!-- Incorrect way (if JS was missing and no OS preference for dark mode applied)
+            <div class="mt-4 p-4 bg-gray-100 dark:bg-gray-800 border border-dashed border-gray-400">
+                <p class="text-gray-700 dark:text-gray-200">This box uses dark:bg-gray-800. If JS fails or 'dark' class isn't on html, it won't turn dark (unless OS is dark WITH media strategy).</p>
+            </div>
+            -->
+   </div>
+  </div>
+  <script>
+   const toggleButton = document.getElementById('darkModeToggle');
+        const htmlElement = document.documentElement;
+
+        // Check for saved dark mode preference
+        if (localStorage.getItem('theme') === 'dark' || 
+            (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+        }
+
+        toggleButton.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+  </script>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

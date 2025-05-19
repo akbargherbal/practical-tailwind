@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind - Stacking with flex flex-col
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Example 2: Using `flex flex-col` for Enhanced Stacking
+  </h1>
+  <p class="mb-2 text-sm text-gray-700">
+   While block elements stack vertically by default, using `flex flex-col` gives you access to
+        Flexbox's powerful alignment and spacing utilities for items within the column.
+  </p>
+  <div class="container mx-auto p-4 border border-gray-300 rounded">
+   <h2 class="text-xl font-semibold mb-3">
+    Stack with `flex flex-col` and `space-y-4`
+   </h2>
+   <!--
+            This container uses `flex flex-col` to arrange its children vertically.
+            `space-y-4` adds a margin-top of 1rem (16px by default) to all but the first child,
+            creating consistent vertical spacing.
+        -->
+   <div class="flex flex-col space-y-4 bg-indigo-100 p-4 rounded">
+    <div class="bg-indigo-500 text-white p-4 rounded">
+     Flex Item 1
+    </div>
+    <div class="bg-indigo-500 text-white p-4 rounded">
+     Flex Item 2
+    </div>
+    <div class="bg-indigo-500 text-white p-4 rounded">
+     Flex Item 3
+    </div>
+   </div>
+   <h2 class="text-xl font-semibold mb-3 mt-6">
+    Stack with `flex flex-col` and `items-center`
+   </h2>
+   <!--
+            This demonstrates the "Gotcha" point:
+            If you want to use flexbox alignment properties like `items-center` (to center items
+            horizontally within the vertical stack), you *must* use `flex flex-col`.
+            Default block stacking doesn't offer this horizontal alignment control within the stack.
+        -->
+   <div class="flex flex-col items-center bg-pink-100 p-4 rounded mt-4">
+    <div class="bg-pink-500 text-white p-4 rounded mb-2 w-1/2 text-center">
+     Centered Flex Item A
+    </div>
+    <div class="bg-pink-500 text-white p-4 rounded mb-2 w-3/4 text-center">
+     Centered Flex Item B
+    </div>
+    <div class="bg-pink-500 text-white p-4 rounded w-1/3 text-center">
+     Centered Flex Item C
+    </div>
+   </div>
+   <div class="mt-6 p-4 bg-teal-100 border border-teal-300 rounded">
+    <h2 class="font-semibold text-teal-800">
+     Gotcha Demonstrated:
+    </h2>
+    <p class="text-sm text-teal-700">
+     In the second sub-example above ("Stack with `flex flex-col` and `items-center`"), we use `items-center`.
+                This horizontally centers the items within their vertical stack. This kind of alignment
+                is a key reason to use `flex flex-col` rather than relying solely on default block behavior.
+                Without `flex flex-col`, `items-center` would have no effect on these plain `div`s in terms of their stacking context.
+                Similarly, `space-y-*` utilities for spacing between flex items only work in a flex container.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

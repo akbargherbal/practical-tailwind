@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: justify-between (Basic)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Example 1: Basic `justify-between`
+  </h1>
+  <p class="mb-2">
+   This example shows a common header layout where the logo is on the left and navigation links are on the right.
+  </p>
+  <div class="bg-blue-500 text-white p-4 rounded-md">
+   <!-- Parent container with flex and justify-between -->
+   <div class="flex justify-between items-center">
+    <!-- Group 1: Logo -->
+    <div class="font-bold text-xl">
+     Logo
+    </div>
+    <!-- Group 2: Navigation Links -->
+    <nav>
+     <ul class="flex space-x-4">
+      <li>
+       <a class="hover:text-blue-200" href="#">
+        Home
+       </a>
+      </li>
+      <li>
+       <a class="hover:text-blue-200" href="#">
+        About
+       </a>
+      </li>
+      <li>
+       <a class="hover:text-blue-200" href="#">
+        Contact
+       </a>
+      </li>
+     </ul>
+    </nav>
+   </div>
+  </div>
+  <div class="mt-6 p-4 border border-gray-300 rounded-md bg-white">
+   <h3 class="font-semibold text-lg mb-2">
+    Explanation:
+   </h3>
+   <p>
+    The parent `div` has `flex` to enable flexbox layout and `justify-between` to distribute space.
+   </p>
+   <p>
+    - The "Logo" (first child) is pushed to the far left.
+   </p>
+   <p>
+    - The `nav` element (second child) is pushed to the far right.
+   </p>
+   <p>
+    - `items-center` is used to vertically align the logo and nav links in the center of the header.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

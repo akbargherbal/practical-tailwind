@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Basic Gradient
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <!-- Example 1: Basic horizontal gradient -->
+  <div class="mb-8">
+   <h2 class="text-2xl font-semibold mb-3">
+    Basic Horizontal Gradient
+   </h2>
+   <div class="h-40 w-full rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
+    <p class="text-white text-xl font-bold">
+     Gradient from Blue to Purple
+    </p>
+   </div>
+   <p class="mt-2 text-sm text-gray-600">
+    Classes used:
+    <code>
+     bg-gradient-to-r from-blue-500 to-purple-600
+    </code>
+   </p>
+  </div>
+  <!-- Example 2: Gradient with different direction -->
+  <div>
+   <h2 class="text-2xl font-semibold mb-3">
+    Gradient to Bottom-Right
+   </h2>
+   <div class="h-40 w-full rounded-lg bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center">
+    <p class="text-white text-xl font-bold">
+     Gradient from Green to Blue (Diagonal)
+    </p>
+   </div>
+   <p class="mt-2 text-sm text-gray-600">
+    Classes used:
+    <code>
+     bg-gradient-to-br from-green-400 to-blue-500
+    </code>
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

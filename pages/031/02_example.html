@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill - Rounded Corners Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-6 text-center">
+    Rounded Corners: Parent vs. Child Gotcha
+   </h1>
+   <p class="text-center mb-6 text-gray-700">
+    <strong>
+     Gotcha:
+    </strong>
+    Applying
+    <code>
+     rounded-*
+    </code>
+    to a parent container doesn't automatically round the corners of its child elements if they fill the parent (like an image). You might need
+    <code>
+     overflow-hidden
+    </code>
+    on the parent, or also apply
+    <code>
+     rounded-*
+    </code>
+    to the child.
+   </p>
+   <div class="grid md:grid-cols-3 gap-8">
+    <!-- Incorrect Example: Gotcha in effect -->
+    <div class="bg-white p-4 shadow-md border border-red-300">
+     <h3 class="text-lg font-semibold mb-2 text-red-700">
+      1. Incorrect: Parent Rounded, Child Fills
+     </h3>
+     <p class="text-sm text-gray-600 mb-3">
+      Parent has
+      <code>
+       rounded-lg
+      </code>
+      . Child image fills parent. Notice the image corners are sharp and poke out.
+     </p>
+     <div class="w-full h-48 bg-blue-200 rounded-lg">
+      <!-- The parent div has rounded corners, but the child image does not inherit this clipping. -->
+      <img alt="Image with sharp corners" class="w-full h-full object-cover" src="https://placehold.co/300x200/0ea5e9/ffffff?text=Sharp+Child"/>
+     </div>
+     <!-- HTML Comment: 
+                    Here, the outer div .bg-blue-200 has .rounded-lg.
+                    However, the inner <img> fills this div completely.
+                    The image's own corners are not rounded, and they "escape" the parent's rounding.
+                    This is the "Gotcha".
+                -->
+    </div>
+    <!-- Corrected Example 1: overflow-hidden on parent -->
+    <div class="bg-white p-4 shadow-md border border-green-300">
+     <h3 class="text-lg font-semibold mb-2 text-green-700">
+      2. Corrected:
+      <code>
+       overflow-hidden
+      </code>
+      on Parent
+     </h3>
+     <p class="text-sm text-gray-600 mb-3">
+      Parent has
+      <code>
+       rounded-lg
+      </code>
+      and
+      <code>
+       overflow-hidden
+      </code>
+      . The child image's corners are now clipped by the parent.
+     </p>
+     <div class="w-full h-48 bg-teal-200 rounded-lg overflow-hidden">
+      <!-- By adding overflow-hidden to the parent, any content (like the image corners)
+                         that extends beyond the parent's rounded bounds is clipped. -->
+      <img alt="Image with clipped corners" class="w-full h-full object-cover" src="https://placehold.co/300x200/14b8a6/ffffff?text=Clipped+Child"/>
+     </div>
+     <!-- HTML Comment:
+                    Solution 1: Add `overflow-hidden` to the parent container (`.bg-teal-200`).
+                    This clips any content of the child (`<img>`) that extends beyond the parent's rounded boundaries.
+                    The image now appears to have rounded corners because its sharp edges are hidden.
+                -->
+    </div>
+    <!-- Corrected Example 2: rounding the child element -->
+    <div class="bg-white p-4 shadow-md border border-purple-300">
+     <h3 class="text-lg font-semibold mb-2 text-purple-700">
+      3. Corrected:
+      <code>
+       rounded-lg
+      </code>
+      on Child
+     </h3>
+     <p class="text-sm text-gray-600 mb-3">
+      Parent has
+      <code>
+       rounded-lg
+      </code>
+      . Child image also has
+      <code>
+       rounded-lg
+      </code>
+      . The image itself is now rounded.
+     </p>
+     <div class="w-full h-48 bg-purple-200 rounded-lg p-0">
+      <!-- Parent div is rounded. The image child is also explicitly rounded. -->
+      <!-- For this demo, parent has p-0 to make child rounding align perfectly with parent visual edge. 
+                         If parent had padding, child would be rounded *within* that padding. -->
+      <img alt="Image with its own rounded corners" class="w-full h-full object-cover rounded-lg" src="https://placehold.co/300x200/8b5cf6/ffffff?text=Rounded+Child"/>
+     </div>
+     <!-- HTML Comment:
+                    Solution 2: Apply the rounding utility directly to the child element (`<img>`).
+                    Here, the `<img>` tag itself has `rounded-lg`.
+                    This is often the preferred method if you want the child element to truly be rounded,
+                    rather than just appearing so due to clipping.
+                    Note: If the parent had padding, the child's rounding would be relative to its own box, inside the padding.
+                    For this example, parent padding is removed (p-0) to show direct alignment.
+                -->
+    </div>
+   </div>
+   <div class="mt-8 p-4 bg-amber-100 border border-amber-300 rounded-md">
+    <h3 class="text-lg font-semibold text-amber-800">
+     Alternative: Child Rounded Inside Padded Parent
+    </h3>
+    <p class="text-sm text-gray-700 mb-3">
+     Here, the parent has
+     <code>
+      rounded-lg
+     </code>
+     and
+     <code>
+      p-4
+     </code>
+     . The child image also has
+     <code>
+      rounded-lg
+     </code>
+     . The image is rounded within the parent's padding.
+    </p>
+    <div class="w-full h-48 bg-orange-300 rounded-lg p-4">
+     <img alt="Image rounded inside padded parent" class="w-full h-full object-cover rounded-lg" src="https://placehold.co/300x200/f97316/ffffff?text=Padded+Rounded"/>
+    </div>
+    <!-- HTML Comment:
+                This shows an image with `rounded-lg` inside a parent that also has `rounded-lg` AND `p-4` (padding).
+                The image corners are rounded, and this rounding occurs *within* the padded area of the parent.
+                Both parent and child are technically rounded.
+            -->
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

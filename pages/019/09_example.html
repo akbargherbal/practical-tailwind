@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: List Padding Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto p-6 bg-white shadow-md rounded-lg">
+   <h1 class="text-2xl font-bold mb-4">
+    List Padding: The "Gotcha"
+   </h1>
+   <p class="mb-4">
+    A common pitfall is forgetting to add left padding (e.g.,
+    <code>
+     pl-5
+    </code>
+    ) to lists. Without it, the list markers (bullets or numbers) can sit flush against the left edge of their container, looking cramped or even overlapping with other elements or container borders.
+   </p>
+   <h2 class="text-xl font-semibold mt-6 mb-2">
+    Incorrect: List without
+    <code>
+     pl-5
+    </code>
+   </h2>
+   <p class="mb-2 text-sm text-red-600">
+    Below, the list uses
+    <code>
+     list-disc
+    </code>
+    but lacks
+    <code>
+     pl-5
+    </code>
+    . Notice how the bullets are at the very edge of the bordered container.
+   </p>
+   <div class="border border-red-400 p-3 mb-6">
+    <ul class="list-disc">
+     <li>
+      Item A (no pl-*) - Bullet is cramped.
+     </li>
+     <li>
+      Item B (no pl-*) - Appears too close to the edge.
+     </li>
+    </ul>
+    <!--
+                GOTCHA DEMONSTRATION:
+                The list items above are part of a `ul` with `list-disc`.
+                However, no `pl-*` (padding-left) utility has been applied to the `ul` or `li` elements.
+                This causes the list markers (bullets) to be positioned at the very beginning of the
+                list item's content box, often making them appear outside the intended visual flow or
+                too close to the container's edge, as seen with the red border.
+            -->
+   </div>
+   <h2 class="text-xl font-semibold mt-6 mb-2">
+    Correct: List with
+    <code>
+     pl-5
+    </code>
+   </h2>
+   <p class="mb-2 text-sm text-green-600">
+    This list correctly uses
+    <code>
+     list-disc
+    </code>
+    and
+    <code>
+     pl-5
+    </code>
+    . The bullets are nicely indented.
+   </p>
+   <div class="border border-green-400 p-3">
+    <ul class="list-disc pl-5">
+     <!-- Key change: pl-5 added -->
+     <li>
+      Item A (with pl-5) - Bullet is properly indented.
+     </li>
+     <li>
+      Item B (with pl-5) - Looks much better!
+     </li>
+    </ul>
+   </div>
+   <h2 class="text-xl font-semibold mt-8 mb-2">
+    Incorrect: Numbered List without
+    <code>
+     pl-5
+    </code>
+   </h2>
+   <div class="border border-red-400 p-3 mb-6">
+    <ol class="list-decimal">
+     <li>
+      Step 1 (no pl-*) - Number is cramped.
+     </li>
+     <li>
+      Step 2 (no pl-*) - Too close to the edge.
+     </li>
+    </ol>
+   </div>
+   <h2 class="text-xl font-semibold mt-6 mb-2">
+    Correct: Numbered List with
+    <code>
+     pl-5
+    </code>
+   </h2>
+   <div class="border border-green-400 p-3">
+    <ol class="list-decimal pl-5">
+     <!-- Key change: pl-5 added -->
+     <li>
+      Step 1 (with pl-5) - Number is properly indented.
+     </li>
+     <li>
+      Step 2 (with pl-5) - Correctly displayed.
+     </li>
+    </ol>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Text Color - Gotcha Addressal
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-6 bg-gray-50 from_inside_iframe">
+  <!-- Example 3: Directly addresses the "Gotchas" - using too many colors and poor contrast. -->
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold text-gray-800 mb-6">
+    Text Color Gotchas
+   </h1>
+   <!-- Gotcha 1: Using too many different text colors -->
+   <div class="mb-8 p-4 border border-dashed border-gray-400 rounded">
+    <h2 class="text-xl font-semibold text-gray-700 mb-2">
+     Gotcha: Overuse of Colors
+    </h2>
+    <p class="mb-2">
+     <strong class="text-red-600">
+      Problem:
+     </strong>
+     Using too many different text colors can be jarring and reduce readability.
+    </p>
+    <p class="mb-3">
+     <!-- Example of what NOT to do (too many colors) -->
+     This
+     <span class="text-red-500">
+      is
+     </span>
+     an
+     <span class="text-blue-500">
+      example
+     </span>
+     of
+     <span class="text-green-500">
+      using
+     </span>
+     far
+     <span class="text-yellow-600">
+      too
+     </span>
+     many
+     <span class="text-purple-500">
+      different
+     </span>
+     text
+     <span class="text-pink-500">
+      colors
+     </span>
+     within
+     <span class="text-indigo-500">
+      a single
+     </span>
+     block
+     <span class="text-teal-500">
+      of text
+     </span>
+     . It
+     <span class="text-orange-500">
+      looks
+     </span>
+     very
+     <span class="text-lime-500">
+      chaotic
+     </span>
+     .
+    </p>
+    <p>
+     <strong class="text-green-700">
+      Solution:
+     </strong>
+     Use color sparingly and purposefully. Stick to a limited palette.
+    </p>
+    <p class="text-gray-700 mt-1">
+     A better approach involves using standard text color like
+     <code class="bg-gray-200 px-1 rounded">
+      text-gray-700
+     </code>
+     for most content, and then
+     <span class="text-blue-600 font-semibold">
+      selectively applying
+     </span>
+     color for emphasis or
+     <span class="text-red-600">
+      critical alerts
+     </span>
+     .
+    </p>
+   </div>
+   <!-- Gotcha 2: Poor contrast -->
+   <div class="p-4 border border-dashed border-gray-400 rounded">
+    <h2 class="text-xl font-semibold text-gray-700 mb-2">
+     Gotcha: Poor Contrast &amp; Accessibility
+    </h2>
+    <p class="mb-2">
+     <strong class="text-red-600">
+      Problem:
+     </strong>
+     Poor contrast between text color and background color makes text hard to read, which is a major accessibility issue.
+    </p>
+    <h3 class="text-lg font-medium text-gray-600 mt-4 mb-1">
+     Examples of Poor Contrast:
+    </h3>
+    <div class="p-3 bg-blue-200 rounded mb-2">
+     <p class="text-blue-400">
+      This light blue text (
+      <code class="bg-blue-100 px-1 rounded">
+       text-blue-400
+      </code>
+      ) on a light blue background (
+      <code class="bg-blue-100 px-1 rounded">
+       bg-blue-200
+      </code>
+      ) is very hard to read.
+     </p>
+    </div>
+    <div class="p-3 bg-gray-300 rounded">
+     <p class="text-gray-500">
+      This medium gray text (
+      <code class="bg-gray-200 px-1 rounded">
+       text-gray-500
+      </code>
+      ) on a light gray background (
+      <code class="bg-gray-200 px-1 rounded">
+       bg-gray-300
+      </code>
+      ) also lacks sufficient contrast.
+     </p>
+    </div>
+    <!-- HTML Comment explaining the accessibility issue -->
+    <!-- Low contrast like this fails WCAG (Web Content Accessibility Guidelines) AA or AAA standards.
+                 Always aim for a contrast ratio of at least 4.5:1 for normal text. -->
+    <h3 class="text-lg font-medium text-gray-600 mt-4 mb-1">
+     Examples of Good Contrast:
+    </h3>
+    <div class="p-3 bg-blue-200 rounded mb-2">
+     <p class="text-blue-700">
+      This darker blue text (
+      <code class="bg-blue-100 px-1 rounded">
+       text-blue-700
+      </code>
+      ) on the same light blue background (
+      <code class="bg-blue-100 px-1 rounded">
+       bg-blue-200
+      </code>
+      ) is much clearer.
+     </p>
+    </div>
+    <div class="p-3 bg-gray-300 rounded">
+     <p class="text-black">
+      Black text (
+      <code class="bg-gray-200 px-1 rounded">
+       text-black
+      </code>
+      ) on a light gray background (
+      <code class="bg-gray-200 px-1 rounded">
+       bg-gray-300
+      </code>
+      ) provides excellent contrast.
+     </p>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

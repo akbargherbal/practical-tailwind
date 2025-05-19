@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill - Truncate Text (Single Line)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto space-y-8">
+   <h1 class="text-3xl font-bold text-center">
+    Working with Text: `truncate`
+   </h1>
+   <!-- Example 1: Truncate applied to a long title in a card -->
+   <div class="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto">
+    <h2 class="text-xl font-semibold mb-2">
+     Card Example:
+    </h2>
+    <div class="border border-gray-300 p-4 rounded">
+     <img alt="Placeholder Image" class="w-full h-32 object-cover rounded mb-3" src="https://via.placeholder.com/400x200"/>
+     <h3 class="text-lg font-semibold truncate mb-2" title="This is an extremely long and descriptive title for a card item that needs to be truncated to prevent layout issues.">
+      This is an extremely long and descriptive title for a card item that needs to be truncated to prevent layout issues.
+     </h3>
+     <p class="text-sm text-gray-600">
+      The title above uses the `truncate` class. It will be cut off with "..." if it's too long for one line.
+                    Hover over the title to see the full text (via HTML `title` attribute).
+     </p>
+    </div>
+   </div>
+   <!-- Example 2: Truncate in a table-like structure -->
+   <div class="bg-white p-6 rounded-lg shadow-md max-w-2xl mx-auto">
+    <h2 class="text-xl font-semibold mb-2">
+     Table Cell Example:
+    </h2>
+    <div class="overflow-x-auto">
+     <table class="min-w-full border border-gray-300">
+      <thead>
+       <tr class="bg-gray-50">
+        <th class="p-3 border-b text-left text-sm font-semibold text-gray-700 w-1/4">
+         Item
+        </th>
+        <th class="p-3 border-b text-left text-sm font-semibold text-gray-700 w-3/4">
+         Description
+        </th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr>
+        <td class="p-3 border-b border-gray-300">
+         Short Item
+        </td>
+        <td class="p-3 border-b border-gray-300 truncate">
+         This is a relatively short description, but we'll apply truncate just in case.
+        </td>
+       </tr>
+       <tr>
+        <td class="p-3 border-b border-gray-300">
+         Long Item Name That Might Need Truncation
+        </td>
+        <td class="p-3 border-b border-gray-300 truncate" title="This description is intentionally made very long to demonstrate how the truncate class effectively cuts off the text and adds an ellipsis at the end, ensuring it fits neatly within the confines of the table cell without disrupting the overall layout of the table or the page.">
+         This description is intentionally made very long to demonstrate how the truncate class effectively cuts off the text and adds an ellipsis at the end, ensuring it fits neatly within the confines of the table cell without disrupting the overall layout of the table or the page.
+        </td>
+       </tr>
+       <tr>
+        <td class="p-3 border-b border-gray-300">
+         Another Item
+        </td>
+        <td class="p-3 border-b border-gray-300">
+         A standard length description.
+        </td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+    <p class="text-sm text-gray-600 mt-2">
+     In the table above, the "Description" column for the "Long Item" uses `truncate`.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

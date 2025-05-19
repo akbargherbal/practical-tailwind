@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Text Color - Basic Usage
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-6 bg-gray-100 from_inside_iframe">
+  <!-- Example 1: Demonstrates basic text color application for headings, paragraphs, and links. -->
+  <div class="container mx-auto">
+   <h1 class="text-3xl font-bold text-blue-600 mb-4">
+    Main Heading with Blue Text
+   </h1>
+   <p class="text-gray-700 mb-2">
+    This paragraph uses
+    <code class="bg-gray-200 px-1 rounded">
+     text-gray-700
+    </code>
+    , which is a common choice for body text due to its readability on light backgrounds.
+   </p>
+   <p class="text-red-500 mb-4">
+    This paragraph uses
+    <code class="bg-gray-200 px-1 rounded">
+     text-red-500
+    </code>
+    , often used for warnings or important notices.
+   </p>
+   <div class="mb-4">
+    <a class="text-green-600 hover:text-green-800 underline" href="#">
+     This is a link styled with
+     <code class="bg-transparent">
+      text-green-600
+     </code>
+    </a>
+   </div>
+   <p class="text-sm text-gray-500">
+    This is some subtle helper text using
+    <code class="bg-gray-200 px-1 rounded">
+     text-gray-500
+    </code>
+    .
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: @apply for Form Inputs
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style type="text/tailwindcss">
+   @layer components {
+            .form-input-styled {
+                @apply mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm
+                       placeholder-gray-400 
+                       focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 
+                       sm:text-sm;
+            }
+
+            .form-label-styled {
+                @apply block text-sm font-medium text-gray-700 mb-1;
+            }
+        }
+  </style>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6">
+   Using @apply for Consistent Form Input Styling
+  </h1>
+  <p class="mb-4">
+   Here,
+   <code>
+    @apply
+   </code>
+   is used to create
+   <code>
+    .form-input-styled
+   </code>
+   and
+   <code>
+    .form-label-styled
+   </code>
+   .
+        This is a good example of creating small, self-contained utility-like abstractions, as mentioned in the "Gotcha" as a best practice for
+   <code>
+    @apply
+   </code>
+   .
+        It helps maintain consistency across form elements without repeating many utility classes in the HTML.
+  </p>
+  <form class="space-y-6 max-w-md mx-auto bg-white p-8 rounded-lg shadow">
+   <div>
+    <label class="form-label-styled" for="name">
+     Full Name
+    </label>
+    <input class="form-input-styled" id="name" name="name" placeholder="Jane Doe" type="text"/>
+   </div>
+   <div>
+    <label class="form-label-styled" for="email">
+     Email Address
+    </label>
+    <input class="form-input-styled" id="email" name="email" placeholder="you@example.com" type="email"/>
+   </div>
+   <div>
+    <label class="form-label-styled" for="message">
+     Message
+    </label>
+    <textarea class="form-input-styled" id="message" name="message" placeholder="Your message..." rows="4"></textarea>
+   </div>
+   <div>
+    <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" type="submit">
+     Submit
+    </button>
+   </div>
+  </form>
+  <!-- 
+    Comment on appropriate use:
+    - The `.form-input-styled` class applies a consistent look and feel to all text inputs and textareas.
+    - This is a good use of `@apply` because it's a relatively small set of common styles.
+    - It avoids repeating `mt-1 block w-full px-3 py-2 ... sm:text-sm` on every input field, making the HTML cleaner.
+    - This aligns with the "Gotcha" guidance: use `@apply` for "small, self-contained utility-like abstractions".
+    -->
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

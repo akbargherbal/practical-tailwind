@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Circular Avatar (Square Image)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-8 from_inside_iframe">
+  <div class="text-center mb-6">
+   <h1 class="text-2xl font-bold mb-2">
+    Circular Avatar with Square Image
+   </h1>
+   <p class="text-gray-700">
+    Applying `rounded-full` to an already square image works perfectly.
+   </p>
+  </div>
+  <!-- Example 1: rounded-full on a square image -->
+  <div class="m-4">
+   <img alt="Square Profile Picture" class="w-32 h-32 rounded-full border-4 border-blue-500 shadow-lg" src="https://via.placeholder.com/128x128/007bff/ffffff?text=Square"/>
+   <p class="text-center mt-2 text-sm text-gray-600">
+    Image (128x128) with `rounded-full`
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

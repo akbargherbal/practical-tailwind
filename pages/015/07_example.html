@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Styling Checkboxes/Radios (Accent Color)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto p-6 bg-white rounded-lg shadow-xl">
+   <h1 class="text-2xl font-bold mb-6 text-gray-800">
+    Styling Checkboxes and Radio Buttons with Accent Colors
+   </h1>
+   <div class="mb-8">
+    <h2 class="text-xl font-semibold mb-3 text-gray-700">
+     Checkboxes
+    </h2>
+    <p class="mb-4 text-gray-600">
+     The `accent-{color}-{shade}` class (e.g., `accent-blue-500`) changes the color of the browser's default checkbox tick and border when checked.
+    </p>
+    <div class="space-y-3">
+     <div>
+      <input class="mr-2" id="checkbox_default" name="checkbox_group" type="checkbox"/>
+      <label class="text-gray-700" for="checkbox_default">
+       Default Checkbox
+      </label>
+     </div>
+     <div>
+      <input checked="" class="accent-blue-500 mr-2" id="checkbox_blue" name="checkbox_group" type="checkbox"/>
+      <label class="text-gray-700" for="checkbox_blue">
+       Blue Accent Checkbox (`accent-blue-500`)
+      </label>
+     </div>
+     <div>
+      <input checked="" class="accent-pink-600 mr-2" id="checkbox_pink" name="checkbox_group" type="checkbox"/>
+      <label class="text-gray-700" for="checkbox_pink">
+       Pink Accent Checkbox (`accent-pink-600`)
+      </label>
+     </div>
+     <div>
+      <input class="accent-green-500 mr-2" id="checkbox_green" name="checkbox_group" type="checkbox"/>
+      <label class="text-gray-700" for="checkbox_green">
+       Green Accent Checkbox (`accent-green-500`)
+      </label>
+     </div>
+    </div>
+   </div>
+   <div>
+    <h2 class="text-xl font-semibold mb-3 text-gray-700">
+     Radio Buttons
+    </h2>
+    <p class="mb-4 text-gray-600">
+     Similarly, `accent-{color}-{shade}` works for radio buttons, changing the color of the selected dot.
+    </p>
+    <div class="space-y-3">
+     <div>
+      <input class="mr-2" id="radio_default" name="radio_options" type="radio"/>
+      <label class="text-gray-700" for="radio_default">
+       Default Radio
+      </label>
+     </div>
+     <div>
+      <input checked="" class="accent-teal-500 mr-2" id="radio_teal" name="radio_options" type="radio"/>
+      <label class="text-gray-700" for="radio_teal">
+       Teal Accent Radio (`accent-teal-500`)
+      </label>
+     </div>
+     <div>
+      <input class="accent-purple-600 mr-2" id="radio_purple" name="radio_options" type="radio"/>
+      <label class="text-gray-700" for="radio_purple">
+       Purple Accent Radio (`accent-purple-600`)
+      </label>
+     </div>
+    </div>
+   </div>
+   <!-- 
+            This example demonstrates the `accent-*` utility. Note that it only changes the color
+            of the browser's default control elements (the tick, the radio dot).
+            It does not change the shape, size, or overall appearance significantly.
+        -->
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

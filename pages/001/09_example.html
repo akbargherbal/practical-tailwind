@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Gotcha - Item Widths
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Gotcha: Item Widths in a Flex Container
+  </h1>
+  <p class="mb-2">
+   By default, flex items only take up as much space as their content needs. If you want them to fill the available space, you need to use utility classes like
+   <code class="bg-gray-200 p-1 rounded">
+    flex-grow
+   </code>
+   or specific width classes (e.g.,
+   <code class="bg-gray-200 p-1 rounded">
+    w-1/3
+   </code>
+   ).
+  </p>
+  <div class="mb-8 p-4 border border-purple-500 rounded">
+   <h3 class="text-lg font-semibold mb-2">
+    Default Behavior (Items don't fill width)
+   </h3>
+   <div class="flex bg-purple-100 p-2 rounded mb-4">
+    <div class="bg-purple-500 text-white p-4 rounded m-2">
+     Short
+    </div>
+    <div class="bg-purple-500 text-white p-4 rounded m-2">
+     Medium Content
+    </div>
+    <div class="bg-purple-500 text-white p-4 rounded m-2">
+     Very Long Content Item Example
+    </div>
+   </div>
+   <!-- HTML Comment: Notice above how items only take up their content's width. -->
+  </div>
+  <div class="mb-8 p-4 border border-teal-500 rounded">
+   <h3 class="text-lg font-semibold mb-2">
+    Using
+    <code class="bg-gray-200 p-1 rounded">
+     flex-grow
+    </code>
+    to fill space
+   </h3>
+   <p class="text-sm mb-2 text-gray-700">
+    Applying
+    <code class="bg-gray-200 p-1 rounded">
+     flex-grow
+    </code>
+    to child items allows them to expand and fill available horizontal space.
+   </p>
+   <div class="flex bg-teal-100 p-2 rounded mb-4">
+    <div class="bg-teal-500 text-white p-4 rounded m-2 flex-grow text-center">
+     Item 1 (flex-grow)
+    </div>
+    <div class="bg-teal-700 text-white p-4 rounded m-2 flex-grow text-center">
+     Item 2 (flex-grow)
+    </div>
+    <div class="bg-teal-500 text-white p-4 rounded m-2 flex-grow text-center">
+     Item 3 (flex-grow)
+    </div>
+   </div>
+   <!-- HTML Comment: Here, all items with 'flex-grow' share the available space equally. -->
+  </div>
+  <div class="mb-8 p-4 border border-indigo-500 rounded">
+   <h3 class="text-lg font-semibold mb-2">
+    Using Fractional Widths (e.g.,
+    <code class="bg-gray-200 p-1 rounded">
+     w-1/3
+    </code>
+    )
+   </h3>
+   <p class="text-sm mb-2 text-gray-700">
+    You can also assign specific widths to children. For this to work as expected in a flex row where you want them to sit side-by-side and sum up to the full width, ensure they don't overflow (or use
+    <code class="bg-gray-200 p-1 rounded">
+     flex-shrink-0
+    </code>
+    if you don't want them to shrink).
+   </p>
+   <div class="flex bg-indigo-100 p-2 rounded">
+    <div class="bg-indigo-500 text-white p-4 rounded m-2 w-1/3 text-center">
+     1/3 Width
+    </div>
+    <div class="bg-indigo-500 text-white p-4 rounded m-2 w-1/3 text-center">
+     1/3 Width
+    </div>
+    <div class="bg-indigo-500 text-white p-4 rounded m-2 w-1/3 text-center">
+     1/3 Width
+    </div>
+   </div>
+   <!-- HTML Comment: Using w-1/3 on each of the three children makes them share the parent's width equally. -->
+   <!-- Note: Margins (m-2) will add to the total width, potentially causing wrapping if the parent isn't wide enough or children can't shrink. -->
+   <!-- For this specific width division, it's often better to put padding inside the items and no margin between them, or use gap utilities on the flex parent. -->
+  </div>
+  <h2 class="text-xl font-semibold mb-2">
+   Key Takeaway for Widths:
+  </h2>
+  <ul class="list-disc list-inside">
+   <li>
+    Flex items shrink to content width by default.
+   </li>
+   <li>
+    Use
+    <code class="bg-gray-200 p-1 rounded">
+     flex-grow
+    </code>
+    on children to make them expand and take available space.
+   </li>
+   <li>
+    Use width utilities like
+    <code class="bg-gray-200 p-1 rounded">
+     w-full
+    </code>
+    ,
+    <code class="bg-gray-200 p-1 rounded">
+     w-1/2
+    </code>
+    , etc., on children if you need specific proportional widths. Be mindful of margins/paddings affecting the total width.
+   </li>
+  </ul>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

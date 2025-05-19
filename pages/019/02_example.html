@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS - Decimal List
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto p-6 bg-white rounded-lg shadow-md">
+   <h1 class="text-2xl font-bold mb-4">
+    Numbered List (Decimal)
+   </h1>
+   <p class="mb-2">
+    This example demonstrates a numbered list using `list-decimal` and `pl-5` for clear numbering and spacing.
+   </p>
+   <ol class="list-decimal pl-5 text-gray-700">
+    <li>
+     Step 1: Gather your ingredients.
+    </li>
+    <li>
+     Step 2: Follow the instructions carefully.
+    </li>
+    <li>
+     Step 3: Cook for the specified time.
+    </li>
+    <li>
+     Step 4: Enjoy your meal!
+    </li>
+   </ol>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

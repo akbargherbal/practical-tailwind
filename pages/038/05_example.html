@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill Example - Basic Focus Styling
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex flex-col items-center space-y-6 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Basic Focus Styling
+  </h1>
+  <div class="w-full max-w-sm">
+   <label class="block text-sm font-medium text-gray-700 mb-1" for="name">
+    Name (Standard Focus)
+   </label>
+   <!--
+            This input uses focus:border-blue-500 to change the border color on focus,
+            and focus:ring-2 focus:ring-blue-300 to add a subtle ring.
+            The default browser outline is implicitly present unless overridden.
+        -->
+   <input class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50 text-gray-900" id="name" placeholder="Enter your name" type="text"/>
+  </div>
+  <div class="w-full max-w-sm">
+   <label class="block text-sm font-medium text-gray-700 mb-1" for="email">
+    Email (Alternative Focus)
+   </label>
+   <!--
+            This input uses a different focus style: a green border and a green ring.
+            This demonstrates flexibility while still providing clear focus indication.
+        -->
+   <input class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:border-green-500 focus:ring-2 focus:ring-green-300 text-gray-900" id="email" placeholder="Enter your email" type="email"/>
+  </div>
+  <p class="text-sm text-gray-600 mt-4 text-center max-w-md">
+   Click into the input fields above. You'll see the border color change and a ring appear,
+        indicating which field is currently active. This enhances user experience by providing clear visual feedback.
+  </p>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind - Disabled Button
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 space-y-4 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Disabled Element Styling: Button
+  </h1>
+  <!-- Example 1: A properly disabled button -->
+  <div class="mb-6 p-4 border rounded-lg bg-white">
+   <h2 class="text-lg font-semibold mb-2">
+    Correctly Disabled Button
+   </h2>
+   <p class="text-sm text-gray-600 mb-2">
+    This button has the `disabled` HTML attribute and Tailwind's `disabled:` variant classes. It will appear grayed out and have a "not-allowed" cursor.
+   </p>
+   <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed" disabled="">
+    Submit (Disabled)
+   </button>
+  </div>
+  <!-- Example 2: An enabled button for comparison -->
+  <div class="p-4 border rounded-lg bg-white">
+   <h2 class="text-lg font-semibold mb-2">
+    Enabled Button (For Comparison)
+   </h2>
+   <p class="text-sm text-gray-600 mb-2">
+    This button does not have the `disabled` attribute and will be interactive.
+   </p>
+   <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed">
+    Submit (Enabled)
+   </button>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

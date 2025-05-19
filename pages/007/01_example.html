@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS Grid: Basic Layout
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6 text-center text-blue-700">
+   Basic Grid Layout Example
+  </h1>
+  <!-- This example demonstrates a simple 3-column grid with a gap. -->
+  <div class="mb-8">
+   <h2 class="text-xl font-semibold mb-3 text-gray-800">
+    3-Column Grid
+   </h2>
+   <div class="grid grid-cols-3 gap-4 p-4 bg-white rounded-lg shadow">
+    <div class="bg-sky-500 text-white p-6 rounded-md flex items-center justify-center font-medium">
+     Item 1
+    </div>
+    <div class="bg-sky-500 text-white p-6 rounded-md flex items-center justify-center font-medium">
+     Item 2
+    </div>
+    <div class="bg-sky-500 text-white p-6 rounded-md flex items-center justify-center font-medium">
+     Item 3
+    </div>
+    <div class="bg-teal-500 text-white p-6 rounded-md flex items-center justify-center font-medium">
+     Item 4
+    </div>
+    <div class="bg-teal-500 text-white p-6 rounded-md flex items-center justify-center font-medium">
+     Item 5
+    </div>
+    <div class="bg-teal-500 text-white p-6 rounded-md flex items-center justify-center font-medium">
+     Item 6
+    </div>
+   </div>
+  </div>
+  <div class="mb-8">
+   <h2 class="text-xl font-semibold mb-3 text-gray-800">
+    4-Column Grid (Responsive)
+   </h2>
+   <!-- Demonstrates a responsive grid: 2 columns on small screens, 4 on medium and larger -->
+   <div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 bg-white rounded-lg shadow">
+    <div class="bg-indigo-500 text-white p-6 rounded-md flex items-center justify-center font-medium">
+     A
+    </div>
+    <div class="bg-indigo-500 text-white p-6 rounded-md flex items-center justify-center font-medium">
+     B
+    </div>
+    <div class="bg-purple-500 text-white p-6 rounded-md flex items-center justify-center font-medium">
+     C
+    </div>
+    <div class="bg-purple-500 text-white p-6 rounded-md flex items-center justify-center font-medium">
+     D
+    </div>
+    <div class="bg-pink-500 text-white p-6 rounded-md flex items-center justify-center font-medium">
+     E
+    </div>
+    <div class="bg-pink-500 text-white p-6 rounded-md flex items-center justify-center font-medium">
+     F
+    </div>
+    <div class="bg-rose-500 text-white p-6 rounded-md flex items-center justify-center font-medium">
+     G
+    </div>
+    <div class="bg-rose-500 text-white p-6 rounded-md flex items-center justify-center font-medium">
+     H
+    </div>
+   </div>
+   <p class="text-sm text-gray-600 mt-2">
+    Resize your browser window to see the columns change.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

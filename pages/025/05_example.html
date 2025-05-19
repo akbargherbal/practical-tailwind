@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Text Color - Contrast Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-50 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6 text-slate-800">
+   Gotcha: Text Color Contrast
+  </h1>
+  <p class="mb-6 text-gray-600">
+   Poor contrast between text and background makes text hard to read and is an accessibility issue.
+  </p>
+  <!-- Good Contrast Example -->
+  <div class="mb-6 p-4 border rounded-lg">
+   <h2 class="text-lg font-semibold text-green-700 mb-2">
+    Good Contrast Examples
+   </h2>
+   <div class="p-4 bg-white rounded shadow mb-3">
+    <p class="text-gray-900">
+     Dark text (`text-gray-900`) on a light background (`bg-white`) is easy to read.
+    </p>
+   </div>
+   <div class="p-4 bg-slate-800 rounded shadow">
+    <p class="text-white">
+     Light text (`text-white`) on a dark background (`bg-slate-800`) is also clear.
+    </p>
+   </div>
+  </div>
+  <!-- Gotcha: Poor Contrast Examples -->
+  <div class="mb-6 p-4 border border-red-400 rounded-lg bg-red-50">
+   <h2 class="text-lg font-semibold text-red-700 mb-2">
+    Poor Contrast (Accessibility Issue)
+   </h2>
+   <!-- Example of text-gray-700 on a similar background -->
+   <div class="p-4 bg-gray-300 rounded shadow mb-3">
+    <p class="text-gray-500">
+     <!-- This demonstrates the gotcha -->
+     This text (`text-gray-500`) on `bg-gray-300` has poor contrast and is hard to read.
+                This makes it an accessibility concern.
+    </p>
+   </div>
+   <div class="p-4 bg-blue-200 rounded shadow mb-3">
+    <p class="text-blue-400">
+     <!-- Another gotcha example -->
+     Light blue text (`text-blue-400`) on a light blue background (`bg-blue-200`) is very difficult to see.
+    </p>
+   </div>
+   <div class="p-4 bg-red-100 rounded shadow">
+    <p class="text-red-300">
+     <!-- Using key class text-red-500 in a poor contrast situation if not careful (here text-red-300 for demonstration) -->
+     Even within the same color family, `text-red-300` on `bg-red-100` can lack sufficient contrast.
+                Imagine `text-red-500` on `bg-red-300` - always check contrast!
+    </p>
+   </div>
+   <p class="mt-4 text-sm text-red-600">
+    <strong>
+     Gotcha Explanation:
+    </strong>
+    Always ensure sufficient contrast between your text color and its background.
+            Tools like browser developer tools (accessibility checkers) or online contrast checkers can help.
+            Aim for WCAG AA or AAA compliance.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

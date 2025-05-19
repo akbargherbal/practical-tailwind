@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Flex Row
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Example 1: Basic Horizontal Row with `flex`
+  </h1>
+  <p class="mb-4">
+   This example shows how to use the `flex` class on a parent container to arrange child items in a horizontal row.
+  </p>
+  <!-- Parent container with flex -->
+  <div class="flex bg-blue-200 p-4 rounded-md space-x-4">
+   <!-- Child items -->
+   <div class="bg-blue-500 text-white p-4 rounded-md shadow-md">
+    Item 1
+   </div>
+   <div class="bg-blue-500 text-white p-4 rounded-md shadow-md">
+    Item 2
+   </div>
+   <div class="bg-blue-500 text-white p-4 rounded-md shadow-md">
+    Item 3
+   </div>
+   <div class="bg-blue-500 text-white p-4 rounded-md shadow-md">
+    Item 4
+   </div>
+  </div>
+  <div class="mt-6">
+   <h2 class="text-xl font-semibold">
+    Explanation:
+   </h2>
+   <ul class="list-disc list-inside ml-4">
+    <li>
+     The outer `div` has the class `flex`. This makes it a flex container.
+    </li>
+    <li>
+     Its direct children (the `div` elements with "Item X") are now flex items and are arranged horizontally by default.
+    </li>
+    <li>
+     `space-x-4` is used on the parent to add horizontal spacing between the flex items (this is a Tailwind utility for spacing direct children in a flex or grid container).
+    </li>
+   </ul>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

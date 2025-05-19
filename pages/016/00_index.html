@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Design "cards" – boxes holding content.
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style>
+   /* Additional base styles if necessary, though Tailwind aims to minimize this. */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+  </style>
+  <style>
+   iframe.default_style {
+  width: 100%;
+  min-height: 300px; /* Reasonable minimum */
+  border: none;
+  display: block;
+}
+  </style>
+ </head>
+ <body class="bg-slate-50 font-sans">
+  <div class="container mx-auto p-6 md:p-10 text-slate-800">
+   <header class="mb-10">
+    <h1 class="text-4xl font-bold text-center text-slate-700">
+     Tailwind CSS Concept Explained
+    </h1>
+   </header>
+   <main>
+    <section class="mb-12 bg-white shadow-xl rounded-lg p-6 md:p-8">
+     <h2 class="text-3xl font-semibold mb-6 text-slate-600 border-b-2 border-slate-300 pb-3">
+      Styling Common Web Page Parts
+     </h2>
+     <h3 class="text-2xl font-medium mb-5 text-indigo-700">
+      Design "cards" – boxes holding content.
+     </h3>
+     <p class="mb-2 text-slate-700">
+      <strong class="font-semibold text-slate-800">
+       Skill ID:
+      </strong>
+      StylingCommonParts_16
+     </p>
+     <p class="mb-2 text-slate-700">
+      <strong class="font-semibold text-slate-800">
+       Description:
+      </strong>
+      Create rectangular containers for bits of information.
+     </p>
+     <p class="mb-4 text-slate-700">
+      <strong class="font-semibold text-slate-800">
+       Where to apply:
+      </strong>
+      Previews of blog posts, product items in a shop, user profiles.
+     </p>
+     <div>
+      <p class="mb-2 mt-6 text-slate-700">
+       <strong class="font-semibold text-slate-800">
+        Key Tailwind Classes:
+       </strong>
+      </p>
+      <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mb-4">
+       <span>
+        <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+         bg-white rounded-lg shadow-md p-4
+        </code>
+       </span>
+      </div>
+     </div>
+     <div class="bg-amber-50 border-l-4 border-amber-500 text-amber-700 p-4 mt-6 rounded-md shadow-sm">
+      <p>
+       <strong class="font-semibold">
+        Gotcha:
+       </strong>
+       Overuse of very dark or large shadows can make the UI look heavy or cluttered. Inconsistent padding (
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        p-*
+       </code>
+       ) within different cards can also make the layout look messy.
+      </p>
+     </div>
+    </section>
+    <section class="mb-12">
+     <h4 class="text-xl font-semibold mb-4 text-slate-700">
+      Live Example:
+     </h4>
+     <div class="bg-slate-100 p-6 rounded-lg shadow-inner">
+      _
+      <div class="max-w-md mx-auto">
+       <div class="bg-white rounded-lg shadow-md p-4">
+        <h5 class="text-lg font-semibold mb-2 text-indigo-600">
+         Informational Card
+        </h5>
+        <p class="text-sm text-slate-600 mb-3 leading-relaxed">
+         This card uses
+         <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+          bg-white
+         </code>
+         for its background,
+         <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+          rounded-lg
+         </code>
+         for soft corners,
+         <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+          shadow-md
+         </code>
+         for a subtle lift, and
+         <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+          p-4
+         </code>
+         for internal spacing. These classes combine to create a common UI pattern for displaying content blocks.
+        </p>
+        <a class="inline-block mt-2 bg-indigo-500 text-white px-4 py-2 rounded-md text-sm hover:bg-indigo-600 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50" href="#">
+         Action Button
+        </a>
+       </div>
+      </div>
+     </div>
+     <p class="mt-4 text-sm text-slate-600 text-center">
+      The live example above directly applies the classes:
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       bg-white
+      </code>
+      ,
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       rounded-lg
+      </code>
+      ,
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       shadow-md
+      </code>
+      , and
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       p-4
+      </code>
+      .
+     </p>
+    </section>
+   </main>
+  </div>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 1:
+  </h1>
+  <iframe frameborder="0" src="./01_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 2:
+  </h1>
+  <iframe frameborder="0" src="./02_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 3:
+  </h1>
+  <iframe frameborder="0" src="./03_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 4:
+  </h1>
+  <iframe frameborder="0" src="./04_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 5:
+  </h1>
+  <iframe frameborder="0" src="./05_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 6:
+  </h1>
+  <iframe frameborder="0" src="./06_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 7:
+  </h1>
+  <iframe frameborder="0" src="./07_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 8:
+  </h1>
+  <iframe frameborder="0" src="./08_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 9:
+  </h1>
+  <iframe frameborder="0" src="./09_example.html">
+  </iframe>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+  const iframes = document.querySelectorAll('iframe');
+
+  // Ensure all iframes have the default style class
+  iframes.forEach(iframe => iframe.classList.add('default_style'));
+
+  window.addEventListener('message', function(event) {
+    // Optional: add origin check for safety
+    if (event.data && typeof event.data.iframeHeight === 'number') {
+      const iframe = Array.from(iframes).find(iframe =>
+        iframe.contentWindow === event.source
+      );
+      if (iframe) {
+        iframe.style.height = (event.data.iframeHeight + 50) + 'px';
+      }
+    }
+  });
+});
+  </script>
+ </body>
+</html>

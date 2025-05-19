@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Vertical Stacking - Gotcha Demonstration
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6 text-center">
+   Example 3: Addressing the "Gotcha"
+  </h1>
+  <div class="grid md:grid-cols-2 gap-8">
+   <div>
+    <h2 class="text-xl font-semibold mb-3 text-center">
+     Scenario 1: Default Block Stacking
+    </h2>
+    <div class="p-4 bg-sky-100 border border-sky-300 rounded-lg">
+     <!-- 
+                    Gotcha Context: These divs stack vertically by default.
+                    No `flex flex-col` is strictly *needed* for just this.
+                -->
+     <div class="p-3 bg-sky-300 mb-2 text-center">
+      Block Item A
+     </div>
+     <div class="p-3 bg-sky-400 mb-2 text-center">
+      Block Item B (wider)
+     </div>
+     <div class="p-3 bg-sky-500 text-center">
+      Block Item C
+     </div>
+     <p class="mt-3 text-sm text-gray-700">
+      These items stack vertically due to their default block behavior. If this is all you need, `flex flex-col` is not required. Notice how items take full width and are left-aligned by default.
+     </p>
+    </div>
+   </div>
+   <div>
+    <h2 class="text-xl font-semibold mb-3 text-center">
+     Scenario 2: `flex flex-col` for Alignment &amp; Spacing
+    </h2>
+    <div class="p-4 bg-indigo-100 border border-indigo-300 rounded-lg">
+     <!-- 
+                    Gotcha Addressed: Here, `flex flex-col` is used.
+                    WHY? Not just for stacking (which divs do anyway), but to enable 
+                    flexbox alignment (`items-center` for horizontal centering) and 
+                    spacing (`space-y-3`). This is the key reason to opt for `flex-col`.
+                -->
+     <div class="flex flex-col items-center space-y-3">
+      <div class="p-3 bg-indigo-300 w-3/4 text-center rounded">
+       Flex Item X (Centered)
+      </div>
+      <div class="p-3 bg-indigo-400 w-1/2 text-center rounded">
+       Flex Item Y (Centered)
+      </div>
+      <div class="p-3 bg-indigo-500 w-2/3 text-center rounded">
+       Flex Item Z (Centered)
+      </div>
+     </div>
+     <p class="mt-3 text-sm text-gray-700">
+      Here,
+      <code class="bg-gray-300 px-1 rounded">
+       flex flex-col
+      </code>
+      is used. The "Gotcha" is that while `div`s stack by default, using `flex-col` allows us to easily apply
+      <code class="bg-gray-300 px-1 rounded">
+       items-center
+      </code>
+      to horizontally center the items within the column and
+      <code class="bg-gray-300 px-1 rounded">
+       space-y-3
+      </code>
+      for consistent vertical spacing. This level of control is why you'd choose `flex-col` over default block behavior.
+     </p>
+    </div>
+   </div>
+  </div>
+  <div class="mt-8 p-4 bg-orange-100 border border-orange-300 rounded-lg">
+   <h3 class="text-lg font-semibold mb-2">
+    "Gotcha" Summary:
+   </h3>
+   <p>
+    Many elements like `div`s or `p`aragraphs stack vertically by default (they are block-level elements). You only *need* to explicitly use
+    <code class="bg-gray-300 px-1 rounded">
+     flex flex-col
+    </code>
+    if:
+   </p>
+   <ul class="list-disc list-inside ml-4 mt-2">
+    <li>
+     You want to use flexbox alignment properties (e.g.,
+     <code class="bg-gray-300 px-1 rounded">
+      items-center
+     </code>
+     for horizontal centering within the column,
+     <code class="bg-gray-300 px-1 rounded">
+      items-start
+     </code>
+     ,
+     <code class="bg-gray-300 px-1 rounded">
+      items-end
+     </code>
+     ).
+    </li>
+    <li>
+     You want to use flexbox justification properties for the column (e.g.,
+     <code class="bg-gray-300 px-1 rounded">
+      justify-center
+     </code>
+     ,
+     <code class="bg-gray-300 px-1 rounded">
+      justify-between
+     </code>
+     - though this has more effect if the flex container has a fixed height).
+    </li>
+    <li>
+     You want to use flexbox spacing utilities like
+     <code class="bg-gray-300 px-1 rounded">
+      space-y-*
+     </code>
+     .
+    </li>
+    <li>
+     The parent element is already a flex container and you want its children to form a column within that flex context.
+    </li>
+   </ul>
+   <p class="mt-2">
+    Otherwise, default block behavior might be sufficient for simple vertical stacking.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

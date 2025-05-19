@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Example - Space, Gap &amp; The "Gotcha"
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-semibold mb-6">
+    Using `space-*`, `gap-*`, and Addressing the "Gotcha"
+   </h1>
+   <!-- Example 1: Using space-x-* for horizontal spacing between flex items -->
+   <div class="mb-8 p-4 bg-white rounded shadow">
+    <h2 class="text-lg font-medium mb-3">
+     Using `space-x-4`
+    </h2>
+    <div class="flex space-x-4">
+     <div class="bg-sky-500 text-white p-3 rounded">
+      Item 1
+     </div>
+     <div class="bg-sky-500 text-white p-3 rounded">
+      Item 2
+     </div>
+     <div class="bg-sky-500 text-white p-3 rounded">
+      Item 3
+     </div>
+    </div>
+    <p class="mt-3 text-sm text-gray-600">
+     The `space-x-4` class on the flex container adds a 1rem (16px) margin to the left of all direct children except the first one.
+    </p>
+   </div>
+   <!-- Example 2: Using gap-* for grid layouts -->
+   <div class="mb-8 p-4 bg-white rounded shadow">
+    <h2 class="text-lg font-medium mb-3">
+     Using `gap-4`
+    </h2>
+    <div class="grid grid-cols-3 gap-4">
+     <div class="bg-emerald-500 text-white p-3 rounded">
+      Cell 1
+     </div>
+     <div class="bg-emerald-500 text-white p-3 rounded">
+      Cell 2
+     </div>
+     <div class="bg-emerald-500 text-white p-3 rounded">
+      Cell 3
+     </div>
+     <div class="bg-emerald-500 text-white p-3 rounded">
+      Cell 4
+     </div>
+     <div class="bg-emerald-500 text-white p-3 rounded">
+      Cell 5
+     </div>
+    </div>
+    <p class="mt-3 text-sm text-gray-600">
+     The `gap-4` class on the grid container adds a 1rem (16px) gap between grid rows and columns.
+    </p>
+   </div>
+   <!-- Example 3: Demonstrating the "Gotcha" -->
+   <div class="p-4 bg-white rounded shadow">
+    <h2 class="text-lg font-medium mb-3">
+     "Gotcha": Arbitrary Values vs. Tailwind Scale
+    </h2>
+    <p class="mb-2 text-sm text-gray-700">
+     While Tailwind allows arbitrary values, relying on them too much can break the consistency provided by its spacing scale.
+    </p>
+    <!-- "Bad" example using arbitrary values -->
+    <div class="mb-4">
+     <p class="font-semibold text-red-600">
+      Less Consistent (Arbitrary Values):
+     </p>
+     <div class="flex">
+      <div class="bg-red-200 text-red-800 p-[7px] mr-[3px] rounded">
+       Item A (`p-[7px]`)
+      </div>
+      <div class="bg-red-200 text-red-800 p-[11px] rounded">
+       Item B (`p-[11px]`)
+      </div>
+     </div>
+     <p class="mt-1 text-xs text-gray-500">
+      <!-- Note explaining the gotcha directly in the HTML -->
+      Here, `p-[7px]` and `mr-[3px]` are arbitrary. Overuse can lead to an inconsistent visual rhythm.
+     </p>
+    </div>
+    <!-- "Good" example using Tailwind's scale -->
+    <div>
+     <p class="font-semibold text-green-600">
+      More Consistent (Tailwind Scale):
+     </p>
+     <div class="flex space-x-1">
+      <!-- space-x-1 is 0.25rem or 4px, close to 3px -->
+      <div class="bg-green-200 text-green-800 p-2 rounded">
+       Item X (`p-2`)
+      </div>
+      <!-- p-2 is 0.5rem or 8px, close to 7px -->
+      <div class="bg-green-200 text-green-800 p-3 rounded">
+       Item Y (`p-3`)
+      </div>
+      <!-- p-3 is 0.75rem or 12px, close to 11px -->
+     </div>
+     <p class="mt-1 text-xs text-gray-500">
+      Using `p-2`, `p-3`, and `space-x-1` leverages Tailwind's predefined scale, promoting consistency.
+                    If exact pixel values are critical and not on the scale, use them sparingly.
+     </p>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

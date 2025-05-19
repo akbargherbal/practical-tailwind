@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: h-full with Defined Parent Height
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <!-- Example 2: h-full on a child when parent has a defined height -->
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-4 text-center">
+    <code>
+     h-full
+    </code>
+    with Defined Parent Height
+   </h1>
+   <p class="text-center mb-6">
+    Illustrates how
+    <code>
+     h-full
+    </code>
+    works correctly when the parent element has a specific height.
+   </p>
+   <!-- Parent div with a defined height -->
+   <div class="bg-indigo-300 p-4 h-96 w-full md:w-1/2 mx-auto mb-8">
+    <p class="text-white mb-2">
+     Parent Div (
+     <code>
+      h-96
+     </code>
+     )
+    </p>
+    <!-- Child div with h-full -->
+    <div class="bg-indigo-600 text-white p-4 h-full flex items-center justify-center">
+     <p class="text-center">
+      Child Div with
+      <code>
+       h-full
+      </code>
+      .
+      <br/>
+      It fills the parent's height because the parent has a defined height (
+      <code>
+       h-96
+      </code>
+      ).
+     </p>
+    </div>
+   </div>
+   <!-- Another example with a different parent height -->
+   <div class="bg-pink-300 p-4 h-64 w-full md:w-1/2 mx-auto">
+    <p class="text-white mb-2">
+     Another Parent Div (
+     <code>
+      h-64
+     </code>
+     )
+    </p>
+    <div class="flex h-full space-x-2">
+     <div class="bg-pink-600 text-white p-2 w-1/2 h-full flex items-center justify-center">
+      <p>
+       Child 1 (
+       <code>
+        h-full
+       </code>
+       )
+      </p>
+     </div>
+     <div class="bg-pink-700 text-white p-2 w-1/2 h-full flex items-center justify-center">
+      <p>
+       Child 2 (
+       <code>
+        h-full
+       </code>
+       )
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind - Basic Horizontal Navbar
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-50 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6">
+   Basic Horizontal Navigation Bar
+  </h1>
+  <!--
+      This example demonstrates a simple horizontal navigation bar.
+      - `flex`: Enables flexbox layout, arranging items in a row by default.
+      - `space-x-4`: Adds horizontal space (1rem) between child elements.
+      - `items-center`: Vertically aligns flex items to the center of the container.
+                       This is good practice even if all items appear to be the same height.
+    -->
+  <nav class="bg-blue-500 p-4 rounded-md shadow-lg">
+   <ul class="flex space-x-4 items-center">
+    <li>
+     <a class="text-white hover:text-blue-200" href="#">
+      Home
+     </a>
+    </li>
+    <li>
+     <a class="text-white hover:text-blue-200" href="#">
+      About
+     </a>
+    </li>
+    <li>
+     <a class="text-white hover:text-blue-200" href="#">
+      Services
+     </a>
+    </li>
+    <li>
+     <a class="text-white hover:text-blue-200" href="#">
+      Portfolio
+     </a>
+    </li>
+    <li>
+     <a class="text-white hover:text-blue-200" href="#">
+      Contact
+     </a>
+    </li>
+   </ul>
+  </nav>
+  <div class="mt-8 p-4 border border-gray-300 rounded bg-white">
+   <h2 class="text-lg font-semibold">
+    Explanation:
+   </h2>
+   <p class="mt-2">
+    The navigation bar above uses:
+   </p>
+   <ul class="list-disc list-inside mt-2">
+    <li>
+     <code class="bg-gray-200 p-1 rounded">
+      flex
+     </code>
+     : To lay out the list items horizontally.
+    </li>
+    <li>
+     <code class="bg-gray-200 p-1 rounded">
+      space-x-4
+     </code>
+     : To create consistent spacing between the navigation links.
+    </li>
+    <li>
+     <code class="bg-gray-200 p-1 rounded">
+      items-center
+     </code>
+     : To ensure all links are vertically centered within the navigation bar, which is crucial if items have different intrinsic heights (e.g., due to icons or different font sizes).
+    </li>
+   </ul>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

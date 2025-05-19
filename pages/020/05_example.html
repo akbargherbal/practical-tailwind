@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Badges: Simple Inline Examples
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 flex flex-col items-center from_inside_iframe">
+  <!-- This example shows basic badges used inline with text. -->
+  <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
+   <h1 class="text-xl font-semibold mb-4 text-center">
+    Simple Notification Badges
+   </h1>
+   <div class="space-y-3">
+    <p class="text-gray-700 flex justify-between items-center">
+     <span>
+      Inbox Messages
+     </span>
+     <span class="bg-blue-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+      12
+     </span>
+    </p>
+    <p class="text-gray-700 flex justify-between items-center">
+     <span>
+      Pending Friend Requests
+     </span>
+     <span class="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+      3
+     </span>
+    </p>
+    <p class="text-gray-700 flex justify-between items-center">
+     <span>
+      Item Status
+     </span>
+     <span class="bg-green-600 text-white text-xs font-semibold px-2.5 py-1 rounded-md">
+      APPROVED
+     </span>
+    </p>
+    <p class="text-gray-700 flex justify-between items-center">
+     <span>
+      Unread Alerts
+     </span>
+     <!-- Using the key classes from the prompt -->
+     <span class="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+      99+
+     </span>
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

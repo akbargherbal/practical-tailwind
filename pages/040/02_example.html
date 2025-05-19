@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Transition Gotcha (Width/Height)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex flex-col items-center space-y-8 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Example 2: Addressing the "Gotcha" - Transitioning Width
+  </h1>
+  <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-6" role="alert">
+   <p class="font-bold">
+    Gotcha Explanation:
+   </p>
+   <p>
+    By default, Tailwind's `transition` class animates common properties (colors, opacity, shadow, transform). If you want to transition properties like `width` or `height`, they won't animate smoothly unless you also specify `transition-all` or list them explicitly (e.g., `transition-[width,height]`).
+   </p>
+  </div>
+  <!-- Gotcha Demonstration: Width transition WITHOUT explicit instruction -->
+  <div class="p-4 text-center w-full max-w-md">
+   <h2 class="text-xl font-semibold mb-2">
+    Problem: Width transition (No `transition-all`)
+   </h2>
+   <p class="mb-2 text-sm">
+    This box attempts to change width on hover. Without `transition-all` or `transition-[width]`, the width change will be INSTANT, not smooth, even though `transition`, `duration`, and `ease` are applied.
+   </p>
+   <div class="mx-auto bg-purple-500 text-white h-20 flex items-center justify-center rounded-md w-32 hover:w-64 transition duration-500 ease-in-out">
+    <!--
+                GOTCHA: The 'transition' here won't apply to 'width' by default.
+                The width will change instantly.
+            -->
+    <p>
+     Hover Me (Width Jumps)
+    </p>
+   </div>
+   <p class="mt-2 text-xs text-gray-600">
+    Classes used: `w-32 hover:w-64 transition duration-500 ease-in-out`
+   </p>
+  </div>
+  <!-- Solution: Width transition WITH 'transition-all' -->
+  <div class="p-4 text-center w-full max-w-md">
+   <h2 class="text-xl font-semibold mb-2">
+    Solution 1: Width transition with `transition-all`
+   </h2>
+   <p class="mb-2 text-sm">
+    This box uses `transition-all` to ensure all property changes, including width, are animated smoothly.
+   </p>
+   <div class="mx-auto bg-teal-500 text-white h-20 flex items-center justify-center rounded-md w-32 hover:w-64 transition-all duration-500 ease-in-out">
+    <!--
+                CORRECTED: 'transition-all' ensures 'width' is among the properties
+                that get smoothly transitioned.
+            -->
+    <p>
+     Hover Me (Width Smooth)
+    </p>
+   </div>
+   <p class="mt-2 text-xs text-gray-600">
+    Classes used: `w-32 hover:w-64 transition-all duration-500 ease-in-out`
+   </p>
+  </div>
+  <!-- Solution: Width transition WITH 'transition-[width]' -->
+  <div class="p-4 text-center w-full max-w-md">
+   <h2 class="text-xl font-semibold mb-2">
+    Solution 2: Width transition with `transition-[width]`
+   </h2>
+   <p class="mb-2 text-sm">
+    This box uses `transition-[width]` to explicitly tell Tailwind to transition the `width` property.
+   </p>
+   <div class="mx-auto bg-indigo-500 text-white h-20 flex items-center justify-center rounded-md w-32 hover:w-64 transition-[width] duration-500 ease-in-out">
+    <!--
+                CORRECTED: 'transition-[width]' explicitly targets the 'width' property
+                for smooth transition.
+            -->
+    <p>
+     Hover Me (Width Smooth)
+    </p>
+   </div>
+   <p class="mt-2 text-xs text-gray-600">
+    Classes used: `w-32 hover:w-64 transition-[width] duration-500 ease-in-out`
+   </p>
+  </div>
+  <div class="mt-6 p-4 text-sm text-gray-700">
+   <p>
+    <strong>
+     Note on `display` property:
+    </strong>
+    Transitions do not work on all CSS properties. For example, you cannot transition the `display` property (e.g., from `hidden` to `block`). For showing/hiding elements with animation, you typically transition `opacity`, `height`, or `max-height`.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

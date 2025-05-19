@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Card Gotchas
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 अंतः from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-6 text-center">
+    Card Gotchas &amp; Solutions
+   </h1>
+   <!-- Gotcha 1: Overuse of Dark/Large Shadows -->
+   <div class="mb-12">
+    <h2 class="text-xl font-semibold mb-3 text-center">
+     Gotcha 1: Overly Large Shadows
+    </h2>
+    <div class="bg-white rounded-lg shadow-2xl p-4 max-w-sm mx-auto">
+     <!--
+                    GOTCHA DEMONSTRATION:
+                    This card uses 'shadow-2xl'. While sometimes appropriate,
+                    overusing very large or dark shadows can make the UI look heavy or cluttered.
+                    The key is balance and context.
+                -->
+     <h3 class="text-lg font-medium">
+      Heavy Shadow Card
+     </h3>
+     <p class="text-gray-700">
+      This card has a
+      <code>
+       shadow-2xl
+      </code>
+      . Notice how it might feel too prominent or heavy for some designs compared to a more subtle shadow like
+      <code>
+       shadow-md
+      </code>
+      .
+     </p>
+    </div>
+    <p class="text-sm text-gray-600 mt-2 text-center">
+     A
+     <code>
+      shadow-2xl
+     </code>
+     can make the element feel very detached and heavy.
+    </p>
+   </div>
+   <!-- Gotcha 2: Inconsistent Padding -->
+   <div class="mb-12">
+    <h2 class="text-xl font-semibold mb-3 text-center">
+     Gotcha 2: Inconsistent Padding
+    </h2>
+    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center items-start">
+     <div class="bg-white rounded-lg shadow-md p-2 w-full sm:w-1/2 max-w-xs mx-auto">
+      <!--
+                        GOTCHA DEMONSTRATION:
+                        This card uses 'p-2'. The content might appear too close to the edges.
+                    -->
+      <h3 class="text-lg font-medium">
+       Small Padding (p-2)
+      </h3>
+      <p class="text-gray-700">
+       Content with
+       <code>
+        p-2
+       </code>
+       can feel cramped and lack breathing room.
+      </p>
+     </div>
+     <div class="bg-white rounded-lg shadow-md p-8 w-full sm:w-1/2 max-w-xs mx-auto">
+      <!--
+                        GOTCHA DEMONSTRATION:
+                        This card uses 'p-8'. While generous padding can be good,
+                        if other cards on the page use different padding values (e.g., p-2 or p-4),
+                        the overall layout can look inconsistent and messy.
+                    -->
+      <h3 class="text-lg font-medium">
+       Large Padding (p-8)
+      </h3>
+      <p class="text-gray-700">
+       Content with
+       <code>
+        p-8
+       </code>
+       . If not used consistently with other cards, it creates visual imbalance.
+      </p>
+     </div>
+    </div>
+    <p class="text-sm text-gray-600 mt-2 text-center">
+     Inconsistent padding like
+     <code>
+      p-2
+     </code>
+     vs
+     <code>
+      p-8
+     </code>
+     makes the layout look unbalanced.
+    </p>
+   </div>
+   <!-- Recommended Approach -->
+   <div>
+    <h2 class="text-xl font-semibold mb-3 text-center">
+     Recommended Approach
+    </h2>
+    <div class="bg-white rounded-lg shadow-md p-4 max-w-sm mx-auto">
+     <h3 class="text-lg font-medium">
+      Well-Balanced Card
+     </h3>
+     <p class="text-gray-700">
+      This card uses
+      <code>
+       shadow-md
+      </code>
+      for a subtle lift and consistent
+      <code>
+       p-4
+      </code>
+      for balanced internal spacing. This combination is a good default for many card designs,
+                    avoiding the pitfalls of heavy shadows and inconsistent padding.
+     </p>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

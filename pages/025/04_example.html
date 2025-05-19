@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Text Color - Basic Usage
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6 text-slate-800">
+   Basic Text Color Examples
+  </h1>
+  <!-- Example 1: Using text-red-500 for an error message -->
+  <div class="mb-4 p-4 bg-white rounded shadow">
+   <h2 class="text-lg font-semibold text-slate-700 mb-2">
+    Error Message
+   </h2>
+   <p class="text-red-500">
+    This is an error message using `text-red-500`.
+   </p>
+   <p class="text-sm text-gray-600 mt-1">
+    Typically used for alerts or validation feedback.
+   </p>
+  </div>
+  <!-- Example 2: Using text-gray-700 for standard or slightly emphasized text -->
+  <div class="mb-4 p-4 bg-white rounded shadow">
+   <h2 class="text-lg font-semibold text-slate-700 mb-2">
+    Standard Content Text
+   </h2>
+   <p class="text-gray-700">
+    This paragraph uses `text-gray-700` for good readability on a light background.
+   </p>
+  </div>
+  <!-- Example 3: Using a different text color for a link -->
+  <div class="mb-4 p-4 bg-white rounded shadow">
+   <h2 class="text-lg font-semibold text-slate-700 mb-2">
+    Link Text
+   </h2>
+   <p class="text-gray-700">
+    This is a sentence with a
+    <a class="text-blue-600 hover:text-blue-800 underline" href="#">
+     link using `text-blue-600`
+    </a>
+    .
+            It stands out from the surrounding `text-gray-700` text.
+   </p>
+  </div>
+  <!-- Example 4: Subtle helper text -->
+  <div class="p-4 bg-white rounded shadow">
+   <h2 class="text-lg font-semibold text-slate-700 mb-2">
+    Helper Text
+   </h2>
+   <p class="text-gray-500 text-sm">
+    This is a subtle helper text using `text-gray-500`.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

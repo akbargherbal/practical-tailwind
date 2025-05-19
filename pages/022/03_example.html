@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Dividers - Horizontal (border-t)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-50 from_inside_iframe">
+  <div class="container mx-auto max-w-2xl">
+   <h1 class="text-2xl font-bold mb-6 text-center">
+    Using `border-t` for Horizontal Dividers
+   </h1>
+   <div class="bg-white p-6 rounded-lg shadow mb-4">
+    <h2 class="text-xl font-semibold mb-2">
+     Section 1: Article Preview
+    </h2>
+    <p class="text-gray-700">
+     This is the first section of content. We will add a visual divider after this to separate it from the next section. This is common between articles on a homepage.
+    </p>
+   </div>
+   <!-- Horizontal divider using an empty div with border-t -->
+   <!-- 'my-6' adds margin above and below the divider for spacing. -->
+   <!-- 'border-gray-300' sets the color of the 1px top border. -->
+   <div class="border-t border-gray-300 my-6">
+   </div>
+   <div class="bg-white p-6 rounded-lg shadow">
+    <h2 class="text-xl font-semibold mb-2">
+     Section 2: Another Article Preview
+    </h2>
+    <p class="text-gray-700">
+     This is the second section of content, appearing after the horizontal divider. The line above visually separates it.
+    </p>
+   </div>
+   <!-- Example with a thicker and dashed border for variety -->
+   <p class="text-center text-sm text-gray-500 mt-8 mb-2">
+    A different style of divider:
+   </p>
+   <div class="border-t-2 border-dashed border-indigo-400 my-6">
+   </div>
+   <div class="bg-white p-6 rounded-lg shadow">
+    <h2 class="text-xl font-semibold mb-2">
+     Section 3: Final Article
+    </h2>
+    <p class="text-gray-700">
+     This section is separated by a dashed, thicker divider, also created using border utilities.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

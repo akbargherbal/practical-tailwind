@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html class="" lang="en">
+ <!-- Start without 'dark' class by default -->
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Dark Mode: Class Toggle (JS)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <script>
+   // IMPORTANT: For 'class' strategy to work if you were using a local Tailwind setup,
+        // you would need `darkMode: 'class'` in your `tailwind.config.js`.
+        // The CDN script here applies dark mode styles if the `<html>` tag has the 'dark' class.
+        // tailwind.config = {
+        //   darkMode: 'class',
+        // }
+  </script>
+ </head>
+ <body class="bg-slate-100 text-slate-900 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300 from_inside_iframe">
+  <!--
+        This example demonstrates dark mode toggled by a JavaScript class on the <html> element.
+        This simulates the `darkMode: 'class'` strategy.
+
+        Gotcha Addressed:
+        1. `darkMode: 'class'` configuration: If you were using a `tailwind.config.js` file, you would need
+           to set `darkMode: 'class'`. The CDN setup allows `dark:` prefixes to work when a 'dark'
+           class is present on an ancestor, typically `<html>`.
+        2. JavaScript for class toggling: When using `darkMode: 'class'`, you MUST use JavaScript
+           to add or remove the 'dark' class from the `<html>` element (or another parent element as configured)
+           to switch themes. This example includes a button and script to do this. Without the script,
+           the `dark:` variants would not activate based on a toggle.
+    -->
+  <div class="container mx-auto p-8 min-h-screen flex flex-col items-center justify-center">
+   <div class="p-8 rounded-lg shadow-xl bg-white dark:bg-gray-800 w-full max-w-md text-center">
+    <h1 class="text-3xl font-bold mb-6 text-gray-800 dark:text-white">
+     Dark Mode Demo (Class Toggle)
+    </h1>
+    <p class="mb-4 text-gray-700 dark:text-gray-300">
+     Click the button below to toggle dark mode. This uses JavaScript to add/remove the 'dark' class from the `&lt;html&gt;` tag.
+    </p>
+    <button class="px-6 py-3 mb-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg shadow-md transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-indigo-500 dark:hover:bg-indigo-600 dark:focus:ring-indigo-400" id="theme-toggle">
+     Toggle Dark Mode
+    </button>
+    <div class="mt-4 p-4 border border-green-300 dark:border-green-700 rounded bg-green-50 dark:bg-green-900">
+     <p class="text-green-700 dark:text-green-300">
+      This content also changes with the theme!
+     </p>
+    </div>
+    <div class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+     <p class="text-xs text-gray-500 dark:text-gray-400">
+      Current mode:
+      <span id="current-mode">
+       Light
+      </span>
+     </p>
+     <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+      (To see the `dark:` prefixed classes in action, inspect the `&lt;html&gt;` element and observe the 'dark' class being added/removed.)
+     </p>
+    </div>
+   </div>
+  </div>
+  <script>
+   const themeToggleBtn = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        const currentModeSpan = document.getElementById('current-mode');
+
+        // Function to update button text and mode display
+        function updateModeDisplay() {
+            if (htmlElement.classList.contains('dark')) {
+                currentModeSpan.textContent = 'Dark';
+                // Optional: Persist user preference
+                // localStorage.setItem('theme', 'dark');
+            } else {
+                currentModeSpan.textContent = 'Light';
+                // Optional: Persist user preference
+                // localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Check for saved theme preference (optional)
+        // if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        //     htmlElement.classList.add('dark');
+        // } else {
+        //     htmlElement.classList.remove('dark');
+        // }
+
+        // Initialize mode display
+        updateModeDisplay();
+
+        themeToggleBtn.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            updateModeDisplay();
+        });
+  </script>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

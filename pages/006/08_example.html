@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: mx-auto Centering Gotchas
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-6 from_inside_iframe">
+  <div class="container mx-auto p-4">
+   <h1 class="text-2xl font-bold text-center mb-8">
+    Understanding `mx-auto` Gotchas
+   </h1>
+   <!-- Gotcha 1: mx-auto on a block element WITHOUT a defined width -->
+   <div class="mb-10 p-4 border border-dashed border-red-500 bg-red-50 rounded-md">
+    <h2 class="text-lg font-semibold mb-2 text-red-700">
+     Gotcha 1: `mx-auto` Without Defined Width
+    </h2>
+    <p class="mb-3 text-sm">
+     The `div` below has `mx-auto` but no specific `w-*` or `max-w-*` class.
+                By default, block elements like `div` take up the full available width of their parent.
+                While `mx-auto` sets left and right margins to 'auto', if the element is already full-width, there's no space to distribute, so it won't appear centered.
+    </p>
+    <div class="mx-auto bg-red-300 p-4 rounded">
+     I am a `div` with `mx-auto` but no defined width (e.g., `w-1/2`, `max-w-md`). I will span the full width.
+    </div>
+    <p class="mt-3 text-sm text-red-700">
+     <strong>
+      Key:
+     </strong>
+     `mx-auto` needs a defined width on a block-level element to have a centering effect.
+    </p>
+   </div>
+   <!-- Corrected: mx-auto WITH a defined width -->
+   <div class="mb-10 p-4 border border-dashed border-green-500 bg-green-50 rounded-md">
+    <h2 class="text-lg font-semibold mb-2 text-green-700">
+     Corrected: `mx-auto` With Defined Width
+    </h2>
+    <p class="mb-3 text-sm">
+     This `div` has both `mx-auto` and a defined width (`w-3/4`). Now it centers as expected.
+    </p>
+    <div class="w-3/4 mx-auto bg-green-500 text-white p-4 rounded">
+     I am a `div` with `w-3/4` and `mx-auto`. I am centered!
+    </div>
+   </div>
+   <!-- Gotcha 2: mx-auto on an INLINE element -->
+   <div class="mb-10 p-4 border border-dashed border-orange-500 bg-orange-50 rounded-md">
+    <h2 class="text-lg font-semibold mb-2 text-orange-700">
+     Gotcha 2: `mx-auto` on Inline Elements
+    </h2>
+    <p class="mb-3 text-sm">
+     The `
+     <span>
+      ` element below is `display: inline` by default. `mx-auto` does not center `inline` elements because they flow with content and don't have their own "block" boundaries that margins can adjust for centering in the same way as block elements.
+     </span>
+    </p>
+    <div class="bg-orange-200 p-4 rounded text-left">
+     <!-- text-left to ensure span isn't accidentally centered by parent text-alignment -->
+     Surrounding text.
+     <span class="mx-auto bg-orange-500 text-black p-2 my-2">
+      I am a `span` (inline) with `mx-auto`. I won't center effectively.
+     </span>
+     More surrounding text.
+    </div>
+    <p class="mt-3 text-sm text-orange-700">
+     <strong>
+      To center an element like a `span` using `mx-auto`:
+     </strong>
+     You must change its display property to `block` (or `inline-block` if appropriate, though `mx-auto` for centering usually implies `display:block`) AND give it a defined width.
+    </p>
+    <p class="mt-2 text-sm">
+     Example of fixing the inline `span`:
+    </p>
+    <div class="bg-purple-200 p-4 rounded mt-2">
+     <span class="block w-1/2 mx-auto bg-purple-600 text-white p-2 text-center rounded">
+      This `span` is now `display: block`, `w-1/2`, and `mx-auto`. It is centered!
+     </span>
+    </div>
+    <p class="mt-3 text-sm">
+     Alternatively, to center inline content (like text or an inline `span`) *within* its parent block element, use `text-center` on the parent.
+    </p>
+    <div class="w-full mx-auto bg-teal-200 p-4 rounded text-center mt-2">
+     <span class="bg-teal-600 text-white p-2 rounded">
+      This span is centered via `text-center` on its parent.
+     </span>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

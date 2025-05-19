@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Gotcha - Visibility on Specific Range
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Example 3: Gotcha - Showing Element ONLY on Medium Screens
+  </h1>
+  <p class="mb-6">
+   This example demonstrates the "Gotcha": responsive prefixes apply to that screen size *and larger*, unless overridden. We want to show a yellow box *only* on medium (`md`, 768px to 1023px) screens.
+  </p>
+  <div class="space-y-4">
+   <div>
+    <h2 class="text-lg font-semibold mb-2">
+     Incorrect Approach (Illustrating the Gotcha):
+    </h2>
+    <p class="text-sm mb-2 text-gray-700">
+     If we only use
+     <code>
+      hidden md:block
+     </code>
+     , the element will be hidden on small screens, but then visible on medium screens AND ALSO on large screens because
+     <code>
+      md:
+     </code>
+     applies to medium and up.
+    </p>
+    <!--
+                GOTCHA DEMONSTRATION (Incorrect way):
+                - 'hidden': Hidden on xs screens.
+                - 'md:block': Becomes block from 'md' (768px) breakpoint onwards.
+                This means it will also be visible on 'lg' (1024px) and larger screens, which might not be the intent if you want it *only* on medium.
+            -->
+    <div class="hidden md:block bg-red-300 text-red-800 p-4 rounded-lg shadow">
+     <p class="font-semibold">
+      (Gotcha) Visible on MD and UP (768px+):
+      <code>
+       hidden md:block
+      </code>
+     </p>
+     <p>
+      This box demonstrates the gotcha. It appears on medium screens AND stays visible on large screens.
+     </p>
+    </div>
+   </div>
+   <hr class="my-6"/>
+   <div>
+    <h2 class="text-lg font-semibold mb-2">
+     Correct Approach (Addressing the Gotcha):
+    </h2>
+    <p class="text-sm mb-2 text-gray-700">
+     To show an element *only* on medium screens, we need to hide it by default, show it on medium, and then hide it again on large screens.
+    </p>
+    <!--
+                GOTCHA ADDRESSED (Correct way):
+                - 'hidden': Hidden by default (xs screens).
+                - 'md:block': Becomes 'block' at the 'md' (768px) breakpoint.
+                - 'lg:hidden': Becomes 'hidden' again at the 'lg' (1024px) breakpoint.
+                This combination ensures the element is visible *only* on medium screens.
+            -->
+    <div class="hidden md:block lg:hidden bg-yellow-400 text-yellow-800 p-6 rounded-lg shadow-md">
+     <p class="font-semibold">
+      (Correct) Visible ONLY on MD screens (768px - 1023px):
+      <code>
+       hidden md:block lg:hidden
+      </code>
+     </p>
+     <p>
+      This box is hidden on small screens, visible on medium screens, and hidden again on large screens.
+     </p>
+    </div>
+   </div>
+  </div>
+  <div class="mt-8 p-4 bg-indigo-200 text-indigo-800 rounded">
+   This indigo box is always visible, for reference. Resize your browser to see the yellow and red boxes change visibility based on screen width (try small, medium around 800px, and large above 1024px).
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

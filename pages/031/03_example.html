@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Basic Rounded Corners
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 font-sans from_inside_iframe">
+  <div class="container mx-auto space-y-8">
+   <h1 class="text-3xl font-bold mb-6 text-center">
+    Tailwind CSS: Rounded Corners
+   </h1>
+   <!-- Basic Rounded Corners Demonstration -->
+   <div class="bg-white p-6 shadow-lg">
+    <h2 class="text-xl font-semibold mb-4">
+     Applying Different Rounding Levels
+    </h2>
+    <p class="mb-4 text-gray-700">
+     The `rounded`, `rounded-lg`, and `rounded-full` classes apply different degrees of corner rounding.
+    </p>
+    <div class="flex flex-wrap gap-6 justify-center items-center">
+     <!-- Default rounded -->
+     <div class="w-32 h-32 bg-blue-500 text-white flex items-center justify-center rounded shadow-md">
+      <code>
+       rounded
+      </code>
+     </div>
+     <!-- Large rounded (rounded-lg) -->
+     <div class="w-32 h-32 bg-green-500 text-white flex items-center justify-center rounded-lg shadow-md">
+      <code>
+       rounded-lg
+      </code>
+     </div>
+     <!-- Extra Large rounded (rounded-xl, rounded-2xl, rounded-3xl exist too!) -->
+     <div class="w-32 h-32 bg-indigo-500 text-white flex items-center justify-center rounded-2xl shadow-md">
+      <code>
+       rounded-2xl
+      </code>
+     </div>
+     <!-- Fully rounded (rounded-full) -->
+     <div class="w-32 h-32 bg-red-500 text-white flex items-center justify-center rounded-full shadow-md">
+      <code>
+       rounded-full
+      </code>
+     </div>
+     <!-- Rounded on specific corners -->
+     <div class="w-32 h-32 bg-yellow-500 text-gray-800 flex items-center justify-center rounded-tl-2xl rounded-br-2xl shadow-md p-2 text-center">
+      <code>
+       rounded-tl-2xl rounded-br-2xl
+      </code>
+     </div>
+    </div>
+   </div>
+   <div class="bg-white p-6 shadow-lg rounded-lg">
+    <h2 class="text-xl font-semibold mb-4">
+     Rounded Buttons
+    </h2>
+    <div class="flex gap-4">
+     <button class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded">
+      Button (rounded)
+     </button>
+     <button class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-full">
+      Button (rounded-full)
+     </button>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

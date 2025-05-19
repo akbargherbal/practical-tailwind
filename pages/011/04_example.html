@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Button: Gotcha - Div vs Button
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 flex flex-col items-center from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6">
+   Button Styling: Addressing the "Gotcha"
+  </h1>
+  <!-- Gotcha Demonstration: Incorrect use of a <div> -->
+  <div class="w-full max-w-md mb-8 p-6 border border-red-300 rounded-lg bg-red-50 shadow">
+   <h2 class="text-lg font-semibold mb-2 text-red-700">
+    Gotcha: Using a `&lt;div&gt;` Styled as a Button (Incorrect)
+   </h2>
+   <p class="text-sm text-gray-700 mb-3">
+    Styling a `&lt;div&gt;` to look like a button (as shown below) is a common pitfall ("Gotcha").
+            While it might look like a button, it lacks crucial accessibility features:
+   </p>
+   <ul class="list-disc list-inside text-sm text-gray-700 mb-3">
+    <li>
+     Not keyboard focusable by default (users can't tab to it).
+    </li>
+    <li>
+     Not announced as a button by screen readers.
+    </li>
+    <li>
+     Doesn't have built-in click/submit behavior.
+    </li>
+   </ul>
+   <div class="bg-blue-500 text-white py-2 px-4 rounded inline-block cursor-pointer">
+    I'm a styled div (Avoid this!)
+   </div>
+   <p class="mt-2 text-xs text-red-600">
+    <em>
+     This `&lt;div&gt;` lacks semantic meaning and accessibility. Users relying on keyboard navigation or screen readers will have a poor experience.
+    </em>
+   </p>
+  </div>
+  <!-- Corrected Approach: Using semantic <button> or <a> elements -->
+  <div class="w-full max-w-md p-6 border border-green-300 rounded-lg bg-green-50 shadow">
+   <h2 class="text-lg font-semibold mb-2 text-green-700">
+    Correct Approach: Using Semantic Elements
+   </h2>
+   <p class="text-sm text-gray-700 mb-3">
+    Always use actual `&lt;button&gt;` elements for actions or `&lt;a&gt;` tags for navigation, styled as needed.
+   </p>
+   <div class="mb-4">
+    <h3 class="font-medium text-gray-800">
+     Correct `&lt;button&gt;` element:
+    </h3>
+    <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+     Proper Button
+    </button>
+    <p class="mt-1 text-xs text-gray-600">
+     <em>
+      This is keyboard focusable, announced correctly by screen readers, and semantically correct.
+     </em>
+    </p>
+   </div>
+   <div>
+    <h3 class="font-medium text-gray-800">
+     Correct `&lt;a&gt;` element styled as a button (for links):
+    </h3>
+    <a class="inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300" href="#example">
+     Proper Link Button
+    </a>
+    <p class="mt-1 text-xs text-gray-600">
+     <em>
+      This is also accessible and semantically correct for navigational purposes.
+     </em>
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

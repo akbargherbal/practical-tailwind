@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Create small notification badges or tags.
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style>
+   /* Custom styles for <code> if needed, complementing Tailwind */
+        code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+        }
+  </style>
+  <style>
+   iframe.default_style {
+  width: 100%;
+  min-height: 300px; /* Reasonable minimum */
+  border: none;
+  display: block;
+}
+  </style>
+ </head>
+ <body class="bg-slate-50">
+  <div class="container mx-auto p-6 md:p-10 font-sans text-slate-800">
+   <header class="mb-10">
+    <h1 class="text-4xl font-bold text-center text-slate-700">
+     Tailwind CSS Concept Explained
+    </h1>
+   </header>
+   <main>
+    <section class="mb-12 bg-white p-6 md:p-8 rounded-lg shadow-lg">
+     <h2 class="text-3xl font-semibold mb-6 text-slate-600 border-b-2 border-slate-300 pb-3">
+      Styling Common Web Page Parts
+     </h2>
+     <h3 class="text-2xl font-medium mb-5 text-indigo-700">
+      Create small notification badges or tags.
+     </h3>
+     <p class="mb-2 text-slate-700">
+      <strong class="font-semibold text-slate-800">
+       Skill ID:
+      </strong>
+      StylingCommonParts_20
+     </p>
+     <p class="mb-2 text-slate-700">
+      <strong class="font-semibold text-slate-800">
+       Description:
+      </strong>
+      Small, often colorful, bits of text to show a count or a status.
+     </p>
+     <p class="mb-2 text-slate-700">
+      <strong class="font-semibold text-slate-800">
+       Where to apply:
+      </strong>
+      On top of bell icons, next to menu items, on product images.
+     </p>
+     <p class="mb-2 mt-4 text-slate-700">
+      <strong class="font-semibold text-slate-800">
+       Key Tailwind Classes:
+      </strong>
+     </p>
+     <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mb-4">
+      <span>
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full
+       </code>
+      </span>
+     </div>
+     <div class="bg-amber-50 border-l-4 border-amber-500 text-amber-700 p-4 mt-5 rounded-md shadow-sm">
+      <p>
+       <strong class="font-semibold">
+        Gotcha:
+       </strong>
+       When placing a badge on top of another element (like an icon), forgetting
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        relative
+       </code>
+       on the icon's container and
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        absolute
+       </code>
+       on the badge. Positioning the badge precisely (e.g.,
+       <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+        top-0 right-0 -translate-x-1/2 -translate-y-1/2
+       </code>
+       for top-right corner) can also be fiddly.
+      </p>
+     </div>
+     <div class="mt-8 pt-6 border-t border-slate-200">
+      <h4 class="text-xl font-semibold mb-4 text-slate-700">
+       Example:
+      </h4>
+      <div class="bg-slate-50 p-6 rounded-lg shadow">
+       <p class="mb-4 text-sm text-slate-600">
+        Below is an example of a bell icon with a notification badge:
+       </p>
+       <div class="relative inline-block">
+        <!-- Bell Icon (SVG or Font Icon) -->
+        <svg class="h-8 w-8 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+         <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round">
+         </path>
+        </svg>
+        <!-- Notification Badge -->
+        <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-0.5 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full">
+         3
+        </span>
+       </div>
+       <div class="mt-4 p-4 bg-slate-100 rounded-md">
+        <p class="text-sm font-medium text-slate-700 mb-1">
+         Code for the example above:
+        </p>
+        <pre class="text-xs text-slate-600 overflow-x-auto p-3 bg-slate-200 rounded"><code class="language-html">&lt;div class="relative inline-block"&gt;
+  &lt;!-- Icon --&gt;
+  &lt;svg class="h-8 w-8 text-slate-500" ...&gt; ... &lt;/svg&gt;
+  &lt;!-- Badge --&gt;
+  &lt;span class="absolute top-0 right-0 inline-flex items-center justify-center 
+               px-2 py-0.5 text-xs font-bold leading-none text-white 
+               transform translate-x-1/2 -translate-y-1/2 
+               bg-red-500 rounded-full"&gt;
+    3
+  &lt;/span&gt;
+&lt;/div&gt;</code></pre>
+        <p class="mt-3 text-sm text-slate-600">
+         Key classes used for the badge itself:
+         <code class="bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded-md text-xs font-mono border border-slate-300">
+          bg-red-500
+         </code>
+         ,
+         <code class="bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded-md text-xs font-mono border border-slate-300">
+          text-white
+         </code>
+         ,
+         <code class="bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded-md text-xs font-mono border border-slate-300">
+          text-xs
+         </code>
+         ,
+         <code class="bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded-md text-xs font-mono border border-slate-300">
+          font-bold
+         </code>
+         ,
+         <code class="bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded-md text-xs font-mono border border-slate-300">
+          px-2
+         </code>
+         ,
+         <code class="bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded-md text-xs font-mono border border-slate-300">
+          py-0.5
+         </code>
+         ,
+         <code class="bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded-md text-xs font-mono border border-slate-300">
+          rounded-full
+         </code>
+         .
+        </p>
+        <p class="mt-2 text-sm text-slate-600">
+         For positioning: The parent
+         <code class="bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded-md text-xs font-mono border border-slate-300">
+          div
+         </code>
+         has
+         <code class="bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded-md text-xs font-mono border border-slate-300">
+          relative
+         </code>
+         . The badge
+         <code class="bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded-md text-xs font-mono border border-slate-300">
+          span
+         </code>
+         has
+         <code class="bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded-md text-xs font-mono border border-slate-300">
+          absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2
+         </code>
+         .
+        </p>
+       </div>
+      </div>
+     </div>
+    </section>
+   </main>
+  </div>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 1:
+  </h1>
+  <iframe frameborder="0" src="./01_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 2:
+  </h1>
+  <iframe frameborder="0" src="./02_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 3:
+  </h1>
+  <iframe frameborder="0" src="./03_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 4:
+  </h1>
+  <iframe frameborder="0" src="./04_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 5:
+  </h1>
+  <iframe frameborder="0" src="./05_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 6:
+  </h1>
+  <iframe frameborder="0" src="./06_example.html">
+  </iframe>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+  const iframes = document.querySelectorAll('iframe');
+
+  // Ensure all iframes have the default style class
+  iframes.forEach(iframe => iframe.classList.add('default_style'));
+
+  window.addEventListener('message', function(event) {
+    // Optional: add origin check for safety
+    if (event.data && typeof event.data.iframeHeight === 'number') {
+      const iframe = Array.from(iframes).find(iframe =>
+        iframe.contentWindow === event.source
+      );
+      if (iframe) {
+        iframe.style.height = (event.data.iframeHeight + 50) + 'px';
+      }
+    }
+  });
+});
+  </script>
+ </body>
+</html>

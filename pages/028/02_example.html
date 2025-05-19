@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Text Alignment Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto max-w-3xl bg-white p-6 rounded-lg shadow-md">
+   <h1 class="text-2xl font-bold mb-6 text-center">
+    Gotcha:
+    <code>
+     text-center
+    </code>
+    vs. Block Centering (
+    <code>
+     mx-auto
+    </code>
+    )
+   </h1>
+   <p class="mb-6 text-gray-700">
+    The
+    <code>
+     text-align
+    </code>
+    utilities (
+    <code>
+     text-left
+    </code>
+    ,
+    <code>
+     text-center
+    </code>
+    ,
+    <code>
+     text-right
+    </code>
+    )
+            control the alignment of text
+    <span class="font-semibold">
+     inside
+    </span>
+    a block-level element.
+            They do not center the block element itself on the page.
+   </p>
+   <!-- Gotcha Demonstration -->
+   <div class="mb-8 p-4 border border-dashed border-gray-400">
+    <h2 class="text-xl font-semibold mb-3">
+     Demonstrating the Gotcha
+    </h2>
+    <div class="bg-red-100 p-4 mb-4 w-3/4 border border-red-300 rounded">
+     <!--
+                    GOTCHA ILLUSTRATED HERE:
+                    - The 'div' below has a width (w-3/4), so it doesn't span the full width of its parent.
+                    - 'text-center' is applied to the paragraph inside.
+                    - The text *within* the paragraph will be centered relative to the red box.
+                    - However, the red box itself will be aligned to the left (default for block elements)
+                      because 'mx-auto' is NOT applied to this div.
+                -->
+     <p class="text-center font-medium">
+      Text centered in this
+      <span class="text-red-600">
+       red box
+      </span>
+      (using
+      <code>
+       text-center
+      </code>
+      ).
+     </p>
+     <p class="text-sm text-gray-600 mt-1">
+      Notice how this red box is
+      <strong class="text-red-700">
+       not centered on the page
+      </strong>
+      , even though its text content is centered.
+                    This is because
+      <code>
+       text-center
+      </code>
+      only affects inline content within the block. The block itself (this red div) needs
+      <code>
+       mx-auto
+      </code>
+      to be centered.
+     </p>
+    </div>
+   </div>
+   <!-- Correct Approach: Centering the block AND its text -->
+   <div class="mb-8 p-4 border border-dashed border-gray-400">
+    <h2 class="text-xl font-semibold mb-3">
+     Correct Approach: Centering Block and Text
+    </h2>
+    <div class="bg-green-100 p-4 mb-4 w-3/4 mx-auto border border-green-300 rounded">
+     <!--
+                    CORRECTED APPROACH:
+                    - The 'div' below has 'w-3/4' to not be full-width.
+                    - 'mx-auto' is applied to THIS div, which centers the green box itself.
+                    - 'text-center' is applied to the paragraph inside, centering the text within the green box.
+                -->
+     <p class="text-center font-medium">
+      Text centered in this
+      <span class="text-green-600">
+       green box
+      </span>
+      (using
+      <code>
+       text-center
+      </code>
+      ).
+     </p>
+     <p class="text-sm text-gray-600 mt-1">
+      This green box
+      <strong class="text-green-700">
+       IS centered on the page
+      </strong>
+      using
+      <code>
+       mx-auto
+      </code>
+      on the box itself.
+                    The text inside is also centered using
+      <code>
+       text-center
+      </code>
+      .
+     </p>
+    </div>
+   </div>
+   <!-- Text Center on a Full-Width Block -->
+   <div class="p-4 border border-dashed border-gray-400">
+    <h2 class="text-xl font-semibold mb-3">
+     <code>
+      text-center
+     </code>
+     on a Full-Width Block
+    </h2>
+    <div class="bg-blue-100 p-4 border border-blue-300 rounded">
+     <!--
+                    A div is a block element and by default takes full available width.
+                    Applying text-center here will center the text within this full-width blue box.
+                    Visually, the text appears centered on the page because the box itself is already spanning the page.
+                -->
+     <p class="text-center font-medium">
+      This text is centered in a
+      <span class="text-blue-600">
+       full-width blue box
+      </span>
+      .
+     </p>
+     <p class="text-sm text-gray-600 mt-1 text-center">
+      When an element like this
+      <code>
+       div
+      </code>
+      naturally spans the full width of its container,
+      <code>
+       text-center
+      </code>
+      will make its content appear horizontally centered relative to the page.
+                    No
+      <code>
+       mx-auto
+      </code>
+      is needed on the block if it's already full-width.
+     </p>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

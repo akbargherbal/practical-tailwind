@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Outlined Button Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex flex-col items-center space-y-8 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Outlined Button: Addressing the "Gotcha"
+  </h1>
+  <div class="text-center mb-6 max-w-lg">
+   <p class="font-semibold text-red-600">
+    Gotcha: Forgetting Hover/Focus States
+   </p>
+   <p class="text-sm">
+    A common gotcha is creating an outlined button that looks fine initially but lacks clear visual feedback on hover or focus. This makes the button feel unresponsive and can be an accessibility issue.
+   </p>
+  </div>
+  <!-- Section for Gotcha Demonstration -->
+  <div class="w-full max-w-sm p-6 bg-white shadow-lg rounded-lg">
+   <h2 class="text-lg font-semibold mb-3 text-center">
+    Comparing Button Feedback
+   </h2>
+   <!-- Button Illustrating the Gotcha (Poor Hover/Focus) -->
+   <div class="mb-6">
+    <p class="text-sm font-medium text-red-700 mb-1">
+     Example of Gotcha (Poor Feedback):
+    </p>
+    <button class="w-full bg-transparent border border-red-500 text-red-500 py-2 px-4 rounded">
+     <!-- 
+                    This button illustrates the gotcha:
+                    - It has the basic outline style.
+                    - BUT, it lacks distinct hover and focus styles.
+                    - The user gets minimal feedback when interacting with it.
+                    - 'bg-transparent' is used, which is good, but the hover/focus is missing.
+                -->
+     Poor Hover/Focus
+    </button>
+    <p class="text-xs mt-1 text-gray-600">
+     Notice the lack of clear change on hover or when focused (try tabbing to it).
+    </p>
+   </div>
+   <!-- Button with Corrected Hover/Focus States -->
+   <div>
+    <p class="text-sm font-medium text-green-700 mb-1">
+     Corrected Example (Good Feedback):
+    </p>
+    <button class="w-full bg-transparent border border-green-600 text-green-600 hover:bg-green-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 py-2 px-4 rounded transition-colors duration-150">
+     <!-- 
+                    This button corrects the gotcha:
+                    - 'hover:bg-green-600 hover:text-white': Provides a clear visual change on hover.
+                    - 'focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2': Provides clear visual
+                      feedback for keyboard navigation and accessibility.
+                -->
+     Good Hover/Focus
+    </button>
+    <p class="text-xs mt-1 text-gray-600">
+     This button has clear hover and focus states, improving UX and accessibility.
+    </p>
+   </div>
+  </div>
+  <div class="mt-8 p-4 bg-blue-50 border-l-4 border-blue-500 text-blue-700 max-w-lg">
+   <p class="font-bold">
+    Key Takeaway for Gotcha:
+   </p>
+   <p>
+    Always define distinct
+    <code>
+     hover:
+    </code>
+    and
+    <code>
+     focus:
+    </code>
+    (or
+    <code>
+     focus-visible:
+    </code>
+    ) states for your buttons, especially outlined ones. This ensures users know the button is interactive and currently active/focused.
+   </p>
+   <p class="mt-2">
+    While
+    <code>
+     bg-transparent
+    </code>
+    is important, the most frequent usability issue with outlined buttons is neglecting responsive hover/focus styles.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

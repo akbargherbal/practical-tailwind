@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Hover Effects: Basic
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 flex flex-col items-center space-y-6 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Basic Hover Effects
+  </h1>
+  <!-- Example 1: Button hover background color change -->
+  <div class="text-center">
+   <p class="mb-2 text-gray-700">
+    Hover over the button to see its background color change. Note the instant change (no transition yet).
+   </p>
+   <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">
+    Hover Me (Button)
+   </button>
+  </div>
+  <!-- Example 2: Link hover underline -->
+  <div class="text-center">
+   <p class="mt-6 mb-2 text-gray-700">
+    Hover over the link to see an underline appear.
+   </p>
+   <a class="text-purple-600 hover:underline hover:text-purple-800" href="#">
+    Hover Me (Link)
+   </a>
+  </div>
+  <!-- Example 3: Text color change on hover -->
+  <div class="text-center">
+   <p class="mt-6 mb-2 text-gray-700">
+    Hover over the text below to see its color change.
+   </p>
+   <p class="text-green-600 hover:text-green-800 font-semibold text-lg">
+    Hover Me (Text)
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

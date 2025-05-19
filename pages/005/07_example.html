@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS - Centering Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6 text-center">
+   Example 2: Demonstrating the "Gotcha" for Vertical Centering
+  </h1>
+  <div class="grid md:grid-cols-2 gap-8">
+   <div>
+    <h2 class="text-xl font-semibold mb-2 text-red-700">
+     Gotcha: Parent Without Defined Height
+    </h2>
+    <p class="mb-2 text-sm text-gray-700">
+     If the parent container (gray box below) does not have a defined height (e.g.,
+     <code>
+      h-32
+     </code>
+     ,
+     <code>
+      min-h-screen
+     </code>
+     ),
+     <code>
+      items-center
+     </code>
+     (for vertical centering) will only center the item within the parent's content height.
+                The parent's height here is determined solely by its child's content.
+    </p>
+    <!-- Parent container WITHOUT a defined height -->
+    <div class="parent-container-gotcha bg-red-200 border border-red-400 p-4 flex items-center justify-center rounded-lg shadow">
+     <!-- Child Item -->
+     <div class="child-item bg-red-500 text-white p-4 rounded-md">
+      <p>
+       Item
+      </p>
+      <p class="text-xs">
+       (Parent has NO explicit height)
+      </p>
+     </div>
+     <!-- Added some extra text to show parent height dependency -->
+     <p class="ml-4 text-red-700 text-xs">
+      Parent height is just enough for this line and the red box.
+     </p>
+    </div>
+    <p class="mt-2 text-xs text-gray-600">
+     Notice how the "Item" box is vertically centered relative to the (small) height of its parent, not a larger predefined area.
+                It is horizontally centered correctly by
+     <code>
+      justify-center
+     </code>
+     .
+    </p>
+   </div>
+   <div>
+    <h2 class="text-xl font-semibold mb-2 text-green-700">
+     Corrected: Parent With Defined Height
+    </h2>
+    <p class="mb-2 text-sm text-gray-700">
+     When the parent container (green box below) has a defined height (e.g.,
+     <code>
+      h-48
+     </code>
+     ),
+     <code>
+      items-center
+     </code>
+     works as expected, vertically centering the child within that explicit height.
+    </p>
+    <!-- Parent container WITH a defined height -->
+    <div class="parent-container-correct bg-green-200 border border-green-400 h-48 p-4 flex items-center justify-center rounded-lg shadow">
+     <!-- Child Item -->
+     <div class="child-item bg-green-500 text-white p-4 rounded-md">
+      <p>
+       Item
+      </p>
+      <p class="text-xs">
+       (Parent has h-48)
+      </p>
+     </div>
+    </div>
+    <p class="mt-2 text-xs text-gray-600">
+     Here, the "Item" box is perfectly centered both vertically and horizontally within the
+     <code>
+      h-48
+     </code>
+     parent.
+    </p>
+   </div>
+  </div>
+  <div class="mt-8 p-4 bg-blue-100 border border-blue-300 rounded-lg">
+   <h3 class="text-lg font-semibold mb-2">
+    Key Takeaway (Gotcha Explained):
+   </h3>
+   <p class="text-gray-800">
+    The
+    <code>
+     items-center
+    </code>
+    class aligns flex items along the cross-axis (vertically, by default). For this to have a visible effect of centering within a "larger space", that space (the parent container's height) must be larger than the content itself. If the parent's height is not explicitly set (e.g., via
+    <code>
+     h-XX
+    </code>
+    ,
+    <code>
+     min-h-XX
+    </code>
+    , or if it's an element that naturally takes up more space like
+    <code>
+     min-h-screen
+    </code>
+    on the body), it will shrink-wrap its content. In such a scenario,
+    <code>
+     items-center
+    </code>
+    technically still works, but the "center" is just the center of that shrink-wrapped height, which might not be what you visually expect.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

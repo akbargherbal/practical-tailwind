@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Element Opacity
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-4">
+    Element Opacity with `opacity-*`
+   </h1>
+   <p class="mb-4">
+    The `opacity-*` utility applies transparency to the entire element, including its content (text, child elements).
+   </p>
+   <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <!-- Full Opacity -->
+    <div class="bg-blue-500 text-white p-6 rounded-lg shadow-md">
+     <h3 class="font-semibold text-lg mb-2">
+      Full Opacity (opacity-100 - default)
+     </h3>
+     <p>
+      This element and its text are fully opaque.
+     </p>
+    </div>
+    <!-- opacity-50 -->
+    <div class="bg-blue-500 text-white p-6 rounded-lg shadow-md opacity-50">
+     <h3 class="font-semibold text-lg mb-2">
+      Element Opacity (`opacity-50`)
+     </h3>
+     <p>
+      This entire element, including this text, is 50% transparent. Notice how the text is also semi-transparent.
+     </p>
+    </div>
+    <!-- opacity-25 -->
+    <div class="bg-blue-500 text-white p-6 rounded-lg shadow-md opacity-25">
+     <h3 class="font-semibold text-lg mb-2">
+      Element Opacity (`opacity-25`)
+     </h3>
+     <p>
+      This entire element, including this text, is 25% transparent. The text is even more faded.
+     </p>
+    </div>
+   </div>
+   <div class="mt-8 p-4 bg-yellow-100 border border-yellow-300 rounded">
+    <p>
+     <strong class="font-bold">
+      Key takeaway:
+     </strong>
+     `opacity-*` affects the element and everything inside it. Check the next example for handling the "Gotcha" related to this.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

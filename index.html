@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical Tailwind</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Optional: Add custom base styles or component styles here if needed */
+        body {
+            font-family: 'Inter', sans-serif; /* A common sans-serif font often used with Tailwind */
+        }
+        .category-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .skill-link {
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        }
+        .skill-link:hover {
+            background-color: #e0f2fe; /* light sky blue for hover */
+            color: #0c4a6e; /* darker sky blue for text on hover */
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-slate-900 to-slate-800 text-slate-100 min-h-screen p-4 md:p-8">
+    <div class="container mx-auto max-w-5xl">
+        <header class="mb-12 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold text-sky-400 mb-4">Practical Tailwind</h1>
+            <p class="text-xl text-slate-400">A curated collection of Tailwind CSS examples and use-cases.</p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <section class="category-card bg-slate-800 shadow-lg rounded-xl p-6 ring-1 ring-slate-700">
+                <h2 class="text-2xl font-semibold text-sky-500 mb-6 border-b border-slate-700 pb-3">Laying Things Out (Positioning & Structure)</h2>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="pages/001/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Line up items in a neat row.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 001</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/002/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Stack items one on top of the other.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 002</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/003/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Space items out evenly in a row or column.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 003</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/004/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Push some items to one side and others to the opposite side in a row.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 004</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/005/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Center something perfectly in the middle of a box (both ways).</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 005</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/006/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Center a whole block of content on the page.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 006</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/007/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Arrange items in a grid (like a checkerboard or photo album).</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 007</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/008/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Make something stretch to fill the entire width or height available.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 008</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/009/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Place one item on top of another (overlapping).</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 009</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/010/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Make something stick to the top or side of the screen even when you scroll.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 010</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <section class="category-card bg-slate-800 shadow-lg rounded-xl p-6 ring-1 ring-slate-700">
+                <h2 class="text-2xl font-semibold text-sky-500 mb-6 border-b border-slate-700 pb-3">Styling Common Web Page Parts</h2>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="pages/011/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Create a basic, clickable button look.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 011</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/012/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Give buttons rounded or pill-shaped corners.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 012</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/013/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Create "outlined" buttons (border, no fill).</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 013</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/014/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Style text boxes where users type information.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 014</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/015/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Style checkboxes and radio buttons.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 015</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/016/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Design "cards" – boxes holding content.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 016</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/017/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Build a horizontal navigation bar.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 017</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/018/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Create a list of links down the side (sidebar menu).</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 018</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/019/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Make lists (bullet points or numbers) look good.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 019</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/020/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Create small notification badges or tags.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 020</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/021/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Make profile pictures or avatars circular.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 021</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/022/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Add lines to separate content (dividers).</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 022</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/023/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Style pop-up messages (like success or error alerts).</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 023</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <section class="category-card bg-slate-800 shadow-lg rounded-xl p-6 ring-1 ring-slate-700">
+                <h2 class="text-2xl font-semibold text-sky-500 mb-6 border-b border-slate-700 pb-3">Working with Text</h2>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="pages/024/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Control how big or small text is.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 024</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/025/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Change the color of text.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 025</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/026/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Make text bold, normal, or light (font weight).</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 026</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/027/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Adjust the space between lines of text.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 027</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/028/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Line up text (left, center, right).</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 028</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/029/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Cut off long text with "..." (ellipsis).</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 029</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <section class="category-card bg-slate-800 shadow-lg rounded-xl p-6 ring-1 ring-slate-700">
+                <h2 class="text-2xl font-semibold text-sky-500 mb-6 border-b border-slate-700 pb-3">Adding Visual Flair & Decoration</h2>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="pages/030/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Put borders around things (or just on one side).</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 030</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/031/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Make corners rounded instead of sharp.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 031</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/032/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Add shadows to make things look like they're lifting off the page.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 032</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/033/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Change background colors or add background pictures.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 033</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/034/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Make things partly see-through (transparent).</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 034</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/035/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Create smooth color transitions (gradients) for backgrounds.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 035</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <section class="category-card bg-slate-800 shadow-lg rounded-xl p-6 ring-1 ring-slate-700">
+                <h2 class="text-2xl font-semibold text-sky-500 mb-6 border-b border-slate-700 pb-3">Making Things Interactive & Respond to Users</h2>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="pages/036/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Change how something looks when the mouse pointer is over it.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 036</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/037/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Change how something looks when it's being clicked.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 037</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/038/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Change how a form field looks when you click into it to type.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 038</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/039/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Style things that are "disabled" (can't be clicked or used).</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 039</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/040/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Make style changes happen smoothly (animations/transitions).</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 040</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <section class="category-card bg-slate-800 shadow-lg rounded-xl p-6 ring-1 ring-slate-700">
+                <h2 class="text-2xl font-semibold text-sky-500 mb-6 border-b border-slate-700 pb-3">Making Websites Work on All Screen Sizes (Responsiveness)</h2>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="pages/041/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Hide something on small screens but show it on big screens (or vice versa).</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 041</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/042/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Change how many items are in a row depending on screen size.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 042</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/043/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Make items stack vertically on small screens that were side-by-side on larger screens.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 043</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/044/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Use different text sizes for different screen sizes.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 044</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/045/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Create a "hamburger" menu icon that opens a navigation list on mobile.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 045</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <section class="category-card bg-slate-800 shadow-lg rounded-xl p-6 ring-1 ring-slate-700">
+                <h2 class="text-2xl font-semibold text-sky-500 mb-6 border-b border-slate-700 pb-3">Organizing Your Styles & Customizing</h2>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="pages/046/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Use consistent spacing everywhere.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 046</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/047/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Create a "Dark Mode" version of your site.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 047</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/048/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Set up your website's main colors to match a brand.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 048</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/049/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Use specific fonts for your website's text.</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 049</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/050/00_index.html" target="_blank" rel="noopener noreferrer"
+                           class="skill-link block w-full text-left px-4 py-3 bg-slate-700 hover:bg-sky-700 hover:text-white rounded-md text-slate-300 transition-colors duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-opacity-75">
+                            <span class="font-medium">Group common styles to reuse them easily (like a "main button" look).</span>
+                            <span class="text-xs block text-slate-500 group-hover:text-sky-300">GRP: 050</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        <footer class="text-center mt-16 py-8 border-t border-slate-700">
+            <p class="text-slate-500">&copy; 2024 Practical Tailwind. Learn by doing.</p>
+            <p class="text-slate-600 text-sm">Generated for GitHub Pages.</p>
+        </footer>
+    </div>
+</body>
+</html>

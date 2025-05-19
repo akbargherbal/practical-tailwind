@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Show Default, Hide SM+
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-50 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-4">
+    Example 2: Show by Default, Hide on Small Screens and Up
+   </h1>
+   <p class="mb-4 text-gray-700">
+    Resize your browser window to see the effect. Tailwind's default 'sm' breakpoint is 640px.
+   </p>
+   <!-- 
+            This element demonstrates the 'block sm:hidden' pattern.
+            - 'block': The element is displayed as 'block' by default (on extra-small screens, less than 640px).
+            - 'sm:hidden': At the 'sm' breakpoint (640px) and larger, the element's display property is set to 'none', making it hidden.
+            This is useful for elements that should only appear on smaller screens, like a mobile-specific menu button.
+        -->
+   <div class="block sm:hidden p-4 bg-green-500 text-white rounded-lg shadow-md">
+    <p class="font-semibold">
+     Visible by default (on extra-small screens), HIDDEN on 'sm' (640px) screens and LARGER
+    </p>
+    <p class="text-sm">
+     (This is for mobile-only content, for example)
+    </p>
+   </div>
+   <div class="mt-4 p-4 bg-gray-100 border rounded-md hidden sm:block">
+    <p class="font-semibold text-gray-700">
+     You are on an 'sm' screen or larger (or this element has 'hidden sm:block').
+    </p>
+    <p class="text-sm text-gray-600">
+     The green box above should be hidden.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

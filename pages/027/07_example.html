@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Leading - Gotcha &amp; Alignment
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-3xl font-bold mb-6 text-center text-purple-700">
+    Line Height (Leading) - Gotcha &amp; Alignment
+   </h1>
+   <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+    <h2 class="text-xl font-semibold mb-3 text-gray-700">
+     Understanding the "Gotcha"
+    </h2>
+    <p class="text-gray-600 mb-4">
+     <strong>
+      Gotcha:
+     </strong>
+     <code>
+      leading-*
+     </code>
+     (line-height) can sometimes cause unexpected vertical spacing issues or misalignment when trying to line up text with adjacent icons or other elements, especially if their line-height differs or if they are not explicitly aligned.
+    </p>
+   </div>
+   <!-- Gotcha Demonstration Section -->
+   <div class="mb-8 p-6 bg-white rounded-lg shadow-md">
+    <h3 class="text-lg font-semibold mb-4 text-red-600">
+     Gotcha Example: Potential Misalignment
+    </h3>
+    <p class="text-sm text-gray-500 mb-2">
+     Below, text with different `leading` values is placed next to an icon. Without proper alignment (e.g., flexbox `items-center`), the text might not align vertically as expected with the icon, especially if the `leading` value pulls the text's baseline up or down significantly.
+    </p>
+    <!-- Icon SVG -->
+    <svg class="h-6 w-6 inline-block text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+     <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round">
+     </path>
+    </svg>
+    <span class="ml-2 leading-tight text-lg">
+     Text with leading-tight.
+    </span>
+    <span class="text-xs text-gray-400">
+     (Observe potential slight misalignment relative to icon's center)
+    </span>
+    <br class="my-3"/>
+    <svg class="h-6 w-6 inline-block text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+     <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round">
+     </path>
+    </svg>
+    <span class="ml-2 leading-loose text-lg">
+     Text with leading-loose.
+    </span>
+    <span class="text-xs text-gray-400">
+     (Observe potential slight misalignment relative to icon's center)
+    </span>
+    <!-- HTML Comment for Gotcha:
+                The vertical alignment here is browser-dependent and can be tricky.
+                The 'leading-*' class affects the total height of the line box for the text.
+                If the icon is an inline-block element, its vertical alignment will try to match the baseline of the text.
+                A large 'leading' value increases the line box height, which can make precise alignment with fixed-size icons difficult
+                without explicit alignment controls.
+            -->
+   </div>
+   <!-- Solution Section -->
+   <div class="p-6 bg-white rounded-lg shadow-md">
+    <h3 class="text-lg font-semibold mb-4 text-green-600">
+     Solution: Using Flexbox for Alignment
+    </h3>
+    <p class="text-sm text-gray-500 mb-4">
+     To robustly align elements like text (with varying line heights) and icons, use Flexbox with
+     <code>
+      items-center
+     </code>
+     (or
+     <code>
+      items-baseline
+     </code>
+     if preferred for text alignment).
+    </p>
+    <div class="flex items-center mb-4 p-3 bg-green-50 rounded border border-green-200">
+     <svg class="h-6 w-6 text-green-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round">
+      </path>
+     </svg>
+     <span class="ml-2 leading-tight text-lg text-green-800">
+      Aligned text with leading-tight.
+     </span>
+    </div>
+    <div class="flex items-center mb-4 p-3 bg-green-50 rounded border border-green-200">
+     <svg class="h-6 w-6 text-green-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round">
+      </path>
+     </svg>
+     <span class="ml-2 leading-loose text-lg text-green-800">
+      Aligned text with leading-loose.
+     </span>
+    </div>
+    <!-- HTML Comment for Solution:
+                By wrapping the icon and the text in a flex container and applying 'items-center',
+                both elements are vertically centered within the flex line, regardless of the
+                text's 'leading-*' value. This provides consistent alignment.
+                The 'shrink-0' on the SVG prevents it from shrinking if the text is long.
+            -->
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

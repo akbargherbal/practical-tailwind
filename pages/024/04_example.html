@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill Example - Text Sizes
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 font-sans from_inside_iframe">
+  <!-- This example demonstrates the basic text size utilities in Tailwind CSS. -->
+  <div class="space-y-4">
+   <h1 class="text-2xl font-bold mb-6">
+    Demonstrating Text Sizes
+   </h1>
+   <p class="text-xs">
+    This is extra small text (
+    <code>
+     text-xs
+    </code>
+    ). Useful for fine print or tertiary information.
+   </p>
+   <p class="text-sm">
+    This is small text (
+    <code>
+     text-sm
+    </code>
+    ). Good for captions or secondary text.
+   </p>
+   <p class="text-base">
+    This is base text (
+    <code>
+     text-base
+    </code>
+    ). This is the default text size for most browsers (typically 16px).
+   </p>
+   <p class="text-lg">
+    This is large text (
+    <code>
+     text-lg
+    </code>
+    ). Suitable for subheadings or slightly emphasized text.
+   </p>
+   <p class="text-xl">
+    This is extra large text (
+    <code>
+     text-xl
+    </code>
+    ). Often used for main headings or prominent statements.
+   </p>
+   <hr class="my-6"/>
+   <div class="bg-slate-100 p-4 rounded">
+    <h2 class="text-xl font-semibold">
+     Article Title (text-xl)
+    </h2>
+    <p class="text-sm text-gray-600 mb-2">
+     Published on July 26, 2024 (text-sm for metadata)
+    </p>
+    <p class="text-base leading-relaxed">
+     This paragraph uses
+     <code>
+      text-base
+     </code>
+     . It's the standard size for body content, providing good readability. 
+                Tailwind's typographic scale is designed to work harmoniously together.
+    </p>
+    <p class="text-xs mt-4 text-gray-500">
+     Footnote or small disclaimer (text-xs).
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

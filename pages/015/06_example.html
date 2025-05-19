@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: `appearance-none` for Custom Inputs
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 font-sans from_inside_iframe">
+  <div class="container mx-auto p-6 bg-white rounded-lg shadow-md">
+   <h1 class="text-2xl font-bold mb-4">
+    Using `appearance-none` for Custom Input Styling
+   </h1>
+   <p class="mb-6 text-gray-700">
+    The `appearance-none` utility removes the browser's default styling for an element, like a checkbox. This allows you to build a completely custom appearance using Tailwind utilities. However, this means you are responsible for styling everything, including the checked state indicator.
+   </p>
+   <div class="space-y-8">
+    <div>
+     <h3 class="font-semibold mb-2">
+      1. Default Checkbox
+     </h3>
+     <label class="inline-flex items-center">
+      <input class="mr-2" type="checkbox"/>
+      <span>
+       I'm a default checkbox
+      </span>
+     </label>
+    </div>
+    <div>
+     <h3 class="font-semibold mb-2">
+      2. Checkbox with `appearance-none` (Base for Custom Styling)
+     </h3>
+     <p class="text-sm text-gray-600 mb-2">
+      Notice how the default checkbox UI disappears. We've added some basic box styling.
+     </p>
+     <label class="inline-flex items-center cursor-pointer">
+      <input class="appearance-none h-6 w-6 border border-gray-400 rounded-md mr-2 checked:bg-purple-600 checked:border-transparent" type="checkbox"/>
+      <!--
+                        COMMENT:
+                        With `appearance-none`, the browser's checkbox is gone.
+                        The `h-6 w-6 border rounded-md` classes style the container.
+                        The `checked:bg-purple-600` styles it when checked.
+                        However, there's no visible checkmark yet! This would typically be added
+                        using pseudo-elements (::before, ::after), an inline SVG, or by styling a child span.
+                        This example shows the *start* of custom styling.
+                    -->
+      <span>
+       Custom appearance (no checkmark visible yet without more CSS)
+      </span>
+     </label>
+    </div>
+    <div>
+     <h3 class="font-semibold mb-2">
+      3. `appearance-none` with a Pseudo-Element Placeholder for Checkmark (Conceptual)
+     </h3>
+     <p class="text-sm text-gray-600 mb-2">
+      To add a checkmark to an `appearance-none` input, you often use CSS pseudo-elements (`::before` or `::after`) or an SVG. The Tailwind CDN alone doesn't easily allow adding complex pseudo-element content styling without a `tailwind.config.js` or custom CSS. This example simulates the idea by adding a simple background change.
+     </p>
+     <div class="p-4 bg-indigo-50 border border-indigo-200 rounded">
+      <p class="text-sm text-indigo-700">
+       <strong>
+        Addressing the Gotcha:
+       </strong>
+       `appearance-none` is powerful but requires you to rebuild the entire control.
+                        The `@tailwindcss/forms` plugin handles much of this complexity, providing nicely styled and customizable form elements out-of-the-box. If you don't use the plugin, you're responsible for:
+       <ul class="list-disc list-inside ml-4">
+        <li>
+         Base state styling.
+        </li>
+        <li>
+         Checked state styling (e.g., background color changes as shown).
+        </li>
+        <li>
+         Focus state styling.
+        </li>
+        <li>
+         Disabled state styling.
+        </li>
+        <li>
+         The visual indicator (checkmark, radio dot) itself, often via SVG or pseudo-elements.
+        </li>
+       </ul>
+       For this example, we only show a background color change on check. A full custom checkbox is more involved.
+      </p>
+     </div>
+     <label class="inline-flex items-center mt-4 cursor-pointer">
+      <input class="appearance-none h-6 w-6 border-2 border-blue-500 rounded-sm mr-3 relative checked:bg-blue-500 checked:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-300 custom-checkbox" type="checkbox"/>
+      <!-- A real checkmark would typically be an SVG or a ::before/::after pseudo-element,
+                                                       styled to appear when :checked. For simplicity on CDN, we're omitting that part.
+                                                       The custom-checkbox class is a placeholder if we were adding more CSS.
+                                                  -->
+      <span>
+       Custom with focus &amp; checked styles (still no visual checkmark icon via pure CDN Tailwind)
+      </span>
+     </label>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

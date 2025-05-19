@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Basic Sidebar Menu
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Basic Sidebar Menu
+  </h1>
+  <!-- This example shows the basic structure using flex flex-col and space-y-2. -->
+  <!-- Notice how the links are stacked vertically with some space between them. -->
+  <!-- However, without explicit padding on each link, they might be small click targets. -->
+  <div class="w-64 bg-gray-200 p-4 rounded-lg shadow-md">
+   <nav class="flex flex-col space-y-2">
+    <a class="text-blue-600 hover:text-blue-800 hover:underline" href="#">
+     Dashboard
+    </a>
+    <a class="text-blue-600 hover:text-blue-800 hover:underline" href="#">
+     Profile
+    </a>
+    <a class="text-blue-600 hover:text-blue-800 hover:underline" href="#">
+     Settings
+    </a>
+    <a class="text-blue-600 hover:text-blue-800 hover:underline" href="#">
+     Messages
+    </a>
+    <a class="text-blue-600 hover:text-blue-800 hover:underline" href="#">
+     Logout
+    </a>
+   </nav>
+  </div>
+  <div class="mt-6 p-4 border border-red-300 bg-red-50 rounded">
+   <h2 class="font-semibold text-red-700">
+    Observation (Related to Gotcha):
+   </h2>
+   <p class="text-red-600 text-sm">
+    In this basic example, the links are styled only with text color and hover effects. While `space-y-2` provides vertical spacing between link *elements*, the clickable area of each link itself is just the text. This can be an issue for touch targets (see next example for improvement).
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Transitions - Gotcha (Width/Height)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex flex-col items-center space-y-8 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Gotcha: Transitioning Specific Properties (e.g., Width)
+  </h1>
+  <!-- Gotcha Demonstration: Width transition without explicit instruction -->
+  <div class="text-center">
+   <p class="mb-2 text-red-700 font-semibold">
+    GOTCHA: Instant Width Change (No `transition-all` or `transition-[width]`)
+   </p>
+   <p class="mb-2 text-sm text-gray-600">
+    By default, `transition` (with `duration` and `ease`) might not animate `width` or `height` changes.
+            The element below will change width instantly on hover.
+   </p>
+   <div class="bg-purple-500 text-white h-20 w-32 p-4 rounded-md flex items-center justify-center transition duration-500 ease-in-out hover:w-64">
+    Hover - Width Changes Instantly
+   </div>
+   <p class="mt-2 text-xs text-gray-500">
+    Notice the width change is abrupt.
+   </p>
+  </div>
+  <!-- Solution: Using transition-all -->
+  <div class="text-center">
+   <p class="mb-2 text-green-700 font-semibold">
+    SOLUTION 1: Using `transition-all`
+   </p>
+   <p class="mb-2 text-sm text-gray-600">
+    Using `transition-all` tells Tailwind to attempt to transition *all* animatable properties.
+   </p>
+   <div class="bg-indigo-500 text-white h-20 w-32 p-4 rounded-md flex items-center justify-center transition-all duration-500 ease-in-out hover:w-64">
+    Hover - Smooth Width (transition-all)
+   </div>
+   <p class="mt-2 text-xs text-gray-500">
+    Here, the width change is smooth.
+   </p>
+  </div>
+  <!-- Solution: Specifying properties -->
+  <div class="text-center">
+   <p class="mb-2 text-green-700 font-semibold">
+    SOLUTION 2: Using `transition-[width,height]`
+   </p>
+   <p class="mb-2 text-sm text-gray-600">
+    You can explicitly list properties to transition: `transition-[width]`, `transition-[height]`, or `transition-[width,height]`.
+   </p>
+   <div class="bg-teal-500 text-white h-20 w-32 p-4 rounded-md flex items-center justify-center transition-[width] duration-500 ease-in-out hover:w-64">
+    Hover - Smooth Width (transition-[width])
+   </div>
+   <p class="mt-2 text-xs text-gray-500">
+    Specifying `transition-[width]` also makes it smooth.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

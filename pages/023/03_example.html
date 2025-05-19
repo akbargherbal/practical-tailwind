@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Informational Alert
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <!-- 
+        This example shows an informational alert, using a blue color scheme.
+        It applies the same principles: light background, contrasting border, and dark, readable text.
+        It also includes an icon for visual emphasis, which is common in alerts.
+    -->
+  <div class="mb-6">
+   <h2 class="text-2xl font-bold mb-4 text-gray-700">
+    Example 3: Informational Alert
+   </h2>
+   <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4" role="alert">
+    <!-- 
+                Note on styling variation:
+                Instead of a full border (border border-blue-400), this example uses a thicker left border (border-l-4 border-blue-500)
+                and slightly different padding (p-4) for a different visual style.
+                The core concept of contrasting background and text remains crucial for readability.
+                The text-blue-700 on bg-blue-100 ensures good contrast.
+            -->
+    <div class="flex items-center">
+     <div class="py-1">
+      <svg class="fill-current h-6 w-6 text-blue-500 mr-4" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+       <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z">
+       </path>
+      </svg>
+     </div>
+     <div>
+      <p class="font-bold">
+       Information
+      </p>
+      <p class="text-sm">
+       A new version of the software is available for download.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="mt-8 p-4 bg-indigo-50 border border-indigo-300 rounded-lg">
+   <h3 class="text-lg font-semibold text-indigo-800">
+    Key Classes Used (Variation):
+   </h3>
+   <ul class="list-disc list-inside text-indigo-700 mt-2">
+    <li>
+     <code>
+      bg-blue-100
+     </code>
+     : Sets a light blue background.
+    </li>
+    <li>
+     <code>
+      border-l-4
+     </code>
+     : Applies a thicker 4px left border.
+    </li>
+    <li>
+     <code>
+      border-blue-500
+     </code>
+     : Sets the left border color to a medium-dark blue.
+    </li>
+    <li>
+     <code>
+      text-blue-700
+     </code>
+     : Sets the text color to a dark blue, ensuring good contrast against the light background.
+    </li>
+    <li>
+     <code>
+      p-4
+     </code>
+     : Adds padding on all sides.
+    </li>
+    <li>
+     <code>
+      flex items-center
+     </code>
+     : Used here to align an optional icon with the text.
+    </li>
+   </ul>
+   <p class="text-indigo-700 mt-2">
+    This alert demonstrates a common alternative styling with a prominent left border, often used for info or warning messages.
+            The principle of ensuring text readability through sufficient color contrast (
+    <code>
+     text-blue-700
+    </code>
+    on
+    <code>
+     bg-blue-100
+    </code>
+    ) remains paramount.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

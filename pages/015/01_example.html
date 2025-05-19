@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Accent Color for Inputs
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 font-sans from_inside_iframe">
+  <div class="container mx-auto p-6 bg-white rounded-lg shadow-xl">
+   <h1 class="text-2xl font-bold mb-6 text-gray-700">
+    Styling Checkboxes &amp; Radio Buttons: Accent Color
+   </h1>
+   <p class="mb-4 text-gray-600">
+    The
+    <code>
+     accent-{color}-{shade}
+    </code>
+    utility (e.g.,
+    <code>
+     accent-pink-500
+    </code>
+    ) changes the color of the browser's default checkboxes and radio buttons when they are checked. This is the simplest way to add a bit of brand color.
+   </p>
+   <div class="space-y-4">
+    <div>
+     <h2 class="text-lg font-semibold text-gray-700 mb-2">
+      Checkboxes with Accent Color
+     </h2>
+     <div class="flex items-center space-x-4">
+      <label class="flex items-center space-x-2">
+       <input checked="" class="h-5 w-5 accent-blue-500" type="checkbox"/>
+       <span>
+        Blue Accent
+       </span>
+      </label>
+      <label class="flex items-center space-x-2">
+       <input checked="" class="h-5 w-5 accent-pink-600" type="checkbox"/>
+       <span>
+        Pink Accent
+       </span>
+      </label>
+      <label class="flex items-center space-x-2">
+       <input class="h-5 w-5 accent-teal-500" type="checkbox"/>
+       <span>
+        Teal Accent (Unchecked)
+       </span>
+      </label>
+     </div>
+    </div>
+    <div>
+     <h2 class="text-lg font-semibold text-gray-700 mb-2">
+      Radio Buttons with Accent Color
+     </h2>
+     <div class="flex items-center space-x-4">
+      <label class="flex items-center space-x-2">
+       <input checked="" class="h-5 w-5 accent-purple-600" name="radio-group-1" type="radio"/>
+       <span>
+        Purple Accent
+       </span>
+      </label>
+      <label class="flex items-center space-x-2">
+       <input class="h-5 w-5 accent-green-500" name="radio-group-1" type="radio"/>
+       <span>
+        Green Accent
+       </span>
+      </label>
+      <label class="flex items-center space-x-2">
+       <input class="h-5 w-5 accent-orange-500" name="radio-group-1" type="radio"/>
+       <span>
+        Orange Accent
+       </span>
+      </label>
+     </div>
+    </div>
+   </div>
+   <p class="mt-6 text-sm text-gray-500">
+    Note: The
+    <code>
+     accent-color
+    </code>
+    property styles the active part of the control (the checkmark/dot and sometimes the border when focused or checked, depending on the browser). The overall shape and size are still largely browser-defined.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

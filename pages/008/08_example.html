@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: h-full and the Parent Height Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Example 2: Understanding
+   <code>
+    h-full
+   </code>
+   and the Parent Height "Gotcha"
+  </h1>
+  <div class="grid md:grid-cols-2 gap-8">
+   <div>
+    <h2 class="text-xl font-semibold mb-2">
+     Correct: Parent with Defined Height
+    </h2>
+    <!-- 
+                Parent has a defined height (h-64 which is 16rem or 256px).
+                The child with h-full will stretch to fill this parent's height.
+            -->
+    <div class="bg-green-200 h-64 p-4 border border-green-500">
+     <p class="font-medium">
+      Parent (h-64)
+     </p>
+     <div class="bg-green-500 text-white h-full flex items-center justify-center">
+      Child (h-full) - Stretches!
+     </div>
+    </div>
+    <p class="mt-2 text-sm text-gray-600">
+     Here, the parent has
+     <code>
+      h-64
+     </code>
+     , so the child's
+     <code>
+      h-full
+     </code>
+     works as expected.
+    </p>
+   </div>
+   <div>
+    <h2 class="text-xl font-semibold mb-2">
+     Gotcha: Parent with No Defined Height
+    </h2>
+    <!-- 
+                GOTCHA DEMONSTRATION:
+                Parent does NOT have a defined height. Its height is determined by its content.
+                The child with h-full will NOT stretch effectively because the parent's height is 'auto'.
+                h-full means "100% of the parent's height", but if the parent's height isn't explicitly set,
+                the browser often can't determine what 100% of "auto" should be for layout purposes,
+                especially when the child itself is trying to define that parent's height.
+            -->
+    <div class="bg-red-200 p-4 border border-red-500">
+     <p class="font-medium">
+      Parent (height is auto/content-based)
+     </p>
+     <div class="bg-red-500 text-white h-full flex items-center justify-center">
+      Child (h-full) - Doesn't stretch as expected!
+     </div>
+     <p class="mt-2">
+      Some content in parent to give it some height.
+     </p>
+    </div>
+    <p class="mt-2 text-sm text-gray-600">
+     Here, the parent's height is auto (derived from its content). The child's
+     <code>
+      h-full
+     </code>
+     has no explicit parent height to reference, so it collapses or only matches its own content height.
+    </p>
+   </div>
+  </div>
+  <div class="mt-8">
+   <h2 class="text-xl font-semibold mb-2">
+    Fixing the Gotcha: Using Flex or Grid on Parent
+   </h2>
+   <p class="mb-2 text-sm text-gray-700">
+    One common way to make children fill height even if the parent's height is content-based is to make the parent a flex or grid container. However, for
+    <code>
+     h-full
+    </code>
+    to work directly, the parent *still* generally needs a defined height or be part of a layout system (like flex/grid items that stretch) that *gives* it a defined height.
+   </p>
+   <div class="bg-yellow-200 p-4 border border-yellow-500 flex" style="height: 200px;">
+    <!-- Explicit height on parent for demo -->
+    <p class="font-medium mr-2">
+     Parent (flex, explicit height: 200px)
+    </p>
+    <div class="bg-yellow-500 text-white h-full flex-grow flex items-center justify-center">
+     Child (h-full, flex-grow) - Stretches due to flex!
+    </div>
+   </div>
+   <p class="mt-2 text-sm text-gray-600">
+    While
+    <code>
+     h-full
+    </code>
+    works here because the parent has an explicit height, flexbox itself provides mechanisms for items to stretch (e.g.,
+    <code>
+     flex-grow
+    </code>
+    or default
+    <code>
+     align-items: stretch
+    </code>
+    ).
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

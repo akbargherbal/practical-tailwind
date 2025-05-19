@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Success Alert
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <!-- 
+        This example demonstrates a basic success alert.
+        It uses a light green background, a darker green border, and dark green text for good readability.
+        The padding and rounded corners enhance its appearance as a distinct message box.
+    -->
+  <div class="mb-6">
+   <h2 class="text-2xl font-bold mb-4 text-gray-700">
+    Example 1: Basic Success Alert
+   </h2>
+   <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+    <strong class="font-bold">
+     Success!
+    </strong>
+    <span class="block sm:inline">
+     Your profile has been updated.
+    </span>
+   </div>
+  </div>
+  <div class="mt-8 p-4 bg-blue-50 border border-blue-300 rounded-lg">
+   <h3 class="text-lg font-semibold text-blue-800">
+    Key Classes Used:
+   </h3>
+   <ul class="list-disc list-inside text-blue-700 mt-2">
+    <li>
+     <code>
+      bg-green-100
+     </code>
+     : Sets a light green background.
+    </li>
+    <li>
+     <code>
+      border
+     </code>
+     : Applies a default 1px solid border.
+    </li>
+    <li>
+     <code>
+      border-green-400
+     </code>
+     : Sets the border color to a medium green.
+    </li>
+    <li>
+     <code>
+      text-green-700
+     </code>
+     : Sets the text color to a dark green, ensuring good contrast.
+    </li>
+    <li>
+     <code>
+      px-4
+     </code>
+     : Adds horizontal padding.
+    </li>
+    <li>
+     <code>
+      py-3
+     </code>
+     : Adds vertical padding.
+    </li>
+    <li>
+     <code>
+      rounded
+     </code>
+     : Applies rounded corners.
+    </li>
+    <li>
+     <code>
+      relative
+     </code>
+     : (Optional, but often useful for positioning icons or close buttons).
+    </li>
+   </ul>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

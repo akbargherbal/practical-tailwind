@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Hamburger Menu - Gotcha (JS Needed)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-4 from_inside_iframe">
+  <nav class="bg-green-600 text-white p-4 rounded-md shadow-lg">
+   <div class="container mx-auto flex justify-between items-center">
+    <a class="text-xl font-bold" href="#">
+     MyApp
+    </a>
+    <!-- Hamburger Button: Visible on small screens (md:hidden) -->
+    <button class="md:hidden p-2 rounded hover:bg-green-700 focus:outline-none focus:bg-green-700" id="hamburger-button">
+     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      </path>
+     </svg>
+    </button>
+    <!-- Desktop Navigation: Hidden on small, flex on medium+ (hidden md:flex) -->
+    <div class="hidden md:flex space-x-4">
+     <a class="hover:text-green-200" href="#">
+      Dashboard
+     </a>
+     <a class="hover:text-green-200" href="#">
+      Profile
+     </a>
+     <a class="hover:text-green-200" href="#">
+      Settings
+     </a>
+    </div>
+   </div>
+   <!-- Mobile Menu: Initially hidden, to be toggled by JavaScript -->
+   <!-- The 'hidden' class makes it initially invisible. JS would remove/add this. -->
+   <div class="hidden md:hidden mt-3 space-y-1" id="mobile-menu">
+    <!--
+                GOTCHA DEMONSTRATION:
+                This menu is styled with Tailwind and is initially 'hidden'.
+                The hamburger button above uses 'md:hidden' to show only on mobile.
+                Tailwind handles these visual states perfectly.
+
+                HOWEVER, Tailwind CSS itself DOES NOT handle the click event to show/hide this menu.
+                Clicking the hamburger button above WILL NOT do anything to this menu without JavaScript.
+
+                You would need JavaScript to:
+                1. Listen for a click on the 'hamburger-button'.
+                2. When clicked, toggle the 'hidden' class on this 'mobile-menu' div.
+                   (e.g., document.getElementById('mobile-menu').classList.toggle('hidden');)
+            -->
+    <a class="block px-3 py-2 rounded-md text-base font-medium hover:bg-green-700" href="#">
+     Dashboard
+    </a>
+    <a class="block px-3 py-2 rounded-md text-base font-medium hover:bg-green-700" href="#">
+     Profile
+    </a>
+    <a class="block px-3 py-2 rounded-md text-base font-medium hover:bg-green-700" href="#">
+     Settings
+    </a>
+    <a class="block px-3 py-2 rounded-md text-base font-medium hover:text-red-300 hover:bg-green-700" href="#">
+     Logout
+    </a>
+   </div>
+  </nav>
+  <div class="mt-6 p-4 bg-white rounded shadow">
+   <h2 class="text-lg font-semibold mb-2">
+    Understanding the "Gotcha":
+   </h2>
+   <p>
+    In this example:
+   </p>
+   <ul class="list-disc list-inside ml-4">
+    <li>
+     The hamburger icon appears on small screens due to `md:hidden`.
+    </li>
+    <li>
+     The desktop navigation appears on larger screens due to `hidden md:flex`.
+    </li>
+    <li>
+     The mobile menu (`div` with `id="mobile-menu"`) is styled and set to be `hidden` initially.
+    </li>
+   </ul>
+   <p class="mt-2 font-semibold text-red-600">
+    Crucially, clicking the hamburger icon above will NOT open or close the mobile menu.
+            Tailwind provides the classes to show or hide elements, but the *interactive toggling* (making the click work)
+            requires JavaScript. See the HTML comments above the `#mobile-menu` div for more details.
+   </p>
+   <p class="mt-2">
+    To make it functional, you'd add a script like:
+   </p>
+   <pre class="bg-gray-200 p-2 rounded text-sm mt-1 overflow-x-auto"><code>
+// &lt;script&gt;
+//   document.getElementById('hamburger-button').addEventListener('click', function() {
+//     document.getElementById('mobile-menu').classList.toggle('hidden');
+//   });
+// &lt;/script&gt;
+// (This JS would typically be at the end of the &lt;body&gt; or in a separate .js file)
+        </code></pre>
+   <p class="mt-2">
+    Try resizing your browser window. The visibility of the hamburger icon and desktop links will change correctly due to Tailwind's responsive classes. The interactivity is the part that needs custom JavaScript.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

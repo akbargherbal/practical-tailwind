@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill Example - Rounded Buttons Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 font-sans from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-6 text-center">
+    Button Rounding Gotcha: Inner Content Overflow
+   </h1>
+   <p class="text-gray-700 mb-6 text-center">
+    **Gotcha:** If a button has an image or icon inside that isn't also rounded or masked, the sharp corners of the inner element might "poke out" of the button's rounded corners. The solution is often to add `overflow-hidden` to the button itself.
+   </p>
+   <div class="grid md:grid-cols-2 gap-8">
+    <!-- Problem Demonstration -->
+    <div class="p-6 bg-white shadow-md rounded-lg">
+     <h2 class="text-xl font-semibold mb-3 text-red-600">
+      Problem: Image Corners Poking Out
+     </h2>
+     <p class="mb-4 text-gray-700">
+      This button uses `rounded-full` but does NOT have `overflow-hidden`. Notice the square image corners.
+     </p>
+     <button class="bg-purple-500 text-white font-semibold p-1 rounded-full inline-flex items-center justify-center">
+      <!-- The image inside has sharp corners that will poke out -->
+      <img alt="Square Image" class="w-12 h-12" src="https://placehold.co/48x48/FBBF24/333333?text=IMG"/>
+      <span class="mx-3">
+       Profile
+      </span>
+     </button>
+     <p class="mt-3 text-sm text-gray-600">
+      <!-- HTML Comment explaining the gotcha in this specific case -->
+      <!-- Here, the `img` element is a direct child. Its square corners are visible despite the parent button's `rounded-full` because `overflow-hidden` is missing on the button. -->
+     </p>
+    </div>
+    <!-- Solution Demonstration -->
+    <div class="p-6 bg-white shadow-md rounded-lg">
+     <h2 class="text-xl font-semibold mb-3 text-green-600">
+      Solution: Using `overflow-hidden`
+     </h2>
+     <p class="mb-4 text-gray-700">
+      This button uses `rounded-full` AND `overflow-hidden`. The image corners are now clipped to the button's rounded shape.
+     </p>
+     <button class="bg-teal-500 text-white font-semibold p-1 rounded-full inline-flex items-center justify-center overflow-hidden">
+      <!-- The `overflow-hidden` on the button will clip the image's corners. -->
+      <img alt="Square Image Clipped" class="w-12 h-12" src="https://placehold.co/48x48/A7F3D0/333333?text=IMG"/>
+      <span class="mx-3">
+       Profile
+      </span>
+     </button>
+     <p class="mt-3 text-sm text-gray-600">
+      <!-- HTML Comment explaining the fix -->
+      <!-- By adding `overflow-hidden` to the button element, any content that extends beyond its rounded boundaries (like the corners of the inner image) is clipped. -->
+     </p>
+    </div>
+   </div>
+   <div class="mt-8 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700">
+    <p class="font-bold">
+     Key Takeaway for the Gotcha:
+    </p>
+    <p>
+     When using rounded corners on an element that contains other elements (especially images or items with their own backgrounds/borders), apply `overflow-hidden` to the parent rounded element to ensure its children conform to its rounded shape.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

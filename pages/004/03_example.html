@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Pushing a Single Item Right (Gotcha Solution)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Example 3: Pushing a Single Item Right with `ml-auto` (Gotcha Solution)
+  </h1>
+  <p class="mb-2">
+   This example addresses the "Gotcha" by showing how to push a single item (or group) to the right while keeping other items grouped to the left, using `ml-auto`.
+  </p>
+  <div class="bg-purple-500 text-white p-4 rounded-md">
+   <!-- Parent container with flex -->
+   <div class="flex items-center">
+    <!-- Items grouped to the left (default flex behavior) -->
+    <div class="font-bold text-xl mr-4">
+     Logo
+    </div>
+    <nav class="mr-4">
+     <ul class="flex space-x-4">
+      <li>
+       <a class="hover:text-purple-200" href="#">
+        Home
+       </a>
+      </li>
+      <li>
+       <a class="hover:text-purple-200" href="#">
+        Products
+       </a>
+      </li>
+     </ul>
+    </nav>
+    <!-- Item to be pushed to the right -->
+    <!-- HTML Comment within body explaining the gotcha solution -->
+    <!-- 
+                GOTCHA SOLUTION:
+                The 'Login' button uses `ml-auto` (margin-left: auto).
+                This utility consumes all available space to its left, effectively
+                pushing this element to the far right of the flex container.
+                The other elements (Logo, Home, Products) remain grouped to the left.
+                This is an alternative to `justify-between` when you don't have just two distinct groups.
+            -->
+    <div class="ml-auto bg-purple-700 p-2 rounded hover:bg-purple-800">
+     <a href="#">
+      Login
+     </a>
+    </div>
+   </div>
+  </div>
+  <div class="mt-6 p-4 border border-gray-300 rounded-md bg-white">
+   <h3 class="font-semibold text-lg mb-2">
+    Explanation of `ml-auto`:
+   </h3>
+   <p>
+    The parent `div` only has `flex` (and `items-center` for vertical alignment). We are not using `justify-between` here.
+   </p>
+   <p>
+    The "Logo" and the navigation links ("Home", "Products") are standard flex items and will naturally group at the start (left) of the container.
+   </p>
+   <p>
+    The "Login" button has the class `ml-auto`. This CSS property (`margin-left: auto;`) tells the browser to give this element as much left margin as possible, pushing it all the way to the right edge of the flex container.
+   </p>
+   <p>
+    This is a common and effective way to handle layouts where you want most items to one side and a specific item (or group) to the opposite side, especially when `justify-between` isn't suitable due to the number of item groups.
+   </p>
+  </div>
+  <h2 class="text-xl font-bold mt-8 mb-2">
+   Alternative: Nested Flex for Grouping
+  </h2>
+  <p class="mb-2">
+   Another way to achieve a similar layout, closer to the `justify-between` concept but handling multiple items on one side, is to use nested flex containers.
+  </p>
+  <div class="bg-teal-500 text-white p-4 rounded-md">
+   <div class="flex justify-between items-center">
+    <!-- Group 1: Contains Logo and Nav, all on the left -->
+    <div class="flex items-center space-x-4">
+     <div class="font-bold text-xl">
+      Logo
+     </div>
+     <nav>
+      <ul class="flex space-x-4">
+       <li>
+        <a class="hover:text-teal-200" href="#">
+         Home
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-teal-200" href="#">
+         Products
+        </a>
+       </li>
+      </ul>
+     </nav>
+    </div>
+    <!-- Group 2: Login button, pushed to the right by justify-between -->
+    <div class="bg-teal-700 p-2 rounded hover:bg-teal-800">
+     <a href="#">
+      Login
+     </a>
+    </div>
+   </div>
+   <!--
+            GOTCHA SOLUTION (Nested Flex):
+            Here, the "Logo" and "Nav" are wrapped in a `div`. This `div` becomes the *first* child
+            of the `flex justify-between` container. The "Login" button is the *second* child.
+            `justify-between` then correctly places the first group (Logo+Nav) on the left
+            and the second group (Login) on the right.
+        -->
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

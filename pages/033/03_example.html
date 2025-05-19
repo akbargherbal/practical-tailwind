@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill - Background Image Gotchas
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style>
+   /* Helper style for visualization */
+        .outline-helper {
+            outline: 2px dashed red;
+        }
+  </style>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6">
+   Example 3: Background Image Gotchas
+  </h1>
+  <!-- Gotcha 1: Element needs dimensions -->
+  <div class="mb-8 p-4 border border-red-400 rounded bg-red-50">
+   <h2 class="text-xl font-semibold text-red-700 mb-2">
+    Gotcha 1: Element needs dimensions
+   </h2>
+   <p class="mb-2 text-red-600">
+    If an element with a background image has no content that gives it height, or no explicit height/width, the background image may not be visible or only a sliver will show.
+   </p>
+   <p class="font-medium mb-1">
+    Incorrect (No Height):
+   </p>
+   <div class="bg-[url('https://source.unsplash.com/random/400x300?abstract')] outline-helper">
+    <!-- This div has a background image but no height. It might not be visible. -->
+    <!-- Content added below to give it *some* height, but without explicit height it might still be less than intended. -->
+    <p class="opacity-0">
+     Invisible content to give minimal height for demo
+    </p>
+   </div>
+   <p class="text-sm text-gray-600 mt-1">
+    The red dashed outline shows the div. If it's just a line, the background image has no space to render.
+   </p>
+   <p class="font-medium mt-4 mb-1">
+    Corrected (With Height):
+   </p>
+   <div class="bg-[url('https://source.unsplash.com/random/400x300?abstract')] h-48 outline-helper">
+    <!-- This div has h-48, so the background image is visible -->
+    <p class="text-center text-white bg-black bg-opacity-50 p-2 relative top-1/2 -translate-y-1/2">
+     Image visible due to
+     <code>
+      h-48
+     </code>
+    </p>
+   </div>
+   <p class="text-sm text-gray-600 mt-1">
+    Here,
+    <code>
+     h-48
+    </code>
+    ensures space for the background.
+   </p>
+  </div>
+  <!-- Gotcha 2: Forgetting bg-cover or bg-no-repeat -->
+  <div class="mb-8 p-4 border border-orange-400 rounded bg-orange-50">
+   <h2 class="text-xl font-semibold text-orange-700 mb-2">
+    Gotcha 2: Tiling or Poor Scaling (Forgetting
+    <code>
+     bg-cover
+    </code>
+    /
+    <code>
+     bg-no-repeat
+    </code>
+    )
+   </h2>
+   <p class="mb-2 text-orange-600">
+    If an image is smaller than its container and
+    <code>
+     bg-cover
+    </code>
+    is not used, it might tile (repeat). If
+    <code>
+     bg-cover
+    </code>
+    is used, it scales to fill.
+    <code>
+     bg-no-repeat
+    </code>
+    explicitly prevents tiling.
+   </p>
+   <p class="font-medium mb-1">
+    Potentially Incorrect (Default behavior / Tiling with small image):
+   </p>
+   <!-- Using a small placeholder image (50x50) to demonstrate tiling if bg-cover is not used -->
+   <div class="bg-[url('https://via.placeholder.com/50x50/cccccc/969696?text=Tile')] h-48 w-full border border-gray-300 mb-2">
+    <!-- This div has height and a small background image. Default is bg-repeat. -->
+    <!-- It will tile if the image is small enough and bg-no-repeat or bg-cover isn't used -->
+   </div>
+   <p class="text-sm text-gray-600 mt-1">
+    Above: A small 50x50 image is used. Without
+    <code>
+     bg-no-repeat
+    </code>
+    or
+    <code>
+     bg-cover
+    </code>
+    , it tiles by default.
+   </p>
+   <p class="font-medium mt-4 mb-1">
+    Corrected (Using
+    <code>
+     bg-cover
+    </code>
+    ):
+   </p>
+   <div class="bg-[url('https://via.placeholder.com/300x200/3b82f6/ffffff?text=CoverMe')] bg-cover bg-center h-48 w-full border border-gray-300 mb-2">
+    <p class="text-center text-white bg-black bg-opacity-50 p-2 relative top-1/2 -translate-y-1/2">
+     <code>
+      bg-cover bg-center
+     </code>
+    </p>
+   </div>
+   <p class="text-sm text-gray-600 mt-1">
+    Above:
+    <code>
+     bg-cover
+    </code>
+    scales the image to fill the container, preventing tiling and ensuring full coverage (may crop).
+   </p>
+   <p class="font-medium mt-4 mb-1">
+    Corrected (Using
+    <code>
+     bg-no-repeat
+    </code>
+    without scaling):
+   </p>
+   <div class="bg-[url('https://via.placeholder.com/150x100/10b981/ffffff?text=NoRepeat')] bg-no-repeat bg-center h-48 w-full border border-gray-300">
+    <p class="text-center text-black bg-white bg-opacity-70 p-2 relative top-1/2 -translate-y-1/2">
+     <code>
+      bg-no-repeat bg-center
+     </code>
+    </p>
+   </div>
+   <p class="text-sm text-gray-600 mt-1">
+    Above:
+    <code>
+     bg-no-repeat
+    </code>
+    shows the image once, centered. Useful if you don't want scaling but also no tiling.
+   </p>
+  </div>
+  <div class="mt-4 p-4 bg-blue-100 border border-blue-300 rounded-md">
+   <h3 class="font-semibold text-blue-800">
+    Summary of Gotchas &amp; Fixes:
+   </h3>
+   <ul class="list-disc list-inside text-blue-700">
+    <li>
+     <strong>
+      Image Not Visible?
+     </strong>
+     Ensure the element has height (e.g.,
+     <code>
+      h-64
+     </code>
+     ,
+     <code>
+      min-h-[200px]
+     </code>
+     , or content that gives it height).
+    </li>
+    <li>
+     <strong>
+      Image Tiling?
+     </strong>
+     Use
+     <code>
+      bg-no-repeat
+     </code>
+     to show it once, or
+     <code>
+      bg-cover
+     </code>
+     to scale it to fill the container (which also implies no repeat).
+    </li>
+    <li>
+     <strong>
+      Image Poorly Scaled/Positioned?
+     </strong>
+     Use
+     <code>
+      bg-cover
+     </code>
+     (or
+     <code>
+      bg-contain
+     </code>
+     for different scaling) and positioning classes like
+     <code>
+      bg-center
+     </code>
+     ,
+     <code>
+      bg-top
+     </code>
+     , etc.
+    </li>
+   </ul>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: justify-* for Even Spacing
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6">
+   Demonstrating `justify-between`, `justify-around`, `justify-evenly`
+  </h1>
+  <!-- Example 1: justify-between -->
+  <div class="mb-10">
+   <h2 class="text-lg font-semibold mb-2">
+    Using `justify-between`
+   </h2>
+   <p class="text-sm text-gray-600 mb-2">
+    Distributes items evenly; the first item is at the start, and the last item is at the end.
+   </p>
+   <div class="flex justify-between bg-blue-200 p-4 rounded">
+    <div class="bg-blue-500 text-white p-3 rounded">
+     Item 1
+    </div>
+    <div class="bg-blue-500 text-white p-3 rounded">
+     Item 2
+    </div>
+    <div class="bg-blue-500 text-white p-3 rounded">
+     Item 3
+    </div>
+   </div>
+  </div>
+  <!-- Example 2: justify-around -->
+  <div class="mb-10">
+   <h2 class="text-lg font-semibold mb-2">
+    Using `justify-around`
+   </h2>
+   <p class="text-sm text-gray-600 mb-2">
+    Distributes items evenly with equal space around each item. Note that the space at the ends is half the size of the space between items.
+   </p>
+   <div class="flex justify-around bg-green-200 p-4 rounded">
+    <div class="bg-green-500 text-white p-3 rounded">
+     Item 1
+    </div>
+    <div class="bg-green-500 text-white p-3 rounded">
+     Item 2
+    </div>
+    <div class="bg-green-500 text-white p-3 rounded">
+     Item 3
+    </div>
+   </div>
+  </div>
+  <!-- Example 3: justify-evenly -->
+  <div class="mb-10">
+   <h2 class="text-lg font-semibold mb-2">
+    Using `justify-evenly`
+   </h2>
+   <p class="text-sm text-gray-600 mb-2">
+    Distributes items evenly with equal space around each item, including the ends.
+   </p>
+   <div class="flex justify-evenly bg-purple-200 p-4 rounded">
+    <div class="bg-purple-500 text-white p-3 rounded">
+     Item 1
+    </div>
+    <div class="bg-purple-500 text-white p-3 rounded">
+     Item 2
+    </div>
+    <div class="bg-purple-500 text-white p-3 rounded">
+     Item 3
+    </div>
+   </div>
+  </div>
+  <div class="mt-8 p-4 bg-yellow-100 border border-yellow-300 rounded">
+   <p class="font-semibold">
+    Note:
+   </p>
+   <p>
+    The examples above use `flex` (which defaults to `flex-row`). The `justify-*` classes are controlling the spacing along the main (horizontal) axis.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

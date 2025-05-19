@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Hide on Small, Show on Larger
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Example 1: Hide on Small, Show on `sm` and Up
+  </h1>
+  <p class="mb-4">
+   Resize your browser window to see the effect. The blue box will be hidden on very small screens (default) and appear on screens `sm` (640px) wide and larger.
+  </p>
+  <!--
+        This div demonstrates the 'hidden sm:block' concept.
+        - 'hidden': The element is hidden by default (on xs screens).
+        - 'sm:block': At the 'sm' breakpoint (640px) and larger, the element's display is set to 'block'.
+    -->
+  <div class="hidden sm:block bg-blue-500 text-white p-6 rounded-lg shadow-md">
+   <p class="font-semibold">
+    I am hidden by default (extra small screens), but visible on 'sm' (640px) screens and up!
+   </p>
+   <p>
+    Try making your browser window smaller than 640px wide.
+   </p>
+  </div>
+  <div class="mt-4 p-4 bg-green-200 text-green-800 rounded">
+   This green box is always visible, for reference.
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

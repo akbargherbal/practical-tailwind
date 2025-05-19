@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Dividers: Basic Border Usage
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-50 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-6 text-center text-slate-700">
+    Basic Dividers with Borders
+   </h1>
+   <!-- Example 1: Horizontal Divider using border-t -->
+   <div class="mb-10 p-6 bg-white shadow rounded-lg">
+    <h2 class="text-xl font-semibold mb-3 text-slate-600">
+     Horizontal Divider (`border-t`)
+    </h2>
+    <p class="text-gray-700">
+     This is the first section of content.
+    </p>
+    <!-- The actual horizontal divider -->
+    <!-- We use a dedicated div for the border, with margin for spacing. -->
+    <!-- Alternatively, border-t could be on an existing element, but a dedicated div offers clear separation. -->
+    <div class="border-t border-gray-300 my-4">
+    </div>
+    <p class="text-gray-700">
+     This is the second section of content, appearing after the horizontal divider.
+    </p>
+   </div>
+   <!-- Example 2: Vertical Divider using border-l in a Flex Layout -->
+   <div class="p-6 bg-white shadow rounded-lg">
+    <h2 class="text-xl font-semibold mb-3 text-slate-600">
+     Vertical Divider (`border-l`)
+    </h2>
+    <div class="flex space-x-4">
+     <div class="bg-sky-100 p-4 rounded w-1/2">
+      <h3 class="font-medium text-sky-800">
+       Left Panel
+      </h3>
+      <p class="text-sm text-sky-700">
+       Content for the left side.
+      </p>
+     </div>
+     <!-- The right panel has a left border which acts as a vertical divider -->
+     <!-- The pl-4 adds padding *after* the border line for the content inside. -->
+     <div class="bg-sky-100 p-4 rounded w-1/2 border-l-2 border-sky-500 pl-4">
+      <h3 class="font-medium text-sky-800">
+       Right Panel
+      </h3>
+      <p class="text-sm text-sky-700">
+       Content for the right side. The `border-l-2 border-sky-500 pl-4` on this element creates the dividing line from the left panel.
+      </p>
+     </div>
+    </div>
+    <p class="mt-3 text-xs text-gray-500 italic">
+     In the example above, the right panel has a `border-l-2` creating a visual separation from the left panel. `space-x-4` on the flex container provides initial spacing, and `pl-4` on the right panel ensures its content doesn't touch its own left border.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

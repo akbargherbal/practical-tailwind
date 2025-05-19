@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Gotcha - Limits of Accent Color
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto p-6 bg-white rounded-lg shadow-xl">
+   <h1 class="text-2xl font-bold mb-6 text-gray-800">
+    Gotcha: Limitations of `accent-*` for Checkboxes/Radios
+   </h1>
+   <p class="mb-4 text-gray-600">
+    The `accent-{color}-{shade}` classes are useful for quick color changes, but they don't allow for extensive customization of the shape, size, or overall appearance of checkboxes and radio buttons.
+   </p>
+   <div class="mb-8 p-4 border border-yellow-400 bg-yellow-50 rounded">
+    <h3 class="text-lg font-semibold text-yellow-700 mb-2">
+     Understanding the "Gotcha"
+    </h3>
+    <p class="text-yellow-600">
+     Trying to extensively style the shape and size of native checkboxes/radios *without* the `@tailwindcss/forms` plugin or using `appearance-none` (and then rebuilding the look from scratch) is very difficult. The `accent-*` classes only change the color of the browser's default controls (e.g., the tick mark or the radio dot). They do not affect the box or circle outline itself significantly.
+    </p>
+   </div>
+   <div class="mb-6">
+    <h2 class="text-xl font-semibold mb-3 text-gray-700">
+     Checkbox Styling Comparison
+    </h2>
+    <div class="flex items-center space-x-6 mb-4">
+     <div>
+      <input class="mr-2" id="cb_native" type="checkbox"/>
+      <label class="text-gray-700" for="cb_native">
+       Native Checkbox
+      </label>
+     </div>
+     <div>
+      <input checked="" class="accent-red-500 mr-2" id="cb_accent" type="checkbox"/>
+      <label class="text-gray-700" for="cb_accent">
+       Checkbox with `accent-red-500`
+      </label>
+     </div>
+     <!-- Example of trying to change size/border (which accent doesn't do) -->
+     <div class="flex items-center">
+      <input checked="" class="w-8 h-8 border-2 border-blue-500 accent-green-500 mr-2" id="cb_attempt_style" type="checkbox"/>
+      <label class="text-gray-700" for="cb_attempt_style">
+       Attempting size/border (w-8 h-8 border-2)
+      </label>
+      <!-- 
+                        Comment on the Gotcha:
+                        Notice how `w-8 h-8 border-2 border-blue-500` has little to no effect on the actual checkbox box
+                        itself, only its surrounding space or if `appearance-none` was used. 
+                        The `accent-green-500` will still color the native tick mark.
+                        This demonstrates the limitation that `accent-*` alone cannot fully restyle the control.
+                    -->
+     </div>
+    </div>
+    <p class="text-sm text-gray-500 mt-2">
+     Observe that while `accent-red-500` changes the tick color, general Tailwind size (`w-8 h-8`) or border utilities (`border-2 border-blue-500`) have minimal impact on the native checkbox appearance. For such custom styling, `appearance-none` or the `@tailwindcss/forms` plugin is generally required.
+    </p>
+   </div>
+   <div class="mt-8">
+    <p class="text-gray-600">
+     For full control over the appearance of form elements, including checkboxes and radio buttons, you would typically:
+    </p>
+    <ul class="list-disc list-inside text-gray-600 ml-4 mt-2">
+     <li>
+      Use the
+      <code class="bg-gray-200 px-1 rounded">
+       @tailwindcss/forms
+      </code>
+      plugin, which provides pre-styled, customizable form elements.
+     </li>
+     <li>
+      Or, use
+      <code class="bg-gray-200 px-1 rounded">
+       appearance-none
+      </code>
+      to remove default browser styling and then rebuild the element's appearance from scratch using Tailwind utilities. This is shown in the next example.
+     </li>
+    </ul>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

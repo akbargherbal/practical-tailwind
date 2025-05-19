@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Transition: Specific Properties &amp; Notes
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex flex-col items-center space-y-6 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Transitioning Specific Properties (e.g., Height, Opacity)
+  </h1>
+  <p class="text-center mb-6 max-w-lg">
+   To transition properties not covered by the default
+   <code>
+    transition
+   </code>
+   utility (like
+   <code>
+    height
+   </code>
+   ,
+   <code>
+    max-height
+   </code>
+   , or custom properties),
+        you can use
+   <code>
+    transition-all
+   </code>
+   or list them explicitly like
+   <code>
+    transition-[height,opacity]
+   </code>
+   .
+  </p>
+  <!-- Example: Transitioning max-height and opacity for a reveal effect -->
+  <div class="w-72">
+   <div class="bg-purple-200 p-4 rounded-t-lg cursor-pointer group">
+    <h3 class="font-semibold text-purple-800">
+     Hover to Reveal Details
+    </h3>
+   </div>
+   <div class="bg-purple-100 p-4 rounded-b-lg max-h-0 opacity-0 group-hover:max-h-40 group-hover:opacity-100 overflow-hidden transition-[max-height,opacity] duration-700 ease-in-out">
+    <!-- 
+                This content is initially hidden (max-h-0, opacity-0).
+                On hovering the parent 'group', it expands (max-h-40) and fades in (opacity-100).
+                The 'transition-[max-height,opacity]' class ensures both properties animate smoothly.
+                'duration-700' and 'ease-in-out' control the timing and easing.
+            -->
+    <p class="text-sm text-purple-700">
+     This section smoothly transitions its
+     <code>
+      max-height
+     </code>
+     and
+     <code>
+      opacity
+     </code>
+     .
+                This is achieved using
+     <code>
+      transition-[max-height,opacity]
+     </code>
+     .
+    </p>
+    <p class="text-xs text-purple-600 mt-2">
+     If we used only
+     <code>
+      transition
+     </code>
+     , these specific properties might not animate.
+     <code>
+      transition-all
+     </code>
+     would also work but is less specific.
+    </p>
+   </div>
+  </div>
+  <div class="mt-8 p-4 border-t border-gray-300 w-full max-w-md">
+   <h2 class="text-lg font-semibold mb-2 text-center">
+    Important Note on Non-Transitionable Properties
+   </h2>
+   <p class="text-sm text-gray-700 text-center">
+    <!-- GOTCHA: Mentioning display property -->
+    Keep in mind that not all CSS properties are transitionable. For example, the
+    <code>
+     display
+    </code>
+    property
+            (e.g., changing from
+    <code>
+     hidden
+    </code>
+    to
+    <code>
+     block
+    </code>
+    or
+    <code>
+     flex
+    </code>
+    )
+            typically does not transition. Changes to
+    <code>
+     display
+    </code>
+    are instant.
+            For show/hide effects, transitioning
+    <code>
+     opacity
+    </code>
+    ,
+    <code>
+     height
+    </code>
+    /
+    <code>
+     max-height
+    </code>
+    ,
+            or
+    <code>
+     transform: scale()
+    </code>
+    are common alternatives.
+   </p>
+   <div class="mt-4 flex justify-center">
+    <button class="bg-gray-500 text-white py-2 px-4 rounded" id="toggleButton">
+     Toggle Display (No Transition)
+    </button>
+    <div class="hidden w-32 h-16 bg-orange-300 ml-4 p-2 text-center" id="displayElement">
+     Visible!
+    </div>
+   </div>
+   <p class="text-xs text-gray-500 text-center mt-2">
+    The orange box above uses
+    <code>
+     display: none/block
+    </code>
+    . Its appearance/disappearance is instant.
+   </p>
+  </div>
+  <script>
+   // Simple script for the display toggle example
+        const toggleButton = document.getElementById('toggleButton');
+        const displayElement = document.getElementById('displayElement');
+        if (toggleButton && displayElement) {
+            toggleButton.addEventListener('click', () => {
+                displayElement.classList.toggle('hidden');
+                // Note: 'block' is Tailwind's default for non-hidden, or set explicitly if needed.
+                // For this demo, 'hidden' removes it and re-adding it makes it visible via default or other display classes.
+                // If it was 'display: none', it would become 'display: block' (or its original display type if specified).
+            });
+        }
+  </script>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

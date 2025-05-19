@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Transition: Gotcha - Width
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex flex-col items-center space-y-8 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Gotcha: Transitioning Width
+  </h1>
+  <p class="text-center mb-6 max-w-md">
+   Tailwind's default
+   <code>
+    transition
+   </code>
+   class applies to common properties.
+        For properties like
+   <code>
+    width
+   </code>
+   or
+   <code>
+    height
+   </code>
+   , you need to be more specific.
+  </p>
+  <!-- Gotcha Demonstration: Trying to transition width without specifying it -->
+  <div>
+   <h2 class="text-lg font-semibold mb-2 text-center">
+    Problem: Default Transition on Width (Abrupt Change)
+   </h2>
+   <div class="w-32 h-16 bg-red-300 flex items-center justify-center mb-2 hover:w-64 transition duration-500 ease-in-out">
+    <!-- 
+                GOTCHA: This div attempts to transition width.
+                However, 'width' is not part of Tailwind's default transition properties.
+                So, the 'transition duration-500 ease-in-out' classes primarily affect
+                default properties (like color, opacity, transform if they were changing).
+                The width change will appear abrupt or may not animate as expected.
+            -->
+    <span class="text-sm">
+     Hover for Width (Abrupt)
+    </span>
+   </div>
+   <p class="text-xs text-gray-600 text-center">
+    Uses
+    <code>
+     transition duration-500 ease-in-out
+    </code>
+    +
+    <code>
+     hover:w-64
+    </code>
+    .
+            Width change is abrupt because 'width' is not a default transition property.
+   </p>
+  </div>
+  <!-- Solution 1: Using transition-all -->
+  <div>
+   <h2 class="text-lg font-semibold mb-2 text-center mt-6">
+    Solution 1: Using
+    <code>
+     transition-all
+    </code>
+   </h2>
+   <div class="w-32 h-16 bg-green-300 flex items-center justify-center mb-2 hover:w-64 transition-all duration-500 ease-in-out">
+    <!-- 
+                CORRECTED: By using 'transition-all', we tell the browser to transition
+                ALL animatable properties, including width.
+            -->
+    <span class="text-sm">
+     Hover for Width (Smooth)
+    </span>
+   </div>
+   <p class="text-xs text-gray-600 text-center">
+    Uses
+    <code>
+     transition-all duration-500 ease-in-out
+    </code>
+    . Width now transitions.
+   </p>
+  </div>
+  <!-- Solution 2: Using explicit transition property -->
+  <div>
+   <h2 class="text-lg font-semibold mb-2 text-center mt-6">
+    Solution 2: Using
+    <code>
+     transition-[width]
+    </code>
+   </h2>
+   <div class="w-32 h-16 bg-blue-300 flex items-center justify-center mb-2 hover:w-64 transition-[width] duration-500 ease-in-out">
+    <!-- 
+                CORRECTED: By using 'transition-[width]', we explicitly tell the browser 
+                to transition the 'width' property.
+            -->
+    <span class="text-sm">
+     Hover for Width (Smooth)
+    </span>
+   </div>
+   <p class="text-xs text-gray-600 text-center">
+    Uses
+    <code>
+     transition-[width] duration-500 ease-in-out
+    </code>
+    . Width now transitions.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

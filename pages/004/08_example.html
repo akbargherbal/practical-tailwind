@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: justify-between Gotcha - Multiple Items
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Example 2: `justify-between` with More Than Two Items (Gotcha)
+  </h1>
+  <p class="mb-2">
+   This example demonstrates the "Gotcha": `justify-between` distributes space between all direct children items. If you have more than two, the space is divided among them.
+  </p>
+  <div class="container mx-auto p-4 border border-gray-300 rounded">
+   <div class="bg-green-500 p-4 rounded mb-6">
+    <h3 class="text-lg font-semibold text-white mb-2">
+     Scenario: Three individual items
+    </h3>
+    <div class="flex justify-between items-center">
+     <!-- Item 1 -->
+     <div class="bg-green-700 text-white p-2 rounded">
+      Item 1 (Leftmost)
+     </div>
+     <!-- Item 2 -->
+     <div class="bg-green-700 text-white p-2 rounded">
+      Item 2 (Middle)
+     </div>
+     <!-- Item 3 -->
+     <div class="bg-green-700 text-white p-2 rounded">
+      Item 3 (Rightmost)
+     </div>
+    </div>
+    <div class="mt-2 p-2 bg-green-100 text-green-800 text-sm rounded">
+     <!-- Gotcha Explanation -->
+     <strong>
+      Gotcha in action:
+     </strong>
+     Notice how `justify-between` on the parent div distributes "Item 1", "Item 2", and "Item 3". "Item 1" is at the start, "Item 3" is at the end, and "Item 2" is in the middle with space on both sides. This might not be what you want if you intended "Item 1" and "Item 2" to be grouped left, and only "Item 3" pushed right.
+    </div>
+   </div>
+   <div class="bg-purple-500 p-4 rounded">
+    <h3 class="text-lg font-semibold text-white mb-2">
+     Scenario: Two groups, one with multiple items
+    </h3>
+    <div class="flex justify-between items-center">
+     <!-- Group 1: Multiple items, treated as one block by justify-between -->
+     <div class="flex space-x-2">
+      <div class="bg-purple-700 text-white p-2 rounded">
+       Grouped A
+      </div>
+      <div class="bg-purple-700 text-white p-2 rounded">
+       Grouped B
+      </div>
+     </div>
+     <!-- Group 2: Single item -->
+     <div class="bg-purple-700 text-white p-2 rounded">
+      Item C
+     </div>
+    </div>
+    <div class="mt-2 p-2 bg-purple-100 text-purple-800 text-sm rounded">
+     This works as expected because `justify-between` is acting on two direct children: the `div` containing "Grouped A" and "Grouped B", and the `div` containing "Item C".
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

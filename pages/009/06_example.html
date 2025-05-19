@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill Example - Basic Overlap
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <!-- Example 1: Basic overlap of two boxes -->
+  <div class="container mx-auto p-4">
+   <h1 class="text-2xl font-bold mb-4">
+    Example 1: Basic Overlap
+   </h1>
+   <p class="mb-2">
+    The light blue box is the parent container with `relative` positioning. The dark blue box is the child with `absolute` positioning and `z-10`, allowing it to overlap.
+   </p>
+   <!-- Parent container -->
+   <div class="relative w-64 h-64 bg-blue-200 border border-blue-400 p-4">
+    <p class="text-blue-800">
+     Parent Element (relative)
+    </p>
+    <!-- Child element to be placed on top -->
+    <div class="absolute top-5 right-5 w-32 h-32 bg-blue-500 text-white p-3 shadow-lg z-10">
+     Child Element (absolute, z-10)
+     <p class="text-xs mt-1">
+      Positioned at top-5, right-5
+     </p>
+    </div>
+    <div class="absolute bottom-5 left-5 w-24 h-16 bg-green-500 text-white p-2 shadow-md">
+     Another child (absolute)
+     <p class="text-xs mt-1">
+      This is behind the `z-10` element if they overlapped and this one had a lower or no z-index.
+     </p>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

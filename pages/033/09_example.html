@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Background Image - Gotchas
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-slate-200 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-3xl font-bold mb-8 text-center">
+    Background Image Gotchas &amp; Solutions
+   </h1>
+   <!-- Gotcha 1: Image Tiling / Incorrect Scaling -->
+   <div class="mb-10 p-6 border border-red-500 rounded-lg bg-red-50 shadow-md">
+    <h2 class="text-2xl font-semibold mb-4 text-red-700">
+     Gotcha 1: Image Tiling or Poor Scaling
+    </h2>
+    <p class="mb-3 text-sm text-red-600">
+     If `bg-cover` is forgotten, or `bg-no-repeat` is not used with smaller images or other `bg-size` utilities like `bg-contain`,
+                the background image might tile or scale unexpectedly.
+    </p>
+    <div class="grid md:grid-cols-2 gap-6">
+     <div>
+      <h3 class="font-medium mb-2 text-red-700">
+       Problem: Tiling (Default Behavior)
+      </h3>
+      <!-- HTML Comment: This div demonstrates tiling. It has height, but no bg-cover or bg-no-repeat. -->
+      <div class="h-56 w-full border-2 border-dashed border-red-400" style="background-image: url('https://picsum.photos/seed/smoltile/150/100');">
+       <span class="p-1 bg-black/50 text-white text-xs">
+        Tiled (150x100 img)
+       </span>
+      </div>
+      <p class="text-xs mt-1 italic text-red-600">
+       A small image (150x100) tiles by default without `bg-no-repeat`.
+      </p>
+     </div>
+     <div>
+      <h3 class="font-medium mb-2 text-green-700">
+       Solution: `bg-no-repeat` and/or `bg-cover`
+      </h3>
+      <!-- HTML Comment: This div shows the fix using bg-no-repeat and bg-contain to show the single small image.
+                         For full coverage, bg-cover would be used. -->
+      <div class="h-56 w-full border-2 border-dashed border-green-400 bg-green-100 bg-no-repeat bg-center bg-contain" style="background-image: url('https://picsum.photos/seed/smoltile/150/100');">
+       <span class="p-1 bg-black/50 text-white text-xs">
+        `bg-no-repeat bg-contain bg-center`
+       </span>
+      </div>
+      <p class="text-xs mt-1 italic text-green-600">
+       Using `bg-no-repeat` (here with `bg-contain` &amp; `bg-center`) prevents tiling.
+      </p>
+     </div>
+    </div>
+    <p class="mt-4 text-sm text-gray-700">
+     <strong>
+      To avoid tiling/scaling issues:
+     </strong>
+     Use `bg-cover bg-center` for responsive full backgrounds. If you need the image to fit without cropping, use `bg-contain bg-center bg-no-repeat`.
+    </p>
+   </div>
+   <!-- Gotcha 2: Background Image Not Visible -->
+   <div class="mb-10 p-6 border border-red-500 rounded-lg bg-red-50 shadow-md">
+    <h2 class="text-2xl font-semibold mb-4 text-red-700">
+     Gotcha 2: Background Image Not Visible
+    </h2>
+    <p class="mb-3 text-sm text-red-600">
+     A background image won't be visible if its containing element has no content that gives it dimensions, or no explicit height/width (e.g., `h-48`). Background images do not contribute to an element's computed size.
+    </p>
+    <div class="grid md:grid-cols-2 gap-6">
+     <div>
+      <h3 class="font-medium mb-2 text-red-700">
+       Problem: Element has no height
+      </h3>
+      <!-- HTML Comment: This div has a background image but no content and no height utility. It will be collapsed. -->
+      <div class="w-full border-2 border-dashed border-red-400 min-h-[4px] flex items-center justify-center" style="background-image: url('https://picsum.photos/seed/hiddenbg/300/200');">
+       <span class="text-xs text-red-700 p-1 bg-white/70">
+        Collapsed or only border visible
+       </span>
+      </div>
+      <p class="text-xs mt-1 italic text-red-600">
+       Div is collapsed (or nearly so), making the background image invisible.
+      </p>
+     </div>
+     <div>
+      <h3 class="font-medium mb-2 text-green-700">
+       Solution: Add dimensions to the element
+      </h3>
+      <!-- HTML Comment: Adding a height utility (h-56) makes the background visible. -->
+      <div class="h-56 w-full border-2 border-dashed border-green-400 bg-cover bg-center" style="background-image: url('https://picsum.photos/seed/hiddenbg/300/200');">
+       <span class="p-1 bg-black/50 text-white text-xs">
+        Visible with `h-56 bg-cover`
+       </span>
+      </div>
+      <p class="text-xs mt-1 italic text-green-600">
+       With `h-56`, the div has height, and the background image is visible.
+      </p>
+     </div>
+    </div>
+    <p class="mt-4 text-sm text-gray-700">
+     <strong>
+      To ensure visibility:
+     </strong>
+     Always give elements with background images explicit dimensions (e.g., `h-64`, `min-h-screen`) or ensure they contain content that defines their size.
+    </p>
+   </div>
+   <!-- HTML Comment: Summary of how gotchas are addressed in this snippet.
+        1.  TILING/SCALING GOTCHA:
+            -   The problem is shown by a small image tiling in a div that has height but lacks `bg-no-repeat` or `bg-cover`.
+            -   The solution shows `bg-no-repeat` (often paired with `bg-contain` or `bg-center` for non-covering images) preventing the tiling.
+            -   `bg-cover` is the common solution for full, responsive background images and inherently handles scaling and prevents tiling of a single image source.
+
+        2.  VISIBILITY GOTCHA:
+            -   The problem is demonstrated by an element with a background image but no explicit height (and no content to give it height), causing it to collapse and hide the image.
+            -   The solution shows that adding a height utility (e.g., `h-56`) to the element allows the background image to be displayed.
+        -->
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

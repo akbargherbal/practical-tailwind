@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Custom Fonts (Conceptual)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style>
+   /* For demonstration: Define what MyDisplayFont SHOULD look like if loaded.
+           Normally, you'd @font-face this or link it.
+           Here, we'll just use a fallback to ensure the example 'runs'
+           even if a real "MyDisplayFont" isn't loaded.
+           The point is to show the *Tailwind class usage*. */
+        @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap'); /* Example: Lobster as MyDisplayFont */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'); /* Example: Roboto as MySansFont */
+
+        /*
+          IMPORTANT: The `tailwind.config.js` shown below is for a typical Tailwind setup with a build process.
+          It IS NOT read by the CDN version of Tailwind.
+          With the CDN, you'd use arbitrary values `font-['MyFontName']` and ensure 'MyFontName'
+          is loaded via <link> in <head> or @import/@font-face in a <style> tag.
+        */
+  </style>
+ </head>
+ <body class="p-8 antialiased from_inside_iframe">
+  <div class="container mx-auto space-y-6">
+   <h1 class="text-3xl font-bold mb-6">
+    Illustrating Custom Fonts with Tailwind CSS
+   </h1>
+   <div class="p-4 border rounded-lg">
+    <h2 class="text-xl font-semibold mb-2">
+     Using Default Tailwind Fonts
+    </h2>
+    <p class="font-sans text-lg">
+     This text uses the default
+     <code class="bg-gray-200 px-1 rounded">
+      font-sans
+     </code>
+     class.
+    </p>
+    <p class="font-serif text-lg">
+     This text uses the default
+     <code class="bg-gray-200 px-1 rounded">
+      font-serif
+     </code>
+     class.
+    </p>
+    <p class="font-mono text-lg">
+     This text uses the default
+     <code class="bg-gray-200 px-1 rounded">
+      font-mono
+     </code>
+     class.
+    </p>
+   </div>
+   <div class="p-4 border rounded-lg">
+    <h2 class="text-xl font-semibold mb-2">
+     Simulating Custom Fonts (Conceptual)
+    </h2>
+    <p class="text-gray-700 mb-2">
+     In a project with a build step, you would define custom font families in your
+     <code class="bg-gray-200 px-1 rounded">
+      tailwind.config.js
+     </code>
+     file.
+                The CDN version of Tailwind doesn't read this file. However, we can demonstrate the *concept* of applying custom font names.
+    </p>
+    <p class="text-lg font-['Roboto',_sans-serif]">
+     This text uses
+     <code class="bg-gray-200 px-1 rounded">
+      font-['Roboto',_sans-serif]
+     </code>
+     .
+                'Roboto' is imported via Google Fonts in the &lt;head&gt;.
+                In a config, you might alias this as
+     <code class="bg-gray-200 px-1 rounded">
+      font-my-sans
+     </code>
+     .
+    </p>
+    <p class="text-lg font-['Lobster',_cursive]">
+     This text uses
+     <code class="bg-gray-200 px-1 rounded">
+      font-['Lobster',_cursive]
+     </code>
+     for a display style.
+                'Lobster' is imported via Google Fonts. In a config, you might alias this as
+     <code class="bg-gray-200 px-1 rounded">
+      font-my-display
+     </code>
+     .
+    </p>
+    <div class="mt-4 p-3 bg-gray-100 rounded">
+     <h3 class="font-semibold text-md mb-1">
+      Example
+      <code class="bg-gray-200">
+       tailwind.config.js
+      </code>
+      :
+     </h3>
+     <p class="text-sm text-gray-600 mb-2">
+      (This configuration is conceptual for CDN use but standard for build setups.)
+     </p>
+     <pre class="bg-gray-800 text-white p-3 rounded text-sm overflow-x-auto"><code>module.exports = {
+  theme: {
+    extend: {
+      fontFamily: {
+        'my-sans': ['Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+        'my-display': ['Lobster', 'cursive'],
+        // Add other custom fonts here
+      },
+    },
+  },
+  plugins: [],
+}</code></pre>
+     <p class="mt-2 text-sm text-gray-700">
+      If you had this config, you would then use classes like
+      <code class="bg-gray-200 px-1 rounded">
+       font-my-sans
+      </code>
+      or
+      <code class="bg-gray-200 px-1 rounded">
+       font-my-display
+      </code>
+      .
+                    Crucially, the font files for 'Roboto' and 'Lobster' would still need to be linked in your HTML or CSS.
+     </p>
+    </div>
+   </div>
+   <p class="text-sm text-gray-500 mt-4 text-center">
+    Remember: Tailwind defines *how* to apply the font family, but your browser needs access to the actual font files.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

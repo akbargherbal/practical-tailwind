@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Opacity: Gotcha &amp; Solution
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-6">
+    Example 2: Addressing the "Gotcha" - Opacity vs. Background Opacity
+   </h1>
+   <!-- Section demonstrating the Gotcha -->
+   <div class="mb-8 p-4 border border-red-300 rounded-lg">
+    <h2 class="text-xl font-semibold mb-3 text-red-700">
+     The "Gotcha": `opacity-*` Affects Everything
+    </h2>
+    <p class="mb-4">
+     When `opacity-*` (e.g., `opacity-60`) is applied to an element, it affects the entire element, including its background, text, and any child elements. This can make text hard to read if you only wanted a semi-transparent background.
+    </p>
+    <div class="relative p-6 rounded-lg shadow-md bg-indigo-600 opacity-60">
+     <!-- This div has opacity-60. Notice the text is also semi-transparent -->
+     <h3 class="text-lg font-bold text-white">
+      Text inside `opacity-60` div
+     </h3>
+     <p class="text-white mt-1">
+      This text is also 60% opaque, just like the indigo background. This is often not the desired effect for readability.
+     </p>
+     <!-- HTML Comment for clarity:
+                    The 'opacity-60' class on the parent div makes both its background
+                    and this text (and any other children) semi-transparent.
+                -->
+    </div>
+   </div>
+   <!-- Section demonstrating the Solution -->
+   <div class="p-4 border border-green-300 rounded-lg">
+    <h2 class="text-xl font-semibold mb-3 text-green-700">
+     The Solution: Background Opacity Utilities
+    </h2>
+    <p class="mb-4">
+     To make only the background semi-transparent while keeping the text and child elements fully opaque, use background opacity utilities like `bg-color/opacity` (e.g., `bg-indigo-600/60`) or `bg-color bg-opacity-*` (e.g., `bg-indigo-600 bg-opacity-60`).
+    </p>
+    <div class="relative p-6 rounded-lg shadow-md bg-indigo-600/60">
+     <!-- This div uses bg-indigo-600/60. Only the background is semi-transparent. -->
+     <h3 class="text-lg font-bold text-white">
+      Text inside `bg-indigo-600/60` div
+     </h3>
+     <p class="text-white mt-1">
+      This text is fully opaque, while the indigo background is 60% opaque. This is usually the desired effect for overlays or subtle backgrounds.
+     </p>
+     <!-- HTML Comment for clarity:
+                    Here, 'bg-indigo-600/60' applies opacity only to the background color.
+                    The text content remains fully opaque and readable.
+                -->
+    </div>
+    <p class="mt-6 mb-2">
+     Another way to achieve the same result (older Tailwind syntax or for more complex scenarios):
+    </p>
+    <div class="relative p-6 rounded-lg shadow-md bg-teal-700 bg-opacity-50">
+     <!-- This div uses bg-teal-700 and bg-opacity-50. Only the background is semi-transparent. -->
+     <h3 class="text-lg font-bold text-white">
+      Text inside `bg-teal-700 bg-opacity-50` div
+     </h3>
+     <p class="text-white mt-1">
+      This text is also fully opaque. The teal background has 50% opacity using `bg-opacity-50`.
+     </p>
+     <!-- HTML Comment for clarity:
+                    The 'bg-teal-700' sets the base color, and 'bg-opacity-50' modifies
+                    only the background's opacity. The text remains unaffected.
+                -->
+    </div>
+   </div>
+   <!-- Example of an overlay -->
+   <div class="mt-8">
+    <h2 class="text-xl font-semibold mb-3">
+     Practical Use: Image Overlay
+    </h2>
+    <div class="relative w-full h-64 rounded-lg shadow-md">
+     <img alt="Placeholder Image" class="absolute inset-0 w-full h-full object-cover rounded-lg" src="https://via.placeholder.com/600x400.png?text=Sample+Image"/>
+     <!-- Overlay with background opacity -->
+     <div class="absolute inset-0 bg-black/50 flex items-center justify-center rounded-lg">
+      <p class="text-white text-2xl font-bold">
+       Overlay Text (Readable)
+      </p>
+     </div>
+     <!-- HTML Comment for clarity:
+                    The 'bg-black/50' class on this overlay div makes its background
+                    semi-transparent black, allowing the image behind to be seen,
+                    while the 'Overlay Text' remains fully opaque and easy to read.
+                -->
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

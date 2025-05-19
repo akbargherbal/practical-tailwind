@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Active vs. Focus (Gotcha)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-6 from_inside_iframe">
+  <div class="mb-8 text-center">
+   <h1 class="text-2xl font-bold mb-2">
+    Gotcha: `active:` vs. `focus:` States
+   </h1>
+   <p class="text-gray-700">
+    Understanding the difference between the brief `active:` state and the persistent `focus:` state.
+   </p>
+  </div>
+  <div class="space-y-6 w-full max-w-md">
+   <!-- Button with mostly active: styles -->
+   <div class="p-4 bg-white shadow rounded-lg">
+    <h2 class="text-lg font-semibold mb-2">
+     Element with `active:` State
+    </h2>
+    <button class="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded active:bg-teal-700 active:text-teal-100 active:scale-[0.98] transition-all duration-75 focus:outline-none" id="activeOnlyBtn">
+     Active State Example
+    </button>
+    <p class="mt-2 text-sm text-gray-600">
+     <!-- Gotcha Explanation related to this button -->
+     This button primarily demonstrates the
+     <code>
+      active:
+     </code>
+     state. When you click and hold, its background (
+     <code>
+      active:bg-teal-700
+     </code>
+     ) and scale (
+     <code>
+      active:scale-[0.98]
+     </code>
+     ) change.
+                These changes are
+     <strong class="text-red-600">
+      only visible while the mouse button is pressed down
+     </strong>
+     or the element is tapped.
+                Once you release, it returns to its normal state (unless it also gains focus, but we're minimizing focus styles here for clarity on `active:`).
+    </p>
+   </div>
+   <!-- Button with distinct focus: styles -->
+   <div class="p-4 bg-white shadow rounded-lg">
+    <h2 class="text-lg font-semibold mb-2">
+     Element with `active:` and `focus:` States
+    </h2>
+    <button class="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded active:bg-indigo-800 active:scale-95 focus:outline-none focus:ring-4 focus:ring-indigo-300 focus:ring-opacity-75 transition-all duration-75" id="activeAndFocusBtn">
+     Active &amp; Focus State Example
+    </button>
+    <p class="mt-2 text-sm text-gray-600">
+     <!-- Gotcha Explanation related to this button -->
+     This button also has
+     <code>
+      active:
+     </code>
+     styles (
+     <code>
+      active:bg-indigo-800
+     </code>
+     ,
+     <code>
+      active:scale-95
+     </code>
+     ) that apply during the click.
+                However, it
+     <strong class="text-blue-600">
+      also has distinct
+      <code>
+       focus:
+      </code>
+      styles
+     </strong>
+     (
+     <code>
+      focus:ring-4 focus:ring-indigo-300
+     </code>
+     ).
+                After you click and release, the
+     <code>
+      active:
+     </code>
+     state ends, but the button
+     <strong class="text-blue-600">
+      remains focused and displays the focus ring
+     </strong>
+     until you click elsewhere or press Tab.
+                This demonstrates the "Gotcha":
+     <code>
+      active:
+     </code>
+     is very brief, while
+     <code>
+      focus:
+     </code>
+     persists after interaction.
+    </p>
+   </div>
+  </div>
+  <div class="mt-8 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 text-sm">
+   <strong class="font-bold">
+    Gotcha Summary:
+   </strong>
+   The
+   <code>
+    active:
+   </code>
+   state is triggered only during the actual press/tap action. It's often confused with the
+   <code>
+    focus:
+   </code>
+   state, which can persist after a click/tap until another element gains focus.
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

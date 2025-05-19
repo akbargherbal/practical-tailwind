@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Basic @apply
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style type="text/tailwindcss">
+   @layer components {
+            .btn-primary {
+                @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+            }
+            .btn-secondary {
+                @apply bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded;
+            }
+        }
+  </style>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Using @apply for Reusable Button Styles
+  </h1>
+  <p class="mb-4">
+   The
+   <code>
+    @apply
+   </code>
+   directive allows us to create custom CSS classes by composing Tailwind utility classes.
+        This is useful for elements that need a consistent set of styles, like buttons.
+        Below,
+   <code>
+    .btn-primary
+   </code>
+   and
+   <code>
+    .btn-secondary
+   </code>
+   are defined in the
+   <code>
+    &lt;style&gt;
+   </code>
+   tag.
+  </p>
+  <div class="space-x-4">
+   <button class="btn-primary">
+    Primary Button
+   </button>
+   <button class="btn-secondary">
+    Secondary Button
+   </button>
+   <button class="btn-primary">
+    Another Primary
+   </button>
+  </div>
+  <!-- 
+    Explanation:
+    - We've defined `.btn-primary` and `.btn-secondary` within a `<style type="text/tailwindcss">` block.
+    - The `@layer components` directive is a good practice for organizing custom components with @apply.
+    - These classes can now be reused on any button, ensuring consistency.
+    -->
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

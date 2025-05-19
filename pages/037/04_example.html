@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Active vs. Focus (Gotcha)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-slate-100 flex flex-col items-center justify-center min-h-screen p-6 antialiased from_inside_iframe">
+  <div class="text-center max-w-lg p-6 bg-white rounded-lg shadow-xl">
+   <h1 class="text-2xl font-bold mb-3 text-slate-800">
+    Understanding Active vs. Focus States
+   </h1>
+   <p class="text-gray-700 mb-5">
+    The
+    <code>
+     active:
+    </code>
+    state is very brief, only applying styles while an element is being pressed.
+            It's often confused with the
+    <code>
+     focus:
+    </code>
+    state, which persists after a click until another element gains focus.
+   </p>
+   <!--
+            GOTCHA DEMONSTRATION:
+            This example highlights the difference between `active:` and `focus:` states.
+            - The `active:` styles (darker background, slight shrink) are applied ONLY while the mouse button is pressed down on "Button A".
+            - The `focus:` styles (ring, persistent different background) apply AFTER the click on "Button A" (on mouse up)
+              and remain as long as "Button A" is the focused element.
+            - Clicking "Button B" or the input field will shift focus, removing the `focus:` styles from "Button A".
+            This demonstrates that `active:` is for the immediate moment of interaction, while `focus:` is for the state after interaction.
+        -->
+   <div class="mb-6">
+    <h2 class="text-lg font-semibold mb-2 text-slate-700">
+     Button A (Active &amp; Focus Styles):
+    </h2>
+    <button class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-all duration-150 ease-in-out active:bg-indigo-800 active:scale-95 focus:outline-none focus:ring-4 focus:ring-indigo-300 focus:bg-indigo-700" id="buttonA">
+     Button A (Click &amp; Observe)
+    </button>
+    <p class="mt-2 text-sm text-gray-600">
+     -
+     <strong>
+      Press &amp; Hold:
+     </strong>
+     <code>
+      active:bg-indigo-800 active:scale-95
+     </code>
+     .
+     <br/>
+     -
+     <strong>
+      Release:
+     </strong>
+     <code>
+      active:
+     </code>
+     styles vanish.
+     <code>
+      focus:bg-indigo-700 focus:ring-4
+     </code>
+     styles appear and persist.
+    </p>
+   </div>
+   <div class="mb-6">
+    <h2 class="text-lg font-semibold mb-2 text-slate-700">
+     Button B (Only Active Styles):
+    </h2>
+    <button class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-all duration-150 ease-in-out active:bg-teal-700 active:scale-95 focus:outline-none focus:ring-2 focus:ring-teal-300" id="buttonB">
+     Button B (Active Only Focus)
+    </button>
+    <p class="mt-2 text-sm text-gray-600">
+     -
+     <strong>
+      Press &amp; Hold:
+     </strong>
+     <code>
+      active:bg-teal-700 active:scale-95
+     </code>
+     .
+     <br/>
+     -
+     <strong>
+      Release:
+     </strong>
+     <code>
+      active:
+     </code>
+     styles vanish. Standard focus ring appears if not styled otherwise.
+    </p>
+   </div>
+   <input class="mt-4 p-2 border border-gray-300 rounded-md w-full max-w-xs focus:ring-2 focus:ring-orange-400 focus:border-orange-400" placeholder="Click here to shift focus" type="text"/>
+   <p class="mt-4 text-sm text-gray-600">
+    Click "Button A", then click "Button B" or the input field above. Notice how the
+    <code>
+     focus:
+    </code>
+    styles on "Button A" disappear when it loses focus,
+            while its
+    <code>
+     active:
+    </code>
+    styles were only visible during the press.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

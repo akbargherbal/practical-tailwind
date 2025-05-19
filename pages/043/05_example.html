@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Responsive Stacking - Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Responsive Stacking: The "Gotcha"
+  </h1>
+  <p class="mb-6">
+   This example illustrates a common pitfall: forgetting the base
+   <code>
+    flex
+   </code>
+   class.
+  </p>
+  <!-- Section 1: Demonstrating the Gotcha (Incorrect Way) -->
+  <div class="mb-8 p-4 border border-red-300 bg-red-50 rounded">
+   <h2 class="text-xl font-semibold mb-2 text-red-700">
+    Incorrect Example (Gotcha!)
+   </h2>
+   <p class="mb-4 text-sm text-gray-700">
+    The parent div below only has
+    <code>
+     sm:flex-row
+    </code>
+    . It's missing the base
+    <code>
+     flex
+    </code>
+    class.
+            As a result, it's not a flex container, and
+    <code>
+     sm:flex-row
+    </code>
+    will have no effect.
+            The items will stack vertically on all screen sizes because
+    <code>
+     div
+    </code>
+    elements are block-level by default.
+   </p>
+   <!--
+          GOTCHA: Missing 'flex' base class.
+          'sm:flex-row' alone does not make this a flex container.
+          It only modifies the flex-direction IF it's already a flex container.
+        -->
+   <div class="sm:flex-row gap-4 p-4 bg-orange-100 border border-orange-300 rounded">
+    <div class="p-4 bg-orange-500 text-white rounded shadow-md text-center mb-2 sm:mb-0">
+     Item A (Incorrect)
+    </div>
+    <div class="p-4 bg-yellow-500 text-white rounded shadow-md text-center">
+     Item B (Incorrect)
+    </div>
+   </div>
+   <p class="mt-2 text-xs text-gray-600">
+    Observation: Items A and B will *always* stack vertically, even on larger screens,
+            because the parent is not a flex container.
+   </p>
+  </div>
+  <!-- Section 2: Correct Way -->
+  <div class="p-4 border border-green-300 bg-green-50 rounded">
+   <h2 class="text-xl font-semibold mb-2 text-green-700">
+    Correct Example
+   </h2>
+   <p class="mb-4 text-sm text-gray-700">
+    The parent div below correctly uses
+    <code>
+     flex flex-col sm:flex-row
+    </code>
+    .
+            It becomes a flex container, stacks vertically by default (mobile-first),
+            and then switches to a row layout on
+    <code>
+     sm
+    </code>
+    screens and wider.
+   </p>
+   <!--
+          CORRECT: Includes 'flex' to establish a flex container,
+          'flex-col' for default vertical stacking,
+          and 'sm:flex-row' to switch to horizontal on 'sm' screens.
+        -->
+   <div class="flex flex-col sm:flex-row gap-4 p-4 bg-teal-100 border border-teal-300 rounded">
+    <div class="p-4 bg-teal-500 text-white rounded shadow-md basis-1/2 text-center">
+     Item X (Correct)
+    </div>
+    <div class="p-4 bg-cyan-500 text-white rounded shadow-md basis-1/2 text-center">
+     Item Y (Correct)
+    </div>
+   </div>
+   <p class="mt-2 text-xs text-gray-600">
+    Observation: Items X and Y will stack on small screens and be side-by-side on larger screens.
+            This is because
+    <code>
+     flex
+    </code>
+    makes it a flex container,
+    <code>
+     flex-col
+    </code>
+    sets the initial stacking,
+            and
+    <code>
+     sm:flex-row
+    </code>
+    correctly changes the direction at the breakpoint.
+   </p>
+  </div>
+  <div class="mt-6 p-4 bg-white rounded shadow">
+   <h2 class="text-lg font-semibold">
+    Key Takeaway (Gotcha):
+   </h2>
+   <p class="mt-2">
+    The responsive prefix classes like
+    <code>
+     sm:flex-row
+    </code>
+    ,
+    <code>
+     md:grid-cols-3
+    </code>
+    , etc.,
+    <strong>
+     only modify existing properties
+    </strong>
+    .
+            For
+    <code>
+     sm:flex-row
+    </code>
+    to change the flex direction, the element must first be
+            established as a flex container using the base
+    <code>
+     flex
+    </code>
+    class.
+            Without
+    <code>
+     flex
+    </code>
+    , Tailwind doesn't know it should apply flexbox behaviors.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

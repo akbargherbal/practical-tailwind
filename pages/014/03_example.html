@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Basic Input Styling
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-4">
+    Basic Input Field Styling
+   </h1>
+   <p class="mb-4">
+    This example shows a simple input field styled with basic Tailwind utility classes.
+   </p>
+   <div class="mb-6">
+    <label class="block text-sm font-medium text-gray-700 mb-1" for="name">
+     Name:
+    </label>
+    <!-- Applying border, rounded corners, and padding -->
+    <input class="border border-gray-300 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" id="name" name="name" placeholder="Enter your name" type="text"/>
+   </div>
+   <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4" role="alert">
+    <p class="font-bold">
+     Key Classes Used:
+    </p>
+    <ul class="list-disc list-inside ml-4">
+     <li>
+      <code>
+       border
+      </code>
+      : Adds a default 1px solid border.
+     </li>
+     <li>
+      <code>
+       border-gray-300
+      </code>
+      : Sets the border color (optional, default is often gray).
+     </li>
+     <li>
+      <code>
+       rounded
+      </code>
+      : Applies a default medium border radius.
+     </li>
+     <li>
+      <code>
+       px-3
+      </code>
+      : Adds horizontal padding (left and right).
+     </li>
+     <li>
+      <code>
+       py-2
+      </code>
+      : Adds vertical padding (top and bottom).
+     </li>
+     <li>
+      <code>
+       w-full
+      </code>
+      : Makes the input take the full width of its container.
+     </li>
+     <li>
+      <code>
+       focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
+      </code>
+      : Example of focus styling.
+     </li>
+    </ul>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

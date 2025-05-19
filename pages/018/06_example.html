@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Sidebar Menu
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 font-sans from_inside_iframe">
+  <!-- 
+        This example demonstrates a basic vertical sidebar menu.
+        It uses 'flex flex-col' to stack items vertically and 'space-y-2' for spacing between them.
+        Crucially, 'py-2 px-4' is applied to each link for good clickability, addressing the common gotcha.
+    -->
+  <div class="flex h-screen">
+   <aside class="w-64 bg-slate-800 text-white p-6">
+    <h2 class="text-xl font-semibold mb-6">
+     My App
+    </h2>
+    <nav class="flex flex-col space-y-2">
+     <a class="block py-2 px-3 rounded hover:bg-slate-700 transition-colors duration-150" href="#">
+      <i class="fas fa-home mr-2">
+      </i>
+      Dashboard
+      <!-- Example with an icon placeholder -->
+     </a>
+     <a class="block py-2 px-3 rounded hover:bg-slate-700 transition-colors duration-150" href="#">
+      <i class="fas fa-user mr-2">
+      </i>
+      Profile
+     </a>
+     <a class="block py-2 px-3 rounded bg-slate-700 font-medium" href="#">
+      <!-- Active item example -->
+      <i class="fas fa-cogs mr-2">
+      </i>
+      Settings
+     </a>
+     <a class="block py-2 px-3 rounded hover:bg-slate-700 transition-colors duration-150" href="#">
+      <i class="fas fa-envelope mr-2">
+      </i>
+      Messages
+     </a>
+     <a class="block py-2 px-3 rounded hover:bg-slate-700 transition-colors duration-150" href="#">
+      <i class="fas fa-chart-bar mr-2">
+      </i>
+      Analytics
+     </a>
+    </nav>
+    <!-- 
+                Key Tailwind Classes:
+                - Parent container of links (nav): 'flex flex-col space-y-2'
+                    - 'flex': Enables flexbox.
+                    - 'flex-col': Arranges children in a column.
+                    - 'space-y-2': Adds margin-top to all children except the first, creating vertical spacing.
+                - Individual link items (a tags):
+                    - 'block': Makes the anchor tag take up the full width available to it, allowing padding to push other elements.
+                    - 'py-2 px-3': Adds vertical (py-2) and horizontal (px-3) padding. This is key to avoid the "gotcha" of links being too small.
+                    - 'rounded': Adds rounded corners.
+                    - 'hover:bg-slate-700': Changes background on hover for visual feedback.
+            -->
+   </aside>
+   <main class="flex-1 p-10">
+    <h1 class="text-2xl font-bold">
+     Main Content Area
+    </h1>
+    <p>
+     This sidebar uses
+     <code>
+      flex flex-col space-y-2
+     </code>
+     for its link structure and ensures links are easily clickable by using
+     <code>
+      block py-2 px-3
+     </code>
+     on each
+     <code>
+      &lt;a&gt;
+     </code>
+     tag.
+    </p>
+   </main>
+  </div>
+  <!-- Font Awesome for icons (optional, for visual appeal in example) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

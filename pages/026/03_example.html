@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Font Weights
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <!-- This example demonstrates the basic application of font weight classes. -->
+  <div class="container mx-auto p-6 bg-white shadow-md rounded-lg">
+   <h1 class="text-2xl font-bold mb-4">
+    Font Weight Examples
+   </h1>
+   <p class="mb-2 text-lg font-light">
+    This text uses
+    <code class="bg-gray-200 px-1 rounded">
+     font-light
+    </code>
+    . (Requires font to support this weight)
+   </p>
+   <p class="mb-2 text-lg font-normal">
+    This text uses
+    <code class="bg-gray-200 px-1 rounded">
+     font-normal
+    </code>
+    . This is often the default.
+   </p>
+   <p class="mb-2 text-lg font-semibold">
+    This text uses
+    <code class="bg-gray-200 px-1 rounded">
+     font-semibold
+    </code>
+    .
+   </p>
+   <p class="mb-2 text-lg font-bold">
+    This text uses
+    <code class="bg-gray-200 px-1 rounded">
+     font-bold
+    </code>
+    .
+   </p>
+   <div class="mt-6 p-4 border-l-4 border-blue-500 bg-blue-50">
+    <p class="font-medium">
+     Note:
+    </p>
+    <p class="text-sm">
+     These examples use the default Tailwind font stack (usually a system sans-serif font) which generally has good support for these common weights. The visual difference will be apparent.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

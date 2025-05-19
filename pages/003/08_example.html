@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Gotcha: Justify-* vs Gap-*
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-6">
+    Gotcha: `justify-*` vs `gap-*`
+   </h1>
+   <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative mb-6" role="alert">
+    <strong class="font-bold">
+     Gotcha Explanation:
+    </strong>
+    <span class="block sm:inline">
+     `justify-*` classes control spacing along the main axis (horizontal for `flex-row`, vertical for `flex-col`). This means they distribute *all available free space*. `gap-*` is often simpler for adding consistent space *only between* items, regardless of remaining container space. `gap-*` works for both flexbox and grid.
+    </span>
+   </div>
+   <!-- Scenario 1: justify-between with flex-row -->
+   <div class="mb-8">
+    <h2 class="text-xl font-semibold mb-2">
+     `justify-between` with `flex-row`
+    </h2>
+    <p class="mb-2 text-sm text-gray-600">
+     Distributes space along the horizontal (main) axis. Items are pushed to the edges.
+    </p>
+    <div class="flex justify-between bg-red-200 p-4 rounded">
+     <div class="bg-red-500 text-white p-3 rounded">
+      Row Item 1
+     </div>
+     <div class="bg-red-500 text-white p-3 rounded">
+      Row Item 2
+     </div>
+     <div class="bg-red-500 text-white p-3 rounded">
+      Row Item 3
+     </div>
+    </div>
+   </div>
+   <!-- Scenario 2: justify-between with flex-col -->
+   <div class="mb-8">
+    <h2 class="text-xl font-semibold mb-2">
+     `justify-between` with `flex-col`
+    </h2>
+    <p class="mb-2 text-sm text-gray-600">
+     Here, the main axis is vertical. `justify-between` pushes items to the top and bottom of the container.
+    </p>
+    <div class="flex flex-col justify-between bg-orange-200 p-4 rounded h-64">
+     {/* Added h-64 for visual space */}
+     <div class="bg-orange-500 text-white p-3 rounded">
+      Col Item 1
+     </div>
+     <div class="bg-orange-500 text-white p-3 rounded">
+      Col Item 2
+     </div>
+     <div class="bg-orange-500 text-white p-3 rounded">
+      Col Item 3
+     </div>
+    </div>
+   </div>
+   <!-- Scenario 3: Using gap-4 for simpler between-item spacing (row) -->
+   <div class="mb-8">
+    <h2 class="text-xl font-semibold mb-2">
+     Using `gap-4` with `flex-row` for Simplicity
+    </h2>
+    <p class="mb-2 text-sm text-gray-600">
+     `gap-4` adds 1rem of space *between* items. It doesn't affect space at the container edges unless other alignment properties are used (like `justify-center`).
+    </p>
+    <div class="flex gap-4 bg-lime-200 p-4 rounded">
+     <div class="bg-lime-500 text-white p-3 rounded">
+      Gap Row 1
+     </div>
+     <div class="bg-lime-500 text-white p-3 rounded">
+      Gap Row 2
+     </div>
+     <div class="bg-lime-500 text-white p-3 rounded">
+      Gap Row 3
+     </div>
+    </div>
+   </div>
+   <!-- Scenario 4: Using gap-4 with flex-col -->
+   <div>
+    <h2 class="text-xl font-semibold mb-2">
+     Using `gap-4` with `flex-col`
+    </h2>
+    <p class="mb-2 text-sm text-gray-600">
+     `gap-4` consistently adds space between items vertically in a column layout.
+    </p>
+    <div class="flex flex-col gap-4 bg-cyan-200 p-4 rounded w-max">
+     <div class="bg-cyan-500 text-white p-3 rounded">
+      Gap Col 1
+     </div>
+     <div class="bg-cyan-500 text-white p-3 rounded">
+      Gap Col 2
+     </div>
+     <div class="bg-cyan-500 text-white p-3 rounded">
+      Gap Col 3
+     </div>
+    </div>
+    <!-- HTML Comment addressing the gotcha -->
+    <!--
+                Gotcha Takeaway:
+                - Use `justify-*` when you want to distribute the *total available free space* along the main axis.
+                - Use `gap-*` when you want consistent spacing *specifically between* items, which is often simpler and more predictable.
+                  `gap-*` is very useful when you don't want items to spread to the full width/height of their container but just have spacing between themselves.
+            -->
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

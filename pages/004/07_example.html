@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: justify-between Basic
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Example 1: Basic `justify-between`
+  </h1>
+  <p class="mb-2">
+   This example shows a common use case for `justify-between`: a header with a logo on the left and navigation links on the right.
+  </p>
+  <div class="container mx-auto p-4 border border-gray-300 rounded">
+   <header class="bg-blue-500 text-white p-4 rounded">
+    <div class="flex justify-between items-center">
+     <!-- Group 1: Logo (pushed to the left) -->
+     <div class="text-xl font-bold">
+      Logo
+     </div>
+     <!-- Group 2: Navigation Links (pushed to the right) -->
+     <nav>
+      <ul class="flex space-x-4">
+       <li>
+        <a class="hover:text-blue-200" href="#">
+         Home
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-blue-200" href="#">
+         About
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-blue-200" href="#">
+         Contact
+        </a>
+       </li>
+      </ul>
+     </nav>
+    </div>
+   </header>
+   <div class="mt-4 p-2 bg-gray-50">
+    <p class="text-sm text-gray-600">
+     The parent `div` for "Logo" and "nav" has `flex justify-between`. This pushes the "Logo" to the far left and the "nav" to the far right.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

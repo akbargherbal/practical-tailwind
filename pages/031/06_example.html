@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill Example - Rounded Corners Gotcha (Overflow)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6 text-center">
+   Gotcha: Parent Rounding &amp; Child Overflow
+  </h1>
+  <div class="flex flex-wrap justify-around gap-8">
+   <!-- Gotcha Demonstration: Image overflowing rounded parent -->
+   <div class="w-64">
+    <h2 class="text-lg font-semibold mb-2 text-center">
+     Problem: Child Overflows Parent's Rounded Corners
+    </h2>
+    <div class="bg-indigo-500 p-0 rounded-2xl w-64 h-40">
+     <!-- This image will appear to have sharp corners because it overflows its parent container's rounded corners. -->
+     <!-- The parent has rounded-2xl, but the image itself does not, and overflow is visible by default. -->
+     <img alt="Placeholder Image" class="w-full h-full object-cover" src="https://via.placeholder.com/300x200/FFC0CB/000000?text=Image+Overflows"/>
+    </div>
+    <p class="mt-2 text-sm text-gray-700 text-center">
+     Notice the sharp corners of the image despite the parent having
+     <code>
+      rounded-2xl
+     </code>
+     .
+    </p>
+   </div>
+   <!-- Solution 1: Using overflow-hidden on the parent -->
+   <div class="w-64">
+    <h2 class="text-lg font-semibold mb-2 text-center">
+     Solution:
+     <code>
+      overflow-hidden
+     </code>
+     on Parent
+    </h2>
+    <div class="bg-teal-500 p-0 rounded-2xl w-64 h-40 overflow-hidden">
+     <!-- By adding overflow-hidden to the parent, any part of the child (image)
+                     that extends beyond the parent's rounded boundaries is clipped. -->
+     <img alt="Placeholder Image" class="w-full h-full object-cover" src="https://via.placeholder.com/300x200/90EE90/000000?text=Image+Clipped"/>
+    </div>
+    <p class="mt-2 text-sm text-gray-700 text-center">
+     Here,
+     <code>
+      overflow-hidden
+     </code>
+     on the parent clips the image to the parent's rounded shape.
+    </p>
+   </div>
+  </div>
+  <div class="mt-8 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700">
+   <p class="font-bold">
+    Gotcha Explanation:
+   </p>
+   <p>
+    Applying
+    <code>
+     rounded-*
+    </code>
+    to a parent container doesn't automatically round the corners of its child elements if they fill the parent (like an image). The child element might still display its sharp corners, "overflowing" the parent's rounded shape. One solution is to add
+    <code>
+     overflow-hidden
+    </code>
+    to the parent container, which will clip the children to the parent's rounded bounds.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

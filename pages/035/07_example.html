@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Basic Gradient
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-4">
+    Example 1: Basic Rightward Gradient
+   </h1>
+   <!-- This div demonstrates a simple horizontal gradient from purple to pink. -->
+   <!-- Classes used: bg-gradient-to-r, from-purple-500, to-pink-500 -->
+   <div class="h-64 w-full p-8 rounded-lg shadow-lg bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
+    <p class="text-white text-3xl font-semibold">
+     Hero Section with Gradient
+    </p>
+   </div>
+   <h2 class="text-xl font-bold mt-8 mb-4">
+    Explanation:
+   </h2>
+   <p class="mb-2">
+    The classes
+    <code class="bg-gray-200 px-1 rounded">
+     bg-gradient-to-r
+    </code>
+    ,
+    <code class="bg-gray-200 px-1 rounded">
+     from-purple-500
+    </code>
+    , and
+    <code class="bg-gray-200 px-1 rounded">
+     to-pink-500
+    </code>
+    work together.
+   </p>
+   <ul class="list-disc list-inside">
+    <li>
+     <code class="bg-gray-200 px-1 rounded">
+      bg-gradient-to-r
+     </code>
+     : Sets the gradient direction to "right". Other directions include
+     <code class="bg-gray-200 px-1 rounded">
+      t
+     </code>
+     (top),
+     <code class="bg-gray-200 px-1 rounded">
+      b
+     </code>
+     (bottom),
+     <code class="bg-gray-200 px-1 rounded">
+      l
+     </code>
+     (left),
+     <code class="bg-gray-200 px-1 rounded">
+      tr
+     </code>
+     (top-right),
+     <code class="bg-gray-200 px-1 rounded">
+      bl
+     </code>
+     (bottom-left), etc.
+    </li>
+    <li>
+     <code class="bg-gray-200 px-1 rounded">
+      from-purple-500
+     </code>
+     : Sets the starting color of the gradient.
+    </li>
+    <li>
+     <code class="bg-gray-200 px-1 rounded">
+      to-pink-500
+     </code>
+     : Sets the ending color of the gradient.
+    </li>
+   </ul>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

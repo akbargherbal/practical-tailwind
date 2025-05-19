@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Smooth Transitions - Basic
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex flex-col items-center space-y-6 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Basic Transitions on Hover
+  </h1>
+  <!-- Example 1: Transitioning background color and scale -->
+  <div class="p-4">
+   <p class="text-center mb-2">
+    Transitions common properties (background, transform) by default.
+   </p>
+   <button class="bg-blue-500 hover:bg-red-500 text-white font-bold py-3 px-6 rounded-lg transition duration-500 ease-in-out hover:scale-110">
+    Hover Me (Color &amp; Scale)
+   </button>
+  </div>
+  <!-- Example 2: Transitioning opacity and text color -->
+  <div class="p-4">
+   <p class="text-center mb-2">
+    Opacity and text color also transition smoothly.
+   </p>
+   <div class="bg-green-500 text-white p-10 rounded-lg text-center transition duration-300 ease-out hover:opacity-50 hover:text-yellow-300">
+    Hover for Opacity &amp; Text Color Change
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS - Basic Text Colors
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 font-sans from_inside_iframe">
+  <!-- Example 1: Demonstrating basic text color application -->
+  <div class="mb-8">
+   <h1 class="text-3xl font-bold text-blue-600 mb-2">
+    Main Heading with Brand Color
+   </h1>
+   <p class="text-gray-700 mb-4">
+    This paragraph uses a standard, readable dark gray text color. It's good for body content.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+   </p>
+   <a class="text-indigo-600 hover:text-indigo-800 hover:underline" href="#">
+    This is a link with a distinct color
+   </a>
+  </div>
+  <div class="mb-8">
+   <h2 class="text-2xl font-semibold text-green-700 mb-2">
+    Sub-heading with different color
+   </h2>
+   <p class="text-slate-800">
+    Another paragraph using a slightly different shade for text,
+    <code class="bg-gray-200 px-1 rounded text-sm text-pink-600">
+     text-slate-800
+    </code>
+    .
+            We can also have
+    <span class="text-purple-600 font-medium">
+     emphasized text
+    </span>
+    within a paragraph.
+   </p>
+  </div>
+  <div>
+   <p class="text-sm text-red-500">
+    This could be an important notice or an error message.
+   </p>
+   <p class="text-xs text-gray-500 mt-1">
+    This is subtle helper text, often used for captions or minor details.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

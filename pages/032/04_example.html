@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Shadows: Gotcha - Background Color
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gradient-to-r from-purple-100 to-pink-100 p-8 flex flex-col items-center space-y-8 from_inside_iframe">
+  <div class="text-center mb-6">
+   <h1 class="text-2xl font-bold mb-2">
+    Shadow "Gotcha": Importance of Background Color
+   </h1>
+   <p class="text-gray-700">
+    Shadows need a background color on the element to appear correctly.
+   </p>
+  </div>
+  <!-- Gotcha Demonstration -->
+  <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-xl">
+   <h2 class="text-xl font-semibold mb-4 text-center">
+    Gotcha: Missing Background
+   </h2>
+   <p class="mb-2 text-gray-600">
+    <!-- Explanation of the Gotcha within the HTML body -->
+    <strong>
+     Gotcha:
+    </strong>
+    If an element with a shadow utility doesn't have its own background color (e.g.,
+    <code>
+     bg-white
+    </code>
+    ), the shadow might appear to be cast by its content, or interact strangely with elements behind it, especially if the element itself is transparent.
+   </p>
+   <!-- Incorrect Way (Gotcha) -->
+   <div class="mb-6 p-4 border border-dashed border-red-400 rounded">
+    <p class="font-medium text-red-700 mb-2">
+     Incorrect (No Explicit Background):
+    </p>
+    <div class="p-4 shadow-lg rounded-md">
+     <!-- 
+                    This div has `shadow-lg` but no `bg-*` class. 
+                    The shadow might seem to come from the text if the page background is complex,
+                    or it might inherit a transparent background making the shadow look odd against
+                    the parent's white background or the page's gradient background.
+                -->
+     <p class="text-gray-800">
+      Content inside transparent element with shadow.
+     </p>
+     <p class="text-sm text-gray-500">
+      (Notice how the shadow might seem 'off' or interact weirdly with the page's gradient background if this box were truly transparent against it.)
+     </p>
+    </div>
+   </div>
+   <!-- Correct Way -->
+   <div class="p-4 border border-dashed border-green-400 rounded">
+    <p class="font-medium text-green-700 mb-2">
+     Correct (With Background Color):
+    </p>
+    <div class="p-4 bg-white shadow-lg rounded-md">
+     <!-- 
+                    This div has `shadow-lg` AND `bg-white`.
+                    The shadow is clearly cast by the white box itself.
+                -->
+     <p class="text-gray-800">
+      Content inside element with
+      <code>
+       bg-white
+      </code>
+      and shadow.
+     </p>
+    </div>
+   </div>
+  </div>
+  <div class="mt-8 p-4 bg-yellow-100 border border-yellow-300 rounded-md text-yellow-700 w-full max-w-md">
+   <h3 class="font-semibold">
+    Additional Note: Overuse
+   </h3>
+   <p>
+    While shadows add depth, overusing very heavy shadows (like
+    <code>
+     shadow-2xl
+    </code>
+    ) everywhere can make a UI feel cluttered or dated. Use them judiciously to highlight interactive elements or separate distinct sections.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

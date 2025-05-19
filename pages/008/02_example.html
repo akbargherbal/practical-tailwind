@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: h-full Gotcha Demonstration
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-slate-50 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Example 2: The `h-full` Gotcha
+  </h1>
+  <p class="mb-4">
+   This example demonstrates the common pitfall with `h-full`: it only works if the direct parent has a defined height.
+  </p>
+  <!-- Section 1: Gotcha - h-full not working -->
+  <div class="mb-8">
+   <h2 class="text-xl font-semibold mb-2">
+    Scenario 1: `h-full` on Child, Parent Height is Auto (Gotcha)
+   </h2>
+   <p class="text-sm mb-2">
+    The red child below has `h-full`. However, its gray parent has no explicit height (its height is determined by its content). Thus, the child's `h-full` does not make it stretch.
+   </p>
+   <!-- Parent with no defined height (height is auto) -->
+   <div class="bg-gray-300 p-4 rounded shadow mb-2" style="min-height: 50px;">
+    <!-- Added min-height to parent for visual clarity only. It doesn't define height for h-full context -->
+    <p class="text-sm text-gray-700 mb-1">
+     Parent (height: auto)
+    </p>
+    <!-- 
+                GOTCHA DEMONSTRATION:
+                This child has h-full, but its parent's height relies on content.
+                So, h-full here will only make the child as tall as its own content, not the parent's apparent height.
+                If this child had no content, it would collapse to 0 height.
+            -->
+    <div class="h-full bg-red-500 text-white p-2 rounded">
+     Child with `h-full` (appears small as parent has no fixed height for `h-full` to inherit from)
+     <br/>
+     Content inside child.
+    </div>
+   </div>
+   <p class="text-xs italic text-gray-600">
+    Notice the red child does not fill the gray parent vertically, even though it has `h-full`.
+   </p>
+  </div>
+  <!-- Section 2: Corrected - h-full working -->
+  <div class="mb-8">
+   <h2 class="text-xl font-semibold mb-2">
+    Scenario 2: `h-full` on Child, Parent Has Defined Height (Corrected)
+   </h2>
+   <p class="text-sm mb-2">
+    The green child below also has `h-full`. This time, its gray parent has a defined height (`h-48`). Now, the child's `h-full` works as expected.
+   </p>
+   <!-- Parent with a defined height -->
+   <div class="h-48 bg-gray-300 p-4 rounded shadow">
+    <p class="text-sm text-gray-700 mb-1">
+     Parent (h-48)
+    </p>
+    <!-- Child with h-full now works because parent has a defined height -->
+    <div class="h-full bg-green-500 text-white flex items-center justify-center rounded">
+     Child with `h-full` (fills parent)
+    </div>
+   </div>
+   <p class="text-xs italic text-gray-600">
+    Here, the green child correctly fills its parent vertically.
+   </p>
+  </div>
+  <div class="mt-6 p-4 bg-orange-100 border border-orange-300 rounded">
+   <h2 class="font-semibold">
+    Gotcha Explanation:
+   </h2>
+   <p>
+    The class `h-full` sets an element's height to 100% of its parent's height. If the parent element does not have an explicitly defined height (e.g., using Tailwind's `h-*` utilities like `h-48`, `h-screen`, or CSS `height: value;`), then `h-full` on the child will not have the desired effect of stretching it, because "100% of an undefined height" is itself undefined or based on the child's own content.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Centering with mx-auto
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <!-- This example shows a basic block element centered on the page. -->
+  <!-- The 'max-w-md' class gives the div a maximum width. -->
+  <!-- The 'mx-auto' class then centers this block element within its parent (the body). -->
+  <div class="max-w-md mx-auto bg-blue-500 text-white p-6 rounded-lg shadow-lg">
+   <h1 class="text-2xl font-bold mb-2">
+    Centered Block
+   </h1>
+   <p>
+    This `div` has `max-w-md` and `mx-auto`, so it's centered horizontally on the page. The background color and padding help visualize its boundaries.
+   </p>
+  </div>
+  <div class="mt-8 text-center">
+   <p class="text-sm text-gray-600">
+    The content above is in a `div` with `max-w-md mx-auto`.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

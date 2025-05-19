@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill - Responsive Grid Columns
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Responsive Grid Columns Example
+  </h1>
+  <p class="mb-6">
+   This example demonstrates how the number of items in a row changes based on screen size.
+        It uses `grid-cols-1` for the smallest screens, `sm:grid-cols-2` for small screens and up,
+        and `md:grid-cols-4` for medium screens and up.
+  </p>
+  <!-- 
+        This grid will display:
+        - 1 column on extra-small screens (default, explicitly set by grid-cols-1)
+        - 2 columns on small screens (sm breakpoint) and up
+        - 4 columns on medium screens (md breakpoint) and up
+    -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+   <div class="bg-blue-500 text-white p-6 rounded-lg shadow-md text-center">
+    Item 1
+   </div>
+   <div class="bg-blue-500 text-white p-6 rounded-lg shadow-md text-center">
+    Item 2
+   </div>
+   <div class="bg-blue-500 text-white p-6 rounded-lg shadow-md text-center">
+    Item 3
+   </div>
+   <div class="bg-blue-500 text-white p-6 rounded-lg shadow-md text-center">
+    Item 4
+   </div>
+   <div class="bg-green-500 text-white p-6 rounded-lg shadow-md text-center">
+    Item 5
+   </div>
+   <div class="bg-green-500 text-white p-6 rounded-lg shadow-md text-center">
+    Item 6
+   </div>
+   <div class="bg-green-500 text-white p-6 rounded-lg shadow-md text-center">
+    Item 7
+   </div>
+   <div class="bg-green-500 text-white p-6 rounded-lg shadow-md text-center">
+    Item 8
+   </div>
+  </div>
+  <div class="mt-8 p-4 bg-yellow-100 border border-yellow-300 rounded">
+   <h2 class="font-semibold">
+    How it works:
+   </h2>
+   <ul class="list-disc list-inside ml-4">
+    <li>
+     <code>
+      grid
+     </code>
+     : Establishes a grid container.
+    </li>
+    <li>
+     <code>
+      grid-cols-1
+     </code>
+     : Sets 1 column for the smallest screens (base).
+    </li>
+    <li>
+     <code>
+      sm:grid-cols-2
+     </code>
+     : Sets 2 columns for screens 640px wide and larger.
+    </li>
+    <li>
+     <code>
+      md:grid-cols-4
+     </code>
+     : Sets 4 columns for screens 768px wide and larger.
+    </li>
+    <li>
+     <code>
+      gap-4
+     </code>
+     : Adds spacing between grid items.
+    </li>
+   </ul>
+   <p class="mt-2">
+    Resize your browser window to see the layout change.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

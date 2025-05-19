@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Rounded Tags &amp; Labels
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex flex-col items-center space-y-6 from_inside_iframe">
+  <!-- Example 3: Applying Rounded Corners to Tags/Labels -->
+  <div class="text-center mb-6">
+   <h1 class="text-2xl font-bold mb-2">
+    Rounded Corners on Tags &amp; Labels
+   </h1>
+   <p class="text-gray-700">
+    The
+    <code>
+     rounded-md
+    </code>
+    and
+    <code>
+     rounded-full
+    </code>
+    classes are versatile and can be used on non-button elements like tags or labels.
+   </p>
+  </div>
+  <div class="bg-white p-6 rounded-lg shadow-md space-y-4">
+   <div>
+    <h3 class="text-lg font-semibold mb-2">
+     Tags with
+     <code>
+      rounded-md
+     </code>
+     :
+    </h3>
+    <span class="bg-indigo-100 text-indigo-700 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-md">
+     Feature Request
+    </span>
+    <span class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-md">
+     Needs Review
+    </span>
+    <span class="bg-red-100 text-red-700 text-sm font-medium px-2.5 py-0.5 rounded-md">
+     Urgent
+    </span>
+   </div>
+   <div>
+    <h3 class="text-lg font-semibold mb-2 mt-4">
+     Pill-shaped Tags with
+     <code>
+      rounded-full
+     </code>
+     :
+    </h3>
+    <span class="bg-sky-100 text-sky-700 text-xs font-semibold mr-2 px-3 py-1 rounded-full">
+     Active User
+    </span>
+    <span class="bg-emerald-100 text-emerald-700 text-xs font-semibold mr-2 px-3 py-1 rounded-full">
+     Completed
+    </span>
+    <span class="bg-rose-100 text-rose-700 text-xs font-semibold px-3 py-1 rounded-full">
+     New
+    </span>
+   </div>
+  </div>
+  <div class="mt-4 p-4 bg-purple-100 border border-purple-300 rounded-md text-sm text-purple-700 w-full max-w-lg">
+   <p>
+    <strong class="font-semibold">
+     Application Notes:
+    </strong>
+   </p>
+   <ul class="list-disc list-inside ml-4">
+    <li>
+     <code>
+      rounded-md
+     </code>
+     provides a subtle, modern rounding suitable for many UI elements.
+    </li>
+    <li>
+     <code>
+      rounded-full
+     </code>
+     creates a pill or capsule shape, often used for badges, status indicators, or highly stylized buttons.
+    </li>
+    <li>
+     Combine with padding (
+     <code>
+      px-*
+     </code>
+     ,
+     <code>
+      py-*
+     </code>
+     ) and background/text colors to create visually distinct tags and labels.
+    </li>
+   </ul>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

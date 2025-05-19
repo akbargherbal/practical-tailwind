@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: justify-between (Gotcha - Multiple Items)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Example 2: `justify-between` with More Than Two Groups (Gotcha)
+  </h1>
+  <p class="mb-2">
+   This example demonstrates the "Gotcha": if you have more than two direct child elements (or groups) in a `flex justify-between` container, it spaces out the outermost groups to the edges, and the items in between are distributed.
+  </p>
+  <div class="mb-6">
+   <h3 class="text-lg font-semibold mb-2">
+    Scenario: Three direct child items
+   </h3>
+   <div class="flex justify-between items-center bg-green-500 text-white p-4 rounded-md">
+    <div class="bg-green-700 p-2 rounded">
+     Item 1 (Far Left)
+    </div>
+    <div class="bg-green-700 p-2 rounded">
+     Item 2 (Middle)
+    </div>
+    <div class="bg-green-700 p-2 rounded">
+     Item 3 (Far Right)
+    </div>
+   </div>
+   <!-- HTML Comment within body explaining the gotcha -->
+   <!-- 
+            GOTCHA DEMONSTRATION:
+            With `justify-between` and three direct children:
+            - "Item 1" is pushed to the very left.
+            - "Item 3" is pushed to the very right.
+            - "Item 2" is placed in the center of the remaining space.
+            This might not be what you want if you intended Item 1 and Item 2 to be grouped left, and Item 3 right.
+        -->
+  </div>
+  <div class="mt-6 p-4 border border-gray-300 rounded-md bg-white">
+   <h3 class="font-semibold text-lg mb-2">
+    Explanation of the Gotcha:
+   </h3>
+   <p>
+    `justify-between` distributes space *between* items. The first item aligns to the start, the last item to the end, and any remaining items are distributed evenly in the space between them.
+   </p>
+   <p>
+    If you need more complex grouping (e.g., two items on the left, one on the right), you'll need to either group the items on the left into a single flex child (nested flex) or use margin utilities like `ml-auto` (see next example).
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

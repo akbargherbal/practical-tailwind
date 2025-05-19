@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Styled Bullet List
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto p-6 bg-white shadow-md rounded-lg">
+   <h1 class="text-2xl font-bold mb-4">
+    Bulleted List (
+    <code>
+     list-disc
+    </code>
+    )
+   </h1>
+   <p class="mb-2">
+    This example shows a standard bulleted list using
+    <code>
+     list-disc
+    </code>
+    for the bullet style and
+    <code>
+     pl-5
+    </code>
+    to provide proper left padding for the list markers.
+   </p>
+   <h2 class="text-lg font-semibold mt-4 mb-2">
+    Feature List:
+   </h2>
+   <ul class="list-disc pl-5 text-gray-700 space-y-1">
+    <li>
+     Easy to integrate
+    </li>
+    <li>
+     Responsive design
+    </li>
+    <li>
+     Highly customizable
+    </li>
+    <li>
+     Excellent community support
+    </li>
+   </ul>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

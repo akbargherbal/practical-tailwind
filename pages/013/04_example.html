@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Example - Outlined Button with Hover/Focus
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 flex flex-col items-center space-y-4 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Outlined Button with Hover &amp; Focus States
+  </h1>
+  <!-- This button demonstrates an outlined style with clear hover and focus states. -->
+  <!-- Key classes for outlined:
+         - `border border-green-600`: Green border.
+         - `text-green-600`: Green text.
+         - `bg-transparent`: Explicitly sets background to transparent (addresses a potential gotcha).
+    -->
+  <!-- Key classes for interaction (part of the "Gotcha" to remember):
+         - `hover:bg-green-600`: On hover, background becomes green.
+         - `hover:text-white`: On hover, text becomes white.
+         - `focus:outline-none`: Removes default browser outline.
+         - `focus:ring-2 focus:ring-green-500 focus:ring-opacity-50`: Adds a custom focus ring.
+         - `py-2 px-4 rounded`: Standard padding and rounding.
+         - `transition-colors duration-150`: Smooth transition for color changes.
+    -->
+  <button class="bg-transparent border border-green-600 text-green-600 hover:bg-green-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 py-2 px-4 rounded transition-colors duration-150">
+   Secondary Action
+  </button>
+  <p class="text-sm text-gray-600 mt-4">
+   This button includes `hover:` and `focus:` states to improve user experience.
+        The "Gotcha" about hover/focus is addressed by changing background and text color on hover,
+        and adding a distinct focus ring. `bg-transparent` is used for clarity.
+  </p>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

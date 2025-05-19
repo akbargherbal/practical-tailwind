@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Basic Button Element
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 flex flex-col items-center space-y-4 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Basic Clickable Button
+  </h1>
+  <!-- Example 1: A standard <button> element styled with Tailwind CSS -->
+  <div class="mb-6 p-4 border rounded-lg bg-white shadow">
+   <h2 class="text-lg font-semibold mb-2">
+    Using a `
+    <button>
+     ` element (Recommended)
+    </button>
+   </h2>
+   <p class="text-sm text-gray-600 mb-2">
+    This is the semantically correct way to create a button for actions.
+   </p>
+   <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50">
+    Submit Action
+   </button>
+  </div>
+  <!-- Example 2: An <a> tag styled as a button, suitable for navigation -->
+  <div class="p-4 border rounded-lg bg-white shadow">
+   <h2 class="text-lg font-semibold mb-2">
+    Using an `
+    <a>
+     ` tag (for links)
+    </a>
+   </h2>
+   <p class="text-sm text-gray-600 mb-2">
+    Style an anchor tag like a button when it's used for navigation.
+   </p>
+   <a class="inline-block bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-50" href="#">
+    Learn More
+   </a>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

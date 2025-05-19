@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Gotcha: mx-auto &amp; Width
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-50 p-4 from_inside_iframe">
+  <div class="container mx-auto px-4">
+   <h1 class="text-2xl font-bold mb-6 text-center">
+    Gotcha: `mx-auto` Requires a Defined Width
+   </h1>
+   <p class="text-center mb-6 text-gray-700">
+    <code>
+     mx-auto
+    </code>
+    centers block-level elements by distributing horizontal space. This only works if the element's width is less than its container's width.
+   </p>
+   <!-- Scenario 1: Block element, mx-auto, but NO explicit width -->
+   <div class="mb-8">
+    <h2 class="text-lg font-semibold mb-2">
+     1. `mx-auto` with no explicit width:
+    </h2>
+    <div class="mx-auto bg-orange-400 text-white p-4 rounded shadow">
+     I am a `div` with `mx-auto` but no `w-*` or `max-w-*` class.
+    </div>
+    <!-- GOTCHA EXPLANATION -->
+    <p class="mt-2 text-sm text-red-700">
+     <strong>
+      Gotcha:
+     </strong>
+     This `div` is a block element, so it defaults to `width: auto;`, which makes it take up the full available width of its parent.
+                While `mx-auto` sets `margin-left: auto;` and `margin-right: auto;`, there's no leftover space to distribute, so it
+     <em>
+      appears
+     </em>
+     uncentered (it is, in fact, full-width).
+    </p>
+   </div>
+   <!-- Scenario 2: Block element, mx-auto, AND w-full -->
+   <div class="mb-8">
+    <h2 class="text-lg font-semibold mb-2">
+     2. `mx-auto` with `w-full`:
+    </h2>
+    <div class="w-full mx-auto bg-red-400 text-white p-4 rounded shadow">
+     I am a `div` with `w-full` and `mx-auto`.
+    </div>
+    <!-- GOTCHA EXPLANATION -->
+    <p class="mt-2 text-sm text-red-700">
+     <strong>
+      Gotcha:
+     </strong>
+     Similar to the above, `w-full` makes the element take all available width.
+                `mx-auto` has no visual effect for centering because there is no horizontal space to distribute.
+    </p>
+   </div>
+   <!-- Scenario 3: CORRECT - Block element, mx-auto, AND a defined width -->
+   <div class="mb-8">
+    <h2 class="text-lg font-semibold mb-2">
+     3. `mx-auto` with a defined width (e.g., `w-1/2`):
+    </h2>
+    <div class="w-1/2 mx-auto bg-green-500 text-white p-4 rounded shadow">
+     I am a `div` with `w-1/2` and `mx-auto`. I am correctly centered!
+    </div>
+    <p class="mt-2 text-sm text-green-700">
+     <strong>
+      Correct:
+     </strong>
+     With a defined width less than the parent (e.g., `w-1/2`), `mx-auto` can distribute the remaining space equally on both sides.
+    </p>
+   </div>
+   <!-- Scenario 4: CORRECT - Block element, mx-auto, AND a max-width -->
+   <div>
+    <h2 class="text-lg font-semibold mb-2">
+     4. `mx-auto` with `max-w-*`:
+    </h2>
+    <div class="max-w-lg mx-auto bg-teal-500 text-white p-4 rounded shadow">
+     I am a `div` with `max-w-lg` and `mx-auto`. I am correctly centered and responsive!
+    </div>
+    <p class="mt-2 text-sm text-teal-700">
+     <strong>
+      Correct:
+     </strong>
+     `max-w-*` also defines a width constraint, allowing `mx-auto` to work effectively. This is often preferred for responsive designs.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Flexbox Vertical Stacking
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Example 2: Using `flex flex-col` for Stacking &amp; Spacing
+  </h1>
+  <!-- 
+        Here, `flex flex-col` is used to explicitly define a flex container
+        that arranges its children in a vertical column.
+        This also allows us to easily use flexbox utilities like `space-y-*` for spacing.
+    -->
+  <div class="flex flex-col space-y-4 p-4 bg-purple-200 border border-purple-400 rounded-lg w-1/2 mx-auto">
+   <div class="p-4 bg-purple-400 text-white rounded">
+    Flex Item 1
+   </div>
+   <div class="p-4 bg-purple-500 text-white rounded">
+    Flex Item 2
+   </div>
+   <div class="p-4 bg-purple-600 text-white rounded">
+    Flex Item 3
+   </div>
+  </div>
+  <div class="mt-6 p-4 bg-slate-200 w-1/2 mx-auto">
+   <h2 class="text-lg font-semibold mb-2">
+    Explanation:
+   </h2>
+   <p>
+    The container `div` uses
+    <code class="bg-gray-300 px-1 rounded">
+     flex flex-col
+    </code>
+    . This makes it a flex container with items arranged vertically. The
+    <code class="bg-gray-300 px-1 rounded">
+     space-y-4
+    </code>
+    utility adds a margin top to all child elements except the first, creating consistent vertical spacing between them. This is a common reason to use `flex-col` even when default block stacking might seem sufficient.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

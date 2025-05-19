@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Example - Background Image (Gotcha)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-slate-100 from_inside_iframe">
+  <h1 class="text-3xl font-bold mb-6 text-center">
+   Background Image - Gotcha Demonstration
+  </h1>
+  <!-- Gotcha Section 1: Forgetting bg-cover or bg-no-repeat -->
+  <div class="mb-12">
+   <h2 class="text-xl font-semibold mb-3">
+    Gotcha 1: Image Tiling/Scaling (Missing `bg-cover`)
+   </h2>
+   <p class="mb-2 text-sm text-gray-700">
+    Without `bg-cover`, the image might tile or not scale properly to fill the container. `bg-no-repeat` would prevent tiling but still might not scale well if the image is smaller than the container.
+   </p>
+   <div class="border-4 border-dashed border-red-400 p-2 mb-4">
+    <p class="text-center font-medium text-red-600 mb-2">
+     Incorrect (Potentially Tiled/Poorly Scaled - `bg-center` only):
+    </p>
+    <!--
+                This div has a background image but lacks `bg-cover`.
+                If the image is smaller than the div, it might tile by default (though modern browsers and Tailwind's default might be `bg-no-repeat` implicitly for `bg-[url()]`).
+                Crucially, it won't scale to cover the area.
+                We use `h-64 w-full` to give it dimensions.
+            -->
+    <div class="bg-[url('https://via.placeholder.com/300x200/cccccc/969696?text=Small+Image')] bg-center h-64 w-full border border-gray-300">
+     <div class="p-4 bg-black bg-opacity-30 text-white">
+      Content over potentially poorly scaled/tiled image.
+     </div>
+    </div>
+   </div>
+   <div class="border-4 border-dashed border-green-400 p-2">
+    <p class="text-center font-medium text-green-600 mb-2">
+     Correct (Using `bg-cover` and `bg-center`):
+    </p>
+    <div class="bg-[url('https://via.placeholder.com/300x200/22c55e/ffffff?text=Small+Image+Covered')] bg-cover bg-center h-64 w-full border border-gray-300">
+     <div class="p-4 bg-black bg-opacity-30 text-white">
+      Content over properly covered image.
+     </div>
+    </div>
+    <p class="mt-2 text-xs text-gray-600">
+     * Note: `bg-no-repeat` is often a good addition if you don't want any tiling, although `bg-cover` typically implies filling the space thus making tiling irrelevant unless the image is smaller than the viewport and `bg-fixed` is used.
+    </p>
+   </div>
+  </div>
+  <!-- Gotcha Section 2: Element needs dimensions -->
+  <div>
+   <h2 class="text-xl font-semibold mb-3">
+    Gotcha 2: Element Needs Dimensions
+   </h2>
+   <p class="mb-2 text-sm text-gray-700">
+    A background image will not be visible if the element it's applied to has no content or defined dimensions (height/width).
+   </p>
+   <div class="border-4 border-dashed border-red-400 p-2 mb-4">
+    <p class="text-center font-medium text-red-600 mb-2">
+     Incorrect (No dimensions, background image won't show):
+    </p>
+    <!--
+                This div has a background image class, but no height or width, and no content to give it dimensions.
+                Therefore, the background image will not be visible.
+            -->
+    <div class="bg-[url('https://source.unsplash.com/random/400x300?abstract')] bg-cover bg-center border-2 border-red-500">
+     <!-- No content, no height/width classes -->
+     <!-- HTML Comment: This div will likely appear collapsed, hiding the background. -->
+    </div>
+    <p class="mt-1 text-xs text-red-700 text-center">
+     The red-bordered box above might be collapsed or very thin because it has no dimensions for the background image to show.
+    </p>
+   </div>
+   <div class="border-4 border-dashed border-green-400 p-2">
+    <p class="text-center font-medium text-green-600 mb-2">
+     Correct (With dimensions, e.g., `h-48`):
+    </p>
+    <div class="bg-[url('https://source.unsplash.com/random/400x300?technology')] bg-cover bg-center h-48 w-full border-2 border-green-500">
+     <div class="p-4 bg-black bg-opacity-30 text-white h-full flex items-center justify-center">
+      Background image is visible due to `h-48`.
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

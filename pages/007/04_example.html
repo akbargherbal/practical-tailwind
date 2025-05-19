@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Grid Spanning (Gotcha)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <!-- This example demonstrates the "Gotcha": how grid items can span multiple columns or rows. -->
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-4 text-center">
+    Grid with Spanning Items (Gotcha Demonstration)
+   </h1>
+   <p class="mb-2 text-center text-gray-700">
+    <strong>
+     Gotcha:
+    </strong>
+    Grid items fill only one "cell" by default.
+            To make an item span multiple columns or rows, use
+    <code>
+     col-span-*
+    </code>
+    or
+    <code>
+     row-span-*
+    </code>
+    on that specific grid item.
+   </p>
+   <p class="mb-6 text-center text-gray-700">
+    This grid uses
+    <code>
+     grid grid-cols-3 gap-4
+    </code>
+    as its base.
+   </p>
+   <div class="grid grid-cols-3 gap-4 bg-white p-6 rounded-lg shadow-md">
+    <!-- Grid items -->
+    <div class="bg-sky-500 text-white p-4 rounded-md flex items-center justify-center h-24">
+     Item 1
+     <br/>
+     (Normal)
+    </div>
+    <!-- Gotcha addressed: Item 2 spans 2 columns -->
+    <div class="bg-teal-500 text-white p-4 rounded-md flex items-center justify-center h-24 col-span-2">
+     Item 2
+     <br/>
+     (
+     <code>
+      col-span-2
+     </code>
+     : Spans 2 columns)
+    </div>
+    <!--
+                Because Item 2 used col-span-2 in a 3-column grid, it takes up the 2nd and 3rd cell of the first row.
+                The next item (Item 3) will therefore start on the next row.
+            -->
+    <div class="bg-amber-500 text-white p-4 rounded-md flex items-center justify-center h-24">
+     Item 3
+     <br/>
+     (Starts new row)
+    </div>
+    <!-- Gotcha addressed: Item 4 spans 2 rows -->
+    <div class="bg-rose-500 text-white p-4 rounded-md flex items-center justify-center h-auto row-span-2">
+     Item 4
+     <br/>
+     (
+     <code>
+      row-span-2
+     </code>
+     : Spans 2 rows)
+    </div>
+    <!--
+                Item 4 is in the second column of the second row, and spans into the third row.
+                It will occupy its cell (row 2, col 2) and the cell below it (row 3, col 2).
+            -->
+    <div class="bg-lime-500 text-white p-4 rounded-md flex items-center justify-center h-24">
+     Item 5
+     <br/>
+     (Row 2, Col 3)
+    </div>
+    <div class="bg-fuchsia-500 text-white p-4 rounded-md flex items-center justify-center h-24">
+     Item 6
+     <br/>
+     (Row 3, Col 1)
+    </div>
+    <!-- Cell for Row 3, Col 2 is occupied by Item 4 (row-span-2) -->
+    <div class="bg-orange-500 text-white p-4 rounded-md flex items-center justify-center h-24">
+     Item 7
+     <br/>
+     (Row 3, Col 3)
+    </div>
+    <div class="bg-cyan-500 text-white p-4 rounded-md flex items-center justify-center h-24 col-span-3">
+     Item 8
+     <br/>
+     (
+     <code>
+      col-span-3
+     </code>
+     : Spans 3 columns on a new row)
+    </div>
+   </div>
+   <div class="mt-6 p-4 bg-yellow-100 border border-yellow-300 rounded-md text-yellow-800">
+    <h3 class="font-semibold">
+     Key Takeaway (Gotcha Explained):
+    </h3>
+    <p>
+     Without
+     <code>
+      col-span-*
+     </code>
+     or
+     <code>
+      row-span-*
+     </code>
+     , each item ("Item 1", "Item 3", "Item 5", etc.) would occupy a single grid cell. The
+     <code>
+      col-span-2
+     </code>
+     on "Item 2" makes it occupy the width of two standard cells. The
+     <code>
+      row-span-2
+     </code>
+     on "Item 4" makes it occupy the height of two standard cells. This is crucial for creating more complex and asymmetrical layouts.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

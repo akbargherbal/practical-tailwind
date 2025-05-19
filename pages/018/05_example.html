@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Sidebar Menu in a Layout
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-50 from_inside_iframe">
+  <div class="flex h-screen">
+   <!-- Sidebar -->
+   <aside class="w-1/5 bg-indigo-800 text-white p-6">
+    <h2 class="text-2xl font-semibold mb-6">
+     App Menu
+    </h2>
+    <!-- 
+                Key classes: flex flex-col space-y-2 for the navigation list.
+                Gotcha addressed: Each link item (<a> tag) has py-2 px-3 for better clickability.
+            -->
+    <nav class="flex flex-col space-y-2">
+     <a class="py-2 px-3 rounded hover:bg-indigo-700 transition-colors" href="#">
+      Home
+     </a>
+     <a class="py-2 px-3 rounded hover:bg-indigo-700 transition-colors" href="#">
+      Products
+     </a>
+     <a class="py-2 px-3 rounded hover:bg-indigo-700 bg-indigo-600 font-semibold" href="#">
+      Orders (Active)
+     </a>
+     <a class="py-2 px-3 rounded hover:bg-indigo-700 transition-colors" href="#">
+      Customers
+     </a>
+     <a class="py-2 px-3 rounded hover:bg-indigo-700 transition-colors" href="#">
+      Reports
+     </a>
+    </nav>
+    <div class="mt-auto pt-6">
+     <!-- Push to bottom -->
+     <a class="block py-2 px-3 rounded hover:bg-indigo-700 transition-colors text-sm" href="#">
+      User Settings
+     </a>
+    </div>
+    <!-- 
+                Comment related to Gotcha:
+                The 'Gotcha' mentions that links might be too small to click. 
+                Here, each '<a>' tag is given 'py-2 px-3' (padding). This padding increases the 
+                effective size of the link, making it easier to tap or click, especially on mobile devices.
+                Without this padding, the links would just be the height and width of their text content.
+            -->
+   </aside>
+   <!-- Main Content Area -->
+   <main class="w-4/5 p-10 bg-white">
+    <h1 class="text-3xl font-bold text-gray-800">
+     Main Content Area
+    </h1>
+    <p class="mt-4 text-gray-600">
+     This area would display the main content of the page, selected from the sidebar menu.
+    </p>
+    <div class="mt-8 p-4 bg-indigo-50 border border-indigo-200 rounded-md">
+     <h3 class="font-semibold text-indigo-700">
+      Focus Point:
+     </h3>
+     <p class="text-indigo-600 text-sm">
+      The sidebar on the left uses `flex flex-col space-y-2` for its navigation links. Crucially, each link includes padding like `py-2 px-3` to ensure good touch targets, addressing the common pitfall (Gotcha).
+     </p>
+    </div>
+   </main>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

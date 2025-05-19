@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS - Consistent Text Sizes (Gotcha)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 font-sans bg-gray-50 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-3xl font-bold mb-6 text-center text-purple-600">
+    Gotcha: Inconsistent Text Size Usage
+   </h1>
+   <!-- Gotcha Demonstration: Inconsistent Text Sizes -->
+   <div class="mb-8 p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold mb-3 text-red-600">
+     Problem: Disorganized UI due to Inconsistent Sizes
+    </h2>
+    <p class="text-sm mb-4 text-gray-600">
+     <!-- HTML Comment: The following examples illustrate the "Gotcha".
+                     When text sizes are applied without a clear hierarchy or consistency,
+                     the user interface can appear messy and difficult to scan.
+                     Tailwind provides a scale, but its effectiveness relies on thoughtful application. -->
+    </p>
+    <div class="mb-6 p-4 border border-red-200 rounded-md bg-red-50">
+     <h3 class="text-sm font-bold text-red-700">
+      Example of Poor Hierarchy:
+     </h3>
+     <p class="text-xs mt-1">
+      This is an "important" section title.
+     </p>
+     <!-- Title is very small -->
+     <p class="text-xl mt-1 text-gray-800">
+      Followed by a paragraph with much larger text, which feels disproportionate and confusing for visual flow.
+     </p>
+    </div>
+    <div class="p-4 border border-red-200 rounded-md bg-red-50">
+     <h3 class="text-lg font-bold text-red-700">
+      Example of Random Sizing:
+     </h3>
+     <p class="text-2xl mt-1">
+      A very large statement.
+     </p>
+     <p class="text-xs mt-1 text-gray-500">
+      And then some tiny supporting details.
+     </p>
+     <p class="text-base mt-1">
+      Then back to a base size for no clear reason.
+     </p>
+     <p class="mt-3 text-xs text-red-500 italic">
+      *This kind of inconsistency makes the content harder to read and understand.
+     </p>
+    </div>
+   </div>
+   <!-- Corrected Example: Consistent and Hierarchical Text Sizes -->
+   <div class="p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold mb-3 text-green-600">
+     Solution: Consistent and Hierarchical Text Sizes
+    </h2>
+    <p class="text-sm mb-4 text-gray-600">
+     <!-- HTML Comment: This section demonstrates a better approach.
+                     By using text sizes from Tailwind's scale in a consistent and hierarchical manner,
+                     we create a more organized and visually appealing UI. -->
+    </p>
+    <div class="mb-6 p-4 border border-green-200 rounded-md bg-green-50">
+     <h3 class="text-xl font-bold text-green-700">
+      Clear Main Heading
+     </h3>
+     <p class="text-base mt-1 text-gray-800">
+      This paragraph uses
+      <code class="bg-gray-200 px-1 rounded font-mono">
+       text-base
+      </code>
+      , which is appropriate for body content under a larger heading.
+     </p>
+    </div>
+    <div class="p-4 border border-green-200 rounded-md bg-green-50">
+     <h3 class="text-lg font-bold text-green-700">
+      Sub-Heading or Section Title
+     </h3>
+     <p class="text-sm mt-1 text-gray-700">
+      Supporting details or captions can use
+      <code class="bg-gray-200 px-1 rounded font-mono">
+       text-sm
+      </code>
+      or
+      <code class="bg-gray-200 px-1 rounded font-mono">
+       text-xs
+      </code>
+      for less emphasis, maintaining a clear visual order.
+     </p>
+     <p class="mt-3 text-xs text-green-500 italic">
+      *A predictable use of the text scale improves readability and professionalism.
+     </p>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

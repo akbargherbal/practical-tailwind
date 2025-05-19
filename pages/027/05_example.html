@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Line Height - Gotcha &amp; Alignment
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <style>
+   /* Simple styling for a placeholder icon */
+        .icon-placeholder {
+            font-size: 1.5rem; /* 24px */
+            line-height: 1; /* To make its own line-height predictable */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem; /* 32px */
+            height: 2rem; /* 32px */
+            background-color: #e0e0e0;
+            border-radius: 0.25rem;
+            margin-right: 0.5rem;
+        }
+  </style>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-6">
+    Line Height (leading-*) - Gotcha: Alignment with Adjacent Elements
+   </h1>
+   <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-6" role="alert">
+    <p class="font-bold">
+     The "Gotcha"
+    </p>
+    <p>
+     <code>
+      leading-*
+     </code>
+     (line-height) can sometimes cause unexpected vertical spacing issues or
+                misalignment when trying to line up multi-line text with adjacent single-line elements (like icons).
+                The text block's overall height is affected by line-height, which can make precise vertical centering tricky
+                if relying solely on the baseline or text-top/bottom alignment.
+    </p>
+   </div>
+   <div class="space-y-8">
+    <div>
+     <h2 class="text-lg font-semibold mb-2">
+      Scenario: Text with an "Icon"
+     </h2>
+     <p class="mb-2">
+      Here, we have some text with
+      <code class="bg-gray-200 px-1 rounded">
+       leading-relaxed
+      </code>
+      next to an icon-like element.
+                Without specific alignment utilities for the container, the perceived vertical center of the multi-line text block might not perfectly align with the center of the icon.
+     </p>
+     <!-- Gotcha Demonstration: Potential Misalignment -->
+     <div class="bg-white p-4 rounded shadow mb-4">
+      <h3 class="text-md font-medium mb-2">
+       Potential Misalignment (Conceptual)
+      </h3>
+      <!--
+                        Here, we just place the icon and text block side-by-side.
+                        The default vertical alignment of inline-block or block elements might not
+                        provide perfect visual centering when text wraps and has a specific line-height.
+                        The icon's own line-height and size also play a role.
+                    -->
+      <div class="border p-3 flex">
+       <span class="icon-placeholder">
+        ★
+       </span>
+       <p class="leading-relaxed max-w-xs">
+        This text has
+        <code class="bg-gray-200 px-1 rounded">
+         leading-relaxed
+        </code>
+        . Notice how its vertical distribution
+                            might seem a bit off when placed next to an icon without careful alignment.
+                            The effect can be subtle or more pronounced depending on various factors.
+       </p>
+      </div>
+      <p class="mt-1 text-sm text-gray-600">
+       <em>
+        (Text may or may not look perfectly centered with the icon by default; it depends on many factors. The point is line-height affects the text block's internal spacing.)
+       </em>
+      </p>
+     </div>
+     <!-- Addressing the Gotcha: Using Flexbox for Alignment -->
+     <div class="bg-white p-4 rounded shadow">
+      <h3 class="text-md font-medium mb-2">
+       Addressing with Flexbox Alignment
+      </h3>
+      <p class="mb-2">
+       One common way to address this is to use Flexbox and its alignment properties (e.g.,
+       <code class="bg-gray-200 px-1 rounded">
+        items-center
+       </code>
+       )
+                        on the parent container. This aligns the items (icon and text block) along the cross-axis (vertically, by default for a row).
+      </p>
+      <div class="border p-3 flex items-center">
+       <!--
+                            The `flex items-center` on this div will vertically center the icon
+                            and the entire paragraph block relative to each other.
+                            This mitigates the issue of the internal line-height of the text
+                            causing visual misalignment with the adjacent icon.
+                        -->
+       <span class="icon-placeholder">
+        ★
+       </span>
+       <p class="leading-relaxed max-w-xs">
+        With
+        <code class="bg-gray-200 px-1 rounded">
+         flex items-center
+        </code>
+        on the parent,
+                            this text (using
+        <code class="bg-gray-200 px-1 rounded">
+         leading-relaxed
+        </code>
+        ) and the icon
+                            are now vertically centered relative to each other.
+       </p>
+      </div>
+      <p class="mt-2 text-sm text-gray-700">
+       This approach is generally robust for aligning elements of different heights or internal spacing.
+                        The key is to manage the alignment at the container level.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

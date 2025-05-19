@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill - Sticky Gotcha &amp; Fixed Positioning
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-50 from_inside_iframe">
+  <div class="container mx-auto p-6">
+   <h1 class="text-3xl font-bold mb-6 text-center">
+    Sticky Gotcha &amp; Fixed Element Demo
+   </h1>
+   <!-- Section 1: Demonstrating the 'sticky' Gotcha -->
+   <h2 class="text-2xl font-semibold mb-3 mt-8">
+    Demonstrating `sticky` Gotcha
+   </h2>
+   <p class="mb-4">
+    <code>
+     sticky
+    </code>
+    elements only stick within their direct parent's scrollable area. If the parent isn't tall enough or doesn't scroll, the sticky behavior won't be apparent for that parent.
+   </p>
+   <!-- Gotcha: Sticky element in a parent that is NOT tall enough to scroll significantly -->
+   <div class="bg-yellow-100 border border-yellow-400 p-4 rounded mb-6">
+    <h3 class="font-semibold text-lg mb-2">
+     Parent A (Not Tall Enough for Sticky Effect)
+    </h3>
+    <div class="sticky top-0 bg-yellow-300 p-3 shadow-md rounded">
+     I am 'sticky top-0' inside Parent A.
+    </div>
+    <p class="mt-2">
+     This parent (yellow box) is short. If you scroll the main page, I won't stick relative to the *viewport* because my parent isn't the main scrolling container for that purpose. I only stick relative to Parent A's content, but Parent A has very little content to scroll past me.
+    </p>
+    <div class="h-20">
+    </div>
+    <!-- Small amount of content -->
+   </div>
+   <!-- Correct: Sticky element in a parent that IS tall enough and set to scroll -->
+   <div class="bg-green-100 border border-green-400 p-4 rounded mb-6 h-96 overflow-y-auto">
+    <h3 class="font-semibold text-lg mb-2">
+     Parent B (Tall Enough &amp; Scrollable)
+    </h3>
+    <div class="sticky top-0 bg-green-400 text-white p-3 shadow-md rounded z-10">
+     <!-- z-10 can be useful if sticky elements overlap other content within their parent -->
+     I am 'sticky top-0' inside Parent B.
+    </div>
+    <p class="mt-2">
+     Scroll down *inside this green box*. You'll see me stick to the top of *this green box*.
+    </p>
+    <div class="h-48 mt-3">
+     Placeholder content...
+    </div>
+    <div class="h-48">
+     More placeholder content...
+    </div>
+    <div class="h-48">
+     Even more placeholder content to ensure scrolling within Parent B.
+    </div>
+   </div>
+   <!-- Section 2: Demonstrating 'fixed' positioning -->
+   <h2 class="text-2xl font-semibold mb-3 mt-12">
+    Demonstrating `fixed` Positioning
+   </h2>
+   <!-- A fixed element -->
+   <div class="fixed top-0 left-0 w-full bg-purple-600 text-white p-4 shadow-lg z-50">
+    <p class="text-center font-bold">
+     I am a `fixed top-0 left-0 w-full` header.
+    </p>
+   </div>
+   <!-- Gotcha for 'fixed': Content can go underneath -->
+   <!-- To prevent the main page content from being obscured by the fixed header,
+             we add padding to the top of the main content container.
+             The fixed header has p-4, which is 1rem padding top/bottom.
+             So, its height is roughly 2rem + text height. Let's use pt-20 (5rem) on the content wrapper.
+        -->
+   <div class="pt-20">
+    <h3 class="font-semibold text-lg mb-2">
+     Content Area Below Fixed Header
+    </h3>
+    <p class="mb-4">
+     This content would be partially hidden by the `fixed` purple header if we didn't add `pt-20` (padding-top) to this container. `fixed` elements are removed from the normal document flow.
+    </p>
+    <div class="space-y-4">
+     <div class="h-40 bg-white p-4 rounded shadow">
+      Content Block 1 to make page scrollable.
+     </div>
+     <div class="h-40 bg-white p-4 rounded shadow">
+      Content Block 2.
+     </div>
+     <div class="h-40 bg-white p-4 rounded shadow">
+      Content Block 3.
+     </div>
+     <div class="h-40 bg-white p-4 rounded shadow">
+      Content Block 4.
+     </div>
+     <div class="h-40 bg-white p-4 rounded shadow">
+      Content Block 5.
+     </div>
+    </div>
+   </div>
+   <div class="fixed bottom-5 right-5 bg-red-500 text-white p-3 rounded-full shadow-lg">
+    `fixed bottom-5 right-5` (e.g., for a chat button)
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Transition: Basic Effects
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex flex-col items-center space-y-6 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Basic Transitions on Common Properties
+  </h1>
+  <!-- Example 1: Transitioning common properties like background color, text color, and transform -->
+  <div class="p-4">
+   <button class="bg-blue-500 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-red-500 hover:text-gray-200 hover:scale-110 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition duration-300 ease-in-out">
+    Hover Over Me
+   </button>
+   <p class="mt-2 text-sm text-gray-600 text-center">
+    Transitions background, text color, scale, and shadow (common properties).
+    <br/>
+    Uses:
+    <code>
+     transition duration-300 ease-in-out
+    </code>
+   </p>
+  </div>
+  <div class="p-4">
+   <div class="w-32 h-32 bg-green-400 rounded-md flex items-center justify-center hover:bg-green-600 hover:opacity-75 transition duration-500 ease-out">
+    <span class="text-white font-medium">
+     Hover Me
+    </span>
+   </div>
+   <p class="mt-2 text-sm text-gray-600 text-center">
+    Transitions background and opacity.
+    <br/>
+    Uses:
+    <code>
+     transition duration-500 ease-out
+    </code>
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

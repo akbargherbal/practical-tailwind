@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: justify-between Gotcha (Multiple Groups)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Example 2: `justify-between` Gotcha - More Than Two Groups
+  </h1>
+  <p class="mb-6">
+   The `justify-between` class spaces out the direct children of a flex container. If you have more than two items or groups, they will be distributed with space between each.
+  </p>
+  <div class="mb-8 p-4 border rounded-lg">
+   <h2 class="text-xl font-semibold mb-2">
+    Gotcha: `justify-between` with Three Items
+   </h2>
+   <p class="text-sm text-gray-600 mb-2">
+    Here, `justify-between` is applied to a container with three direct child divs. Notice how all three are spaced apart, not just the first and last.
+   </p>
+   <div class="flex justify-between items-center p-4 bg-red-200 rounded-md">
+    <div class="bg-red-400 p-2 text-white rounded">
+     Item 1 (Left)
+    </div>
+    <div class="bg-red-400 p-2 text-white rounded">
+     Item 2 (Center)
+    </div>
+    <div class="bg-red-400 p-2 text-white rounded">
+     Item 3 (Right)
+    </div>
+   </div>
+   <p class="mt-2 text-sm text-gray-700">
+    <!-- Gotcha Explanation -->
+    This behavior might be unexpected if you wanted "Item 1" and "Item 2" grouped on the left, and "Item 3" on the right.
+            `justify-between` works on the immediate children. "Item 2" becomes the middle element that gets space around it.
+   </p>
+  </div>
+  <div class="p-4 border rounded-lg">
+   <h2 class="text-xl font-semibold mb-2">
+    Solution: Nesting Flex Containers for Grouping
+   </h2>
+   <p class="text-sm text-gray-600 mb-2">
+    To push a group of items to one side and another item/group to the other, you can nest flex containers or group items within a parent div.
+   </p>
+   <div class="flex justify-between items-center p-4 bg-green-200 rounded-md">
+    <!-- Group 1: Items to keep together on the left -->
+    <div class="flex items-center">
+     <div class="bg-green-500 p-2 text-white rounded">
+      Logo
+     </div>
+     <nav class="ml-4">
+      <a class="mr-2 text-green-800 hover:text-green-600" href="#">
+       Home
+      </a>
+      <a class="mr-2 text-green-800 hover:text-green-600" href="#">
+       About
+      </a>
+     </nav>
+    </div>
+    <!-- Group 2: Item to push to the right -->
+    <div class="bg-green-500 p-2 text-white rounded">
+     Login
+    </div>
+   </div>
+   <p class="mt-2 text-sm text-gray-700">
+    <!-- Solution Explanation -->
+    Here, the "Logo" and "nav" are wrapped in a `div`. This wrapper `div` becomes the first flex item.
+            The "Login" `div` is the second flex item.
+            Now, `justify-between` on the parent correctly pushes the "Logo/nav group" to the left and "Login" to the right.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Error Alert &amp; Contrast Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 font-sans from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Demonstrating Alert Styling and Color Contrast Gotcha
+  </h1>
+  <!-- 
+        Gotcha Demonstration: Poor Color Contrast
+        The "Gotcha" is about poor color contrast.
+        This first error alert example intentionally uses a very light text color (text-red-200)
+        on a light background (bg-red-100), making it hard to read.
+    -->
+  <div class="mb-6">
+   <h2 class="text-xl font-semibold mb-2 text-red-600">
+    Error Alert - Incorrect (Poor Contrast - Gotcha)
+   </h2>
+   <div class="bg-red-100 border border-red-400 text-red-200 px-4 py-3 rounded relative" role="alert">
+    <!-- 
+                GOTCHA APPLIED HERE: text-red-200 on bg-red-100.
+                This text is too light against the light red background, illustrating poor contrast.
+            -->
+    <strong class="font-bold">
+     Error!
+    </strong>
+    <span class="block sm:inline">
+     This text is hard to read due to poor contrast (text-red-200 on bg-red-100).
+    </span>
+   </div>
+   <p class="text-sm text-gray-600 mt-1">
+    <em>
+     Notice how the text above is difficult to read. This is the "Gotcha" in action.
+    </em>
+   </p>
+  </div>
+  <!-- 
+        Corrected Example: Good Color Contrast
+        This second error alert example uses a darker text color (text-red-700)
+        on the same light background (bg-red-100), ensuring good readability.
+        This addresses the "Gotcha".
+    -->
+  <div class="mb-6">
+   <h2 class="text-xl font-semibold mb-2 text-green-600">
+    Error Alert - Corrected (Good Contrast)
+   </h2>
+   <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+    <!-- 
+                GOTCHA ADDRESSED HERE: text-red-700 on bg-red-100.
+                This text has sufficient contrast against the light red background, making it accessible.
+            -->
+    <strong class="font-bold">
+     Error!
+    </strong>
+    <span class="block sm:inline">
+     This text is much easier to read (text-red-700 on bg-red-100).
+    </span>
+   </div>
+   <p class="text-sm text-gray-600 mt-1">
+    <em>
+     This version uses
+     <code>
+      text-red-700
+     </code>
+     for better contrast and readability.
+    </em>
+   </p>
+  </div>
+  <!-- A warning alert example, also ensuring good contrast -->
+  <div class="mb-6">
+   <h2 class="text-xl font-semibold mb-2">
+    Example 2.1: Warning Alert (Good Contrast)
+   </h2>
+   <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative" role="alert">
+    <strong class="font-bold">
+     Warning!
+    </strong>
+    <span class="block sm:inline">
+     Your session is about to expire. Please save your work.
+    </span>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

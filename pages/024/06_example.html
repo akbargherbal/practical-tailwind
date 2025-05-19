@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS - Text Size Examples
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 font-sans bg-gray-50 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-3xl font-bold mb-6 text-center text-blue-600">
+    Exploring Tailwind CSS Text Sizes
+   </h1>
+   <!-- Basic demonstration of different text sizes -->
+   <div class="bg-white p-6 rounded-lg shadow-md space-y-3">
+    <p class="text-xs border-b pb-2">
+     This is extra small text using
+     <code class="bg-gray-200 px-1 rounded font-mono">
+      text-xs
+     </code>
+     . Useful for tiny disclaimers or captions.
+    </p>
+    <p class="text-sm border-b pb-2">
+     This is small text using
+     <code class="bg-gray-200 px-1 rounded font-mono">
+      text-sm
+     </code>
+     . Good for secondary information.
+    </p>
+    <p class="text-base border-b pb-2">
+     This is base text using
+     <code class="bg-gray-200 px-1 rounded font-mono">
+      text-base
+     </code>
+     .
+     <!-- Gotcha: text-base usually refers to the browser's default font size (typically 16px), it's the starting point. -->
+    </p>
+    <p class="text-lg border-b pb-2">
+     This is large text using
+     <code class="bg-gray-200 px-1 rounded font-mono">
+      text-lg
+     </code>
+     . Suitable for subheadings.
+    </p>
+    <p class="text-xl">
+     This is extra large text using
+     <code class="bg-gray-200 px-1 rounded font-mono">
+      text-xl
+     </code>
+     . Often used for main headings.
+    </p>
+   </div>
+   <div class="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg">
+    <h2 class="text-xl font-semibold mb-3 text-blue-700">
+     Understanding `text-base`
+    </h2>
+    <p class="text-sm text-gray-700">
+     The
+     <code class="bg-gray-200 px-1 rounded font-mono text-sm">
+      text-base
+     </code>
+     utility is a crucial part of Tailwind's typography scale.
+                It sets the font size to the default font size configured in the user's browser, which is most commonly 16 pixels.
+                This makes
+     <code class="bg-gray-200 px-1 rounded font-mono text-sm">
+      text-base
+     </code>
+     a reliable foundation for your body copy, ensuring readability and respecting user preferences.
+                While it's the "base", it doesn't mean it's visually "medium" among all available Tailwind sizes (
+     <code class="bg-gray-200 px-1 rounded font-mono text-sm">
+      text-xs
+     </code>
+     ,
+     <code class="bg-gray-200 px-1 rounded font-mono text-sm">
+      text-sm
+     </code>
+     ,
+     <code class="bg-gray-200 px-1 rounded font-mono text-sm">
+      text-lg
+     </code>
+     ,
+     <code class="bg-gray-200 px-1 rounded font-mono text-sm">
+      text-xl
+     </code>
+     , etc.).
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind - Default Vertical Stacking
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Example 1: Default Block Element Stacking
+  </h1>
+  <p class="mb-2 text-sm text-gray-700">
+   Many HTML elements, like `div`s and `p`aragraphs, are "block-level" elements.
+        By default, they take up the full width available and stack one on top of the other.
+        You often don't need any special Tailwind classes for basic vertical stacking.
+  </p>
+  <div class="container mx-auto p-4 border border-gray-300 rounded">
+   <!-- These divs will stack vertically by default -->
+   <div class="bg-blue-500 text-white p-4 rounded mb-2">
+    Item 1 (div)
+   </div>
+   <div class="bg-green-500 text-white p-4 rounded mb-2">
+    Item 2 (div)
+   </div>
+   <p class="bg-red-500 text-white p-4 rounded mb-2">
+    Item 3 (p tag)
+   </p>
+   <div class="bg-yellow-500 text-black p-4 rounded">
+    Item 4 (div)
+   </div>
+  </div>
+  <div class="mt-6 p-4 bg-amber-100 border border-amber-300 rounded">
+   <h2 class="font-semibold text-amber-800">
+    Gotcha Note:
+   </h2>
+   <p class="text-sm text-amber-700">
+    The "Gotcha" is relevant here: for simple stacking as shown above, `flex flex-col` isn't strictly necessary
+            because these are block elements which stack naturally. The next example shows when `flex flex-col` becomes useful.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Rounded Corners - Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 font-sans from_inside_iframe">
+  <div class="container mx-auto space-y-8">
+   <h1 class="text-3xl font-bold mb-6 text-center">
+    Tailwind CSS: Rounded Corners - Gotcha
+   </h1>
+   <div class="bg-white p-6 shadow-lg rounded-lg">
+    <h2 class="text-xl font-semibold mb-4">
+     The "Gotcha": Parent Rounding vs. Child Content
+    </h2>
+    <p class="mb-4 text-gray-700">
+     Applying
+     <code>
+      rounded-*
+     </code>
+     to a parent container doesn't automatically round the corners of its child elements if they fill the parent (like an image). The child's sharp corners might "poke out".
+    </p>
+    <!-- Section 1: Demonstrating the Gotcha -->
+    <div class="mb-8 p-4 border border-red-300 rounded-md bg-red-50">
+     <h3 class="text-lg font-medium mb-2 text-red-700">
+      1. The Problem: Child Overflowing Parent's Rounded Corners
+     </h3>
+     <p class="text-sm text-gray-600 mb-3">
+      Here, the parent
+      <code>
+       div
+      </code>
+      has
+      <code>
+       rounded-xl
+      </code>
+      , but the image inside fills the parent and its sharp corners are visible.
+     </p>
+     <div class="w-64 h-40 bg-blue-500 rounded-xl mx-auto">
+      <!-- The parent has rounded corners -->
+      <img alt="Placeholder Image" class="w-full h-full object-cover" src="https://via.placeholder.com/300x200/FFD700/000000?Text=Sharp+Child"/>
+      <!-- This image will have sharp corners that visually break the parent's rounding -->
+     </div>
+     <p class="text-xs text-gray-500 mt-2 text-center">
+      Notice the yellow image's sharp corners "poking out" of the blue rounded container.
+     </p>
+    </div>
+    <!-- Section 2: Solution 1 - overflow-hidden on Parent -->
+    <div class="mb-8 p-4 border border-green-300 rounded-md bg-green-50">
+     <h3 class="text-lg font-medium mb-2 text-green-700">
+      2. Solution A: Using
+      <code>
+       overflow-hidden
+      </code>
+      on the Parent
+     </h3>
+     <p class="text-sm text-gray-600 mb-3">
+      Adding
+      <code>
+       overflow-hidden
+      </code>
+      to the parent container will clip the child content to the parent's rounded shape.
+     </p>
+     <div class="w-64 h-40 bg-green-500 rounded-xl overflow-hidden mx-auto">
+      <!-- Parent has rounded corners AND overflow-hidden -->
+      <img alt="Placeholder Image" class="w-full h-full object-cover" src="https://via.placeholder.com/300x200/90EE90/000000?Text=Clipped+Child"/>
+      <!-- The image's corners are now clipped by the parent's rounded boundary -->
+     </div>
+     <p class="text-xs text-gray-500 mt-2 text-center">
+      The image is now neatly contained within the parent's rounded bounds.
+     </p>
+    </div>
+    <!-- Section 3: Solution 2 - Rounding the Child Element -->
+    <div class="p-4 border border-blue-300 rounded-md bg-blue-50">
+     <h3 class="text-lg font-medium mb-2 text-blue-700">
+      3. Solution B: Applying
+      <code>
+       rounded-*
+      </code>
+      to the Child Element
+     </h3>
+     <p class="text-sm text-gray-600 mb-3">
+      Alternatively, you can apply the same (or appropriate)
+      <code>
+       rounded-*
+      </code>
+      utility to the child element itself.
+     </p>
+     <div class="w-64 h-40 bg-indigo-500 rounded-xl mx-auto">
+      <!-- Parent has rounded corners -->
+      <img alt="Placeholder Image" class="w-full h-full object-cover rounded-xl" src="https://via.placeholder.com/300x200/ADD8E6/000000?Text=Rounded+Child"/>
+      <!-- The child image ALSO has rounded corners -->
+     </div>
+     <p class="text-xs text-gray-500 mt-2 text-center">
+      Both parent and child are rounded, achieving the desired effect.
+     </p>
+    </div>
+    <p class="mt-6 text-gray-700">
+     <strong>
+      Key Takeaway:
+     </strong>
+     For elements like images or embedded content that might fill a rounded parent, use either
+     <code>
+      overflow-hidden
+     </code>
+     on the parent or apply rounding directly to the child to maintain the visual integrity of the rounded corners.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

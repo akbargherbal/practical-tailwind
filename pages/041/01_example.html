@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Hide on Small, Show Larger
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto text-center">
+   <h1 class="text-2xl font-bold mb-4">
+    Responsive Visibility Example 1
+   </h1>
+   <p class="mb-6">
+    Resize your browser window to see the changes.
+   </p>
+   <!-- 
+            This element is hidden by default (on extra-small screens).
+            It becomes a 'block' level element from the 'sm' breakpoint (640px) and larger.
+        -->
+   <div class="hidden sm:block bg-blue-500 text-white p-4 rounded-lg shadow-md">
+    <p class="text-lg font-semibold">
+     This element is HIDDEN on small screens (xs),
+    </p>
+    <p>
+     and VISIBLE on 'sm' screens (640px) and UP.
+    </p>
+    <p class="mt-2 text-sm">
+     (Using:
+     <code>
+      hidden sm:block
+     </code>
+     )
+    </p>
+   </div>
+   <div class="block sm:hidden bg-green-500 text-white p-4 rounded-lg shadow-md mt-4">
+    <p class="text-lg font-semibold">
+     You are on a SMALL screen (or browser window is narrow).
+    </p>
+    <p>
+     The blue box above is hidden.
+    </p>
+   </div>
+   <div class="mt-8 p-4 bg-gray-200 rounded">
+    <p>
+     <strong>
+      Instructions:
+     </strong>
+    </p>
+    <ul class="list-disc list-inside text-left">
+     <li>
+      Make your browser window very narrow: The blue box should disappear, and the green box should be visible.
+     </li>
+     <li>
+      Make your browser window wider (past 640px): The blue box should appear, and the green box should disappear.
+     </li>
+    </ul>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

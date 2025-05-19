@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Gradient &amp; Text Contrast (Gotcha)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-4">
+    Example 2: Gradient &amp; Text Contrast (Gotcha)
+   </h1>
+   <p class="mb-4">
+    <strong>
+     Gotcha:
+    </strong>
+    Ensure any text placed on top of a gradient maintains sufficient contrast across all parts of the gradient for readability.
+   </p>
+   <!-- Scenario 1: Problematic Contrast -->
+   <h2 class="text-xl font-semibold mt-6 mb-2">
+    Problematic Contrast Example:
+   </h2>
+   <div class="h-48 w-full p-6 rounded-lg shadow-lg bg-gradient-to-r from-yellow-300 via-pink-400 to-indigo-600 flex flex-col justify-center items-center mb-6">
+    <p class="text-black text-lg font-medium mb-2">
+     Black text: Hard to read on indigo.
+    </p>
+    <p class="text-white text-lg font-medium">
+     White text: Hard to read on yellow.
+    </p>
+    <!-- HTML Comment addressing the gotcha -->
+    <!-- 
+                In the gradient above (yellow to pink to indigo):
+                - Black text becomes hard to read as the background darkens towards indigo.
+                - White text becomes hard to read as the background lightens towards yellow.
+                This illustrates the importance of considering text contrast across the *entire* gradient.
+            -->
+   </div>
+   <!-- Scenario 2: Improved Contrast -->
+   <h2 class="text-xl font-semibold mt-6 mb-2">
+    Improved Contrast Example:
+   </h2>
+   <div class="h-48 w-full p-6 rounded-lg shadow-lg bg-gradient-to-r from-sky-600 to-cyan-400 flex items-center justify-center mb-6">
+    <p class="text-white text-2xl font-bold drop-shadow-md">
+     White text with a drop shadow on a harmonious blue gradient.
+    </p>
+    <!-- 
+                Solution:
+                1. Choose gradient colors that don't vary too extremely in lightness if a single text color is used.
+                2. Pick a text color that contrasts well with the *average* color of the gradient.
+                3. For more complex gradients, consider adding a subtle text-shadow (like `drop-shadow-md` used here) 
+                   or a semi-transparent background to the text itself to ensure readability.
+                4. Test readability thoroughly.
+            -->
+   </div>
+   <div class="h-48 w-full p-6 rounded-lg shadow-lg bg-gradient-to-r from-gray-100 to-gray-400 flex items-center justify-center">
+    <p class="text-black text-2xl font-bold">
+     Black text on a light gray gradient.
+    </p>
+    <!-- This gradient provides a relatively light background, making black text consistently readable. -->
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

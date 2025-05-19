@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Grid: Basic Layout
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Basic 3-Column Grid Layout
+  </h1>
+  <p class="mb-6">
+   This example demonstrates a simple grid with 3 columns and a gap between items.
+  </p>
+  <!-- Basic grid container using grid, grid-cols-3, and gap-4 -->
+  <div class="grid grid-cols-3 gap-4">
+   <div class="bg-sky-500 text-white p-6 rounded-lg shadow-md text-center">
+    Item 1
+   </div>
+   <div class="bg-sky-500 text-white p-6 rounded-lg shadow-md text-center">
+    Item 2
+   </div>
+   <div class="bg-sky-500 text-white p-6 rounded-lg shadow-md text-center">
+    Item 3
+   </div>
+   <div class="bg-sky-500 text-white p-6 rounded-lg shadow-md text-center">
+    Item 4
+   </div>
+   <div class="bg-sky-500 text-white p-6 rounded-lg shadow-md text-center">
+    Item 5
+   </div>
+   <div class="bg-sky-500 text-white p-6 rounded-lg shadow-md text-center">
+    Item 6
+   </div>
+  </div>
+  <div class="mt-8 p-4 bg-yellow-100 border border-yellow-300 rounded">
+   <h2 class="font-semibold text-yellow-800">
+    Key Classes Used:
+   </h2>
+   <ul class="list-disc list-inside text-yellow-700">
+    <li>
+     <code>
+      grid
+     </code>
+     : Establishes the element as a grid container.
+    </li>
+    <li>
+     <code>
+      grid-cols-3
+     </code>
+     : Defines 3 columns of equal width.
+    </li>
+    <li>
+     <code>
+      gap-4
+     </code>
+     : Adds a 1rem (16px by default) gap between grid items.
+    </li>
+   </ul>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

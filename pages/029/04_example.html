@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Truncate "Gotcha" (Single-Line Only)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-6 text-center">
+    `truncate` Gotcha: Single-Line Behavior
+   </h1>
+   <div class="p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 mb-6">
+    <p class="font-bold">
+     The "Gotcha"
+    </p>
+    <p>
+     <code>
+      truncate
+     </code>
+     only works reliably on a single line of text. It forces text to a single line (due to
+     <code>
+      white-space: nowrap
+     </code>
+     ) before applying ellipsis. For multi-line text truncation (e.g., "..." after 2 or 3 lines), you need the
+     <code>
+      @tailwindcss/line-clamp
+     </code>
+     plugin.
+    </p>
+   </div>
+   <!-- Example 1: Truncate on what appears to be a single line input -->
+   <div class="mb-8 p-6 border rounded-lg bg-white shadow-lg">
+    <h2 class="text-xl font-semibold mb-3 text-gray-700">
+     Standard Single-Line Truncation
+    </h2>
+    <div class="w-80 bg-blue-100 p-3 rounded">
+     <p class="truncate text-blue-800">
+      This is a very long string of text designed to demonstrate standard truncation. It will be cut off with an ellipsis because it's too long for the container.
+     </p>
+    </div>
+    <p class="mt-3 text-sm text-gray-600">
+     The
+     <code>
+      truncate
+     </code>
+     class works as expected for this single line of text.
+    </p>
+   </div>
+   <!-- Example 2: Demonstrating the "Gotcha" with multi-line *content* and 'truncate' -->
+   <div class="mb-8 p-6 border rounded-lg bg-white shadow-lg">
+    <h2 class="text-xl font-semibold mb-3 text-gray-700">
+     "Gotcha":
+     <code>
+      truncate
+     </code>
+     on Multi-Line Content
+    </h2>
+    <p class="mb-2 text-sm text-gray-700">
+     The
+     <code>
+      truncate
+     </code>
+     class includes CSS property
+     <code>
+      white-space: nowrap
+     </code>
+     .
+                This forces the text onto a single line *before* applying the ellipsis.
+                It does not create an ellipsis after a specific number of *wrapped* lines.
+    </p>
+    <div class="w-80 bg-orange-100 p-3 rounded">
+     <p class="truncate text-orange-800">
+      This is a much longer paragraph that, without 'truncate', would naturally wrap into multiple lines within this container. However, because 'truncate' inherently applies 'white-space: nowrap', the entire paragraph is first forced onto a single line, and then an ellipsis is applied at the end of that single (now very long) line. It does not show, for example, two lines of text followed by "...".
+     </p>
+    </div>
+    <!--
+                GOTCHA DEMONSTRATION DETAILS:
+                The 'truncate' class is applied to the paragraph above.
+                The key CSS properties applied by 'truncate' are:
+                1. overflow: hidden
+                2. text-overflow: ellipsis
+                3. white-space: nowrap  <-- This is crucial for understanding the "gotcha".
+
+                Due to 'white-space: nowrap', the text is prevented from wrapping to subsequent lines,
+                regardless of how long it is or how much content it has.
+                It's treated as one continuous single line, which is then truncated if it exceeds the container's width.
+                
+                Therefore, 'truncate' will NOT give you an ellipsis at the end of the 2nd or 3rd
+                visible line of a text block that is allowed to wrap. For that specific multi-line
+                clamping behavior, Tailwind CSS offers the '@tailwindcss/line-clamp' plugin,
+                which provides classes like 'line-clamp-2', 'line-clamp-3', etc.
+            -->
+    <p class="mt-3 text-sm text-gray-600">
+     The text above, despite being a long paragraph, is forced to a single line by
+     <code>
+      truncate
+     </code>
+     and then an ellipsis is applied.
+                This clearly demonstrates that
+     <code>
+      truncate
+     </code>
+     is intended for single-line display only.
+    </p>
+   </div>
+   <!-- Example 3: For Comparison - Multi-Line Content Without 'truncate' -->
+   <div class="p-6 border rounded-lg bg-white shadow-lg">
+    <h2 class="text-xl font-semibold mb-3 text-gray-700">
+     Comparison: Multi-Line Content Without
+     <code>
+      truncate
+     </code>
+    </h2>
+    <div class="w-80 bg-green-100 p-3 rounded">
+     <p class="text-green-800">
+      This is a much longer paragraph that, without 'truncate', would naturally wrap into multiple lines within this container. However, because 'truncate' inherently applies 'white-space: nowrap', the entire paragraph is first forced onto a single line, and then an ellipsis is applied at the end of that single (now very long) line. It does not show, for example, two lines of text followed by "...".
+     </p>
+    </div>
+    <p class="mt-3 text-sm text-gray-600">
+     This is the same text as in the "Gotcha" example above, but shown in its natural wrapped state without
+     <code>
+      truncate
+     </code>
+     , to highlight the difference.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

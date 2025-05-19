@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind CSS: Button Rounding Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-slate-100 p-8 antialiased from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-3xl font-bold mb-8 text-center text-slate-700">
+    Button Rounding Gotcha: Inner Content
+   </h1>
+   <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-xl mb-8">
+    <p class="text-center text-gray-700 mb-2">
+     <strong>
+      The "Gotcha":
+     </strong>
+     If a button has inner content (like an icon, image, or even a pseudo-element background) that is square or has sharp corners, these corners might "poke out" from the button's rounded shape if the button does not also have
+     <code>
+      overflow-hidden
+     </code>
+     .
+    </p>
+   </div>
+   <div class="grid md:grid-cols-2 gap-8">
+    <!-- Gotcha Example: Inner content pokes out -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+     <h2 class="text-xl font-semibold mb-3 text-red-600">
+      Problem: Corners Poking Out
+     </h2>
+     <p class="text-sm text-gray-600 mb-4">
+      This button uses
+      <code>
+       rounded-full
+      </code>
+      . The inner square
+      <code>
+       &lt;span&gt;
+      </code>
+      has sharp corners that extend beyond the button's curve because
+      <code>
+       overflow-hidden
+      </code>
+      is missing.
+     </p>
+     <!-- Button with a square inner element demonstrating the gotcha -->
+     <button class="bg-rose-500 text-white font-semibold py-2 px-4 rounded-full w-48 h-14 flex items-center justify-center text-sm relative shadow-md mx-auto">
+      <!-- This inner span will have sharp corners that poke out -->
+      <span class="w-10 h-10 bg-rose-700 block mr-2">
+      </span>
+      Problem Here
+     </button>
+     <!-- HTML Comment demonstrating the Gotcha -->
+     <!-- 
+                    In the button above:
+                    - The button itself has `rounded-full`.
+                    - The inner `<span>` is a square.
+                    - Without `overflow-hidden` on the button, the corners of the dark rose `<span>`
+                      visibly extend beyond the button's curvature. This illustrates the "Gotcha".
+                -->
+     <p class="mt-3 text-xs text-gray-500 text-center">
+      Notice the sharp corners of the dark rose square.
+     </p>
+    </div>
+    <!-- Solution: Using overflow-hidden -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+     <h2 class="text-xl font-semibold mb-3 text-green-600">
+      Solution:
+      <code>
+       overflow-hidden
+      </code>
+     </h2>
+     <p class="text-sm text-gray-600 mb-4">
+      Applying
+      <code>
+       overflow-hidden
+      </code>
+      to the button clips any inner content that extends beyond its boundaries, maintaining the intended rounded shape.
+     </p>
+     <!-- Button with the same inner element, but with overflow-hidden -->
+     <button class="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-2 px-4 rounded-full w-48 h-14 flex items-center justify-center text-sm overflow-hidden shadow-md mx-auto transition duration-150 ease-in-out">
+      <!-- Inner square element, now clipped by overflow-hidden -->
+      <span class="w-10 h-10 bg-emerald-700 block mr-2">
+      </span>
+      Solved!
+     </button>
+     <!-- HTML Comment explaining the fix for the Gotcha -->
+     <!-- 
+                    In this corrected button:
+                    - The `overflow-hidden` class has been added to the button.
+                    - This clips the inner `<span>` at the button's rounded boundary.
+                    - The sharp corners of the inner span are no longer visible, solving the "Gotcha".
+                -->
+     <p class="mt-3 text-xs text-gray-500 text-center">
+      The dark emerald square's corners are now neatly clipped.
+     </p>
+    </div>
+   </div>
+   <div class="text-center mt-8">
+    <p class="text-sm text-gray-600">
+     Another way to handle this is to also apply rounding to the inner element if it's an image or icon, e.g., using
+     <code>
+      rounded-full
+     </code>
+     on an avatar inside a pill button.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

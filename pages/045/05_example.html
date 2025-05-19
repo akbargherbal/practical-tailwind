@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Responsive Nav - Visual Swap
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-4 from_inside_iframe">
+  <nav class="bg-blue-600 text-white p-4 rounded-md shadow-lg">
+   <div class="container mx-auto flex justify-between items-center">
+    <div class="text-xl font-bold">
+     MyLogo
+    </div>
+    <!-- Hamburger Icon: Visible on small screens, hidden on medium and larger (md:hidden) -->
+    <div class="md:hidden">
+     <button class="focus:outline-none" id="hamburger-button-static">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+       <path d="M4 6h16M4 12h16m-4 6h10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+       </path>
+      </svg>
+     </button>
+    </div>
+    <!-- Full Navigation: Hidden on small screens, visible as flex on medium and larger (hidden md:flex) -->
+    <div class="hidden md:flex space-x-4">
+     <a class="hover:text-blue-200" href="#">
+      Home
+     </a>
+     <a class="hover:text-blue-200" href="#">
+      About
+     </a>
+     <a class="hover:text-blue-200" href="#">
+      Services
+     </a>
+     <a class="hover:text-blue-200" href="#">
+      Contact
+     </a>
+    </div>
+   </div>
+   <!-- 
+            Gotcha Demonstration for Example 1:
+            The hamburger icon above is visible on mobile and the full navigation is visible on desktop.
+            However, clicking the hamburger icon currently does nothing.
+            Tailwind CSS handles the styling and responsive visibility (md:hidden, hidden md:flex),
+            but the *functionality* to toggle a mobile menu on click requires JavaScript.
+            This example purely shows the visual swap based on screen size.
+            A mobile menu that would open upon clicking the hamburger is not yet implemented here.
+        -->
+  </nav>
+  <div class="mt-4 p-4 bg-white rounded shadow">
+   <h2 class="text-lg font-semibold mb-2">
+    Explanation:
+   </h2>
+   <p>
+    Resize your browser window to see the changes:
+   </p>
+   <ul class="list-disc list-inside ml-4">
+    <li>
+     <strong>
+      Small screens:
+     </strong>
+     You'll see "MyLogo" and a hamburger icon. The full navigation links ("Home", "About", etc.) are hidden.
+    </li>
+    <li>
+     <strong>
+      Medium screens and up (typically 768px and wider):
+     </strong>
+     The hamburger icon disappears, and the full navigation links become visible next to "MyLogo".
+    </li>
+   </ul>
+   <p class="mt-4 text-sm text-red-600 bg-red-100 p-2 rounded">
+    <strong>
+     Gotcha Reminder:
+    </strong>
+    Clicking the hamburger icon does not open a menu in this example. Tailwind manages the display of elements based on screen size, but JavaScript is needed for click-based interactions like opening a mobile menu.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

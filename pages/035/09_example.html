@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Multi-Stop &amp; Diagonal Gradients
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 from_inside_iframe">
+  <div class="container mx-auto">
+   <h1 class="text-2xl font-bold mb-4">
+    Example 3: Multi-Stop &amp; Diagonal Gradients
+   </h1>
+   <!-- Example of a diagonal gradient -->
+   <h2 class="text-xl font-semibold mt-6 mb-2">
+    Diagonal Gradient (Bottom-Left)
+   </h2>
+   <div class="h-56 w-full p-8 rounded-lg shadow-lg bg-gradient-to-bl from-green-400 to-blue-500 flex items-center justify-center mb-8">
+    <p class="text-white text-3xl font-semibold">
+     Diagonal from Green to Blue
+    </p>
+   </div>
+   <!-- Example of a three-color gradient (using 'via') -->
+   <h2 class="text-xl font-semibold mt-6 mb-2">
+    Three-Color Gradient (using `via-`)
+   </h2>
+   <div class="h-56 w-full p-8 rounded-lg shadow-lg bg-gradient-to-r from-red-500 via-yellow-400 to-orange-500 flex items-center justify-center mb-8">
+    <p class="text-white text-3xl font-semibold drop-shadow-lg">
+     Red
+     <span class="text-black">
+      via
+     </span>
+     Yellow
+     <span class="text-white">
+      to
+     </span>
+     Orange
+    </p>
+    <!-- 
+                The `via-` class allows you to add one or more intermediate color stops.
+                The text color above is varied to demonstrate contrast issues across the gradient,
+                re-emphasizing the gotcha from the previous example. White text is generally okay here.
+            -->
+   </div>
+   <div class="mt-6 p-4 border border-red-300 bg-red-50 rounded-lg">
+    <h3 class="text-lg font-semibold text-red-700">
+     Gotcha Reminder: Color Harmony
+    </h3>
+    <p class="text-red-600">
+     Gradients can look harsh or dated if the chosen colors don't blend well.
+                For instance, a gradient with highly contrasting, non-harmonious colors might not be aesthetically pleasing.
+                It's often best to choose colors that are analogous (next to each other on the color wheel)
+                or that share a similar level of saturation or brightness for smoother transitions.
+    </p>
+    <p class="text-red-600 mt-2">
+     The "Red via Yellow to Orange" example above uses analogous colors, which generally blend well.
+                However, if you picked, for example,
+     <code class="bg-gray-200 px-1 rounded">
+      from-red-700 via-lime-500 to-purple-700
+     </code>
+     ,
+                the result might be jarring. Always preview your gradients!
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

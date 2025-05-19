@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Fixed Element &amp; Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-50 from_inside_iframe">
+  <!-- 
+        Example 2: 'fixed top-0 left-0' for a banner.
+        This demonstrates the 'fixed' positioning and its "Gotcha".
+    -->
+  <div class="fixed top-0 left-0 right-0 bg-red-500 text-white p-3 text-center shadow-md z-50">
+   This is a FIXED banner at the top of the page. It's removed from the normal document flow.
+  </div>
+  <!-- 
+        GOTCHA DEMONSTRATION for 'fixed':
+        Since the red banner above is 'fixed', it's removed from the normal document flow.
+        The content below would normally start at the very top of the viewport, underneath the banner.
+        To prevent this overlap, we've added 'pt-16' (padding-top: 4rem) to the main content container.
+        Try removing 'pt-16' from the <main> tag below to see the gotcha in effect.
+    -->
+  <main class="container mx-auto p-6 pt-16">
+   <!-- pt-16 is crucial here to avoid overlap -->
+   <h1 class="text-3xl font-bold mb-4">
+    Main Content Area
+   </h1>
+   <p class="mb-4">
+    This content area has top padding to ensure it doesn't get hidden beneath the fixed banner. If you inspect the page and remove the `pt-16` class from the `main` element, you'll see this text jump up and be partially obscured by the red banner. This illustrates how `fixed` elements can cause content to shift underneath them because they are taken out of the normal layout flow.
+   </p>
+   <div class="space-y-4 mt-6">
+    <div class="bg-white p-6 rounded-lg shadow-md h-32">
+     Content Block A
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-md h-32">
+     Content Block B
+    </div>
+    <p class="text-sm text-gray-700 my-4">
+     Even with scrolling, the red banner will remain fixed at the top. The `pt-16` on the `main` element ensures that content always starts below it.
+    </p>
+    <div class="bg-white p-6 rounded-lg shadow-md h-screen">
+     Extra tall content block to enable scrolling.
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-md h-32">
+     Content Block C
+    </div>
+   </div>
+  </main>
+  <footer class="text-center p-4 mt-8 text-gray-600">
+   <p>
+    © 2023 Fixed Element Example
+   </p>
+  </footer>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

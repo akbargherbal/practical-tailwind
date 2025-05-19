@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <title>
+   Tailwind CSS: Make corners rounded instead of sharp.
+  </title>
+  <style>
+   /* Custom styles if needed, though Tailwind should handle most */
+  </style>
+  <style>
+   iframe.default_style {
+  width: 100%;
+  min-height: 300px; /* Reasonable minimum */
+  border: none;
+  display: block;
+}
+  </style>
+ </head>
+ <body class="bg-slate-50">
+  <div class="container mx-auto p-6 md:p-10 font-sans text-slate-800">
+   <h1 class="text-4xl font-bold mb-10 text-center text-slate-700">
+    Tailwind CSS Concept Explained
+   </h1>
+   <section class="mb-12 bg-white p-6 md:p-8 rounded-lg shadow-lg">
+    <h2 class="text-3xl font-semibold mb-6 text-slate-600 border-b-2 border-slate-300 pb-3">
+     Adding Visual Flair &amp; Decoration
+    </h2>
+    <h3 class="text-2xl font-medium mb-5 text-indigo-700">
+     Make corners rounded instead of sharp.
+    </h3>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Skill ID:
+     </strong>
+     VisualFlair_31
+    </p>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Description:
+     </strong>
+     Give boxes, images, or buttons soft, curved corners.
+    </p>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Where to apply:
+     </strong>
+     Buttons, cards, images, input fields for a softer look.
+    </p>
+    <p class="mb-2 mt-6 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Key Tailwind Classes:
+     </strong>
+    </p>
+    <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mb-4">
+     <span>
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       rounded
+      </code>
+      ,
+     </span>
+     <span>
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       rounded-lg
+      </code>
+      ,
+     </span>
+     <span>
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       rounded-full
+      </code>
+     </span>
+    </div>
+    <div class="bg-amber-50 border-l-4 border-amber-500 text-amber-700 p-4 mt-5 rounded-md shadow-sm">
+     <p>
+      <strong class="font-semibold">
+       Gotcha:
+      </strong>
+      Applying
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       rounded-*
+      </code>
+      to a parent container doesn't automatically round the corners of its child elements if they fill the parent (like an image). You might need
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       overflow-hidden
+      </code>
+      on the parent, or also apply
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       rounded-*
+      </code>
+      to the child.
+     </p>
+    </div>
+   </section>
+   <!-- Example Usage (Optional, but good for demonstration) -->
+   <section class="mb-12">
+    <h4 class="text-xl font-semibold mb-4 text-slate-700">
+     Examples:
+    </h4>
+    <div class="grid md:grid-cols-3 gap-6">
+     <div class="bg-indigo-500 text-white p-4 rounded text-center shadow">
+      <code class="text-indigo-200 text-xs block mb-1">
+       rounded
+      </code>
+      Small rounded corners
+     </div>
+     <div class="bg-indigo-500 text-white p-4 rounded-lg text-center shadow">
+      <code class="text-indigo-200 text-xs block mb-1">
+       rounded-lg
+      </code>
+      Larger rounded corners
+     </div>
+     <div class="bg-indigo-500 text-white p-4 rounded-full text-center shadow aspect-square flex items-center justify-center w-32 h-32 mx-auto">
+      <div>
+       <code class="text-indigo-200 text-xs block mb-1">
+        rounded-full
+       </code>
+       Full circle
+      </div>
+     </div>
+    </div>
+    <div class="mt-6 p-4 bg-slate-200 rounded-lg overflow-hidden">
+     <p class="text-sm text-slate-600 mb-2">
+      Parent with
+      <code class="bg-white text-slate-700 px-1 py-0.5 rounded-sm text-xs font-mono border border-slate-300">
+       rounded-lg
+      </code>
+      and
+      <code class="bg-white text-slate-700 px-1 py-0.5 rounded-sm text-xs font-mono border border-slate-300">
+       overflow-hidden
+      </code>
+      (Gotcha addressed):
+     </p>
+     <img alt="Placeholder Image" class="w-full h-auto" src="https://via.placeholder.com/400x200/cccccc/969696?text=Child+Image"/>
+    </div>
+    <div class="mt-6 p-4 bg-slate-200 rounded-lg">
+     <p class="text-sm text-slate-600 mb-2">
+      Parent with
+      <code class="bg-white text-slate-700 px-1 py-0.5 rounded-sm text-xs font-mono border border-slate-300">
+       rounded-lg
+      </code>
+      , child image also
+      <code class="bg-white text-slate-700 px-1 py-0.5 rounded-sm text-xs font-mono border border-slate-300">
+       rounded-lg
+      </code>
+      :
+     </p>
+     <img alt="Placeholder Image" class="w-full h-auto rounded-lg" src="https://via.placeholder.com/400x200/A0A0A0/FFFFFF?text=Child+Image+Rounded"/>
+    </div>
+   </section>
+  </div>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 1:
+  </h1>
+  <iframe frameborder="0" src="./01_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 2:
+  </h1>
+  <iframe frameborder="0" src="./02_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 3:
+  </h1>
+  <iframe frameborder="0" src="./03_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 4:
+  </h1>
+  <iframe frameborder="0" src="./04_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 5:
+  </h1>
+  <iframe frameborder="0" src="./05_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 6:
+  </h1>
+  <iframe frameborder="0" src="./06_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 7:
+  </h1>
+  <iframe frameborder="0" src="./07_example.html">
+  </iframe>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+  const iframes = document.querySelectorAll('iframe');
+
+  // Ensure all iframes have the default style class
+  iframes.forEach(iframe => iframe.classList.add('default_style'));
+
+  window.addEventListener('message', function(event) {
+    // Optional: add origin check for safety
+    if (event.data && typeof event.data.iframeHeight === 'number') {
+      const iframe = Array.from(iframes).find(iframe =>
+        iframe.contentWindow === event.source
+      );
+      if (iframe) {
+        iframe.style.height = (event.data.iframeHeight + 50) + 'px';
+      }
+    }
+  });
+});
+  </script>
+ </body>
+</html>

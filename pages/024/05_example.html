@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill Example - Text Size Consistency (Gotcha)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 font-sans from_inside_iframe">
+  <div class="mb-10">
+   <h1 class="text-2xl font-bold mb-4">
+    Addressing Text Size Gotchas
+   </h1>
+   <p class="text-base">
+    This example focuses on the common pitfalls related to text sizing and how to avoid them.
+   </p>
+  </div>
+  <!-- 
+        Gotcha Point 1: Inconsistent use of text sizes can make the UI look disorganized.
+        Solution: Stick to Tailwind's predefined scale and use sizes hierarchically.
+
+        Gotcha Point 2: `text-base` refers to the browser's default font size (usually 16px), 
+        not necessarily a "medium" in the context of all Tailwind sizes. It's the foundation.
+    -->
+  <div class="border p-6 rounded-lg shadow-md">
+   <h2 class="text-lg font-semibold mb-4">
+    Example of Consistent Typographic Hierarchy
+   </h2>
+   <!-- Main Heading: Uses a larger size for prominence -->
+   <h3 class="text-xl font-bold text-blue-700 mb-2">
+    Chapter Title (using
+    <code>
+     text-xl
+    </code>
+    )
+   </h3>
+   <!-- Sub-heading: Slightly smaller than the main heading -->
+   <p class="text-lg text-blue-600 mb-3">
+    Section Introduction (using
+    <code>
+     text-lg
+    </code>
+    )
+   </p>
+   <!-- Body Text: Uses text-base for readability -->
+   <p class="text-base mb-4">
+    This is the main content of our section, using
+    <code>
+     text-base
+    </code>
+    . 
+            It's important to understand that
+    <code>
+     text-base
+    </code>
+    typically corresponds to the browser's default font size (e.g., 16px).
+            It serves as the baseline for the typographic scale. Using sizes like
+    <code>
+     text-sm
+    </code>
+    for supporting text
+            and
+    <code>
+     text-lg
+    </code>
+    or
+    <code>
+     text-xl
+    </code>
+    for headings creates a clear visual hierarchy.
+    <!-- HTML Comment Addressing Gotcha: 
+                By systematically applying sizes from the scale (xl, lg, base, sm, xs), we maintain visual harmony. 
+                Randomly picking sizes without considering their relationship can lead to a disorganized look.
+            -->
+   </p>
+   <!-- Caption or Secondary Info: Uses a smaller size -->
+   <p class="text-sm text-gray-700 mb-4">
+    This is a supporting detail or a caption (using
+    <code>
+     text-sm
+    </code>
+    ). It's noticeably smaller than
+    <code>
+     text-base
+    </code>
+    but still very readable for less critical information.
+   </p>
+   <!-- Fine Print / Smallest Detail: Uses the smallest size -->
+   <p class="text-xs text-gray-500">
+    Additional minor note or fine print (using
+    <code>
+     text-xs
+    </code>
+    ).
+   </p>
+   <div class="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded">
+    <p class="text-sm font-medium text-yellow-800">
+     Key Takeaway (Addressing the Gotcha):
+    </p>
+    <ul class="list-disc list-inside text-sm text-yellow-700 mt-2">
+     <li>
+      <strong>
+       Consistency is Key:
+      </strong>
+      Using Tailwind's scale (e.g.,
+      <code>
+       text-xs
+      </code>
+      ,
+      <code>
+       text-sm
+      </code>
+      ,
+      <code>
+       text-base
+      </code>
+      ,
+      <code>
+       text-lg
+      </code>
+      ,
+      <code>
+       text-xl
+      </code>
+      ) in a logical way (e.g., larger for headings, smaller for captions) prevents a disorganized UI.
+     </li>
+     <li>
+      <strong>
+       Understanding
+       <code>
+        text-base
+       </code>
+       :
+      </strong>
+      It's your foundational size, reflecting the browser's default. Other text sizes are relative to this concept within Tailwind's scale. It's not an arbitrary "medium".
+     </li>
+    </ul>
+   </div>
+  </div>
+  <!-- Example of potentially "disorganized" feeling if not careful (conceptual) -->
+  <div class="mt-8 border p-6 rounded-lg shadow-md bg-red-50">
+   <h2 class="text-lg font-semibold mb-4 text-red-700">
+    Illustrating Potential Inconsistency (Conceptual)
+   </h2>
+   <p class="text-sm">
+    <!-- HTML Comment for Gotcha: 
+                Imagine if an important heading was `text-sm` and regular paragraph text was `text-xl`. 
+                This would violate natural reading hierarchy and create confusion.
+                The "Gotcha" isn't about specific classes being "wrong", but about their application context.
+            -->
+    If we were to use
+    <code class="text-red-500 font-bold text-xl">
+     text-xl
+    </code>
+    for a minor detail and
+    <code class="text-red-500 font-bold text-xs">
+     text-xs
+    </code>
+    for a main title, the visual hierarchy would be broken, leading to a confusing user experience. 
+            Tailwind provides the tools; thoughtful application ensures harmony.
+   </p>
+   <p class="text-base mt-2">
+    The goal is to use the provided text scale (
+    <code>
+     text-xs
+    </code>
+    to
+    <code>
+     text-xl
+    </code>
+    and beyond) to build a clear, readable, and aesthetically pleasing interface.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill - Gotcha: Mobile Readability
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <!-- 
+        This example addresses the "Gotcha": making text too small on mobile.
+        It shows a problematic example and a corrected one.
+    -->
+  <div class="container mx-auto">
+   <div class="mb-8 p-6 bg-white shadow-md rounded-lg">
+    <h2 class="text-2xl font-bold text-red-600 mb-3">
+     Gotcha: Text Potentially Too Small on Mobile
+    </h2>
+    <!--
+                GOTCHA DEMONSTRATION:
+                The heading below uses `text-xs` as the base size for mobile.
+                While it scales up, `text-xs` can be too small for primary headings on mobile,
+                harming readability.
+            -->
+    <h3 class="font-semibold text-gray-800 text-xs sm:text-lg md:text-2xl lg:text-3xl">
+     Potentially Hard-to-Read Mobile Heading
+    </h3>
+    <p class="mt-2 text-gray-600">
+     This heading starts at
+     <code>
+      text-xs
+     </code>
+     on mobile. For important headings, this might be too small, making it difficult for users to read easily on smaller screens. Aim for a comfortable base size.
+    </p>
+   </div>
+   <div class="p-6 bg-white shadow-md rounded-lg">
+    <h2 class="text-2xl font-bold text-green-600 mb-3">
+     Improved: Ensuring Mobile Readability
+    </h2>
+    <!--
+                CORRECTED APPROACH:
+                This heading uses `text-lg` as the base size for mobile, which is generally more readable
+                for a heading. It then scales up.
+            -->
+    <h3 class="font-semibold text-gray-800 text-lg sm:text-xl md:text-2xl lg:text-3xl">
+     More Readable Mobile Heading
+    </h3>
+    <p class="mt-2 text-gray-600">
+     This heading starts at
+     <code>
+      text-lg
+     </code>
+     on mobile. This provides better readability on small devices. The classes are
+     <code>
+      text-lg sm:text-xl md:text-2xl lg:text-3xl
+     </code>
+     . Always prioritize readability, especially on mobile.
+    </p>
+    <p class="mt-4 text-sm text-gray-500 italic">
+     Reminder: The goal is to ensure text is easily legible on the smallest intended screens, then scale it appropriately for larger views.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

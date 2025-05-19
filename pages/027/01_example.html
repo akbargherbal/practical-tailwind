@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Leading: Basic Examples
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto space-y-8">
+   <h1 class="text-2xl font-bold mb-6">
+    Line Height (Leading) Examples
+   </h1>
+   <!-- Example 1: leading-tight -->
+   <div>
+    <h2 class="text-xl font-semibold mb-2">
+     Leading Tight (`leading-tight`)
+    </h2>
+    <p class="leading-tight bg-white p-4 rounded shadow">
+     This paragraph uses `leading-tight`. Notice the reduced space between lines of text.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </p>
+   </div>
+   <!-- Example 2: leading-normal -->
+   <div>
+    <h2 class="text-xl font-semibold mb-2">
+     Leading Normal (`leading-normal`)
+    </h2>
+    <p class="leading-normal bg-white p-4 rounded shadow">
+     This paragraph uses `leading-normal`. This is often the default and provides comfortable readability.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </p>
+   </div>
+   <!-- Example 3: leading-relaxed -->
+   <div>
+    <h2 class="text-xl font-semibold mb-2">
+     Leading Relaxed (`leading-relaxed`)
+    </h2>
+    <p class="leading-relaxed bg-white p-4 rounded shadow">
+     This paragraph uses `leading-relaxed`. Observe the increased space, which can be good for longer passages or a more airy design.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

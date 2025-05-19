@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Dividers - Vertical (border-l)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6 text-center">
+   Using `border-l` for Vertical Dividers
+  </h1>
+  <!-- Example 1: Vertical divider between two columns in a flex layout -->
+  <div class="mb-12">
+   <h2 class="text-xl font-semibold mb-3 text-center">
+    Two Column Layout with Divider
+   </h2>
+   <div class="flex h-48 bg-white shadow-md rounded-lg p-4">
+    <div class="w-1/2 pr-4">
+     <!-- Added pr-4 for spacing before divider -->
+     <h3 class="font-medium text-lg mb-2">
+      Left Column
+     </h3>
+     <p class="text-sm text-gray-700">
+      This is the content for the left column. It is separated by a vertical line originating from an empty div.
+     </p>
+    </div>
+    <!-- Vertical divider element -->
+    <!-- The height of this div will stretch to the height of its flex parent or content. -->
+    <!-- 'border-l' creates the line, 'border-gray-400' sets its color. -->
+    <!-- It has no width itself, the border is its visual representation. -->
+    <div class="border-l border-gray-400">
+    </div>
+    <div class="w-1/2 pl-4">
+     <!-- Added pl-4 for spacing after divider -->
+     <h3 class="font-medium text-lg mb-2">
+      Right Column
+     </h3>
+     <p class="text-sm text-gray-700">
+      This is the content for the right column, appearing after the vertical divider.
+     </p>
+    </div>
+   </div>
+  </div>
+  <!-- Example 2: Vertical divider applied directly to an element in a horizontal list -->
+  <div>
+   <h2 class="text-xl font-semibold mb-3 text-center">
+    Inline-like Content with Vertical Separators
+   </h2>
+   <div class="flex justify-center items-center p-4 bg-white shadow-md rounded-lg">
+    <span class="px-3 py-1">
+     Dashboard
+    </span>
+    <!-- Here, border-l is applied directly to the list item that needs a preceding separator -->
+    <!-- 'ml-3' and 'pl-3' on the item create space for the border -->
+    <span class="ml-3 pl-3 py-1 border-l border-gray-400">
+     Settings
+    </span>
+    <span class="ml-3 pl-3 py-1 border-l border-gray-400">
+     Profile
+    </span>
+    <span class="ml-3 pl-3 py-1 border-l border-red-500 border-l-2">
+     Logout (thicker border)
+    </span>
+   </div>
+   <p class="text-xs text-gray-500 mt-2 text-center">
+    In this example,
+    <code>
+     border-l
+    </code>
+    is applied directly to subsequent
+    <code>
+     &lt;span&gt;
+    </code>
+    elements along with padding (
+    <code>
+     pl-3
+    </code>
+    ) and margin (
+    <code>
+     ml-3
+    </code>
+    ) to create space for and around the divider.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

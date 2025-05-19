@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind - Centering Gotcha (Height)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-50 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Example 2: Demonstrating the "Gotcha"
+  </h1>
+  <p class="mb-4">
+   This example highlights the importance of the parent container having a defined height for vertical centering (
+   <code>
+    items-center
+   </code>
+   ) to work as expected.
+  </p>
+  <!-- Gotcha Demonstration: Parent without defined height -->
+  <div class="mb-8 p-4 border border-dashed border-red-400 rounded-md">
+   <h2 class="text-xl font-semibold mb-2 text-red-700">
+    Gotcha: Parent WITHOUT Defined Height
+   </h2>
+   <p class="text-sm text-gray-600 mb-2">
+    The red parent below uses
+    <code>
+     flex items-center justify-center
+    </code>
+    , but has no explicit height. Its height is determined by its content. Notice the inner box is horizontally centered but not vertically within an imaginary larger space.
+   </p>
+   <!-- Parent container without a defined height -->
+   <div class="w-full bg-red-100 p-4 flex items-center justify-center border border-red-300 rounded">
+    <!-- 
+                GOTCHA DEMONSTRATION:
+                The parent div above has 'flex items-center justify-center'.
+                'justify-center' works for horizontal centering because the parent takes full width.
+                However, 'items-center' for vertical centering doesn't appear to work as one might expect
+                if they imagine the parent having more space. This is because the parent's height
+                is currently only as tall as its content (the inner red box).
+                Without a defined height (e.g., h-32, min-h-screen), there's no "extra" vertical space
+                for the item to be centered within.
+            -->
+    <div class="w-20 h-20 bg-red-500 text-white flex items-center justify-center rounded">
+     <span>
+      Item 1
+     </span>
+    </div>
+   </div>
+   <p class="mt-2 text-xs text-red-600">
+    * The item is centered within the space the parent *actually occupies*, which is just the height of the item itself.
+   </p>
+  </div>
+  <!-- Corrected Example: Parent with defined height -->
+  <div class="p-4 border border-dashed border-green-400 rounded-md">
+   <h2 class="text-xl font-semibold mb-2 text-green-700">
+    Corrected: Parent WITH Defined Height
+   </h2>
+   <p class="text-sm text-gray-600 mb-2">
+    The green parent below also uses
+    <code>
+     flex items-center justify-center
+    </code>
+    , but crucially has
+    <code>
+     h-48
+    </code>
+    to give it a fixed height. Now,
+    <code>
+     items-center
+    </code>
+    works as expected for vertical centering.
+   </p>
+   <!-- Parent container with a defined height (h-48) -->
+   <div class="w-full h-48 bg-green-100 p-4 flex items-center justify-center border border-green-300 rounded">
+    <!--
+                GOTCHA ADDRESSED:
+                By adding 'h-48' to this parent div, we give it a specific height.
+                Now, 'items-center' has a defined vertical space to center the child within.
+            -->
+    <div class="w-20 h-20 bg-green-500 text-white flex items-center justify-center rounded">
+     <span>
+      Item 2
+     </span>
+    </div>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

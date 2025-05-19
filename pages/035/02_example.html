@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Gradients: Text Contrast (Gotcha)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex flex-col items-center space-y-8 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4 text-center">
+   Tailwind CSS Gradients: Addressing Text Contrast
+  </h1>
+  <p class="text-sm text-center max-w-xl mb-6">
+   <span class="font-semibold">
+    Gotcha:
+   </span>
+   Ensure any text placed on top of a gradient maintains sufficient contrast across all parts of the gradient for readability.
+  </p>
+  <!-- Example 1: Gradient where text contrast can be an issue -->
+  <div class="w-full max-w-lg p-6 rounded-lg shadow-xl">
+   <h2 class="text-lg font-semibold mb-3 text-center">
+    Scenario: Variable Contrast Gradient
+   </h2>
+   <div class="h-48 rounded-md bg-gradient-to-r from-yellow-300 to-purple-700 flex flex-col items-center justify-around p-4">
+    <!-- Text that might lose contrast on the lighter part -->
+    <p class="text-white text-lg">
+     White text: Good on purple, but can be hard to read on yellow.
+    </p>
+    <!-- Text that might lose contrast on the darker part -->
+    <p class="text-black text-lg">
+     Black text: Good on yellow, but can be hard to read on dark purple.
+    </p>
+   </div>
+   <p class="mt-3 text-xs text-gray-600 text-center">
+    <!-- Explanation of the Gotcha -->
+    The gradient above (yellow to purple) demonstrates the challenge. White text is clear on the purple end but less so on the yellow. Black text is clear on yellow but less clear on purple.
+   </p>
+  </div>
+  <!-- Example 2: Addressing the contrast issue -->
+  <div class="w-full max-w-lg p-6 rounded-lg shadow-xl">
+   <h2 class="text-lg font-semibold mb-3 text-center">
+    Solution: Careful Text Color Choice or Background
+   </h2>
+   <div class="h-32 rounded-md bg-gradient-to-r from-sky-500 to-indigo-700 flex items-center justify-center p-4">
+    <!-- Text with a color chosen for good overall contrast -->
+    <p class="text-white text-xl font-bold">
+     White text on a Blue/Indigo Gradient (Good Contrast)
+    </p>
+   </div>
+   <p class="mt-3 text-xs text-gray-600 text-center">
+    Here,
+    <code>
+     text-white
+    </code>
+    provides good contrast across the entire blue-to-indigo gradient.
+            Alternatively, for tricky gradients, you might add a semi-transparent background to the text itself, or choose a text color that provides acceptable (if not perfect) contrast across the whole range.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

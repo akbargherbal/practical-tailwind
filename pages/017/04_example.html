@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Nav - Vertical Alignment (Gotcha)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-50 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Horizontal Navigation Bar - Addressing "Gotcha"
+  </h1>
+  <p class="mb-6">
+   This example demonstrates the importance of
+   <code>
+    items-center
+   </code>
+   when navigation items have different natural heights.
+  </p>
+  <!-- Section 1: Demonstrating the Gotcha (Without items-center) -->
+  <div class="mb-12">
+   <h2 class="text-xl font-semibold mb-2 text-red-700">
+    1. Gotcha: Without
+    <code>
+     items-center
+    </code>
+   </h2>
+   <p class="mb-4 text-gray-700">
+    When navigation items have different heights (e.g., due to icons, multi-line text, or different padding) and
+    <code>
+     items-center
+    </code>
+    is missing, they will align to the baseline (or stretch, depending on other flex properties), leading to a jagged appearance.
+   </p>
+   <nav class="bg-red-100 p-4 rounded-md border border-red-300">
+    <!--
+                GOTCHA DEMONSTRATION:
+                'items-center' is intentionally omitted here to show the misalignment.
+                The 'Taller Item' has more vertical padding, making it taller.
+            -->
+    <ul class="flex space-x-4">
+     <li>
+      <a class="bg-red-200 hover:bg-red-300 px-3 py-2 rounded-md" href="#">
+       Home
+      </a>
+     </li>
+     <li>
+      <a class="bg-red-200 hover:bg-red-300 px-3 py-4 rounded-md" href="#">
+       Taller Item
+      </a>
+     </li>
+     <li>
+      <a class="bg-red-200 hover:bg-red-300 px-3 py-2 rounded-md" href="#">
+       About
+      </a>
+     </li>
+     <li>
+      <a class="bg-red-200 hover:bg-red-300 px-3 py-1 rounded-md text-xs" href="#">
+       Shorter
+       <br/>
+       Item
+      </a>
+     </li>
+    </ul>
+   </nav>
+   <p class="mt-2 text-sm text-red-600">
+    Notice how the "Taller Item" and "Shorter Item" are not vertically aligned with "Home" and "About".
+   </p>
+  </div>
+  <!-- Section 2: Corrected Version (With items-center) -->
+  <div>
+   <h2 class="text-xl font-semibold mb-2 text-green-700">
+    2. Corrected: With
+    <code>
+     items-center
+    </code>
+   </h2>
+   <p class="mb-4 text-gray-700">
+    Adding
+    <code>
+     items-center
+    </code>
+    to the flex container (the
+    <code>
+     ul
+    </code>
+    element) vertically aligns all items to the center, resolving the jagged look.
+   </p>
+   <nav class="bg-green-100 p-4 rounded-md border border-green-300">
+    <!--
+                CORRECTED VERSION:
+                'items-center' is now applied to the `ul`.
+            -->
+    <ul class="flex space-x-4 items-center">
+     <li>
+      <a class="bg-green-200 hover:bg-green-300 px-3 py-2 rounded-md" href="#">
+       Home
+      </a>
+     </li>
+     <li>
+      <a class="bg-green-200 hover:bg-green-300 px-3 py-4 rounded-md" href="#">
+       Taller Item
+      </a>
+     </li>
+     <li>
+      <a class="bg-green-200 hover:bg-green-300 px-3 py-2 rounded-md" href="#">
+       About
+      </a>
+     </li>
+     <li>
+      <a class="bg-green-200 hover:bg-green-300 px-3 py-1 rounded-md text-xs" href="#">
+       Shorter
+       <br/>
+       Item
+      </a>
+     </li>
+    </ul>
+   </nav>
+   <p class="mt-2 text-sm text-green-600">
+    Now, all items are neatly aligned to the vertical center of the navigation bar.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Text Sizes - `text-base` and Hierarchy
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 font-sans from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-6">
+   Understanding `text-base` and Hierarchy
+  </h1>
+  <div class="mb-6 p-4 border border-gray-300 rounded-lg bg-gray-50">
+   <h2 class="text-xl font-semibold mb-2">
+    About `text-base`
+   </h2>
+   <p class="text-base">
+    This paragraph uses
+    <code class="bg-gray-200 px-1 rounded">
+     text-base
+    </code>
+    .
+            It's important to remember that
+    <code class="bg-gray-200 px-1 rounded">
+     text-base
+    </code>
+    refers to the browser's default font size (usually 16px).
+            It's the foundation for relative sizing (like `rem` units) in Tailwind.
+            It's not necessarily a "medium" size in the context of *all* available Tailwind sizes (e.g., text-xs to text-9xl), but rather the standard size for body copy.
+   </p>
+  </div>
+  <div class="mb-6">
+   <h2 class="text-xl font-semibold mb-2">
+    Example Article Structure:
+   </h2>
+   <article class="space-y-3">
+    <h3 class="text-xl font-bold">
+     Main Article Title (text-xl)
+    </h3>
+    <p class="text-base">
+     This is the main content of the article, using
+     <code class="bg-gray-200 px-1 rounded">
+      text-base
+     </code>
+     for readability. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+    <h4 class="text-lg font-semibold">
+     Subsection Title (text-lg)
+    </h4>
+    <p class="text-base">
+     More content here, still using
+     <code class="bg-gray-200 px-1 rounded">
+      text-base
+     </code>
+     . Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </p>
+    <p class="text-sm text-gray-600">
+     A little note or caption using
+     <code class="bg-gray-200 px-1 rounded">
+      text-sm
+     </code>
+     .
+    </p>
+   </article>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

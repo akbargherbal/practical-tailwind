@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind - Multiple Custom Fonts
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <!-- 1. Import multiple font files -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;family=Poppins:wght@300;600&amp;family=Raleway:wght@500&amp;display=swap" rel="stylesheet"/>
+  <script>
+   // 2. Configure Tailwind for multiple custom fonts
+        // This would be in tailwind.config.js in a typical project.
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        // Override default sans with Roboto
+                        'sans': ['Roboto', 'ui-sans-serif', 'system-ui'],
+                        // Add a custom 'heading' font
+                        'heading': ['Poppins', 'sans-serif'],
+                        // Add another custom 'accent' font
+                        'accent': ['Raleway', 'sans-serif']
+                    }
+                }
+            }
+        }
+  </script>
+ </head>
+ <body class="p-8 bg-slate-50 font-sans text-slate-800 from_inside_iframe">
+  <div class="container mx-auto max-w-2xl bg-white p-8 rounded-xl shadow-lg">
+   <header class="mb-8">
+    <!-- Using 'font-heading' for the main title -->
+    <h1 class="text-5xl font-heading font-semibold text-purple-700 text-center">
+     Website Title with Poppins
+    </h1>
+   </header>
+   <section class="mb-6">
+    <!-- Using overridden 'font-sans' (Roboto) for body text -->
+    <h2 class="text-3xl font-heading text-purple-600 mb-3">
+     Section with Roboto Body
+    </h2>
+    <p class="text-lg leading-relaxed mb-4">
+     This paragraph uses the
+     <code>
+      font-sans
+     </code>
+     utility, which we've configured to use the 'Roboto' font.
+                It provides a clean and readable style for the main content of the page.
+                The key is to link 'Roboto' in the
+     <code>
+      &lt;head&gt;
+     </code>
+     and then map
+     <code>
+      font-sans
+     </code>
+     to it in the Tailwind configuration.
+    </p>
+   </section>
+   <section>
+    <h2 class="text-3xl font-heading text-purple-600 mb-3">
+     Section with Raleway Accent
+    </h2>
+    <!-- Using 'font-accent' for a different style of text -->
+    <p class="text-xl font-accent text-teal-700 p-4 bg-teal-50 rounded-md">
+     This text is styled with
+     <code>
+      font-accent
+     </code>
+     , which maps to the 'Raleway' font.
+                This demonstrates how you can define and use multiple distinct custom fonts for different
+                purposes within your design system.
+    </p>
+    <p class="mt-4 text-sm text-slate-600">
+     <em>
+      Remember: All used fonts ('Roboto', 'Poppins', 'Raleway') must be linked in the
+      <code>
+       &lt;head&gt;
+      </code>
+      for them to display correctly.
+                The
+      <code>
+       fontFamily
+      </code>
+      array in the Tailwind config acts as a font stack, providing fallbacks if a preceding font is unavailable.
+     </em>
+    </p>
+   </section>
+   <footer class="mt-10 pt-6 border-t border-slate-200 text-center">
+    <p class="font-accent text-sm text-slate-500">
+     Footer using Raleway accent font © 2023
+    </p>
+   </footer>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

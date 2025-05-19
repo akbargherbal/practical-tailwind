@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <title>
+   Tailwind CSS: Make style changes happen smoothly (animations/transitions).
+  </title>
+  <style>
+   /* Custom styles for better readability if needed, though Tailwind should cover most */
+        .code-inline {
+            background-color: #f1f5f9; /* slate-100 */
+            color: #334155; /* slate-700 */
+            padding: 0.25rem 0.5rem; /* px-2 py-1 */
+            border-radius: 0.375rem; /* rounded-md */
+            font-size: 0.875rem; /* text-sm */
+            font-family: monospace;
+            border: 1px solid #cbd5e1; /* slate-300 */
+        }
+  </style>
+  <style>
+   iframe.default_style {
+  width: 100%;
+  min-height: 300px; /* Reasonable minimum */
+  border: none;
+  display: block;
+}
+  </style>
+ </head>
+ <body>
+  <div class="container mx-auto p-6 md:p-10 font-sans text-slate-800">
+   <h1 class="text-4xl font-bold mb-10 text-center text-slate-700">
+    Tailwind CSS Concept Explained
+   </h1>
+   <section class="mb-12 bg-white shadow-lg rounded-lg p-6 md:p-8">
+    <h2 class="text-3xl font-semibold mb-6 text-slate-600 border-b-2 border-slate-300 pb-3">
+     Making Things Interactive &amp; Respond to Users
+    </h2>
+    <h3 class="text-2xl font-medium mb-5 text-indigo-700">
+     Make style changes happen smoothly (animations/transitions).
+    </h3>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Skill ID:
+     </strong>
+     Interactive_40
+    </p>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Description:
+     </strong>
+     Style changes animate smoothly instead of instantly.
+    </p>
+    <p class="mb-2 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Where to apply:
+     </strong>
+     Hover effects, opening/closing menus, showing/hiding elements.
+    </p>
+    <p class="mb-2 mt-6 text-slate-700">
+     <strong class="font-semibold text-slate-800">
+      Key Tailwind Classes:
+     </strong>
+    </p>
+    <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mb-4">
+     <span>
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       transition
+      </code>
+     </span>
+     <span>
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       duration-300
+      </code>
+     </span>
+     <span>
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       ease-in-out
+      </code>
+     </span>
+     <!--
+                    Alternative interpretation if "transition duration-300 ease-in-out" is considered one single class string for application:
+                    <span>
+                        <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">transition duration-300 ease-in-out</code>
+                    </span>
+                    The prompt instruction for Key Tailwind Classes says "For each item identified... The Tailwind class name itself... MUST be wrapped in a <code> tag."
+                    If the input "transition duration-300 ease-in-out" is treated as space-separated individual classes that form a common pattern,
+                    rendering them as separate <code> tags is more informative for learning each part.
+                    If it's a single conceptual utility group, one <code> tag wrapping the whole string could also be argued.
+                    Given Tailwind usage, these are distinct utility classes often used together. So separate <code> tags is chosen for clarity.
+                    The original prompt for parsing "Key Tailwind Classes" mentioned commas define items.
+                    "transition duration-300 ease-in-out" has no commas, so it's one item.
+                    That single item's "class name" is "transition duration-300 ease-in-out".
+                    So, it should be one code block:
+                    <span>
+                        <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">transition duration-300 ease-in-out</code>
+                    </span>
+                    Re-evaluating this. The examples for key classes `opacity-50, bg-black/50 (...)` split items by comma.
+                    The string `transition duration-300 ease-in-out` is a *single item* because it's not comma-separated.
+                    This single item is `transition duration-300 ease-in-out`.
+                    Therefore, it should indeed be one code block. Correcting above.
+                -->
+    </div>
+    <!-- Corrected Key Tailwind Classes section, assuming the string is one item if not comma separated -->
+    <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mb-4">
+     <span>
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       transition duration-300 ease-in-out
+      </code>
+     </span>
+    </div>
+    <div class="bg-amber-50 border-l-4 border-amber-500 text-amber-700 p-4 mt-6 rounded-md shadow-sm">
+     <p>
+      <strong class="font-semibold">
+       Gotcha:
+      </strong>
+      Forgetting to specify *which* properties should transition. By default, Tailwind transitions common properties like colors, opacity, shadow, and transform. If you want to transition
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       width
+      </code>
+      or
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       height
+      </code>
+      , you might need
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       transition-all
+      </code>
+      or explicitly list them:
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       transition-[width,height]
+      </code>
+      . Transitions also don't work on all properties (e.g.,
+      <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+       display
+      </code>
+      ).
+     </p>
+    </div>
+    <div class="mt-8 p-6 border border-indigo-200 rounded-lg bg-indigo-50">
+     <h4 class="text-xl font-semibold text-indigo-700 mb-4">
+      Example:
+     </h4>
+     <p class="text-slate-700 mb-4">
+      Hover over the box below to see a smooth transition effect.
+     </p>
+     <div class="flex justify-center items-center">
+      <div class="w-32 h-32 bg-indigo-500 rounded-lg shadow-md transition duration-500 ease-in-out hover:bg-pink-500 hover:scale-110 hover:rotate-12">
+       <span class="flex items-center justify-center h-full text-white text-sm text-center p-2">
+        Hover Me
+       </span>
+      </div>
+     </div>
+     <p class="mt-4 text-sm text-slate-600">
+      Relevant classes on the box:
+      <code class="code-inline">
+       transition
+      </code>
+      ,
+      <code class="code-inline">
+       duration-500
+      </code>
+      ,
+      <code class="code-inline">
+       ease-in-out
+      </code>
+      ,
+      <code class="code-inline">
+       hover:bg-pink-500
+      </code>
+      ,
+      <code class="code-inline">
+       hover:scale-110
+      </code>
+      ,
+      <code class="code-inline">
+       hover:rotate-12
+      </code>
+      .
+     </p>
+     <p class="mt-2 text-sm text-slate-600">
+      The
+      <code class="code-inline">
+       transition
+      </code>
+      ,
+      <code class="code-inline">
+       duration-*
+      </code>
+      , and
+      <code class="code-inline">
+       ease-*
+      </code>
+      classes enable smooth changes for properties like background color (
+      <code class="code-inline">
+       bg-*
+      </code>
+      ) and transformations (
+      <code class="code-inline">
+       scale-*
+      </code>
+      ,
+      <code class="code-inline">
+       rotate-*
+      </code>
+      ) on hover.
+     </p>
+    </div>
+   </section>
+  </div>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 1:
+  </h1>
+  <iframe frameborder="0" src="./01_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 2:
+  </h1>
+  <iframe frameborder="0" src="./02_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 3:
+  </h1>
+  <iframe frameborder="0" src="./03_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 4:
+  </h1>
+  <iframe frameborder="0" src="./04_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 5:
+  </h1>
+  <iframe frameborder="0" src="./05_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 6:
+  </h1>
+  <iframe frameborder="0" src="./06_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 7:
+  </h1>
+  <iframe frameborder="0" src="./07_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 8:
+  </h1>
+  <iframe frameborder="0" src="./08_example.html">
+  </iframe>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+  const iframes = document.querySelectorAll('iframe');
+
+  // Ensure all iframes have the default style class
+  iframes.forEach(iframe => iframe.classList.add('default_style'));
+
+  window.addEventListener('message', function(event) {
+    // Optional: add origin check for safety
+    if (event.data && typeof event.data.iframeHeight === 'number') {
+      const iframe = Array.from(iframes).find(iframe =>
+        iframe.contentWindow === event.source
+      );
+      if (iframe) {
+        iframe.style.height = (event.data.iframeHeight + 50) + 'px';
+      }
+    }
+  });
+});
+  </script>
+ </body>
+</html>

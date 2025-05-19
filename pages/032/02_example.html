@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Shadow - Gotcha Explained
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-slate-50 p-8 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-8 text-center">
+   Shadow Gotcha: Background Color &amp; Overuse
+  </h1>
+  <!-- Section 1: Gotcha - Element needs a background color -->
+  <div class="mb-12">
+   <h2 class="text-xl font-semibold mb-4 text-center">
+    Gotcha: Shadows Need a Background Color
+   </h2>
+   <div class="grid md:grid-cols-2 gap-8 items-start">
+    <!-- Incorrect Way: Shadow on a transparent element -->
+    <div class="p-6 rounded-lg bg-gradient-to-br from-rose-300 to-orange-300">
+     <h3 class="text-lg font-medium mb-3 text-center text-black">
+      Incorrect: Shadow on Transparent Element
+     </h3>
+     <div class="p-4 rounded-md shadow-lg">
+      <!-- This div has shadow-lg but NO explicit bg-*. -->
+      <!-- The shadow will appear to be cast from the gradient background of its parent, -->
+      <!-- or might look odd if there's text directly on the gradient. -->
+      <p class="text-black">
+       This box has
+       <code class="bg-white/50 px-1 rounded">
+        shadow-lg
+       </code>
+       but no background color of its own. The shadow seems to originate from the colorful gradient background of its container, not the box itself.
+      </p>
+     </div>
+     <p class="mt-2 text-sm text-black/80 text-center">
+      The shadow appears to be cast by the parent's gradient.
+     </p>
+    </div>
+    <!-- Correct Way: Shadow on an element with a background color -->
+    <div class="p-6 rounded-lg bg-gradient-to-br from-teal-300 to-sky-300">
+     <h3 class="text-lg font-medium mb-3 text-center text-black">
+      Correct: Shadow with Background Color
+     </h3>
+     <div class="p-4 rounded-md shadow-lg bg-white">
+      <!-- This div has shadow-lg AND bg-white. -->
+      <p class="text-gray-800">
+       This box has
+       <code class="bg-gray-200 px-1 rounded">
+        shadow-lg
+       </code>
+       and
+       <code class="bg-gray-200 px-1 rounded">
+        bg-white
+       </code>
+       . The shadow is clearly cast by this white box, giving it proper depth.
+      </p>
+     </div>
+     <p class="mt-2 text-sm text-black/80 text-center">
+      The shadow is clearly associated with the white box.
+     </p>
+    </div>
+   </div>
+   <p class="mt-6 text-center text-gray-700">
+    <strong>
+     Key Takeaway:
+    </strong>
+    Always apply a background color (e.g.,
+    <code class="bg-gray-200 px-1 rounded">
+     bg-white
+    </code>
+    ,
+    <code class="bg-gray-200 px-1 rounded">
+     bg-blue-500
+    </code>
+    ) to elements you want to cast a shadow. If the element is transparent, the shadow effect can be misleading or look incorrect.
+   </p>
+  </div>
+  <!-- Section 2: Gotcha - Overusing heavy shadows -->
+  <div class="mt-12 border-t pt-8">
+   <h2 class="text-xl font-semibold mb-4 text-center">
+    Gotcha: Overusing Heavy Shadows
+   </h2>
+   <div class="flex flex-col items-center space-y-4">
+    <div class="p-6 bg-white rounded-lg shadow-2xl w-full max-w-md">
+     <h3 class="text-lg font-semibold mb-2 text-center">
+      Very Heavy Shadow (`shadow-2xl`)
+     </h3>
+     <p class="text-gray-700 text-center">
+      This element uses
+      <code class="bg-gray-200 px-1 rounded">
+       shadow-2xl
+      </code>
+      , which is a very strong shadow.
+     </p>
+    </div>
+    <div class="p-6 bg-white rounded-lg shadow-lg w-full max-w-md">
+     <h3 class="text-lg font-semibold mb-2 text-center">
+      Large Shadow (`shadow-lg`)
+     </h3>
+     <p class="text-gray-700 text-center">
+      This element uses
+      <code class="bg-gray-200 px-1 rounded">
+       shadow-lg
+      </code>
+      , which is often sufficient for emphasis.
+     </p>
+    </div>
+    <!-- HTML Comment explaining the gotcha -->
+    <!-- 
+                Gotcha Explanation for Overuse:
+                While Tailwind provides very strong shadows like `shadow-xl` and `shadow-2xl`,
+                overusing them can make a user interface feel dated, heavy, or cluttered. 
+                It's generally better to use shadows like `shadow-sm`, `shadow-md` (default), or `shadow-lg` 
+                for most elements to maintain a cleaner, more modern aesthetic. Reserve heavier shadows 
+                for elements that truly need to pop significantly, like critical modals or alerts.
+            -->
+    <p class="mt-4 text-center text-gray-700 max-w-2xl">
+     <strong>
+      Guidance:
+     </strong>
+     While heavier shadows (
+     <code class="bg-gray-200 px-1 rounded">
+      shadow-xl
+     </code>
+     ,
+     <code class="bg-gray-200 px-1 rounded">
+      shadow-2xl
+     </code>
+     ) are available, they should be used sparingly. Overuse can make the UI feel heavy or dated. For most cases,
+     <code class="bg-gray-200 px-1 rounded">
+      shadow-sm
+     </code>
+     ,
+     <code class="bg-gray-200 px-1 rounded">
+      shadow-md
+     </code>
+     , or
+     <code class="bg-gray-200 px-1 rounded">
+      shadow-lg
+     </code>
+     provide a good balance of depth and modern design.
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

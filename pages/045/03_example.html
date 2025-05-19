@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Responsive Nav (Visual States)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-4 from_inside_iframe">
+  <nav class="bg-blue-600 text-white p-4 rounded-md shadow-lg">
+   <div class="container mx-auto flex justify-between items-center">
+    <a class="text-xl font-bold" href="#">
+     MySite
+    </a>
+    <!-- Hamburger Icon: Visible on small screens, hidden on medium and larger screens -->
+    <!-- Key class: md:hidden -->
+    <div class="md:hidden">
+     <button class="focus:outline-none" id="hamburger-btn-visual">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+       <path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+       </path>
+      </svg>
+     </button>
+    </div>
+    <!-- Full Navigation: Hidden on small screens, visible as flex on medium and larger screens -->
+    <!-- Key classes: hidden md:flex -->
+    <div class="hidden md:flex space-x-4">
+     <a class="hover:text-blue-200" href="#">
+      Home
+     </a>
+     <a class="hover:text-blue-200" href="#">
+      About
+     </a>
+     <a class="hover:text-blue-200" href="#">
+      Services
+     </a>
+     <a class="hover:text-blue-200" href="#">
+      Contact
+     </a>
+    </div>
+   </div>
+   <!-- Mobile Menu (visual placeholder, would be toggled by JS) -->
+   <!-- This part is typically hidden initially and shown on hamburger click. -->
+   <!-- For this example, we'll keep it simple and not implement the JS toggle logic -->
+   <!-- It simply demonstrates where the mobile links would go. -->
+   <div class="md:hidden mt-2 p-2 bg-blue-500 rounded">
+    <p class="text-sm text-center text-yellow-300">
+     (This area would show links on mobile after hamburger click + JS)
+    </p>
+    <a class="block py-1 hover:text-blue-200" href="#">
+     Home (Mobile)
+    </a>
+    <a class="block py-1 hover:text-blue-200" href="#">
+     About (Mobile)
+    </a>
+   </div>
+  </nav>
+  <div class="mt-6 p-4 bg-white rounded shadow">
+   <h2 class="text-lg font-semibold mb-2">
+    Instructions:
+   </h2>
+   <p>
+    Resize your browser window to see the navigation change:
+   </p>
+   <ul class="list-disc list-inside ml-4">
+    <li>
+     <strong>
+      Small screens:
+     </strong>
+     You should see the "MySite" brand and a hamburger icon (☰). The full navigation links ("Home", "About", etc.) and the desktop navigation bar will be hidden. A placeholder mobile menu area might be visible.
+    </li>
+    <li>
+     <strong>
+      Medium screens and up (md breakpoint):
+     </strong>
+     The hamburger icon will disappear. The full navigation links ("Home", "About", "Services", "Contact") will appear next to the brand.
+    </li>
+   </ul>
+   <p class="mt-2 text-gray-600">
+    This example focuses on the Tailwind CSS classes (`md:hidden` for the hamburger, `hidden md:flex` for the full nav) to control visibility based on screen size. The actual click functionality for the hamburger is addressed in the next example.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

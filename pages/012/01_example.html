@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Rounded Buttons
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="bg-gray-100 p-8 flex flex-col items-center space-y-6 from_inside_iframe">
+  <!-- Example 1: Basic Rounded Buttons -->
+  <div class="text-center mb-6">
+   <h1 class="text-2xl font-bold mb-2">
+    Basic Rounded Buttons
+   </h1>
+   <p class="text-gray-700">
+    Demonstrating
+    <code>
+     rounded-md
+    </code>
+    and
+    <code>
+     rounded-full
+    </code>
+    .
+   </p>
+  </div>
+  <div class="space-x-4">
+   <!-- Button with medium rounded corners -->
+   <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">
+    Rounded Medium (rounded-md)
+   </button>
+   <!-- Button with fully rounded (pill) corners -->
+   <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+    Rounded Full (rounded-full)
+   </button>
+  </div>
+  <div class="mt-4 p-4 bg-sky-100 border border-sky-300 rounded-md text-sm text-sky-700">
+   <p>
+    <strong class="font-semibold">
+     Key Classes Used:
+    </strong>
+   </p>
+   <ul class="list-disc list-inside ml-4">
+    <li>
+     <code>
+      rounded-md
+     </code>
+     : Applies a medium border radius.
+    </li>
+    <li>
+     <code>
+      rounded-full
+     </code>
+     : Applies a large border radius, making the corners fully rounded (pill shape if height allows).
+    </li>
+   </ul>
+   <p class="mt-2">
+    These classes are typically applied directly to button elements or any element you want to have rounded corners.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

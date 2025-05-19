@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Custom Brand Colors
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <div class="container mx-auto p-6 bg-white rounded-lg shadow-xl">
+   <h1 class="text-2xl font-bold mb-4">
+    Using Custom Brand Colors
+   </h1>
+   <p class="mb-4">
+    To use custom brand colors in Tailwind CSS, you would typically define them in your
+    <code>
+     tailwind.config.js
+    </code>
+    file under
+    <code>
+     theme.extend.colors
+    </code>
+    . This adds your custom colors to Tailwind's default palette.
+   </p>
+   <div class="mb-6 p-4 bg-gray-50 rounded border border-gray-300">
+    <h2 class="text-lg font-semibold mb-2">
+     Example
+     <code>
+      tailwind.config.js
+     </code>
+     :
+    </h2>
+    <pre class="bg-gray-200 p-3 rounded text-sm overflow-x-auto">
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        'brand-primary': '#3490dc', // Example: A nice blue
+        'brand-secondary': '#ffed4a', // Example: A bright yellow
+        'brand-accent': '#e3342f',   // Example: A strong red
+      },
+    },
+  },
+  plugins: [],
+}
+            </pre>
+    <p class="mt-2 text-sm text-gray-700">
+     With the configuration above, you could then use classes like
+     <code>
+      bg-brand-primary
+     </code>
+     ,
+     <code>
+      text-brand-secondary
+     </code>
+     , etc.
+    </p>
+   </div>
+   <h2 class="text-xl font-semibold mb-3">
+    Simulated Usage:
+   </h2>
+   <p class="mb-4">
+    Since we are using the CDN and cannot modify
+    <code>
+     tailwind.config.js
+    </code>
+    directly in this HTML file, we will simulate these custom colors using Tailwind's arbitrary value syntax.
+   </p>
+   <!-- Simulating a button with brand-primary background -->
+   <div class="mb-4">
+    <p class="mb-1">
+     This button simulates
+     <code>
+      bg-brand-primary
+     </code>
+     (e.g., '#3490dc'):
+    </p>
+    <button class="bg-[#_3490dc] hover:bg-[#_2779bd] text-white font-bold py-2 px-4 rounded">
+     Primary Button
+    </button>
+    <p class="text-xs mt-1 text-gray-600">
+     Actual class used:
+     <code>
+      bg-[#_3490dc]
+     </code>
+     . With config:
+     <code>
+      bg-brand-primary
+     </code>
+     .
+    </p>
+    <!-- Note: Underscore in arbitrary value is a JIT compiler trick if it conflicts with a negative value, not strictly needed for hex but good practice to show it can be used. For pure hex, bg-[#3490dc] is fine. -->
+   </div>
+   <!-- Simulating text with brand-secondary color -->
+   <div class="mb-4">
+    <p class="mb-1">
+     This text simulates
+     <code>
+      text-brand-secondary
+     </code>
+     (e.g., '#ffed4a') on a dark background for contrast:
+    </p>
+    <p class="bg-gray-800 p-3 rounded text-[#_ffed4a] font-semibold">
+     Important Announcement!
+    </p>
+    <p class="text-xs mt-1 text-gray-600">
+     Actual class used:
+     <code>
+      text-[#_ffed4a]
+     </code>
+     . With config:
+     <code>
+      text-brand-secondary
+     </code>
+     .
+    </p>
+   </div>
+   <!-- Simulating a border with brand-accent color -->
+   <div class="mb-4">
+    <p class="mb-1">
+     This div simulates a
+     <code>
+      border-brand-accent
+     </code>
+     (e.g., '#e3342f'):
+    </p>
+    <div class="border-4 border-[#_e3342f] p-4 rounded bg-red-50">
+     Content with an accent border.
+    </div>
+    <p class="text-xs mt-1 text-gray-600">
+     Actual class used:
+     <code>
+      border-[#_e3342f]
+     </code>
+     . With config:
+     <code>
+      border-brand-accent
+     </code>
+     .
+    </p>
+   </div>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

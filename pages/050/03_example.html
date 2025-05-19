@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind: Reusable Styles (Conceptual @apply)
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Concept: Reusing Styles with @apply
+  </h1>
+  <p class="mb-6">
+   Tailwind's utility-first approach means you often combine many classes. For frequently repeated combinations, `@apply` (in a CSS file with a build process) can help create custom classes.
+  </p>
+  <!-- Example: Buttons styled with many utility classes -->
+  <div class="mb-8">
+   <h2 class="text-xl font-semibold mb-2">
+    Example: Consistent Button Styling
+   </h2>
+   <p class="mb-2 text-sm text-gray-700">
+    Imagine these buttons need to look the same across your site:
+   </p>
+   <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
+    Primary Button
+   </button>
+   <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    Another Primary Button
+   </button>
+   <div class="mt-4 p-4 bg-yellow-100 border border-yellow-300 rounded">
+    <h3 class="font-semibold text-yellow-800">
+     How `@apply` Would Work (Conceptual)
+    </h3>
+    <p class="text-sm text-yellow-700">
+     The buttons above repeat these classes:
+     <code>
+      bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded
+     </code>
+     .
+    </p>
+    <p class="text-sm text-yellow-700 mt-2">
+     If you were using Tailwind with a CSS file and a build step (e.g., PostCSS), you could define a custom class like
+     <code>
+      .btn-primary
+     </code>
+     using
+     <code>
+      @apply
+     </code>
+     :
+    </p>
+    <pre class="bg-gray-800 text-white p-2 rounded mt-1 text-xs"><code>/* In your CSS file (e.g., input.css) */
+.btn-primary {
+  @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+}</code></pre>
+    <p class="text-sm text-yellow-700 mt-2">
+     Then, in your HTML, you'd simply use:
+     <code class="bg-gray-200 p-1 rounded">
+      &lt;button class="btn-primary"&gt;Primary Button&lt;/button&gt;
+     </code>
+     .
+    </p>
+    <p class="text-sm text-yellow-700 mt-2">
+     <strong>
+      Note:
+     </strong>
+     This HTML file uses the Tailwind CDN, so
+     <code>
+      @apply
+     </code>
+     directives in a
+     <code>
+      &lt;style&gt;
+     </code>
+     tag here won't be processed. This example is purely illustrative of the concept.
+    </p>
+   </div>
+  </div>
+  <div class="mt-6 p-4 bg-red-100 border border-red-300 rounded">
+   <h3 class="font-semibold text-red-800">
+    Introducing the "Gotcha"
+   </h3>
+   <p class="text-sm text-red-700">
+    While
+    <code>
+     @apply
+    </code>
+    seems convenient, overusing it can lead to issues. The next example will explore this "Gotcha" in more detail.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

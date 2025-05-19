@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Skill: Flex Parent Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Example 2: Gotcha - `flex` on Parent Container
+  </h1>
+  <p class="mb-4">
+   This example demonstrates the common gotcha: forgetting to apply `flex` to the parent container.
+  </p>
+  <h2 class="text-xl font-semibold mt-6 mb-2">
+   Incorrect: Without `flex` on Parent
+  </h2>
+  <p class="mb-2 text-sm text-red-700">
+   Here, the parent `div` does NOT have the `flex` class. Notice how the items stack vertically (default block behavior).
+  </p>
+  <!-- Parent container WITHOUT flex -->
+  <div class="bg-red-200 p-4 rounded-md">
+   <!-- Child items -->
+   <div class="bg-red-500 text-white p-4 rounded-md shadow-md mb-2">
+    Item A (No Parent Flex)
+   </div>
+   <div class="bg-red-500 text-white p-4 rounded-md shadow-md mb-2">
+    Item B (No Parent Flex)
+   </div>
+   <div class="bg-red-500 text-white p-4 rounded-md shadow-md">
+    Item C (No Parent Flex)
+   </div>
+  </div>
+  <h2 class="text-xl font-semibold mt-8 mb-2">
+   Correct: With `flex` on Parent
+  </h2>
+  <p class="mb-2 text-sm text-green-700">
+   Here, the parent `div` HAS the `flex` class. The items now line up horizontally.
+  </p>
+  <!-- Parent container WITH flex -->
+  <div class="flex bg-green-200 p-4 rounded-md space-x-4">
+   <!-- Child items -->
+   <div class="bg-green-500 text-white p-4 rounded-md shadow-md">
+    Item A (Parent Flex)
+   </div>
+   <div class="bg-green-500 text-white p-4 rounded-md shadow-md">
+    Item B (Parent Flex)
+   </div>
+   <div class="bg-green-500 text-white p-4 rounded-md shadow-md">
+    Item C (Parent Flex)
+   </div>
+  </div>
+  <div class="mt-6 p-4 border border-orange-400 bg-orange-50 rounded-md">
+   <h3 class="text-lg font-semibold text-orange-700">
+    Gotcha Point:
+   </h3>
+   <p class="text-orange-600">
+    The `flex` class must be applied to the
+    <strong>
+     direct parent
+    </strong>
+    of the items you want to arrange horizontally. If it's missing, the children will behave according to their default display property (usually `block`, causing them to stack vertically).
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

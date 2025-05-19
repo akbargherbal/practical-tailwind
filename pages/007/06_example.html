@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Tailwind Grid: Spanning &amp; Gotcha
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+ </head>
+ <body class="p-8 bg-gray-100 from_inside_iframe">
+  <h1 class="text-2xl font-bold mb-4">
+   Grid Item Spanning &amp; The "Gotcha"
+  </h1>
+  <p class="mb-6">
+   This example demonstrates how grid items behave by default and how to make them span multiple columns or rows, addressing a common pitfall.
+  </p>
+  <!-- Section 1: Default Behavior (Illustrating the "Gotcha") -->
+  <div class="mb-8 p-4 border border-gray-300 rounded-lg bg-white shadow">
+   <h2 class="text-xl font-semibold mb-2">
+    Default Behavior (The "Gotcha")
+   </h2>
+   <p class="text-sm text-gray-600 mb-3">
+    By default, each grid item occupies only a single "cell" in the grid. If you expect an item to be wider,
+            it won't be unless you explicitly tell it to span.
+   </p>
+   <!--
+            GOTCHA DEMONSTRATION:
+            The items below will each take up one cell in a 3-column grid.
+            If you wanted "Item A (Wider)" to actually be wider without specific spanning classes,
+            it would still be confined to one cell.
+        -->
+   <div class="grid grid-cols-3 gap-4">
+    <div class="bg-red-200 p-4 rounded text-center border border-red-400">
+     Item A (Wider)
+     <p class="text-xs mt-1">
+      (Still 1 column wide)
+     </p>
+    </div>
+    <div class="bg-red-200 p-4 rounded text-center border border-red-400">
+     Item B
+    </div>
+    <div class="bg-red-200 p-4 rounded text-center border border-red-400">
+     Item C
+    </div>
+   </div>
+   <p class="text-xs text-gray-500 mt-2">
+    Comment: Notice "Item A (Wider)" above only takes one cell. This is the default.
+   </p>
+  </div>
+  <!-- Section 2: Spanning Columns (The Solution) -->
+  <div class="p-4 border border-gray-300 rounded-lg bg-white shadow">
+   <h2 class="text-xl font-semibold mb-2">
+    Using `col-span` and `row-span`
+   </h2>
+   <p class="text-sm text-gray-600 mb-3">
+    To make an item span multiple columns or rows, use utility classes like
+    <code>
+     col-span-2
+    </code>
+    or
+    <code>
+     row-span-2
+    </code>
+    on the specific grid item.
+   </p>
+   <div class="grid grid-cols-3 grid-rows-2 gap-4">
+    <!-- This item spans 2 columns -->
+    <div class="bg-green-500 text-white p-4 rounded-lg shadow-md text-center col-span-2">
+     Item 1 (Spans 2 Columns - `col-span-2`)
+    </div>
+    <div class="bg-green-500 text-white p-4 rounded-lg shadow-md text-center">
+     Item 2
+    </div>
+    <div class="bg-green-500 text-white p-4 rounded-lg shadow-md text-center">
+     Item 3
+    </div>
+    <!-- This item spans 2 rows -->
+    <div class="bg-purple-500 text-white p-4 rounded-lg shadow-md text-center row-span-2 flex items-center justify-center col-start-3 row-start-1">
+     Item 4 (Spans 2 Rows - `row-span-2`)
+     <p class="text-xs mt-1">
+      (Manually placed in col 3 for clarity)
+     </p>
+    </div>
+    <div class="bg-green-500 text-white p-4 rounded-lg shadow-md text-center col-span-2">
+     Item 5 (Spans 2 Columns - `col-span-2`)
+    </div>
+   </div>
+   <p class="text-xs text-gray-500 mt-2">
+    Comment: Here, "Item 1" and "Item 5" use
+    <code>
+     col-span-2
+    </code>
+    to stretch across two columns. "Item 4" uses
+    <code>
+     row-span-2
+    </code>
+    to stretch across two rows (its positioning is also helped by `col-start-3` and `row-start-1` for this specific layout).
+   </p>
+  </div>
+  <div class="mt-8 p-4 bg-yellow-100 border border-yellow-300 rounded">
+   <h2 class="font-semibold text-yellow-800">
+    Gotcha Addressed:
+   </h2>
+   <p class="text-yellow-700">
+    The "Gotcha" is that grid items only fill one cell unless explicitly instructed to span.
+            We've shown this default behavior and then demonstrated the solution using
+    <code>
+     col-span-*
+    </code>
+    and
+    <code>
+     row-span-*
+    </code>
+    utilities.
+   </p>
+  </div>
+  <script>
+   window.addEventListener('load', function() {
+  const el = document.querySelector('.from_inside_iframe');
+  const height = el ? el.scrollHeight : document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: height }, '*');
+});
+  </script>
+ </body>
+</html>

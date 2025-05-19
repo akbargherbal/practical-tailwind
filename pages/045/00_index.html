@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <title>
+   Tailwind CSS: Create a "hamburger" menu icon that opens a navigation list on mobile.
+  </title>
+  <style>
+   /* Custom styles for better readability if needed, though Tailwind should cover most */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+  </style>
+  <style>
+   iframe.default_style {
+  width: 100%;
+  min-height: 300px; /* Reasonable minimum */
+  border: none;
+  display: block;
+}
+  </style>
+ </head>
+ <body class="bg-slate-50">
+  <div class="container mx-auto p-6 md:p-10 font-sans text-slate-800">
+   <header class="mb-12">
+    <h1 class="text-4xl font-bold mb-10 text-center text-slate-700">
+     Tailwind CSS Concept Explained
+    </h1>
+   </header>
+   <main>
+    <section class="mb-12 bg-white p-6 md:p-8 rounded-lg shadow-lg">
+     <h2 class="text-3xl font-semibold mb-6 text-slate-600 border-b-2 border-slate-300 pb-3">
+      Making Websites Work on All Screen Sizes (Responsiveness)
+     </h2>
+     <h3 class="text-2xl font-medium mb-5 text-indigo-700">
+      Create a "hamburger" menu icon that opens a navigation list on mobile.
+     </h3>
+     <p class="mb-2 text-slate-700">
+      <strong class="font-semibold text-slate-800">
+       Skill ID:
+      </strong>
+      Responsiveness_45
+     </p>
+     <p class="mb-2 text-slate-700">
+      <strong class="font-semibold text-slate-800">
+       Description:
+      </strong>
+      Replace full nav with an icon on mobile.
+     </p>
+     <p class="mb-2 text-slate-700">
+      <strong class="font-semibold text-slate-800">
+       Where to apply:
+      </strong>
+      Main website navigation for mobile.
+     </p>
+     <div class="mt-6">
+      <p class="mb-2 text-slate-700">
+       <strong class="font-semibold text-slate-800">
+        Key Tailwind Classes:
+       </strong>
+      </p>
+      <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mb-4">
+       <span>
+        <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+         md:hidden
+        </code>
+        <span class="text-sm text-slate-600 ml-1">
+         (for hamburger)
+        </span>
+        ,
+       </span>
+       <span>
+        <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+         hidden
+        </code>
+        <span class="text-sm text-slate-600 ml-1">
+        </span>
+        <!-- Space before md:flex if needed or part of code -->
+        <code class="bg-slate-100 text-slate-700 px-2 py-1 rounded-md text-sm font-mono border border-slate-300">
+         md:flex
+        </code>
+        <span class="text-sm text-slate-600 ml-1">
+         (for full nav)
+        </span>
+       </span>
+      </div>
+     </div>
+     <div class="bg-amber-50 border-l-4 border-amber-500 text-amber-800 p-4 mt-5 rounded-md shadow-sm" role="alert">
+      <p>
+       <strong class="font-semibold text-amber-900">
+        Gotcha:
+       </strong>
+       Tailwind only handles the styling and the showing/hiding with classes. The actual
+       <em>
+        functionality
+       </em>
+       of clicking the hamburger icon to toggle the visibility of the menu requires JavaScript. Beginners often expect Tailwind to handle the click event too.
+      </p>
+     </div>
+     <div class="mt-8 p-6 border border-slate-200 rounded-lg bg-slate-50">
+      <h4 class="text-xl font-semibold mb-4 text-slate-700">
+       Illustrative Example:
+      </h4>
+      <p class="mb-4 text-sm text-slate-600">
+       Below is a common structure. You would need JavaScript to toggle the 'hidden' class on the mobile menu.
+      </p>
+      <nav class="bg-blue-600 p-4 rounded-md text-white">
+       <div class="container mx-auto flex justify-between items-center">
+        <div class="text-lg font-bold">
+         MyLogo
+        </div>
+        {/* Hamburger Button - visible on small screens */}
+        <div class="md:hidden">
+         <button class="text-white focus:outline-none" id="mobile-menu-button">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+           <path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+           </path>
+          </svg>
+         </button>
+        </div>
+        {/* Full Navigation - hidden on small, visible on medium and up */}
+        <div class="hidden md:flex space-x-4" id="full-nav-menu">
+         <a class="hover:text-blue-200" href="#">
+          Home
+         </a>
+         <a class="hover:text-blue-200" href="#">
+          About
+         </a>
+         <a class="hover:text-blue-200" href="#">
+          Services
+         </a>
+         <a class="hover:text-blue-200" href="#">
+          Contact
+         </a>
+        </div>
+       </div>
+       {/* Mobile Menu - hidden by default, shown by JS */}
+       <div class="hidden md:hidden mt-3 space-y-1" id="mobile-menu">
+        <a class="block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700" href="#">
+         Home
+        </a>
+        <a class="block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700" href="#">
+         About
+        </a>
+        <a class="block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700" href="#">
+         Services
+        </a>
+        <a class="block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700" href="#">
+         Contact
+        </a>
+       </div>
+      </nav>
+      <p class="mt-4 text-xs text-slate-500">
+       Note: The example above uses placeholder `id` attributes for potential JavaScript interaction. The classes
+       <code class="bg-slate-200 text-slate-600 px-1 py-0.5 rounded text-xs">
+        md:hidden
+       </code>
+       on the hamburger button ensure it's hidden on medium screens and up. The classes
+       <code class="bg-slate-200 text-slate-600 px-1 py-0.5 rounded text-xs">
+        hidden md:flex
+       </code>
+       on the full navigation ensure it's hidden by default on small screens and displayed as a flex container on medium screens and up. The mobile menu itself is
+       <code class="bg-slate-200 text-slate-600 px-1 py-0.5 rounded text-xs">
+        hidden md:hidden
+       </code>
+       , meaning it's hidden always unless JavaScript removes the 'hidden' class, and it will re-hide on medium screens anyway.
+      </p>
+      <script>
+       // Basic JS for toggling the mobile menu - for demonstration
+                        const menuButton = document.getElementById('mobile-menu-button');
+                        const mobileMenu = document.getElementById('mobile-menu');
+
+                        if (menuButton && mobileMenu) {
+                            menuButton.addEventListener('click', () => {
+                                mobileMenu.classList.toggle('hidden');
+                            });
+                        }
+      </script>
+     </div>
+    </section>
+   </main>
+  </div>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 1:
+  </h1>
+  <iframe frameborder="0" src="./01_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 2:
+  </h1>
+  <iframe frameborder="0" src="./02_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 3:
+  </h1>
+  <iframe frameborder="0" src="./03_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 4:
+  </h1>
+  <iframe frameborder="0" src="./04_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 5:
+  </h1>
+  <iframe frameborder="0" src="./05_example.html">
+  </iframe>
+  <h1 class="px-12 py-8 md:text-lg lg:text-xl xl:text-2xl font-bold text-red-600">
+   Example 6:
+  </h1>
+  <iframe frameborder="0" src="./06_example.html">
+  </iframe>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+  const iframes = document.querySelectorAll('iframe');
+
+  // Ensure all iframes have the default style class
+  iframes.forEach(iframe => iframe.classList.add('default_style'));
+
+  window.addEventListener('message', function(event) {
+    // Optional: add origin check for safety
+    if (event.data && typeof event.data.iframeHeight === 'number') {
+      const iframe = Array.from(iframes).find(iframe =>
+        iframe.contentWindow === event.source
+      );
+      if (iframe) {
+        iframe.style.height = (event.data.iframeHeight + 50) + 'px';
+      }
+    }
+  });
+});
+  </script>
+ </body>
+</html>
